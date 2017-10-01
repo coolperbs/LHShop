@@ -1,18 +1,15 @@
 @import "../../views/home/home.wxss";
-@import "../../views/sort/sort.wxss";
-@import "../../views/cart/cart.wxss";
-@import "../../views/mine/mine.wxss";
 @import "../../views/orders/orders.wxss";
 
-page { background-color: #f8f8f8; }
+page { height : 100%; }
 
-.toolbar { display: flex; height : 100rpx; border-top: solid 1px #eee; position: fixed; bottom : 0; width : 100%; background-color: #fff;z-index:100;}
+.toolbar { display: flex; height : 100rpx; border-top: solid 1px #eee; position: fixed; bottom : 0; width : 100%; background-color: rgba( 255, 255, 255, 0.9 );z-index:100;}
 .toolbar .tab { flex-grow : 1; display: flex; align-items: center; font-size : 24rpx; color : #888; position: relative; justify-content : center; }
 .toolbar .tab .icon { width:50rpx; }
 .toolbar .tab image { opacity : 0.5; }
 .toolbar image.current { opacity: 1; }
 .toolbar .tab .num { background-color: #eb2243; color : #fff; width : 36rpx; height : 36rpx; border-radius : 50%; text-align: center; line-height: 36rpx; font-size : 20rpx; position: absolute; left : 50%; margin-left : 10rpx; top : 5rpx; }
-.toolbar .line { position: absolute; width : 80rpx; height : 6rpx; background-color: #161823; bottom : 0; left : 88rpx;  }
+.toolbar .line { position: absolute; width : 80rpx; height : 6rpx; background-color: #000; bottom : 0; left : 88rpx;  }
 
 .toolbar .tab image { transition:opacity ease-out 0.2s; }
 .toolbar .line { transition:left ease-out 0.2s; }

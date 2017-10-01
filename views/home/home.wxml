@@ -1,65 +1,34 @@
 <template name="home">
 
 
-	<view class="home {{ plusInfo.showAnim ? 'showanim' : '' }}  {{plusInfo.type == 2 ? 'vip' : ''}}">
-		<view class="cont">
-			<view class="head">
-				<view class="plus-info">
-					<block wx:if="{{plusInfo.type == 2 == 1}}">
-						<image src="../../asset/plus-yet.png" mode="widthFix"></image>
-						<!--<view class="bold">PLUS</view>{{plusInfo.symbol[plusInfo.level] || plusInfo.level}}-->
-					</block>
-				</view>
-				<view class="shim"></view>
-				<view class="nav" wx:if="{{ pageData }}">
-					<navigator class="tab" url="../offline/offline">
-						<image src="../../asset/scan-draw.png" mode="widthFix"></image>
-						<view class="text">扫码购物</view>
-					</navigator>
-					<navigator class="tab" url="../wallet/wallet">
-						<image src="../../asset/card-draw.png" mode="widthFix"></image>
-						<view class="text">账户充值</view>
-					</navigator>
-					<navigator class="tab" url="../online/online?shopid={{pageData.defaultStoreId}}">
-						<image src="../../asset/basket-draw.png" mode="widthFix"></image>
-						<view class="text">门店自提</view>
-					</navigator>
-				</view>
-			</view>
-
-			<navigator class="info {{ plusInfo.type == 1 ? 'show' : '' }}" url="../buyvip/buyvip">
-				<block wx:if="{{plusInfo.type == 1}}">
-					<view class="main">
-						<image src="../../asset/crown.png" mode="widthFix"></image>
-						<view class="ellipsis-2">{{plusInfo.plusAds}}</view>
-					</view>
-					<view class="more">
-						查看会员权益
-						<image src="../../asset/arrow-gold.png" mode="widthFix"></image>
-					</view>
-				</block>
+	<view class="home">
+		<view class="box">
+			<navigator url="../city/city" class="loc">
+				<image src="../../asset/loc.png"></image>
+				{{ city.name || '请选择城市' }}
 			</navigator>
 
-
-			<swiper class="module" indicator-dots="{{true}}" wx:if="{{ pageData.swipers && pageData.swipers.length > 0 }}" indicator-color="#eee" indicator-active-color="#bbb">
-				<swiper-item wx:for="{{pageData.swipers}}" wx:key="index">
-			 		<view class="box" catchtap="events" data-func="jump" data-type="{{ item.type }}" data-url="{{item.url}}">
-						<image  class="banner" src="{{item.imgUri}}"></image>
+			<view class="cont">
+				<navigator url="../date/date">
+					<view class="info">
+						<view>入住</view>
+						<view>共{{allDay}}晚</view>
+						<view>退房</view>
 					</view>
-				</swiper-item>
-			</swiper>
-
-
-			<view class="shop-title">
-				<image src="../../asset/flag.png" mode="widthFix"></image>门店推荐
+					<view class="date">
+						<view class="day start">{{datetime[0].month}}月{{datetime[0].day}}日 周{{datetime[0].week}}</view>
+						<view class="day end">{{datetime[1].month}}月{{datetime[1].day}}日 周{{datetime[1].week}}</view>
+					</view>
+				</navigator>
 			</view>
-			<navigator wx:if="{{ pageData.stores && pageData.stores.length > 0 }}" class="module" wx:for="{{pageData.stores}}" wx:key="index" url="../online/online?shopid={{item.id}}" >
-				<image  class="banner" src="{{item.logo}}"></image>
-			</navigator>
+
+			<view class="sure">
+				<navigator url="../list/list">
+					<view class="btn">订酒店</view>
+				</navigator>
+			</view>
 		</view>
-
-		<view class="plus-shim"></view>
-
+		<image src="../../asset/back.jpeg" class="background"></image>
 	</view>
 
 

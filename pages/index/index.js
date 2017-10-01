@@ -1,23 +1,24 @@
 var home = require( '../../views/home/home.js' ),
 	orders = require( '../../views/orders/orders.js' ),
-	mine = require( '../../views/mine/mine.js' ),
+//	mine = require( '../../views/mine/mine.js' ),
 	serviceCart = require( '../../service/cart/cart' ),
 	serviceUser = require( '../../service/user/user' ),
 	service = require( '../../service/service' ),
 	utils = require( '../../common/utils/utils' ),
+	app = getApp(),
 	views,
 	_fn;
 
 views = {
 	home : home,
 	orders : orders,
-	mine : mine
+	//mine : mine
 };
-	
+
 Page( {
 	data : {
 		viewData : {},
-		currentView : '',
+		currentView : 'home',
 		tab : {
 			currentTab : 0,
 			list : [{
@@ -28,15 +29,22 @@ Page( {
 				text : '订单',
 				className : 'footer-orders',
 				view : 'orders'
-			},{
-				text : '我的',
-				className : 'footer-mine',
-				view : 'mine'
 			}]
 		}
 	},
+	onShareAppMessage : app.shareFunc,
 	onReady : function() {
-		_fn.showTips( this );
+		wx.setNavigationBarTitle( {
+			title : app.config.title 
+		} );
+		//_fn.showTips( this );
+	},
+
+	onReachBottom : function( e ) {
+		var currentView = views[this.data.currentView] || {};
+		if ( currentView && currentView.events && currentView.events['reachBottom'] ) {
+			currentView.events['reachBottom']( this, e );
+		}
 	},
 
 	onShow : function() {
@@ -79,6 +87,7 @@ Page( {
 			currentView = views[this.data.currentView] || {};
 
 
+		console.log( dataset.func );
 		if ( !currentView.events || typeof currentView.events[dataset.func] != 'function' ) {
 			return;
 		}

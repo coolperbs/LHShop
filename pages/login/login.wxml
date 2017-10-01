@@ -1,8 +1,8 @@
-<view class="head">
+<!--<view class="head">
 	<image class="logo" src=""></image>
 	<view class="line title">程序名称</view>
 	<view class="line sub-title">上海某某科技有限公司</view>
-</view>
+</view>-->
 
 <view class="body">
 	<view class="info">该程序获取以下授权：</view>

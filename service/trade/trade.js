@@ -13,10 +13,10 @@ CFG = {
 url = {
 	tradeInfo : config.HOST.trading + '/mch/trade/info',	// 考虑接口的剥离方哪里？
 	submit : config.HOST.trading + '/mch/trade/submit',
-	pay : config.HOST.trading + '/mch/pay/order-pay',
+	pay : config.HOST.trading + '/mch/pay/order-pay'
 
 	// tradeInfo : 'http://devapi.trading.com/mch/trade/info',	// 考虑接口的剥离方哪里？
-	// submit : 'http://devapi.trading.com/mch/trade/submit'	// devapi.trading.com，host是绑定王锐的机器
+	// submit : 'http://devapi.trading.com/mch/trade/submit',
 	// pay : 'http://devapi.trading.com/mch/pay/order-pay'
 }
 

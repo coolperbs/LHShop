@@ -1,6 +1,7 @@
 var service = require( '../../service/service' ),
 	utils = require( '../../common/utils/utils' ),
 	param,	defaultParam,
+	app = getApp(),
 	_fn;
 
 defaultParam = {
@@ -13,6 +14,7 @@ Page({
 		param = options || {};
 		param = utils.mix( param, options );
 	},
+  	onShareAppMessage : app.shareFunc,
 	login : function() {
 		// 1.获取用户信息
 		utils.showLoading( 300 );
@@ -23,24 +25,14 @@ Page({
 				return;
 			}
 
+			console.log( res );
 			if ( res.code != '0000' || res.success == false ) {
 				utils.hideLoading();
 				wx.showToast( { title : '登录失败' } );
 				return;
 			}
-
-			// 2.合并购物车
-			service.cart.merge( function( isMerge ) {
-				utils.hideLoading();
-				// 合并失败则返回上级页面
-				if ( !isMerge ) {
-					wx.navigateBack();
-					return;
-				}
-				_fn.next();
-			} );
-			// TODO：这里逻辑要根据传入参数来，根据传入参数跳转到对应页面
-			//wx.navigateBack();
+			utils.hideLoading();
+			_fn.next();
 		} );
 	},
 	cancel : function() {

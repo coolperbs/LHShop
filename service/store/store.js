@@ -1,49 +1,33 @@
-var handle, CFG, _fn, error, url,
-	ajax = require( '../../common/ajax/ajax' ),
-	config = require( '../../config' ),
-	utils = require( '../../common/utils/utils' );
+var ajax = require('../../common/ajax/ajax'), 
+	utils = require( '../../common/utils/utils' ),
+	_fn, handle;
 
-CFG = {
-	storeName : 'userinfo'	//前端key
-}
-
-url = {
-	storeInfo : config.HOST.appGateWay + '/app/store/page',	// 考虑接口的剥离方哪里？
-	main : config.HOST.appGateWay + '/app/index'
-}
 
 handle = {
-	getMain : function() {
-		var param, callback;
-		if ( arguments.length == 1 ) {
-			callback = arguments[0];
-		} else if ( arguments.length == 2 ) {
-			param = arguments[0];
-			callback = arguments[1];
-		}
-		ajax.query( {
-			url : url.main
-		}, callback );
-	},
-	getInfo : function( storeId, callback ) {
-		ajax.query( {
-			url : url.storeInfo + '/' + storeId
-		}, callback );
-	}
+
 };
+
 _fn = {
+	// 处理用户信息，单独打个标记，merge购物车，因为在结算的时候必须merge一次，成功后才下单
+	// 处理绑定信息
+	addTempId : function( param ) {
+		var isMerge = wx.getStorageSync( CFG.isMergeCart ),
+			userInfo = wx.getStorageSync( 'userinfo' );
 
-	isErrorRes : function( res ) {
-		if ( !res || !res.code === '0000' || !res.data ) {
-			return true;
+		if ( isMerge == true ) {	// 已经登录也不需要打merge
+			return param;
 		}
-		return false;
+		param.tempId = wx.getStorageSync( CFG.tempId );
+		return param;
+	},
+	callbackFilter : function( res ) {
+		var isMerged = wx.getStorageSync( CFG.isMergeCart );
+		// 处理购物车merge数据
+		if ( !isMerged && res && res.data && res.data.marge ) {
+			wx.setStorageSync( CFG.isMergeCart, true );
+		}
+		return res;
 	}
-}
-
-
-error = {
-	success : { code : '0000', msg : '' }
 }
 
 module.exports = handle;

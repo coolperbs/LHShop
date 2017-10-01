@@ -1,7 +1,16 @@
 var handle,
     sysInfo = wx.getSystemInfoSync(),
-    navigateLock = false,//wx.navigateTo锁，防止重复点击false允许点击 true不允许点击
-    loadingTimmer;
+    loadingTimmer,
+    weeks_ch = ['日', '一', '二', '三', '四', '五', '六'],
+    orderStatus;
+
+orderStatus = {
+  8 : '待支付',
+  16 : '待入住',
+  32 : '已入住',
+  512 : '已完成',
+  1024 : '已取消'
+}
 
 handle = {
   merge : function( r, s ) {
@@ -35,6 +44,9 @@ handle = {
       return false;
     }
     return true;
+  },
+  isErrorRes : function( res ) {
+    return !handle.checkRes( res );
   },
   fixPrice : function( price ) {
     price = price || 0;
@@ -75,43 +87,28 @@ handle = {
 
     wx.showLoading( param );
   },
+  timeToDateObj : function( time ) {
+    var date = new Date();
+
+    date.setTime( time );
+
+    return {
+      time : time,
+      day : date.getDate(),
+      month : date.getMonth() + 1,
+      year : date.getFullYear(),
+      week : weeks_ch[date.getDay()],
+      hours : date.getHours(),
+      minutes : date.getMinutes(),
+      seconds : date.getSeconds()
+    };   
+  },
+  orderStatusStr : function( s ) {
+    return orderStatus[ s ];
+  },
   hideLoading : function() {
     clearTimeout( loadingTimmer );
     wx.hideLoading();
-  },
-  navigateTo:function(param){
-    navigateLock = navigateLock || false;
-    if(navigateLock){
-      return;
-    }
-    var url = param.url
-    if(!url){
-      return;
-    }
-    navigateLock = true;
-    wx.navigateTo({
-      url:url,
-      complete:function(res){
-        navigateLock = false;
-        if(typeof param.complete === 'function'){
-          param.complete(res);
-        }
-      },
-      success:function(res){
-        navigateLock = false;
-        if(typeof param.success === 'function'){
-          param.success(res);
-        }
-      },
-      fail:function(res){
-        navigateLock = false;
-        if(typeof param.fail === 'function'){
-          param.fail(res);
-        }
-
-      }
-    });
-
   }
 }
 

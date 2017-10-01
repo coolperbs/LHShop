@@ -1,46 +1,13 @@
-.home { padding : 20rpx 40rpx; width : 670rpx; overflow: hidden; padding-bottom : 120rpx; background-color: #f8f8f8; color : #161823; position: relative; }
+.home { height: 100%; display: flex; justify-content: center; align-items: center; width : 100%; }
 
-.home .cont { position: relative; z-index: 10; }
-.home .plus-shim { opacity: 0; border : solid 1px; position: absolute; top : 0; left : 0; width : 100%; height : 160rpx; background-color: #161823; z-index: 1; }
+.home .background { opacity: 0.9; z-index : 1; width : 100%; height : 100%; position: absolute; left : 0; top : 0; background-color: #ccc; }
 
-.home .head { z-index : 10; background-color: #fff; border-radius: 8rpx; overflow: hidden; box-shadow: 0 10rpx 20rpx rgba( 0, 0, 0, 0.1 ); position: relative; }
-.home .head .plus-info { padding : 0 40rpx; padding-top : 30rpx; font-size : 24rpx; color : #644827; align-items : center; display: flex; }
-.home .head .plus-info .bold { font-weight: bold; margin-right : 10rpx; }
-.home .head .plus-info image { width : 120rpx; margin-right : 10rpx; position: relative; top : -6rpx; }
-.home .head .nav { display: flex; padding-bottom : 40rpx; padding-top : 10rpx; }
-.home .head .nav .tab { flex-grow : 1; border-right : solid 1px #f0f0f0; font-size : 26rpx; }
-.home .head .nav .tab { height : 160rpx; display: flex; flex-wrap : wrap; justify-content : space-around; align-items : flex-end; }
-.home .head .nav .tab:last-child { border-right : 0; }
-.home .head .nav .tab image { width : 80rpx; }
-.home .head .nav .tab .text { width : 100%; text-align: center; }
-
-.home .head .plus-info { z-index: 4; position: relative; height : 0; overflow: hidden; }
-.home .head .nav { z-index: 3; position: relative; }
-.home .head .shim { opacity: 0; width : 100%; height : 100%; z-index: 2; position: absolute; left : 0; top : 0; background:  -webkit-gradient(linear, 100% 0, 0 0, from(#C3A161), to(#EAD7A9)); }
-
-
-.home.showanim .head .plus-info { transition: height 0.5s; }
-.home.showanim .info.show { transition: height 0.5s; }
-.home.showanim .head .shim { transition: opacity 0.5s; }
-.home.showanim .plus-shim { transition : opacity 0.5s; }
-
-.home.vip .shim { opacity : 1; }
-.home.vip .plus-info { height : 78rpx; }
-.home.vip .nav .tab { border-right-color: rgba(100,72,39,0.10); color : #644827; }
-.home.vip .nav .tab image { opacity: 0.8; }
-.home.vip .plus-shim { opacity: 1; }
-
-.home .info { height : 0; overflow: hidden; width : 540rpx; margin : 0 auto; padding : 0 20rpx; border-bottom-right-radius: 8rpx; border-bottom-left-radius: 8rpx; background-color: #161823; color : #FFF1CF; display: flex; justify-content : space-between; }
-.home .info.show { height : 70rpx;  }
-.home .info .main { font-size : 24rpx; display: flex; align-items : center; width : 360rpx; }
-.home .info .main image { width : 48rpx; display: inline-block; margin-right : 20rpx; }
-.home .info .main view { width : 290rpx; }
-.home .info .more { font-size : 22rpx; display: flex; align-items : center; }
-.home .info .more image { width : 22rpx; }
-
-.home .module { height : 300rpx; color : #ccc; margin-top : 30rpx; text-align: center; }
-.home .module .banner { height : 100%; width : 100%; }
-.home .module .box { width : 100%; height : 100%; }
-.home .module .box image { width : 100%; height : 100%; }
-.home .shop-title { font-size : 28rpx; display: flex; align-items : center; color : #161823; margin-top : 20rpx; }
-.home .shop-title image { width : 24rpx; margin-right : 10rpx; }
+.home .box { padding : 15rpx; overflow: hidden; background-color: #fff; border-radius: 8rpx; width: 660rpx; margin : 0 auto; z-index: 2; position: relative; box-shadow: 0 16rpx 20rpx rgba( 0, 0, 0, 0.1 ); }
+.home .box .loc { padding : 20rpx 0; display: flex; justify-content: center; font-size : 32rpx; align-items: center; }
+.home .box .loc image { width: 52rpx; height: 52rpx; margin-right : 20rpx; }
+.home .box .cont { padding : 40rpx 0; border : solid 1px #f0f0f0; border-width: 1px 0; }
+.home .box .cont .info { display: flex; justify-content: space-around; align-items: center; padding : 20rpx 0; color : #bbb; font-size : 24rpx; }
+.home .box .cont .date { height: 60rpx; display: flex; }
+.home .box .cont .date .day { color : #ea622e; font-size : 32rpx; flex-grow: 1; text-align: center; line-height: 60rpx; }
+.home .box .cont .date .day:first-child{ border-right: solid 1px #f0f0f0; }
+.home .sure .btn { background-color: #e85e29; height : 80rpx; line-height: 80rpx; color : #fff; font-size : 32rpx; text-align: center; } 

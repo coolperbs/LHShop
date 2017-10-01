@@ -7,7 +7,8 @@ var handle, CFG, _fn,
 	config = require('../../config'),
 	env = config.env,
 	url,
-	hostTrading = config.host.trading[env],
+	//app = getApp(),
+	//hostTrading = config.host.trading[env],
 
 CFG = {
 	storeName : 'userinfo',	//前端key
@@ -15,8 +16,8 @@ CFG = {
 }
 
 url = {
-	login : config.HOST.trading + '/mch/user/wechat/auth/miniProgram'
-	//login : 'http://10.12.196.89:8080/login'
+	//login : config.HOST.trading + '/mch/user/wechat/auth/miniProgram'
+	login : config.host + '/login'
 }
 
 error = utils.merge( error, {
@@ -28,12 +29,6 @@ handle = {
 	// 不带验证获取
 	getStoreInfo : function() {
 		return wx.getStorageSync( CFG.storeName ) || null;
-	},
-
-	isPlus : function() {
-		var info = wx.getStorageSync( CFG.storeName ) || {};	
-		info = info.user || {};
-		return info.type * 1 === 2 ? true : false;
 	},
 
 	createTempId : function() {
@@ -120,40 +115,26 @@ handle = {
 
 
 	// mine页面业务要去盯下，有个登录逻辑未考虑
-	getUserDetail:function(){
-		var callback,
-			option,
-			passNoneToken,//如果接口返回没有token，是否走登陆重新获取
-			self = this,
-			url = hostTrading+'/mch/user/info';
-
-		if ( arguments.length == 1 && typeof arguments[0] === 'function' ) {
-			callback = arguments[0];
-		} else if ( arguments.length == 2 ) {
-			callback = arguments[1];
-			option = arguments[0];
-		}
-		option = option || {};
-		passNoneToken = option.passNoneToken || false;//如果接口返回没有token，是否走登陆重新获取
-
+	getUserDetail:function(callback,option){
+		option = option ||{};
+		var passNoneToken = option.passNoneToken||false;//如果接口返回没有token，是否走登陆重新获取
+		var self = this;
+		var url = hostTrading+'/mch/user/info';
 		ajax.query({
 			url:url,
-			param:option
+			param:{}
 		},res=>{
-			callback && callback( res );
-			return;
-			// 先不token失效，后续统一考虑
-			// if(res.code === 'GW10005' && !passNoneToken){
-			// 	self.getInfo(res=>{
-			// 		self.getUserDetail(callback,{
-			// 			passNoneToken:true
-			// 		});//第二次请求如果还是没有token就不走登陆了
-			// 	});
-			// }else{
-			// 	if(typeof callback === 'function'){
-			// 		callback(res);
-			// 	}
-			// }		
+			if(res.code === 'GW10005' && !passNoneToken){
+				self.getInfo(res=>{
+					self.getUserDetail(callback,{
+						passNoneToken:true
+					});//第二次请求如果还是没有token就不走登陆了
+				});
+			}else{
+				if(typeof callback === 'function'){
+					callback(res);
+				}
+			}		
 		});
 	}
 

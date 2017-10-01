@@ -5,7 +5,7 @@ var config = require('../../config'),
 
 handle = {
   query : function( object, callback ) {
-    var param = _fn.wrapParam( object );
+    var param = _fn.wrapParam( this, object );
     wx.request({
       //url : protocol + object.url, // 这个组装放这里有问题，如果传入完整地址就会有问题
       url : object.url,
@@ -18,12 +18,17 @@ handle = {
         _fn.responseWrapper( res, callback );
       }
     });
+  },
+  setGlobalParam : function( param ) {
+    this.globalParam = param;
   }
 }
 
 _fn = {
-  wrapParam : function( object ) {
+  wrapParam : function( caller, object ) {
     var userInfo = wx.getStorageSync( 'userinfo' ) || {};
+    object.param = object.param || {};
+    object.param.venderId = caller.globalParam.uid;
     return {
       param : JSON.stringify( object.param ) || '',
       token : userInfo.token || ''

@@ -1,3 +1,4 @@
 /**app.wxss**/
 @import "/common/basestyle/basestyle.wxss";
-@import '/common/basestyle/base.wxss';
+
+page{ font-size : 28rpx; color : #232323; }
