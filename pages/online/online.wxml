@@ -1,0 +1,116 @@
+<view class="page-wrapper">
+	<view class="page {{showCart?'showcart' : ''}}">
+		<scroll-view class="nav" scroll-x="{{true}}" scroll-with-animation="{{true}}" scroll-left="{{tab.pos}}">
+			<view class="tab {{ tab.currentTab == index ? 'current' : ''}}" wx:if="{{tab && tab.units}}" wx:for="{{tab.units}}" wx:key="{{index}}" data-index="{{index}}" catchtap="clickTab" >
+				<view class="info">
+					<view class="text">{{item.nameEn}}</view>
+					<view class="text">{{item.name}}</view>
+				</view>
+			</view>
+		</scroll-view>
+
+		<view class="page-content">
+			<swiper class="content-wrapper" current="{{tab.currentTab}}" bindchange="slideTab">
+				<swiper-item  wx:if="{{tab && tab.units}}" wx:for="{{tab.units}}" wx:for-item="unit" wx:key="{{index}}" wx:for-index="unitIndex">
+					<scroll-view class="content-wrapper" scroll-y="{{true}}" >
+						<view class="content">
+							<view class="module">
+								<view class="title">
+									<view class="sort">{{unit.mcode}}</view>
+									<view class="split"></view>
+									<view class="sort-name">
+										<view class="chinese">{{unit.name}}</view>
+										<view class="english">{{unit.nameEn}}</view>
+									</view>
+								</view>
+								<view class="list">
+									<view catchtap="jumpToItem" data-sku="{{item.wareSkuId}}" class="item saleout" wx:for="{{unit.wareSkus}}"  wx:key="{{index}}" wx:for-item="item" wx:for-index="itemIndex">
+										<image class="saleout-image" src="../../asset/saleout.png" wx:if="{{item.lastStock <= 0}}"></image>
+										<image class="item-image" src="{{item.image}}"></image>
+										<!-- <view class="item-tag">限量供应<view class="angle"></view></view> -->
+										<view class="item-info">
+											<view class="name ellipsis-1">{{item.title}}</view>
+											<view class="sub-name ellipsis-1">{{item.subTitle}}</view>
+											<view class="labels">
+												<view class="label red" wx:if="{{item.promotionInfo.lable}}"> <view class="tag">{{item.promotionInfo.lable}}</view></view>
+
+
+												<!-- 命中plus，必然展示plus标签 -->
+												<block wx:if="{{ item.promotionInfo.plus }}">
+													<view class="label"> <view class="tag">PLUS</view> <view class="info" wx:if="{{ item.promotionInfo.firstOrder }}">首单会员价</view> </view>
+												</block>
+												<!-- 没有命中，但有会员价，展示会员价 -->
+												<block wx:if="{{ !item.promotionInfo.plus && item.promotionInfo.plusPromotionPrice}}">
+													<view class="label"> <view class="tag">PLUS<view class="p">¥{{item.promotionInfo.plusPromotionPriceStr}}</view></view></view>
+												</block>
+												<view class="stock" wx:if="{{ item.lastStock < cart.cartNum[shopId + '-' + item.wareSkuId] }}">仅剩{{ item.lastStock }}件</view>
+											</view>
+											<view class="price-info">
+												<view class="price"><view class="sub">¥</view>{{ item.promotionInfo.promotionPrice ? item.promotionInfo.promotionPriceStr : item.promotionInfo.priceStr }}</view>
+												<view class="favo-info" wx:if="{{ item.promotionInfo.promotionPrice }}">¥{{item.promotionInfo.priceStr}}</view> 
+
+												<view class="act" wx:if="{{item.lastStock > 0}}">
+													<view class="minus icon {{cart.cartNum[shopId + '-' + item.wareSkuId] > 0 ? 'show' : ''}}" data-sku="{{item.wareSkuId}}" data-shopid="{{shopId}}" catchtap="delCart">
+														<image src="../../asset/minus.png"></image>
+													</view>
+													<view class="num {{cart.cartNum[shopId + '-' + item.wareSkuId] > 0 ? 'show' : ''}}"  animation="{{cart.anim[shopId + '-' + item.wareSkuId]}}">{{cart.cartNum[shopId + '-' + item.wareSkuId]}}</view>
+
+													<view wx:if="{{ !cart.cartNum[shopId + '-' + item.wareSkuId] || cart.cartNum[shopId + '-' + item.wareSkuId] < item.lastStock }}" class="icon plus" data-shopid="{{shopId}}" data-sku="{{item.wareSkuId}}" catchtap="addCart">
+														<image src="../../asset/plus.png"></image>
+													</view>
+
+													<view wx:if="{{ cart.cartNum[shopId + '-' + item.wareSkuId] >= item.lastStock }}" class="icon plus disabled">
+														<image src="../../asset/plus.png"></image>
+													</view>
+												</view>
+											</view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>	
+					</scroll-view>
+				</swiper-item>
+			</swiper>
+		</view>
+	</view>
+	<view class="shim {{showCart?'showcart' : ''}}" bindtap="toggleCart"></view>
+</view>
+
+
+
+<view class="toolbar {{ cart.totalNum ? '' : 'disabled' }} {{showCart?'showcart' : ''}}">
+	<view class="cart-icon" bindtap="toggleCart">
+		<image src="../../asset/basket.png"></image>
+		<view class="num {{ cart.totalNum ? 'show' : '' }} {{ cart.totalNum < 10 ? 'single' : '' }}">{{cart.totalNum}}</view>
+	</view>
+	<view class="cart">
+		<scroll-view class="cart-list" scroll-y="{{true}}">
+			<view class="cart-item" wx:for="{{cart.cartList}}" wx:key="{{index}}">
+				<view class="main">
+					<view class="name  ellipsis-2">{{item.skuName}}</view>
+					<view class="price"><view class="sub">¥</view>{{ item.promotionPrice ? item.promotionPriceStr : item.priceStr}}</view>
+				</view>
+				<view class="act">
+					<view class="stock" wx:if="{{ item.num > item.lastStock }}">仅剩1件</view>
+					<view class="minus icon show"  data-sku="{{item.skuId}}" data-shopid="{{shopId}}" catchtap="delCart">
+						<image src="../../asset/minus.png"></image>
+					</view>
+					<view class="num show">{{item.num}}</view>
+					<view wx:if="{{ item.lastStock > item.num }}" class="plus icon" data-sku="{{item.skuId}}" data-shopid="{{shopId}}" catchtap="addCart">
+						<image src="../../asset/plus.png"></image>
+					</view>
+
+					<view wx:if="{{ item.lastStock <= item.num }}" class="plus icon disabled">
+						<image src="../../asset/plus.png"></image>
+					</view>
+
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+	<view class="bar" bindtap="toggleCart">
+		<view class="btn" catchtap="submit">去结算</view>
+		<view class="price total {{cart.currentShop.num > 0 ? 'show' : ''}}"><view class="sub">¥</view>{{ cart.currentShop.totalPromotionPrice ? cart.currentShop.totalPromotionPriceStr : cart.currentShop.totalPriceStr }}</view>
+	</view>
+</view>

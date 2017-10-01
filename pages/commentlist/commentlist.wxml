@@ -1,0 +1,84 @@
+<view class="page-commentlist commentList">
+	<view class="tab">
+		<view class="tab-item {{curTab==='all'?'active':''}}" 
+		data-key="all" 
+		bindtap="selectTab">
+		<view class="content">	
+			<text class="tab-title">全部</text>
+			<text class="tab-num">{{statistics.good.times+statistics.nomal.times+statistics.bad.times||0}}
+			</text>
+		</view>
+		</view>
+
+		<view class="tab-item {{curTab==='good'?'active':''}}" 
+		data-key="good" 
+		bindtap="selectTab">
+		<view class="content">	
+			<text class="tab-title">好评</text>
+			<text class="tab-num">{{statistics.good.times||0}}</text>
+		</view>
+		</view>
+
+		<view class="tab-item {{curTab==='nomal'?'active':''}}" 
+		data-key="nomal" 
+		bindtap="selectTab">
+		<view class="content">	
+			<text class="tab-title">中评</text>
+			<text class="tab-num">{{statistics.nomal.times||0}}</text>
+		</view>
+		</view>
+
+		<view class="tab-item {{curTab==='bad'?'active':''}}" 
+		data-key="bad" 
+		bindtap="selectTab">
+		<view class="content">	
+			<text class="tab-title">差评</text>
+			<text class="tab-num">{{statistics.bad.times||0}}</text>
+		</view>
+		</view>
+	</view>
+	<scroll-view class="list-container" style="height:{{height}}px" scroll-y="true" bing bindscrolltolower="loadMore">
+		<block wx:for="{{commentList}}">
+			<template is="comment-item" data="{{...item}}"></template>
+		</block>
+	</scroll-view>	
+</view>
+
+<template name="comment-item">
+	<view class="comment-wrapper" bindtap="selectComment">
+		<view class="left">
+			<block wx:if="{{userHeadImage}}">
+				<image src="{{userHeadImage}}"></image>
+			</block>
+			<block wx:else>
+				<image src="../../asset/default-user.png"></image>
+			</block>
+			<!-- <image src="{{userHeadImage}}"></image> -->
+		</view>
+		<view class="right">
+			<view>
+				<view class="name">{{userName}}</view>
+				<view class="starts">
+					<block wx:for='{{stars}}' wx:key="id">
+						<view class="star" data-value="{{item.val}}" data-id="{{id}}">
+							<block wx:if="{{!score || item.val>score}}">
+								<image src="../../asset/star-nor.png"></image>
+							</block>
+							<block wx:else>
+								<image src="../../asset/star-sel.png"></image>
+							</block>
+						</view>
+					</block>
+				</view>
+				<view class="tickets">
+					<text wx:for="{{labelArray}}" class="ticket">{{item}}</text>
+					<text wx:if="{{contentLabel}}" class="ticket">{{contentLabel}}</text>
+				</view>
+			</view>
+			<view class='time-wrapper'>
+				<view class="time">{{created}}</view>
+			</view>
+		</view>
+	</view>
+	
+</template>

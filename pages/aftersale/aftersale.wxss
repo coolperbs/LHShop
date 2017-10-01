@@ -1,0 +1,113 @@
+@import "../../common/basestyle/base.wxss";
+page{
+	background-color: #f8f8f8
+}
+.page-aftersale{padding-top:30rpx;}
+.page-aftersale .pannel{
+	/*width:720rpx;*/
+	margin:0px 14rpx 20px 14rpx;
+	box-shadow:0 4px 10px 0 rgba(0,0,0,0.05);
+	display:flex;
+	background-color: #fff
+	/*flex-wrap:wrap*/
+}
+.page-aftersale .ware{
+	height:240rpx;
+	/*padding:20rpx;*/
+
+}
+.page-aftersale .ware .ware-img{
+	width:180rpx;
+	height:180rpx;
+	margin:28rpx 0 32rpx 32rpx;
+}
+.page-aftersale .ware .ware-detail{
+	position:relative;
+	font-size:16px;
+	color:#4A4A4A;
+	margin:40rpx 0rpx 54rpx 20rpx;
+	width:450rpx;
+}
+.page-aftersale .ware .ware-detail .price{
+	position: absolute;
+	bottom:0;
+	left: 0
+}
+.page-aftersale .ware .ware-detail .num{
+	position: absolute;
+	bottom: 0;
+	right:0;
+}
+.page-aftersale .return-detail{
+	flex-wrap: wrap;
+}
+.page-aftersale .line{
+height:100rpx;
+display:flex;
+border-bottom:1px solid #f8f8f8;
+align-items:center;
+/*padding:0 20rpx;*/
+width:100%;
+justify-content:space-between;
+font-size: 16px;
+}
+.page-aftersale .line .title{
+	width:200rpx;
+	margin-left: 20rpx;
+}
+.page-aftersale .line .content{
+	height:100%;
+	display:flex;
+	align-items:center;
+	color: #999999;
+	margin-right: 20rpx;
+}
+.page-aftersale .line .logo{
+	width:30rpx;
+	height: 30rpx;
+}
+.page-aftersale .upload{
+	flex-wrap: wrap;
+	font-size: 16px;
+	padding:20rpx 0;
+}
+.page-aftersale .upload .btn-wrapper{
+width:100%;
+margin:0 20rpx;
+margin-top:40rpx;
+}
+.page-aftersale .upload .btn-wrapper .logo{
+	width:150rpx;
+	height:150rpx;
+	margin-right:20rpx;
+}
+.page-aftersale .upload .title{
+	margin:0 20rpx;
+}
+.page-aftersale .notice{
+	width:500rpx;
+}
+.page-aftersale .submit-btn{
+	height:100rpx;
+	text-align:center;
+	position:fixed;
+	bottom:0;
+	width:100%;
+	text-align:center;
+	line-height:100rpx;
+	background-color:#161927;
+	color:#fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

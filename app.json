@@ -1,0 +1,55 @@
+{
+  "pages":[
+    "pages/index/index",  
+    "pages/auth/auth",    
+    "pages/address/address",
+    "pages/buyvip/buyvip",
+    "pages/wallet/wallet",
+    "pages/login/login",
+    "pages/online/online",
+    "pages/checkout/checkout",
+    "pages/offline/offline",
+    "pages/order/order",
+    "pages/comment/comment",
+    "pages/orderdetail/orderdetail",
+    "pages/consumelist/consumelist",
+    "pages/aftersale/aftersale",
+    "pages/aftersalelist/aftersalelist",
+    "pages/item/item",
+    "pages/commentlist/commentlist",
+    "pages/active/active",
+    "pages/about/about",
+    "pages/privilege/privilege",
+    "pages/mycoupon/mycoupon",
+    "pages/coupon/coupon"
+  ],
+
+  "window":{
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText" : " ",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh" : false
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

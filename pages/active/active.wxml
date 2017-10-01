@@ -1,0 +1,83 @@
+<!-- 
+:
+moduleId =1  商品模块   2  图片模块
+:
+templateId = 3  图片楼层（目前只有一个模版）
+:
+emplateId = 1  1N商品   emplateId = 2  2N商品
+ -->
+
+
+
+
+<!--<view catchtap="autoBuy" style="padding : 20rpx; border : solid 1px;">
+	点我测试预售下单流程
+	数据:shopid=1,sku=100011,num=2
+</view>-->
+
+<template wx:for="{{moduleList}}" key="index" is="temp-{{item.modulePrototypeId}}-{{item.templatePrototypeId}}" data="{{...item}}"/>
+
+
+<!-- 图片楼层 -->
+<template name="temp-2-3">
+	<view class="module image-list col-1">
+		<view class="cell">
+			<image class="img" mode="widthFix" src="{{data.url}}"></image>
+		</view>
+	</view>
+</template>
+
+<!-- 1N商品 -->
+<template name="temp-1-1">	
+	<view class="module item-list">
+		<view wx:for="{{data.storeWareSkus}}" wx:key="index" catchtap="jumpToItem" data-sku="{{item.wareSkuId}}" class="item">
+			<image class="saleout-image" src="../../asset/saleout.png" wx:if="{{item.lastStock <= 0}}"></image>
+			<image src="{{item.image}}"></image>
+			<!-- <view class="item-tag">限量供应<view class="angle"></view></view> -->
+			<view class="item-info">
+				<view class="name ellipsis-1">{{item.title}}</view>
+				<view class="sub-name ellipsis-1">{{item.subTitle}}</view>
+				<view class="labels">
+					<view class="label red" wx:if="{{item.promotionInfo.lable}}"> <view class="tag">{{item.promotionInfo.lable}}</view></view>
+
+
+					<!-- 命中plus，必然展示plus标签 -->
+					<block wx:if="{{ item.promotionInfo.plus }}">
+						<view class="label"> <view class="tag">PLUS</view> <view class="info" wx:if="{{ item.promotionInfo.firstOrder }}">首单会员价</view> </view>
+					</block>
+					<!-- 没有命中，但有会员价，展示会员价 -->
+					<block wx:if="{{ !item.promotionInfo.plus && item.promotionInfo.plusPromotionPrice}}">
+						<view class="label"> <view class="tag">PLUS<view class="p">¥{{item.promotionInfo.plusPromotionPriceStr}}</view></view></view>
+					</block>
+				</view>
+				<view class="price-info">
+					<view class="price"><view class="sub">¥</view>{{ item.promotionInfo.promotionPrice ? item.promotionInfo.promotionPriceStr : item.promotionInfo.priceStr }}</view>
+					<view class="favo-info" wx:if="{{ item.promotionInfo.promotionPrice }}">¥{{item.promotionInfo.priceStr}}</view> 
+					<view class="act" catchtap="autoBuy" data-sku="{{item.wareSkuId}}" data-shopid="{{shopId}}" data-num="1">
+						<view class="btn">立即抢购</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+
+<!--
+<view class="module image-list col-1">
+	<view class="cell">
+		<image class="img" mode="widthFix" src="http://img.zcool.cn/community/focus/dd8c599e43230000014891d94def.jpg@1380w"></image>
+	</view>
+</view>
+
+
+<view class="module image-list col-2">
+	<view class="cell">
+		<image class="img" mode="widthFix" src="http://img.zcool.cn/community/0147355993e630000000212935373a.jpg"></image>
+	</view>
+	<view class="cell">
+		<image class="img" mode="widthFix" src="http://img.zcool.cn/community/014390596ddb5ea8012193a3d0e962.jpg"></image>
+	</view>
+</view>
+-->
+

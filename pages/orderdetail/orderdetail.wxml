@@ -1,0 +1,107 @@
+<!--<scroll-view class="page" scroll-y="{{true}}">-->
+<view class="head-nav"  wx:if="{{orderInfo.pickupCode && orderInfo.pickBarCodeBase64}}"></view>
+
+<view class="head">
+	<view class="barcode-cont" wx:if="{{orderInfo.pickupCode && orderInfo.pickBarCodeBase64}}">
+		<view class="barcode">
+			<image src="{{orderInfo.pickBarCodeBase64}}"></image>
+			<view class="primary">订单号 {{orderInfo.id}}</view>
+			<view>支付后凭条码提货</view>
+		</view>
+	</view>
+
+	<scroll-view class="nav length-{{orderInfo.units.length}}" scroll-x="{{true}}">
+		<view wx:for="{{orderInfo.units}}"  wx:key="index" class="tab {{ index == currentUnitIndex ? 'current' : '' }}">
+			<view class="text" catchtap="changeTab" data-index="{{index}}">{{item.unitCode + item.unitName}}</view>
+		</view>
+	</scroll-view>
+	<view class="tips" wx:if="{{ unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].paymentTips && unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].timeoutFlag == 0 }}">
+		<block wx:if="{{ unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].endTime && unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].endTime - currentTime > 0 }}">
+			<image src="../../asset/meessge.png"></image>
+			{{unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].tipsArr[0]}}
+			{{unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].endTime - currentTime}}
+			{{unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].tipsArr[1]}}
+		</block>
+		<block wx:else>
+			{{dots || '···'}}
+		</block>
+	</view>
+
+	<view class="tips overtime" wx:if="{{ unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].paymentTips && unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].timeoutFlag == 1 }}">
+		<image src="../../asset/meessge.png"></image>
+		{{unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].paymentTips}}
+	</view>
+</view>
+
+
+<view class="content">
+	<view class="item-list">
+		<view class="module list-info {{unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].tipsClass}}" wx:if="{{orderInfo.orderStatus >= 16 && orderInfo.orderStatus <= 256}}">
+			<view class="info" wx:if="{{orderInfo.units[currentUnitIndex].unitCode}}">
+				共{{orderInfo.units[currentUnitIndex].allNum}}件商品，请前往{{orderInfo.units[currentUnitIndex].unitName + orderInfo.units[currentUnitIndex].unitCode}}区扫码提货
+			</view>
+			<view class="status">{{unitInfo.taskVosKey[orderInfo.units[currentUnitIndex].unitId].pickStatusDesc}}</view>
+		</view>
+		<view class="module">
+			<view class="list">
+				<view class="item" wx:for="{{orderInfo.units[currentUnitIndex].wares}}" wx:key="index" wx:for-item="sku">
+					<image src="{{sku.wareImgUrl}}"></image>
+					<view class="item-info">
+						<view class="name ellipsis-1">{{sku.wareName}}</view>
+						<view class="label">
+							<view class="num"><view class="sub">x</view>{{sku.wareNum}}</view>
+							<view class="picked" wx:if="{{ sku.warePickedNum && sku.wareNum - sku.warePickedNum > 0 }}">实际拣货 x{{sku.warePickedNum}}</view>
+						</view>
+						<view class="price-info">
+							<view class="price"><view class="sub">¥</view>{{sku.promotionSinglePrice ? sku.promotionSinglePriceStr : sku.warePriceStr}}</view>
+							<view class="favo-info" wx:if="{{ sku.promotionSinglePrice }}">¥{{sku.warePriceStr}}</view> 
+						</view>
+					</view>
+					<!--<view class="act">
+						<view class="btn">退款</view>
+					</view>-->
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="order-info module">
+		<view class="row">
+			<view class="key">支付方式</view>
+			<view class="value">{{orderInfo.paymentTypeStr}}</view>
+		</view>
+		<view class="row">
+			<view class="key">订单状态</view>
+			<view class="value">{{orderInfo.statusStr}}</view>
+		</view>
+		<view class="row">
+			<view class="key">配送方式</view>
+			<view class="value">{{orderInfo.shipmentTypeStr}}</view>
+		</view>
+		<view class="row address" wx:if="{{orderInfo.shipmentType == 1}}">
+			<view class="key">配送地址</view>
+			<view class="value ellipsis-2">{{orderInfo.consignee.addressDetail}}{{orderInfo.consignee.addressDetail}}</view>
+		</view>
+		<view class="row">
+			<view class="key">取货时间</view>
+			<view class="value primary">{{orderInfo.shipmentDesc}}</view>
+		</view>
+		<view class="row">
+			<view class="key">余额扣减</view>
+			<view class="value"><view class="price normal">¥{{ orderInfo.balancePriceStr }}</view></view>
+		</view>
+		<view class="row">
+			<view class="key">{{ ( orderStatus == 32 || orderStatus == 1024 ) ? '应付款' : '实付款' }}</view>
+			<view class="value"><view class="price">¥{{ orderInfo.payPriceStr }}</view></view>
+		</view>
+	</view>	
+
+</view>
+
+<view class="sure-act">
+	<view class="sure-btn white" wx:if="{{ orderStatus == 32 || orderStatus == 256 }}" catchtap="jump" data-type="aftersale">申请售后</view>
+	<view class="sure-btn white" wx:if="{{ orderStatus == 1024 }}" catchtap="deleteOrder" data-orderid="{{orderId}}">删除订单</view>
+	<view class="sure-btn white" wx:if="{{ orderStatus >= 8 && orderStatus <= 16 }}" catchtap="cancelOrder" data-orderid="{{orderId}}">取消订单</view>
+	<view class="sure-btn" catchtap="pay"  wx:if="{{ orderStatus == 8 }}">去支付 <view class="price"><view class="sub">¥</view>{{orderInfo.payPriceStr}}</view></view>
+	<view class="sure-btn" catchtap="jump" data-type="comment" wx:if="{{ orderStatus == 256 }}">评价抢免单</view>
+</view>
+<!--</scroll-view>-->

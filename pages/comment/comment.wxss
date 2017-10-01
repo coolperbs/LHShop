@@ -1,0 +1,150 @@
+@import '../../common/basestyle/base.wxss'
+.page-comment{
+	background-color:#f0f0f0;
+	padding-top:30rpx;
+	padding-bottom:130rpx;
+}
+.page-comment .pannel{
+	background-color:#fff;
+	box-shadow:0 4px 10px 0 rgba(0,0,0,0.1);
+	margin:0 22rpx 20rpx 22rpx;
+	padding:0 30rpx 30rpx 30rpx;
+}
+.page-comment .service-comment{
+}
+.page-comment .pannel .title{
+	height:100rpx;
+	display:flex;
+	align-items:center;
+	font-size:32rpx;
+	/*padding-left:20rpx;*/
+}
+.page-comment .service-comment .servicestar{
+	display:flex;
+	justify-content:space-between;
+	margin-top:20rpx;
+	padding:0 20rpx;
+
+}
+.page-comment .service-comment .servicestar image{
+	width:88rpx;
+	height:88rpx;
+
+}
+.page-comment .service-comment .note{
+	color:#b9b9b9;
+	font-size:28rpx;
+	text-align:center;
+	margin-top:40rpx;
+}
+
+.page-comment .service-comment .img-floor .image{
+
+}
+.page-comment .pannel.ware-comment{
+	padding: 0;
+}
+.page-comment .pannel.ware-comment .innerPadding{
+	padding: 0 20rpx;
+}
+.page-comment .ware-comment .ware-wrapper{
+	margin-left:10px;
+	display: flex;
+}
+.page-comment .ware-comment .ware-wrapper .goodimg{
+	width:180rpx;
+	height:180rpx;
+}
+.page-comment .ware-comment .ware-wrapper .goodimg image{
+	width:160rpx;
+	height:160rpx;
+}
+.page-comment .ware-comment .ware-detail{
+	width:420rpx;
+
+}
+.page-comment .ware-comment .ware-detail .ware-name,
+.page-comment .ware-comment .ware-detail .ware-count{
+	font-family: PingFangSC-Regular;
+	font-size: 17px;
+	color: #4A4A4A;
+	letter-spacing: 0;
+}
+.page-comment .ware-comment .ware-detail .ware-name{
+	/*height:80rpx;*/
+}
+.page-comment .ware-comment .ware-detail .ware-count{
+	/*margin-top:30rpx;*/
+
+}
+.page-comment .ware-comment .warestar{
+display:flex;
+justify-content:space-between;
+margin-top:44rpx;
+padding:0 20rpx;
+
+
+
+}
+.page-comment .ware-comment .warestar image{
+	width:64rpx;
+	height:64rpx;
+}
+.page-comment .ware-comment .comment-ticks{
+	display:flex;
+	flex-wrap:wrap;
+	margin-top:20rpx;
+	margin-bottom:20rpx;
+}
+.page-comment .ware-comment .comment-ticks .tick.active{
+	background-color:#dbc095;
+	border-color:#dbc095;
+	color:white;
+}
+.page-comment .ware-comment .comment-ticks .tick{
+	background-color:#fff;
+	border:3rpx solid #f0f0f0;
+	color:#676767;
+	padding:15rpx 28rpx;
+	border-radius:100rpx;
+	font-size:13px;
+	margin-right:10rpx;
+	margin-bottom:10rpx;
+	min-width:100rpx;
+	text-align:center;
+}
+.page-comment .user-comment{
+	height: 316rpx;
+	padding-top: 20rpx;
+	border-top:1px solid #e9e9e9;
+	border-bottom:1px solid #e9e9e9;
+}
+.page-comment .ware-body{
+	margin-top: 40rpx;
+}
+/*.page-comment .user-comment:after{}*/
+.page-comment .user-comment textarea{
+	/*height:316rpx;*/
+	overflow:hidden;
+	margin-top: 40rpx;
+	color:#434552;
+    font-size:16px;
+    height: 275rpx
+}
+.page-comment .user-comment .upload-img{
+	width:100rpx;
+	height:100rpx;
+}
+.page-comment .submit-btn{
+	height:100rpx;
+	text-align:center;
+	position:fixed;
+	bottom:0;
+	width:100%;
+	text-align:center;
+	line-height:100rpx;
+	background-color:#161927;
+	color:#fff;
+	z-index: 100
+}
+

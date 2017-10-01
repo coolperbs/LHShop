@@ -1,0 +1,31 @@
+<view class="page-buyvip">
+	<scroll-view scroll-y="true" class="wrapper">
+		<view class="header">
+			<view class="logo">
+				<image class="logo-img" src="../../asset/crown.png"></image>
+				<text class="logo-txt">PLUS</text>
+			</view>
+			<view class="msg">
+				成为会员专享自住购物体验
+			</view>
+		</view>
+		<view class="body">
+			<block wx:for="{{ruleList}}" wx:key="{{index}}">
+				<view class="rule-wrapper {{selectRule&&selectRule.id===item.id?'active':''}}" bindtap="choseRule" data-id="{{item.id}}">
+					<view class="select">
+						<image class="select-img" src="../../asset/sel-plus.png"></image>
+					</view>
+					<image class="rule-wrapper-bg" src="../../asset/buy-plus-bg.png"></image>
+					<view class="content">
+						<text class="price">{{item.price}}</text>
+						<text class="limit">/{{item.timeUnit}}</text>
+					</view>
+					<view class="until">有效期至{{item.limit}}</view>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+	<view class="footer">
+		<text class="buy charge-btn  {{submitLoading?'active':''}}" bindtap="pay">立即购买</text>
+	</view>
+</view>

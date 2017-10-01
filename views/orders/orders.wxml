@@ -1,0 +1,124 @@
+<template name = "orders">
+		<block wx:if="{{orders.needLogin===true}}">
+			<template is="goLogin"></template>
+		</block>
+		<view class="view-orders base">
+			<scroll-view class="scroll-view" scroll-y="true" bindscroll="pageScroll" bindscrolltolower="scrollToLower" style="height:{{orders.scrollHeight}}px">
+				<block wx:for="{{orders.orderList}}" wx:key="id">
+					<template is="order" data = "{{...item}}"></template>
+				</block>
+			</scroll-view>
+		</view>
+</template>
+
+<template name="goLogin">
+	<view class="goLogin-wrapper">
+		<image class="login-logo" src="../../asset/needLogin.png" ></image>
+		<view class="login-msg">你还没有登录，请登录后查看订单</view>
+		<view class="login-btn" bindtap='goLogin'>登录</view>
+	</view>
+</template>
+
+<template name="order">
+	<view class="line-wrapper" data-recordPos="{{recordPos||''}}">
+		<view class="lower" >
+			<view class="lower-btn" data-orderId="{{id}}" data-pageNo="{{pageNo}}" wx:if="{{orderStatus==256 || orderStatus==512 || orderStatus==1024}}" bindtap="deleteOrder">
+				<image src="../../asset/trash.png"></image>
+			</view>
+		</view>
+	<!-- 	<scroll-view scroll-with-animation="true" data-orderId="{{id}}" class="scroll-orderDetail" scroll-x="true" scroll-left="{{scrollLeft}}" bindscroll="scroll"  bindtouchend="stopScroll"> -->
+		<!-- <scroll-view scroll-with-animation="true" data-orderId="{{id}}" class="scroll-orderDetail" scroll-x="true"> -->
+			<view class="detail-scroll-body {{position}}" 
+			bindtouchstart="startOrderScroll" 
+			bindtouchend="stopOrderScroll" 
+			data-orderId="{{id}}" 
+			data-orderStatus="{{orderStatus}}">
+				<view class="order-wrapper" data-status="{{statusInfo.status}}">		
+						<view class="header order-part">
+							<view class="header-left">
+								<!-- <view class="storeName">{{shopName}}</view> -->
+								<view class="orderId">订单号:{{id}}</view>
+							</view>
+							<view class="orderState" > {{statusStr}} </view>
+							
+						</view>
+						<view class="body order-part" bindtap="toOrderDetail" 
+						data-orderId="{{id}}"
+						data-pageNo="{{pageNo}}">
+							<view class="ware-img img-floor">
+								<block wx:if="{{wares.length>2}}">
+									<image class="f3" ></image>
+								</block>
+								<block wx:if="{{wares.length>1}}">
+									<image class="f2" ></image>
+								</block>
+								<image class="f1" src="{{wares[0].wareImgUrl}}"></image>
+							</view>
+							<view class="ware-detail">
+								<view class="ware-name ellipsis-1">{{wares[0].wareName}}</view>
+								<view wx:if="{{wares.length>1}}" class="ware-count">等{{wares.length}}件商品</view>
+								<text class="price">{{showWarePrice}}</text> 
+							</view>
+						</view>
+						<view class="footer">
+							<view class="next-step left">
+								<block wx:if="{{orderStatus==16||orderStatus==32}}">
+									{{pickDesc}}
+								</block>
+								<block wx:else >
+									<text class="yingfukuan">应付款</text> 
+									<text class="showPayPrice">{{showPayPrice}}</text>
+								</block>
+							</view>
+
+							<view class="btn-group right">
+								<view data-orderId="{{id}}" 
+								data-price="{{payPrice}}"
+								data-pageNo="{{pageNo}}"
+								class="btn waitingPay" 
+								wx:if="{{orderStatus=='8'}}" 
+								bindtap="payOrder"> 
+								去支付 
+								</view>
+								
+								<view data-orderId="{{id}}" 
+								data-pageNo="{{pageNo}}"
+								class="btn cancel" 
+								wx:if="{{ orderStatus=='16' || orderStatus=='32' }}" 
+								bindtap="cancelOrder"> 
+								取消订单 
+								</view>
+
+								<view data-orderId="{{id}}" 
+								data-pageNo="{{pageNo}}"
+								class="btn delete" 
+								wx:if="{{orderStatus=='256' || orderStatus=='512' || orderStatus=='1024'}}" 
+								bindtap="deleteOrder"> 
+								删除订单 
+								</view>
+
+								<view data-orderId="{{id}}" 
+								data-pageNo="{{pageNo}}"
+								class="btn finished comment" 
+								wx:if="{{(orderStatus=='256' || orderStatus=='512') && commentNum<1}}" 
+								bindtap="commentOrder"> 
+								去评价
+								</view>
+
+
+								<!-- <view data-orderId="{{id}}" 
+								class="btn finished comment" 
+								wx:if="{{orderStatus=='512' || orderStatus=='256'}}" 
+								bindtap="afterSaleOrder"> 
+								申请售后
+								</view> -->
+							</view>
+						</view>
+				</view>
+				<!-- <view class="lower-blank" wx:if="{{orderStatus==256 || orderStatus==512 || orderStatus==1024 }}"  data-orderId="{{id}}" bindtap="deleteOrder">
+					<image src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="></image>
+				</view> -->
+			</view>
+		<!-- </scroll-view> -->
+	</view>
+</template>

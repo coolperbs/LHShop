@@ -1,0 +1,17 @@
+<view class="page-consumeList">
+	<view class="wrapper">
+		<block wx:for="{{recordList}}" wx:key="index">
+			
+			<view class="record">
+				<view class="left">
+					<text class="title">{{item.typeLabel}}</text>
+					<text class="date">{{item.createdStr}}</text>
+				</view>				
+				<view class="right">
+					<text class="price {{item.val>0?'pos':''}}" >{{item.showVal}}元</text>
+				</view>
+			</view>
+		</block>
+		<view wx:if="{{isLast===true}}" class="isLast">..... 没有更多了 .....</view>
+	</view>
+</view>

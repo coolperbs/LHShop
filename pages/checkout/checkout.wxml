@@ -1,0 +1,97 @@
+<view class="head-nav" ></view>
+
+<view class="page-tips" wx:if="{{tradeInfo.tips}}">{{tradeInfo.tips}}</view>
+
+<view class="content">
+	<view class="order-info module">
+		<view class="row">
+			<view class="key">支付方式</view>
+			<view class="value">{{tradeInfo.paymentTypeDesc}}</view>
+		</view>
+		<view class="row {{ tradeInfo.shipmentList.length > 1 ? 'ableclick' : '' }}">
+			<view class="key">配送方式</view>
+				<block wx:if="{{tradeInfo.shipmentList.length > 1}}">
+					<picker class="value" mode="selector" value="1" range="{{tradeInfo.shipmentList}}" bindchange="changeShipment">
+						<view>{{tradeInfo.currentShipment.name}}<image class="more" src="../../asset/arrow-right.png"></image></view>
+					</picker>
+				</block>
+				<view class="value" wx:if="{{tradeInfo.shipmentList.length == 1}}">
+					<view>{{tradeInfo.currentShipment.name}}</view>
+				</view>
+		</view>
+		<navigator class="row ableclick" wx:if="{{tradeInfo.currentShipment.type == 1}}" url="../address/address">
+			<view class="key">配送地址</view>
+			<view class="value ellipsis-1">{{tradeInfo.addressShowName || '请填写收货信息'}}<image class="more" src="../../asset/arrow-right.png"></image></view>
+		</navigator>
+		<view class="row">
+			<view class="key">取货时间</view>
+			<view class="value">{{tradeInfo.currentShipment.timeDesc}}</view>
+		</view>
+		<navigator class="row ableclick" url="../coupon/coupon">
+			<view class="key">优惠券</view>
+			<view class="value ellipsis-1"><image class="more" src="../../asset/arrow-right.png"></image></view>
+		</navigator>
+		<view class="row">
+			<view class="key">账户余额</view>
+			<view class="value black">¥{{ tradeInfo.modules.balance.data.total ? tradeInfo.modules.balance.data.totalStr : '0.00'}}</view>
+		</view>
+	</view>
+
+	<view class="item-list">
+		<block wx:if="{{tradeInfo.modules.wares && tradeInfo.modules.wares.data}}" wx:for="{{tradeInfo.modules.wares.data.units}}" wx:for-item="unit" wx:for-index="unitIndex" wx:key="{{unitIndex}}">
+			<view class="module">
+				<view class="title">
+					<view class="sort">{{unit.unitCode}}</view>
+					<view class="split"></view>
+					<view class="sort-name">
+						<view class="chinese">{{unit.unitName}}</view>
+						<view class="english">FRUIT</view>
+					</view>
+				</view>
+				<view class="list">
+					<view class="item" wx:for="{{unit.skus}}" wx:for-item="sku" wx:for-index="skuIndex" wx:key="{{skuIndex}}">
+						<image src="{{sku.imageUrl}}"></image>
+						<view class="item-info">
+							<view class="name ellipsis-2">{{sku.skuName}}</view>
+							<view class="tags">
+								<view class="label red" wx:if="{{sku.lable}}"> <view class="tag">{{sku.lable}}</view></view>
+
+
+								<!-- 命中plus，必然展示plus标签 -->
+								<block wx:if="{{ sku.plus }}">
+									<view class="label"> <view class="tag">PLUS</view> <view class="info" wx:if="{{ sku.firstOrder }}">首单会员价</view> </view>
+								</block>
+								<!-- 没有命中，但有会员价，展示会员价 -->
+								<block wx:if="{{ !sku.plus && sku.plusPromotionPrice}}">
+									<view class="label"> <view class="tag">PLUS<view class="p">¥{{sku.plusPromotionPriceStr}}</view></view></view>
+								</block>
+							</view>
+							<view class="price-info">
+								<view class="price"><view class="sub">¥</view>{{sku.promotionPrice ? sku.promotionPriceStr : sku.priceStr }}</view>
+								<view class="favo-info" wx:if="{{ sku.promotionPrice }}">¥{{sku.priceStr}}</view> 
+							</view>
+						</view>
+						<view class="act">
+							<view class="sub">x</view>{{sku.num}}
+						</view>
+					</view>
+				</view>
+			</view>
+		</block>
+		<view class="total">
+			<view class="sub-info">(已抵扣余额{{tradeInfo.modules.balance.data.availableStr}}元)</view>
+			应付: <view class="price"><view class="sub">¥</view>{{ tradeInfo.modules.submit.data.payprice ? tradeInfo.modules.submit.data.paypriceStr : '0.00'}}</view>
+		</view>
+	</view>
+</view>
+
+<view class="toolbar">
+	<view class="btn pay-now" wx:if="{{tradeInfo.modules.paypromote.data.hit}}" catchtap="recharge">
+		<view class="text">充值支付</view>
+		<view class="info">({{tradeInfo.modules.paypromote.data.rule.title}})</view>
+		<image class="more" src="../../asset/arrow-right.png"></image>
+	</view>
+	<view class="btn" catchtap="normalPay">
+		立即支付 <view class="price" wx:if="{{tradeInfo.modules.submit.data.payprice}}"><view class="sub">¥</view>{{ tradeInfo.modules.submit.data.payprice ? tradeInfo.modules.submit.data.paypriceStr : '0.00'}}</view>
+	</view>
+</view>

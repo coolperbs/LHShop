@@ -1,0 +1,19 @@
+<view class="page-auth">
+	<view class="header">
+		<view class="logo">
+			<image src='../../asset/crown.png' ></image>
+		</view>
+		<text class="app-name">X FRESH</text>
+		<text class="compony-name">北京独角兽科技有限公司</text>
+	</view>
+	<view class="content">
+		<text class="title">该程序获取一下授权 :</text>
+		<view class="permision-list">
+			<text class="permision"> ·获得您的公开信息（昵称，头像等）</text>
+		</view>
+		<view class="buttons-wrapper">
+			<button class="btn cancel">拒绝</button>
+			<button class="btn ok" bindgetuserinfo="authFinish">允许</button>
+		</view>
+	</view>
+</view>

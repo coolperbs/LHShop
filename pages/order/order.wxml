@@ -1,0 +1,105 @@
+<scroll-view class="page" scroll-y="{{true}}">
+	<view class="head">
+		<view class="barcode-cont">
+			<view class="barcode">
+				<image src=""></image>
+				<view class="primary">提货码 118829942</view>
+				<view>请凭此唯一码在一下各商品区提货</view>
+			</view>
+		</view>
+
+		<scroll-view class="nav" scroll-x="{{true}}">
+			<view class="tab current">
+				<view class="text">A1水果</view>
+			</view>
+			<view class="tab">
+				<view class="text">A1水果</view>
+			</view>
+			<view class="tab">
+				<view class="text">A1水果</view>
+			</view>
+		</scroll-view>
+	</view>
+
+
+	<view class="content">
+		<view class="item-list">
+			<view class="module list-info">
+				<view class="info">共3件商品，请前往水果A1区扫码提货</view>
+			</view>
+			<view class="module">
+				<view class="list">
+					<view class="item">
+						<image src=""></image>
+						<view class="item-info">
+							<view class="name">新西兰新奇士橙500g</view>
+							<view class="label">
+								<view class="num"><view class="sub">x</view>1</view>
+							</view>
+							<view class="price-info">
+								<view class="favo-info">¥128.0</view> <view class="price"><view class="sub">¥</view>108.0</view>
+							</view>
+						</view>
+						<view class="state">
+							已取货
+						</view>
+					</view>
+					<view class="item">
+						<image src=""></image>
+						<view class="item-info">
+							<view class="name">新西兰新奇士橙500g</view>
+							<view class="label">
+								<view class="num"><view class="sub">x</view>1</view>
+							</view>
+							<view class="price-info">
+								<view class="favo-info">¥128.0</view> <view class="price"><view class="sub">¥</view>108.0</view>
+							</view>
+						</view>
+						<view class="state">
+							已取货
+						</view>
+					</view>
+					<view class="item">
+						<image src=""></image>
+						<view class="item-info">
+							<view class="name">新西兰新奇士橙500g</view>
+							<view class="label">
+								<view class="num"><view class="sub">x</view>1</view>
+							</view>
+							<view class="price-info">
+								<view class="price"><view class="sub">¥</view>108.0</view>
+							</view>
+						</view>
+						<view class="state">
+							已取货
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="order-info module">
+			<view class="row">
+				<view class="key">支付方式</view>
+				<view class="value">微信支付</view>
+			</view>
+			<view class="row">
+				<view class="key">配送方式</view>
+				<view class="value">配送</view>
+			</view>
+			<view class="row">
+				<view class="key">配送地址</view>
+				<view class="value">北京市朝阳区三里屯路119号院</view>
+			</view>
+			<view class="row">
+				<view class="key">取货时间</view>
+				<view class="value primary">马上取货</view>
+			</view>
+			<view class="row">
+				<view class="key">账户余额</view>
+				<view class="value"><view class="price">¥368.0</view></view>
+			</view>
+		</view>	
+		<view class="concat">联系客服</view>
+	</view>
+
+</scroll-view>

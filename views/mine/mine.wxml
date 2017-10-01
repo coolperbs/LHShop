@@ -1,0 +1,100 @@
+<template name="mine">
+	<block wx:if="{{mine.needLogin}}">
+		<template is="goLogin"></template>
+	</block>
+	<block wx:elif="{{mine.user}}">
+		<template is="service" data="{{...mine}}"></template>
+	</block>
+</template>
+
+
+<template name = "service">
+	<view class="view-mine base">
+		<view class="mine-wrapper">
+			<view class="banner">
+				<image class="banner-bg" src="../../asset/mine-header.jpg"></image>
+				<view class="member-info">
+					<view class="member-basic">
+						<view class="name">{{user.sex===1?'Mr':'Miss'}} {{user.nickName}}</view>
+						<!-- <view class="id">ID 1234567890456</view> -->
+					</view>
+					
+					<view class="member-wrapper">
+					
+						<view wx:if="{{user.isVip}}" class="inner check-right" bindtap="toPrivilege">
+							<view class="left">
+								<image src="../../asset/plus-yet.png" class="plus-yet-logo" />
+							</view>
+							<view class="right">
+								<text class="txt">查看会员权益</text>
+								<image src="../../asset/arrow-brown.png" class="right-arrow"/>
+							</view>
+						</view>
+						<view wx:else class="inner buy-vip" bindtap="buyvip">
+							<view class="left">
+								<image src="../../asset/crown.png" class="crown"/>
+								<text class="txt">开通PLUS会员199/年</text>
+							</view>
+							<view class="right">
+								<text class="txt">立即购买</text>
+								<image src="../../asset/arrow-gold.png" class="right-arrow"/>
+							</view>
+							
+						</view>
+					</view>
+				</view>
+			</view>
+			
+			<view class="button-group">
+					<!--会员权益-->
+					<view class="button left" bindtap="toPrivilege">
+						<image src="../../asset/member-right.png" class="button-img icon member-right"></image>
+						<view class="button-title">会员权益</view>
+						<view class="button-sub-title">惊喜优惠</view>
+					</view>
+
+					<!--账户余额-->
+					<view class="button middle" bindtap="towallet">
+						<image src="../../asset/wallet.png" class="button-img icon account"></image>
+						<view class="button-title">账户余额</view>
+						<view class="button-sub-title">￥{{user.balance}}</view>
+					</view>
+
+					<!--优惠券-->
+					<view class="button right" bindtap="toMyCoupon">
+						<image src="../../asset/coupon.png" class="button-img icon coupon"></image>
+						<view class="button-title">优惠券</view>
+						<view class="button-sub-title">{{user.couponValidCount||0}}</view>
+					</view>
+
+					<!--优惠券-->
+					<!-- <view class="button left">
+						<image src="../../asset/msg.png" class="button-img icon msg"></image>
+						<view class="button-title">消息</view>
+						<view class="button-sub-title">12</view>
+					</view> -->
+
+					<!--关于我们-->
+					<view class="button left" bindtap="toAbout">
+						<image src="../../asset/about-us.png" class="button-img icon about-us"></image>
+						<view class="button-title">关于我们</view>
+						<view class="button-sub-title">About us</view>
+					</view>
+
+					<!--PLUS-->
+					<!-- <view class="button right">
+						<image src="../../asset/plus.png" class="button-img icon plus"></image>
+						<view class="button-title">PLUS</view>
+						<view class="button-sub-title"></view>
+					</view> -->
+			</view>
+		</view>
+	</view>
+</template>
+<template name="goLogin">
+	<view class="goLogin-wrapper">
+		<image class="login-logo" src="../../asset/needLogin.png" ></image>
+		<view class="login-msg">你还没有登录，请登录后查看订单</view>
+		<view class="login-btn" bindtap='goLogin'>登录</view>
+	</view>
+</template>

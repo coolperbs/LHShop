@@ -1,0 +1,24 @@
+.page{
+	display:flex;
+height:1000rpx;
+flex-direction:column;
+font-size:40px;
+justify-content:center;
+align-items:center;
+
+}
+.page text{
+	margin-bottom: 10px
+}
+.red{
+	color:red;
+}
+.blue{
+	color:blue;
+}
+.yellow{
+	color:yellow;
+}
+.green{
+	color:green;
+}
