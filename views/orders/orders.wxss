@@ -4,8 +4,8 @@
 	min-height: 100%;
 }
 
-.orders .head { border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
-.orders .head .box { height : 70rpx; line-height: 80rpx; padding : 0 20rpx; font-size : 28rpx; }
+.orders .head { z-index:100; border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
+.orders .head .box { height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
 .orders  .head .box.current { color : #ea622e; border-bottom : solid 6rpx #ea622e; }
 
 

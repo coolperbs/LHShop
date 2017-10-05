@@ -9,7 +9,11 @@
     "pages/orderinfo/orderinfo",
     "pages/city/city",
     "pages/login/login",
-    "pages/map/map"
+    "pages/map/map",
+
+
+    "pages/orderlist/orderlist",
+    "pages/orderdetail/orderdetail"
   ],
 
   "window":{

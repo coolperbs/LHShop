@@ -1,9 +1,10 @@
 @import "../../views/home/home.wxss";
 @import "../../views/orders/orders.wxss";
+@import "../../views/mine/mine.wxss"
 
 page { height : 100%; }
 
-.toolbar { display: flex; height : 100rpx; border-top: solid 1px #eee; position: fixed; bottom : 0; width : 100%; background-color: rgba( 255, 255, 255, 0.9 );z-index:100;}
+.toolbar { display: flex; height : 100rpx; border-top: solid 1px #eee; position: fixed; bottom : 0; width : 100%; background-color: white;z-index:100;}
 .toolbar .tab { flex-grow : 1; display: flex; align-items: center; font-size : 24rpx; color : #888; position: relative; justify-content : center; }
 .toolbar .tab .icon { width:50rpx; }
 .toolbar .tab image { opacity : 0.5; }

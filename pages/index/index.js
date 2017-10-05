@@ -1,6 +1,12 @@
 var home = require( '../../views/home/home.js' ),
-	orders = require( '../../views/orders/orders.js' ),
-//	mine = require( '../../views/mine/mine.js' ),
+	// orders = require( '../../views/orders/orders.js' ),
+	category = require('../../views/category/category'),//分类
+	activity = require('../../views/activity/activity'),//活动
+	cart = require('../../views/cart/cart'),//购物车
+	mine = require( '../../views/mine/mine.js' ),
+
+
+
 	serviceCart = require( '../../service/cart/cart' ),
 	serviceUser = require( '../../service/user/user' ),
 	service = require( '../../service/service' ),
@@ -11,8 +17,11 @@ var home = require( '../../views/home/home.js' ),
 
 views = {
 	home : home,
-	orders : orders,
-	//mine : mine
+	category:category,
+	activity,
+	cart:cart,
+	// orders : orders,
+	mine : mine
 };
 
 Page( {
@@ -26,9 +35,21 @@ Page( {
 				className : 'footer-home',
 				view : 'home'
 			},{
-				text : '订单',
-				className : 'footer-orders',
-				view : 'orders'
+				text : '分类',
+				className : 'footer-category',
+				view : 'category'
+			},{
+				text:'活动',
+				className:'footer-activity',
+				view:'activity'
+			},{
+				text:'购物车',
+				className:'footer-cart',
+				view:'cart'
+			},{
+				text : '我的',
+				className:'footer-mine',
+				view:'mine'
 			}]
 		}
 	},

@@ -1,5 +1,8 @@
 <import src="../../views/home/home.wxml"/>
-<import src="../../views/orders/orders.wxml"/>
+<!-- <import src="../../views/orders/category.wxml"/> -->
+<!-- <import src="../../views/orders/activity.wxml"/> -->
+<!-- <import src="../../views/orders/cart.wxml"/> -->
+<import src="../../views/mine/mine.wxml"/>
 
 
 <!--<view class="content">-->
@@ -32,5 +35,5 @@
 	<view wx:for="{{tab.list}}" data-view="{{item.view}}" wx:key="index" data-index="{{index}}" bindtap="changeTab" class="tab">
 		<image src="../../asset/{{item.className}}.png" mode="widthFix" class="icon bar {{ item.view == currentView ? 'current' : ''}}"></image>
 	</view>
-	<view class="line" style="left : {{ tab.currentTab * 375 + 189 - 40 }}rpx"></view>
+	<view class="line" style="left : {{ tab.currentTab * 150 + 35 }}rpx"></view>
 </view>
