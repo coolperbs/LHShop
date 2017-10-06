@@ -1,0 +1,10 @@
+Page({
+	onShow:function(){
+		console.log('addresslist');
+	},
+	toAddress:function(){
+		wx.navigateTo({
+			url:'../address/address'
+		})
+	}
+})

@@ -1,0 +1,49 @@
+<view class="barline"></view>
+<view class="address-wrap">
+    <view class="address-list">
+        <template is="address"></template> 
+        <template is="address"></template> 
+
+    </view>
+    <view class="empty" wx:if="{{addRessList.length == 0}}">
+        <text>暂无地址</text>
+    </view>
+    <view class="add-btn btn-default" bindtap="toAddress" data-name="create">
+        <image src="../../asset/add.png"/>
+        新建地址
+    </view>
+</view>
+<template name="address">
+    <view class="address-item" bindtap="toAddress">
+        <view class="info">
+            <view class="name">
+                <text>{{item.consignee||'边思'}}</text>
+                <text class="mobile">{{item.mobile||'17761275029'}}</text>
+            </view>
+            <view class="address text-ellipsis">
+                <text>{{item.pname||'四川省'}}{{item.cname||'成都市'}}{{item.dname||'锦江区'}} {{item.address||'希顿国际广场B座-天府大道-666'}}</text>
+            </view>
+        </view>
+        <view class="handle">
+            <view class="default" bindtap="setDefault" data-index="{{index}}">
+                <view class="check">
+                    <image wx:if="{{item.is_default == 1}}" src="../../assets/icons/check-box.png" />
+                    <!-- <image wx:else src="../../asset/check-box-empty.png" /> -->
+                    <image wx:else src="../../asset/check-box.png" />
+                </view>
+                <text style="padding-left:30rpx">设为默认</text>
+            </view>
+            <view class="status">
+                <view bindtap="deleteAddress" data-index="{{index}}">
+                    <image src="../../asset/delete-icon.png"/>
+                    删除
+                </view>
+                <view bindtap="toAddress" data-index="{{index}}" data-name="edit">
+                    <image src="../../asset/edit-icon.png"/>
+                    编辑
+                </view>
+            </view>
+        </view>
+    </view>
+    
+</template>

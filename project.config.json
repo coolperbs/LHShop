@@ -1,0 +1,70 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true
+	},
+	"compileType": "weapp",
+	"libVersion": "1.5.4",
+	"appid": "wxaccdda8d2e9e827e",
+	"projectname": "LH-shop",
+	"condition": {
+		"weapp": {
+			"current": 6,
+			"list": [
+				{
+					"id": -1,
+					"name": "订单列表",
+					"pathName": "pages/orderlist/orderlist",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "订单详情",
+					"pathName": "pages/orderdetail/orderdetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "地址详情",
+					"pathName": "pages/address/address",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "地址列表",
+					"pathName": "pages/addresslist/addresslist",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的优惠券",
+					"pathName": "pages/mycoupon/mycoupon",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "评论",
+					"pathName": "pages/comment/comment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/collect/collect",
+					"query": ""
+				}
+			]
+		},
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

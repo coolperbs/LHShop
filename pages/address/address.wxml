@@ -1,0 +1,69 @@
+<view class="address-wrap">
+    <view class="address-edit">
+        <view class="edit-item">
+            <input type="text"
+             bindinput="inputInfo"
+             placeholder="收货人"
+             data-name='name' value='{{addressInfo.name}}'/>
+        </view>
+        <view class="edit-item" data-name='iphone'>
+            <input type="number"
+             bindinput="inputInfo"
+             data-name='iphone'
+             placeholder="手机号码" value='{{addressInfo.iphone}}'/>
+        </view>
+         <view class="edit-item">
+            <picker mode="selector" range="{{province}}"
+             data-setname="province"
+             range-key="name"
+             bindchange='choiceAddress'
+             class="picker">
+                <view>{{province[addressInfo.province.index].name||'所在省份'}}</view>
+            </picker>
+        </view>
+        <view class="edit-item">
+             <picker mode="selector" range="{{city}}"
+             data-setname="city"
+             range-key="name"
+             bindchange='choiceAddress'
+             class="picker">
+                <view>{{city[addressInfo.city.index].name||'所在城市'}}</view>
+            </picker>
+        </view>
+         <view class="edit-item">
+             <picker mode="selector" range="{{district}}"
+             data-setname="district"
+             range-key="name"
+             bindchange='choiceAddress'
+             class="picker">
+                <view>{{district[addressInfo.district.index].name||'所在区域'}}</view>
+            </picker>
+        </view>
+        <view class="edit-item">
+            <text></text>
+             <picker mode="selector" range="{{street}}"
+             data-setname="street"
+             range-key="name"
+             bindchange='choiceAddress'
+             class="picker">
+                <view>{{street[addressInfo.street.index].name||'所在街道'}}</view>
+            </picker>
+        </view>
+         <view class="edit-item">
+            <input type="text" 
+            bindinput="inputInfo"
+            placeholder="详细地址" 
+            data-name='address' value='{{addressInfo.address}}'/>
+        </view>
+        <view class="edit-item" bindtap="changeDefault">
+            <text>设置默认地址</text>
+            <view class="check-default">
+                <image wx:if="{{addressInfo.isDefault}}" src="../../asset/check.png" />
+                <!-- <image wx:else src="../../asset/check-none.png" /> -->
+                <image wx:else src="../../asset/check.png" />
+            </view>
+        </view>
+    </view>
+    <view class="btn-default save-btn" bindtap="submitAddress"><text>保存</text></view>
+    <view class="btn-default cancel-btn" bindtap="submitAddress"><text>取消</text></view>
+</view>

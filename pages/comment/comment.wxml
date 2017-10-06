@@ -1,0 +1,80 @@
+<view class="page-comment">
+	<!-- <view class="service-comment pannel">
+		<view class="title">服务评价</view>
+		<view class="body">
+			<view class="servicestar">
+				<block wx:for='{{stars}}' wx:key="id">
+					<view class="star" bindtap="changeServiceStar" data-value="{{item.val}}">
+						<block wx:if="{{!shopScore || item.val>shopScore}}">
+							<image src="../../asset/star-nor.png"></image>
+						</block>
+						<block wx:else>
+							<image src="../../asset/star-sel.png"></image>
+						</block>
+					</view>
+				</block>
+			</view>
+			<view class="note">{{shopScoreMark||'非常满意'}}</view>
+		</view>
+	</view> -->
+
+	<view class="ware-comment">
+		<!-- <view class="title innerPadding">商品评价</view> -->
+			<template is="ware-comment" ></template>
+			<template is="ware-comment" ></template>
+			<template is="ware-comment" ></template>
+	</view>
+	
+	
+	<view class="submit-btn" catchtap="submit">
+		提交评价
+	</view>
+	<!-- <textarea placeholder="aabbcc" class="submit-btn"  fixed="{{true}}" catchtap="submit" placeholder-style="font-size:14px;z-index:100;width:750rpx;height:200rpx"> 
+		提交评价
+	</textarea> -->
+</view>
+
+<template name="ware-comment">
+	
+		<view class="ware-body pannel">
+			<view class="ware-wrapper innerPadding">
+				<view class="goodimg">
+					<image class="" src="https://m.360buyimg.com/n12/jfs/t8821/233/2309648354/79472/4b099993/59cafabbN5b56b0c2.jpg!q70.jpg"></image>
+				</view>
+				<view class="ware-detail">
+					<view class="ware-name ellipsis-1">OMEGA欧米茄手表蝶飞系列自动机械男表钢带 40mm蓝424.10.40.20.03.001</view>
+					<view class="ware-price">1000.00</view>
+					<view class="ware-count">x1</view>
+				</view>
+			</view>
+			<view class="warestar">
+				<block wx:for='{{[0,1,2,3,4]}}' wx:key="id">
+					<view class="star" bindtap="changeWareStar" data-value="{{item.val}}" data-id="{{id}}">
+						<block wx:if="{{index>3}}">
+							<image src="../../asset/star-nor.png"></image>
+						</block>
+						<block wx:else>
+							<image src="../../asset/star-sel.png"></image>
+						</block>
+					</view>
+				</block>
+			</view>
+			<view class="comment-ticks innerPadding">
+				<block wx:for="{{commentTicks}}" wx:key="id">
+						<text class="tick {{item.active?'active':''}}" bindtap="selectTicked" data-value="{{item.id}}" data-id="{{id}}">{{item.text}}</text>
+				</block>
+			</view>
+			<view class="user-comment innerPadding">
+				<textarea cursor-spacing="100" class="comment-input" data-id="{{id}}" bindinput="changeWareContent" placeholder="写点什么吧..." placeholderStyle="font-size:28rpx;z-index:0" bindfocus="bindfocus"></textarea>
+				<view class="upload-wrapper">
+					<view><image src="../../asset/addimg-btn.png" class="upload-img"></image></view>
+				</view>
+			</view>
+		</view>
+</template>
+
+
+
+
+
+
