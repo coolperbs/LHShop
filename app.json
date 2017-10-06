@@ -13,7 +13,12 @@
 
 
     "pages/orderlist/orderlist",
-    "pages/orderdetail/orderdetail"
+    "pages/orderdetail/orderdetail",
+    "pages/address/address",
+    "pages/addresslist/addresslist",
+    "pages/mycoupon/mycoupon",
+    "pages/comment/comment",
+    "pages/collect/collect"
   ],
 
   "window":{

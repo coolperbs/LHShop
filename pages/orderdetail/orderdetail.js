@@ -1,5 +1,10 @@
 Page({
 	onShow:function(){
 		console.log('orderdetail');
+	},
+	toAddressList:function(){
+		wx.navigateTo({
+			url:'../addresslist/addresslist'
+		});
 	}
 })

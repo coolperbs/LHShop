@@ -1,0 +1,57 @@
+<view class="page-collect">
+	<view class="head">
+		<view class="box current"  data-type="1">关注的商品(20)</view>
+		<view class="box {{ currentType == 2 ? 'current' : '' }}"  data-type="2">关注的商家(10)</view>
+	</view>
+	<scroll-view class="scrollview">
+		<template is="store"></template>
+		<template is="store"></template>
+		<template is="store"></template>
+		<template is="store"></template>
+		<template is="ware"></template>
+		<template is="ware"></template>
+		<template is="ware"></template>
+	</scroll-view>
+</view>
+
+<template name="store">
+	<view class="store">
+		<view class="left">
+			<image src="https://img14.360buyimg.com/jshopm/jfs/t508/102/1239524075/5585/950ef4ac/54c21e7cNdac5a17b.jpg"/>
+		</view>
+		<view class="right">
+			<view class="name">
+				New Balance官方旗舰店
+			</view>
+			<view class="detail">
+				2.0万人关注
+			</view>
+			<image src="../../asset/arrow-right.png"/>
+		</view>
+	</view>
+	
+</template>
+<template name="ware">
+	<view class="ware">
+		<view class="left">
+			<image src="//m.360buyimg.com/n4/s258x258_jfs/t2503/8/1608661531/186823/32aab62c/56616596N7aaef177.jpg!q70.jpg"/>
+		</view>
+		<view class="right">
+			<view class="name ellipsis-2">
+				日本药师窑招财猫摆件招福招财小判金币招财猫生日结婚创意礼品 送女男朋友闺蜜长辈 健康大福寿
+			</view>
+			<view class="price">
+				<text class="dw">￥</text>
+				<text class="zs">128.</text>
+				<text class="xs">00</text>
+			</view>
+			<view class="addCart">
+				<image src="../../asset/shopping-cart.png" />
+			</view>
+			<view class="cancel">
+				<image src="../../asset/cancel-collect.png" />
+			</view>
+		</view> 
+	</view>
+	
+</template>
