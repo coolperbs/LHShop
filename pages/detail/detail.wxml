@@ -1,42 +1,199 @@
-<view class="head">
-    <view class="image-list" catchtap="showImage">
-        <image wx:for="{{[0,1,2]}}" wx:key="index" src="{{ pageData.store.detailImage[item] }}"></image>
-        <view class="num">{{ pageData.store.detailImage.length }}张</view>
-    </view>
-    <view class="info">
-        <navigator url="../info/info?storeId={{pageData.store.id}}" class="row large">
-            <view class="text ellipsis-1">{{pageData.store.name}}</view>
-            <view class="more">详情<image class="arrow" src="../../asset/arrow-right.png"></image></view>
-        </navigator>
-        <view wx:if="{{ pageData.store.lng && pageData.store.lat }}" class="row" catchtap="showMap" data-lng="{{pageData.store.lng}}" data-lat="{{pageData.store.lat}}" data-name="{{pageData.store.name}}" data-address="{{ pageData.store.address }}">
-            <view class="text ellipsis-1">{{pageData.store.address}}</view>
-            <view class="more">地图<image class="arrow" src="../../asset/arrow-right.png"></image></view>
+<scroll-view class="main" scroll-y="{{ true }}">
+    <view class="head">
+        <swiper class="banner">
+            <swiper-item>
+                <image mode="aspectFill" src="https://aecpm.alicdn.com/simba/img/TB14ab1KpXXXXclXFXXSutbFXXX.jpg_q50.jpg"></image>
+            </swiper-item>
+            <swiper-item>
+                <image mode="aspectFill" src="https://aecpm.alicdn.com/simba/img/TB14ab1KpXXXXclXFXXSutbFXXX.jpg_q50.jpg"></image>
+            </swiper-item>
+        </swiper> 
+
+        <view class="desc">
+            <view class="title ellipsis-2">中秋便携茶具礼盒限量版时光小黑盒 Pertouch泊喜中秋便携茶具礼盒限量版时光小黑盒 Pertouch泊喜</view>
+            <view class="sub-title">好茶具配好茶，何处艺术感</view>
+            <view class="price"><view class="sub">¥</view>598.00</view>
         </view>
-        <view class="row rank">
-            <view class="text ellipsis-1">{{ pageData.store.subname }}</view>
+
+        <view class="services">
+            <view class="cell">
+                <image src="../../asset/right-small.png"></image>
+                100% 正品保证
+            </view>
+            <view class="cell">
+                <image src="../../asset/right-small.png"></image>
+                7天无理由退货
+            </view>
+            <view class="cell">
+                <image src="../../asset/right-small.png"></image>
+                48小时快速退款
+            </view>
         </view>
     </view>
+
+    <view class="cont">
+        <view class="tabs">
+            <view class="tab current">图文详情</view>
+            <view class="tab">参数规格</view>
+            <view class="tab">品牌描述</view>
+        </view>
+
+        <!-- 图文详情 start -->
+        <view class="images" hidden="{{true}}">
+            <image mode="widthFix" src="https://img.alicdn.com/imgextra/i4/1980947930/TB2YzOOqYlmpuFjSZFlXXbdQXXa_!!1980947930.jpg"></image>
+        </view>
+        <!-- 图文详情 end -->
+
+        <!-- 参数规格 start -->
+        <view class="parameters" hidden="{{true}}">
+            <view class="row">
+                <view class="key">品牌：</view>
+                <view class="value">Pertouch泊喜</view>
+            </view>
+            <view class="row">
+                <view class="key">品牌：</view>
+                <view class="value">Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜</view>
+            </view>
+        </view>
+        <!-- 参数规格 end -->
+
+        <!-- 品牌描述 start -->
+        <view class="brand">
+            <view class="brief">
+                <image class="logo" src="https://aecpm.alicdn.com/simba/img/TB14ab1KpXXXXclXFXXSutbFXXX.jpg_q50.jpg"></image>
+                <view class="name">Pertouch 泊喜</view>
+            </view>
+            <view class="desc">
+                [Pertouch 泊喜]的目标一直是创造惊喜而又感动人心的家居产品
+            </view>
+        </view>
+        <!-- 品牌描述 end -->
+    </view>
+
+    <view class="more">
+        猜你喜欢
+    </view>
+
+    <view class="last-node"></view>
+</scroll-view>
+
+<view  wx:if="{{ pop.show }}" class="pop">
+    <view class="head">
+        <image class="img" src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+        <view class="info">
+            <!--<view class="title">中秋便携茶具礼盒限量版时光小黑盒 Pertouch泊喜</view>-->
+            <view class="main">
+                <view class="price"><view class="sub">¥</view>598.00</view>
+                <view class="stock">库存100件</view>
+            </view>
+            <view class="name">商品名称</view>
+            <view class="sub">规格信息</view>
+        </view>
+    </view>
+
+    <scroll-view class="cont" scroll-y="{{ true }}">
+        <view class="spec">
+            <view class="row">
+                <view class="name">一级规格</view>
+                <view class="cells">
+                    <view class="slt current">黑猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                </view>
+            </view>
+            <view class="row">
+                <view class="name">二级规格</view>
+                <view class="cells">
+                    <view class="slt">黑猫</view>
+                    <view class="slt current">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫白猫白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">黑猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">黑猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                    <view class="slt">白猫</view>
+                </view>
+            </view>
+        </view>
+        <view class="count">
+            <view class="name">数量</view>
+            <view class="act">
+                <view class="minus">-</view>
+                <view class="num">1</view>
+                <view class="plus">+</view>
+            </view>
+        </view>
+        <view class="last"></view>
+    </scroll-view>
 </view>
 
-<view class="cont">
-    <view class="date">
-        <navigator url="../date/date" class="row large day">
-            <view class="text ellipsis-1"><image class="calendar" src="../../asset/calendar.png"></image>{{ datetime[0].month }}月{{ datetime[0].day }}日 - {{ datetime[1].month }}月{{ datetime[1].day }}日</view>
-            <view class="more">住{{allDay}}晚<image class="arrow" src="../../asset/arrow-right.png"></image></view>
-        </navigator>
-    </view>
-    <view class="list">
-        <navigator wx:for="{{pageData.ware}}" wx:key="index" class="item" url="../checkout/checkout?storeId={{pageData.store.id}}&wareSkuId={{item.wareSkuId}}">
-            <image class="pic" src="{{item.mainImage}}"></image>
-            <view class="info">
-                <view class="main ellipsis-1">{{item.title}}</view>
-                <view class="sub ellipsis-1">大床2米 内窗</view>
+<view wx:if="{{ pop.show }}" catchtap="hidePop" class="mask"></view>
+
+<view class="toolbar">
+    <block wx:if="{{ !pop.show }}">
+        <view class="icons">
+            <view class="cell">
+                <image src="../../asset/message-white.png"></image>
+                客服
             </view>
-            <view class="price">
-                <view class="main ellipsis-1"><view class="s">¥</view>{{ item.price / 100 }}<view class="s">起</view></view>
-                <view class="sub ellipsis-1">门市价<view class="old">¥{{ item.originPrice / 100 }}</view></view>
+            <view class="cell">
+                <image src="../../asset/cart-white.png"></image>
+                购物车
             </view>
-        </navigator>
-    </view>
+            <view class="cell">
+                <image src="../../asset/heart-white.png"></image>
+                收藏
+            </view>
+        </view>
+        <view class="buttons">
+            <view class="btn" catchtap="showPop">加入购物车</view>
+            <view class="btn primary" catchtap="showPop">马上购买</view>
+        </view>
+    </block>
+    <view wx:if="{{ pop.show }}" catchtap="hidePop" class="btn primary">确定</view>
 </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

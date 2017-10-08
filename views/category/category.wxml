@@ -1,0 +1,110 @@
+<template name="category">
+<view class="category" catchtap="sortClickProxy">
+	<view class="searchbox">
+		<input placeholder="请输入搜索内容"/>
+	</view>
+	<scroll-view class="menu" scroll-y="{{true}}">
+		<view class="item">菜单2</view>
+		<view class="item">菜单1</view>
+		<view class="item current">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单1</view>
+		<view class="item">菜单11</view>
+	</scroll-view>
+	<scroll-view scroll-y="{true}" class="c-cont">
+		<view class="title">类目名称</view>
+		<view class="c-list">
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+			<view class="cell">
+				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+				家庭清洁
+			</view>
+		</view>
+	</scroll-view>
+</view>	
+</template>

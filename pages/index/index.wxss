@@ -1,6 +1,8 @@
 @import "../../views/home/home.wxss";
 @import "../../views/orders/orders.wxss";
-@import "../../views/mine/mine.wxss"
+@import "../../views/mine/mine.wxss";
+@import "../../views/cart/cart.wxss";
+@import "../../views/category/category.wxss"
 
 page { height : 100%; }
 
