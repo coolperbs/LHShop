@@ -78,7 +78,7 @@ page{
 .save-btn{
     margin-top:20rpx;
     height:80rpx;
-    background-color:#4A4A4A;
+    background-color:#d6204b;
     color:white;
     border-radius:10rpx;
     display:flex;

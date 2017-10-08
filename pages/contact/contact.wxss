@@ -1,0 +1,38 @@
+/* pages/contact/contact.wxss */
+.contact{
+  display: flex;
+  flex-direction: column;
+  padding:10rpx 20rpx;
+}
+.contact-top,.cont{
+  color:#333;
+}
+text{
+  color:#817f7f;
+}
+.contact text{
+  font-size:28rpx;
+  letter-spacing: 2px;
+  padding:5rpx 5rpx;
+}
+.service{
+  margin-top:15rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.we{
+  margin-top:100rpx;
+}
+.service-icons{
+  width:60rpx;
+  height:60rpx;
+  /*margin-left:500rpx;*/
+}
+.contact-txt{
+  display: flex;
+  padding:10rpx 0;
+}
+.contact-add{
+  padding:10rpx 0;
+}

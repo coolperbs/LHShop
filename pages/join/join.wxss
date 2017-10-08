@@ -1,0 +1,170 @@
+page {
+    background: #f5f5f5;
+}
+
+.wrap {
+    width: 750rpx;
+}
+
+.banner-container,
+banner-container image {
+    width: 750rpx;
+    height: 300rpx;
+}
+
+.banner-container image {
+    display: block;
+    width: 750rpx;
+    height: 300rpx;
+}
+
+.edit-container {
+    margin: 0 auto;
+    width: 730rpx;
+}
+
+.edit-container .edit-item {
+    display: flex;
+    flex-flow: row;
+    margin-top: 30rpx;
+    height: 120rpx;
+    font-size: 30rpx;
+    background: #fff;
+    border-radius: 10rpx;
+}
+
+.edit-container .edit-item .type-name {
+    width: 187rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    color: #000;
+}
+
+.edit-container .edit-item .type-input {
+    flex-grow: 1;
+    height: 120rpx;
+    line-height: 120rpx;
+}
+
+.edit-container .edit-item .type-input input {
+    height: 118rpx;
+    width: 100%;
+    line-height: 120rpx;
+}
+
+.edit-container .edit-item .type-input picker {
+    height: 118rpx;
+    width: 100%;
+    line-height: 120rpx;
+}
+
+.info-container {
+    margin: 0 auto;
+    padding-bottom: 70rpx;
+    width: 730rpx;
+}
+
+.info-container .hint,
+.info-container .agreement {
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    color: #aba8a8;
+}
+
+.info-container .agreement {
+    position: relative;
+    padding-left: 45rpx;
+    color: #000000;
+}
+
+.info-container .agreement .icon {
+    position: absolute;
+    left: 0rpx;
+    top: 50%;
+    margin-top: -20rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.info-container .agreement .icon image {
+    display: block;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.info-container .agreement text {
+    color: #337ae6;
+}
+
+.info-container .submit {
+    margin: 30rpx auto;
+    width: 614rpx;
+    height: 66rpx;
+    border-radius: 20rpx;
+    background-color: #dd1717;
+    line-height: 66rpx;
+    font-size: 30rpx;
+    text-align: center;
+    color: #fff;
+}
+
+.pop-box {
+    position: fixed;
+    z-index: 100;
+    display: table;
+    left: 0;
+    top: 0;
+    width: 750rpx;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.pop-wrap {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.pop-countent {
+    margin: 0 auto;
+    width: 600rpx;
+    background-color: #fff;
+}
+
+.pop-countent .head-text {
+    background-color: #f1473a;
+    font-size: 48rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    color: #fff;
+}
+
+.pop-countent .foot-text {
+    overflow: hidden;
+    height: 100rpx;
+}
+
+.pop-countent .mian-text {
+    padding: 20rpx;
+    height:auto;
+}
+
+.pop-countent .mian-text .text-item {
+    margin: 10rpx;
+    font-size: 26rpx;
+    line-height: 26rpx;
+}
+
+.pop-countent .foot-text .button {
+    margin: 20rpx auto;
+    width: 80%;
+    height: 60rpx;
+    border-radius: 10rpx;
+    background-color: #f1473a;
+    font-size: 32rpx;
+    line-height: 60rpx;
+    text-align: center;
+    color: #fff;
+}
