@@ -91,19 +91,11 @@ var data = {
 				link : '../detail/detail?sku=789'
 			}]
 		},{
-			type : 'module-2',
+			type : 'module-3',
 			data : [{
-				img : 'http://img.dmall.com/mIndex/201612/b29f039d-04c9-4359-b0fd-d9659a80957a_480x480H',
-				link : '../detail/detail?sku=123'
-			},{
-				img : 'http://img.dmall.com/mIndex/201612/5e872ac3-3980-4747-ad9e-2eaefc9c097c_480x480H',
-				link : '../detail/detail?sku=456'
-			},{
-				img : 'http://img.dmall.com/mIndex/201612/9e5da637-4ede-4cdb-9d6d-68cdfb0e8728_480x480H',
-				link : '../detail/detail?sku=789'
-			},{
-				img : 'http://img.dmall.com/mIndex/201612/67343fc3-f05f-40fc-98dd-2e13bff3312e_480x480H',
-				link : '../detail/detail?sku=789'
+				img : 'http://img.dmall.com/mIndex/201611/6ef404b8-e474-4614-90d0-c88248c044d6_750H',
+				height : '70',
+				width : '720'
 			}]
 		},{
 			type : 'module-1',
