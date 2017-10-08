@@ -18,7 +18,8 @@
     "pages/addresslist/addresslist",
     "pages/mycoupon/mycoupon",
     "pages/comment/comment",
-    "pages/collect/collect"
+    "pages/collect/collect",
+    "pages/active/active"
   ],
 
   "window":{

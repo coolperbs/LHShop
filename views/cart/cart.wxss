@@ -1,0 +1,31 @@
+.cart { background-color: #f6f6f6; min-height: 100%; font-size : 28rpx; }
+
+.cart .checkbox { display: inline-block; width : 36rpx; height : 36rpx; border-radius: 50%; border : solid 1px #ccc; }
+.cart .price { display: inline-block; font-size : 32rpx; font-weight : bold; color : #df393c; }
+.cart .price .sub { display: inline-block; font-size : 24rpx; color : #df393c; }
+
+.cart .shop { padding : 20rpx; background-color: #fff; margin-top : 20rpx; }
+.cart .shop:first-child { margin-top : 0; }
+.cart .last-child { height : 120rpx; }
+.cart .shop .head { display: flex; align-items: center; padding : 20rpx 10rpx; border-bottom : solid 1px #f9f9f9; }
+.cart .shop .head .info { margin-left : 30rpx; flex-grow: 1; display: flex; justify-content: space-between; align-items: center; }
+.cart .shop .head .info .name { display: flex; align-items: center; }
+.cart .shop .head .info .name .logo { margin-right : 10rpx; height : 40rpx; width : 40rpx; }
+.cart .shop .head .info .act {  margin : 0; height : 100%; }
+
+.cart .cont-list .item { display: flex; padding : 20rpx 10rpx; align-items: center; }
+.cart .cont-list .item .cont { display: flex; margin-left : 30rpx; width : 100rpx; flex-grow: 1; }
+.cart .cont-list .item .cont .pics { width : 200rpx; height : 200rpx; }
+.cart .cont-list .item .cont .info { width : 10rpx; flex-grow: 1; margin-left : 20rpx; display: flex; flex-direction: column; justify-content: space-between; }
+.cart .cont-list .item .cont .info .name { font-size : 32rpx; }
+.cart .cont-list .item .cont .info .sub-info { font-size : 24rpx; color : #ccc; }
+.cart .cont-list .item .cont .count { display: flex; align-items: center; justify-content: space-between; }
+.cart .cont-list .item .cont .count .cart-act { display: flex; border-radius: 8rpx; overflow: hidden; }
+.cart .cont-list .item .cont .count .cart-act view { text-align: center; line-height: 60rpx; height : 60rpx; width : 60rpx; background-color: #efefef; margin-left : 1px; }
+.cart .cont-list .item .cont .count .cart-act view:first-child { margin-left : 0; }
+.cart .all { border-top : solid 1px #f9f9f9; padding-top : 20rpx; display: flex; justify-content: space-between; align-items: center; }
+.cart .all .btn { padding : 0 40rpx; line-height: 60rpx; font-size : 32rpx; border-radius: 8rpx; height : 60rpx; background-color: #df393c; color : #fff; }
+
+
+
+
