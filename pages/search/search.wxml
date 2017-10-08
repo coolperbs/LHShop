@@ -1,0 +1,38 @@
+<view class="page-search">
+	<view class="barline"></view>
+	<view class="search-box">
+		<input class="search-input" placeholder="输入你想要的宝贝吧" />
+		<image src="../../asset/search.png"/>
+	</view>
+	<view class="search-content">
+		
+		<template is="recommond-ware"></template>
+		<template is="recommond-ware"></template>
+		<template is="recommond-ware"></template>
+		<template is="recommond-ware"></template>
+		<template is="recommond-ware"></template>
+
+
+	</view>
+
+</view>
+
+
+<template name="recommond-ware">
+	<view class="tpl-recommond-ware">
+		<view class="top">
+			<image src="../../asset/back.jpeg" class="ware-img"/>
+		</view>
+		<view class="bottom">
+			<view class="ware-name ellipsis-1"><text>时尚硅胶手表Bering</text></view>
+			<view class="feature ellipsis-1"><text>纤薄表身,大气表盘</text></view>
+			<view class="price-info">
+				<text class="new-price">129</text>
+				<text class="old-price">258</text>
+			</view>
+			<view class="addCart">
+				<image src="" class="cartimg"/>
+			</view>
+		</view>
+	</view>
+</template>

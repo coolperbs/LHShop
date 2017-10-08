@@ -21,7 +21,8 @@
 						<template is="order" data = "{{...item}}"></template>
 					</block> -->
 					<template is="order" data = "{{...item}}"></template>
-					<template is="order" data = "{{...item}}"></template>
+					<template is="aftersale" data = "{{...item}}"></template>
+					
 				</scroll-view>
 			</view>
 		<!-- </block> -->
@@ -160,6 +161,55 @@
 								bindtap="afterSaleOrder"> 
 								申请售后
 								</view> -->
+							</view>
+						</view>
+				</view>
+			</view>
+		<!-- </scroll-view> -->
+	</view>
+</template>
+
+
+
+<template name="aftersale">
+	<view class="line-wrapper" data-recordPos="{{recordPos||''}}">
+		<view class="lower" >
+			<view class="lower-btn" data-orderId="{{id}}" data-pageNo="{{pageNo}}" bindtap="deleteOrder">
+				<image src="../../asset/trash.png"></image>
+			</view>
+		</view>
+			<view class="detail-scroll-body {{position}}" 
+			bindtouchstart="startOrderScroll" 
+			bindtouchend="stopOrderScroll" 
+			data-orderId="{{id}}" 
+			data-orderStatus="{{orderStatus}}">
+				<view class="order-wrapper" data-status="{{statusInfo.status}}">		
+						<view class="header order-part">
+							<view class="header-left">
+								<!-- <view class="storeName">{{shopName}}</view> -->
+								<view class="orderId">售后单号:12344566</view>
+							</view>
+							<view class="orderState" > 审批中 </view>
+							
+						</view>
+						<view class="body order-part" bindtap="toOrderDetail" 
+						data-orderId="{{id}}"
+						data-pageNo="{{pageNo}}">
+							<view class="ware-img img-floor">
+								<image class="f1" src="../../asset/back.jpeg"></image>
+							</view>
+							<view class="ware-detail">
+								<view class="ware-name ellipsis-2">编程机器人DIY条件IronBot</view>
+								<view class="ware-feature ellipsis-2">大红色</view>
+								<text class="price">100.00</text> 
+								<view class="ware-count">x10</view>
+							</view>
+							
+						</view>
+						<view class="footer aftersale">
+							<view class="next-step right">
+									<text class="yingfukuan">退款金额</text> 
+									<text class="showPayPrice">300.00</text>
 							</view>
 						</view>
 				</view>
