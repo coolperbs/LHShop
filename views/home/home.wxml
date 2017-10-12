@@ -4,7 +4,7 @@
 	<view class="home modules">
 		<view class="h-head">
 			<navigator url="../city/city" class="city">城市</navigator>
-			<view class="searchbox"><input placeholder="请输入搜索内容" /></view>
+			<navigator url="../search/search" class="searchbox"><input placeholder="请输入搜索内容" /></navigator>
 			<view class="shops">切店</view>
 		</view>
 		<block wx:for="{{modules}}">
