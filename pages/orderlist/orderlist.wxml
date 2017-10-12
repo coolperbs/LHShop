@@ -1,11 +1,18 @@
 
 <view class = "page-orderlist">
 		<view class="head">
-			<view class="box {{ currentType == 1 ? 'current' : '' }}"  data-type="1">全部</view>
+			<!-- <view class="box {{ currentType == 1 ? 'current' : '' }}"  data-type="1">全部</view>
 			<view class="box {{ currentType == 2 ? 'current' : '' }}"  data-type="2">待付款</view>
 			<view class="box {{ currentType == 3 ? 'current' : '' }}"  data-type="3">待发货</view>
 			<view class="box {{ currentType == 4 ? 'current' : '' }}"  data-type="4">待收货</view>
-			<view class="box {{ currentType == 5 ? 'current' : '' }}"  data-type="5">售后服务</view>
+			<view class="box {{ currentType == 5 ? 'current' : '' }}"  data-type="5">售后服务</view> -->
+			<block wx:for="{{tab.tabData}}">
+				<view class="box {{item.isCur?'current':''}}" 
+				data-param="{{item.param}}" 
+				bindtap="changeTab"
+				style="{{item.style}}">{{item.name}}</view>
+			</block>
+			<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
 		</view>
 		<!-- <block wx:if="{{orders.orderList.length<=0}}">
 			<template is="empty-order"></template>
@@ -14,14 +21,15 @@
 			<view class="view-orders base">
 				<scroll-view class="scroll-view" 
 				scroll-y="true" 
-				bindscroll="pageScroll" 
 				bindscrolltolower="scrollToLower" 
-				style="height:{{orders.scrollHeight}}px">
+				style="height:{{scrollHeight}}px">
 					<!-- <block wx:for="{{orders.orderList}}" wx:key="id">
 						<template is="order" data = "{{...item}}"></template>
 					</block> -->
-					<template is="order" data = "{{...item}}"></template>
-					<template is="aftersale" data = "{{...item}}"></template>
+					<block wx:for="{{listData.totalData}}">
+						<template is="order" data = "{{...item}}"></template>
+					</block>
+					<!-- <template is="aftersale" data = "{{...item}}"></template> -->
 					
 				</scroll-view>
 			</view>
@@ -46,8 +54,6 @@
 			</view>
 		</view>
 			<view class="detail-scroll-body {{position}}" 
-			bindtouchstart="startOrderScroll" 
-			bindtouchend="stopOrderScroll" 
 			data-orderId="{{id}}" 
 			data-orderStatus="{{orderStatus}}">
 				<view class="order-wrapper" data-status="{{statusInfo.status}}">		
