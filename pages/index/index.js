@@ -27,7 +27,7 @@ views = {
 Page( {
 	data : {
 		viewData : {},
-		currentView : 'home',
+		currentView : 'category',
 		tab : {
 			currentTab : 0,
 			list : [{

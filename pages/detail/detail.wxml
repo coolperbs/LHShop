@@ -1,18 +1,18 @@
-<scroll-view class="main" scroll-y="{{ true }}">
+<scroll-view class="main {{pop.show ? 'showpop' : ''}}" scroll-y="{{ true }}">
     <view class="head">
-        <swiper class="banner">
-            <swiper-item>
-                <image mode="aspectFill" src="https://aecpm.alicdn.com/simba/img/TB14ab1KpXXXXclXFXXSutbFXXX.jpg_q50.jpg"></image>
-            </swiper-item>
-            <swiper-item>
-                <image mode="aspectFill" src="https://aecpm.alicdn.com/simba/img/TB14ab1KpXXXXclXFXXSutbFXXX.jpg_q50.jpg"></image>
+        <swiper class="banner" indicator-color="rgba(0, 0, 0, 0.3)" indicator-active-color="#111111" indicator-dots="{{true}}">
+            <swiper-item wx:for="{{pageData.mainImage}}" wx:key="index">
+                <image mode="aspectFill" src="{{item}}"></image>
             </swiper-item>
         </swiper> 
 
         <view class="desc">
-            <view class="title ellipsis-2">中秋便携茶具礼盒限量版时光小黑盒 Pertouch泊喜中秋便携茶具礼盒限量版时光小黑盒 Pertouch泊喜</view>
-            <view class="sub-title">好茶具配好茶，何处艺术感</view>
-            <view class="price"><view class="sub">¥</view>598.00</view>
+            <view class="title ellipsis-2">{{pageData.title}}</view>
+            <view class="sub-title">{{pageData.subTitle}}</view>
+            <view class="price-info">
+                <view class="price"><view class="sub">¥</view>{{ pageData.price ? pageData.price / 100 : pageData.originPrice / 100 }}<view class="sub">元</view></view>
+                <view class="origin-price" wx:if="{{ pageData.price }}">¥{{pageData.originPrice / 100}}</view>
+            </view>
         </view>
 
         <view class="services">
@@ -33,38 +33,34 @@
 
     <view class="cont">
         <view class="tabs">
-            <view class="tab current">图文详情</view>
-            <view class="tab">参数规格</view>
-            <view class="tab">品牌描述</view>
+            <view class="tab {{ tab.current=='imgs' ? 'current' : '' }}" catchtap="changeTab" data-id="imgs">图文详情</view>
+            <view class="tab {{ tab.current=='param' ? 'current' : '' }}" catchtap="changeTab" data-id="param">参数规格</view>
+            <view class="tab {{ tab.current=='desc' ? 'current' : '' }}" catchtap="changeTab" data-id="desc">品牌描述</view>
         </view>
 
         <!-- 图文详情 start -->
-        <view class="images" hidden="{{true}}">
+        <view class="images" wx:if="{{ tab.current=='imgs' }}">
             <image mode="widthFix" src="https://img.alicdn.com/imgextra/i4/1980947930/TB2YzOOqYlmpuFjSZFlXXbdQXXa_!!1980947930.jpg"></image>
         </view>
         <!-- 图文详情 end -->
 
         <!-- 参数规格 start -->
-        <view class="parameters" hidden="{{true}}">
-            <view class="row">
-                <view class="key">品牌：</view>
-                <view class="value">Pertouch泊喜</view>
-            </view>
-            <view class="row">
-                <view class="key">品牌：</view>
-                <view class="value">Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜Pertouch泊喜</view>
+        <view class="parameters" wx:if="{{ tab.current=='param' }}">
+            <view class="row" wx:for="{{pageData.pros}}" wx:key="index">
+                <view class="key">{{index}}：</view>
+                <view class="value">{{item}}</view>
             </view>
         </view>
         <!-- 参数规格 end -->
 
         <!-- 品牌描述 start -->
-        <view class="brand">
+        <view class="brand" wx:if="{{pageData.brand && tab.current=='desc'}}" >
             <view class="brief">
-                <image class="logo" src="https://aecpm.alicdn.com/simba/img/TB14ab1KpXXXXclXFXXSutbFXXX.jpg_q50.jpg"></image>
-                <view class="name">Pertouch 泊喜</view>
+                <image class="logo" src="{{pageData.brand.logo}}"></image>
+                <view class="name">{{pageData.brand.name}}</view>
             </view>
             <view class="desc">
-                [Pertouch 泊喜]的目标一直是创造惊喜而又感动人心的家居产品
+                {{pageData.brand.introduce}}
             </view>
         </view>
         <!-- 品牌描述 end -->
@@ -77,7 +73,7 @@
     <view class="last-node"></view>
 </scroll-view>
 
-<view  wx:if="{{ pop.show }}" class="pop">
+<view class="pop {{pop.show ? 'showpop' : '' }}">
     <view class="head">
         <image class="img" src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
         <view class="info">
@@ -152,7 +148,7 @@
     </scroll-view>
 </view>
 
-<view wx:if="{{ pop.show }}" catchtap="hidePop" class="mask"></view>
+<view catchtap="hidePop" class="mask  {{pop.show ? 'showpop' : '' }}"></view>
 
 <view class="toolbar">
     <block wx:if="{{ !pop.show }}">
@@ -171,7 +167,7 @@
             </view>
         </view>
         <view class="buttons">
-            <view class="btn" catchtap="showPop">加入购物车</view>
+            <view class="btn" catchtap="addCart">加入购物车</view>
             <view class="btn primary" catchtap="showPop">马上购买</view>
         </view>
     </block>

@@ -1,82 +1,56 @@
 var handle, events, _fn,
-	  utils = require( '../../common/utils/utils' ),
-    //serviceItems = require( '../../service/items/items.js' ),
-    //serviceCart = require( '../../service/cart/cart.js' ),
-    data = require( './data.js' ),
-    _fn;
+    ajax = require( '../../common/ajax/ajax' ),
+    utils = require( '../../common/utils/utils' ),
+    app = getApp();
 
 handle = {
   render : function( callerPage ) {
-
-  	callerPage.setData( {
-  		viewData : data.data
-  	} );
-    // 选中第几个tab
-    //_fn.select( 0, callerPage );
+    _fn.init( callerPage );
+    // 获取购物车数据
+    _fn.getViewData( function( res ) {
+      if ( utils.isErrorRes( res ) ) {
+        return;
+      }
+      console.log( res );
+      callerPage.setData( {
+        'viewData.cat' : res.data
+      } );
+    } );
   }
 };
 
 events = {
-  sortChangeSort : function( e ) {
-    var currentTarget = e.currentTarget,
-        index = currentTarget.dataset.sortIndex;
-    _fn.select( index, this );
-  },
-  sortGotoSearch : function( e ) {
-    wx.navigateTo( {
-      url : '../search/search?autofocus=true'
-    } );
-  },  
-  sortClickProxy : function( e ) {
-    var target = e.target,
-        event = target.dataset.event;
-    if ( typeof _fn[event] == 'function' ) {
-      _fn[event]( e, this );
-    }
-  }  
+  goCheck : function( e ) {
+    // 判断选中态等情况
+    //wx.navigateTo( { url : '../checkout/checkout?cartid=' + e.currentTarget.dataset.cartid } );
+  }
 }
 
 _fn = {
-	init : function( callerPage ) {
-		if ( callerPage.initedSort ) {
-			return;
-		}
-		utils.mix( callerPage, events );
-		callerPage.initedSort = true;
-	},
-  select : function( index, callerPage ) {
-    var sortList = callerPage.data.currentData.sortList,
-        i, s;
-
-    for ( i = 0; s = sortList[i]; ++i ) {
-      s.selected = i == index ? true : false;
+  init : function( callerPage ) {
+    if ( callerPage.initedCart ) {
+      return;
     }
-    // 设置翻页
-    callerPage.setData( callerPage.data );
-
-
-    serviceItems.search( {
-      sortId : sortList[index].id
-    }, function( res ) {
-      var item = res.data.list.shift();
-      res.data.list.push( item );
-
-      callerPage.setData( {
-        'currentData.itemList' : res.data,
-        'currentData.itemList.showAddCart' : true
-      } );
+    utils.mix( callerPage, {
+      categoryClickProxy : function( e ) {
+        var target = e.currentTarget;
+        if ( target.dataset && target.dataset.fn && events[target.dataset.fn] ) {
+          events[target.dataset.fn].call( this, e );
+        }
+      }
     } );
+    callerPage.initedCart = true;
   },
-  addCart : function( e, callerPage ) {
-    var dataset = e.currentTarget.dataset,
-        self = callerPage;
-
-    serviceCart.add( dataset.storeId, dataset.skuId, 1, function( res ) {
-      self.setData( {
-        'cart.num' : res.data.num
-      } );
-    } );
-  }  
+  getViewData : function( callback ) {
+    ajax.query( {
+      url : app.host + '/cat'
+    }, callback );
+  }
 }
 
 module.exports = handle;
+
+
+
+
+
