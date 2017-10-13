@@ -36,8 +36,7 @@ config = {
 	env : environment,
 	protocol : protocol,
 	HOST : HOST,
-	// host : 'https://hotelgateway.yimeixinxijishu.com'
-	host : 'https://hotelgateway.yimeixinxijishu.com'
+	host : 'https://shopgateway.yimeixinxijishu.com'
 };
 
 module.exports = config;

@@ -30,9 +30,9 @@ var handle = {
 		evt:"dev"//使用环境
 	},
 	onLaunch:function(){
-		_fn.setDate();
-		_fn.setCity();
-		_fn.getLocation();
+		// _fn.setDate();
+		// _fn.setCity();
+		// _fn.getLocation();
 	}
 };
 

@@ -74,14 +74,7 @@ Page( {
 		var self = this,
 			currentView = self.data.currentView || 'home';
 
-		_fn.selectView.call( this, currentView );
-/*		serviceCart.get( function( res ) {
-			self.setData( {
-				'cart.num' : res.data.num
-			} );
-		} );*/
-		// serviceUser.getInfo();
-		// _fn.selectView.call( this, 'home' );
+		_fn.selectView.call( this, currentView, { type : 'show' } );
 	},
 
 	changeTab : function( e ) {
@@ -97,7 +90,7 @@ Page( {
 			currentView : viewName,
 			'tab.currentTab' : e.currentTarget.dataset.index
 		} );
-		_fn.selectView.call( this, viewName );
+		_fn.selectView.call( this, viewName, {type : 'changeTab'});
 
 	},
 
@@ -133,7 +126,7 @@ Page( {
 } );
 
 _fn = {
-	selectView : function( viewName ) {
+	selectView : function( viewName, options ) {
 		var view = views[viewName];
 		if ( !view ) {
 			return;
@@ -141,7 +134,7 @@ _fn = {
 		this.setData( {
 			currentView : viewName
 		} );
-		view.render( this );
+		view.render( this, options );
 	},
 	showTips : function( caller ) {
 		var self = caller;

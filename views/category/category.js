@@ -1,82 +1,81 @@
 var handle, events, _fn,
-	  utils = require( '../../common/utils/utils' ),
-    //serviceItems = require( '../../service/items/items.js' ),
-    //serviceCart = require( '../../service/cart/cart.js' ),
-    data = require( './data.js' ),
-    _fn;
+    ajax = require( '../../common/ajax/ajax' ),
+    utils = require( '../../common/utils/utils' ),
+    app = getApp();
 
 handle = {
-  render : function( callerPage ) {
+  render : function( callerPage, options ) {
+    _fn.init( callerPage );
 
-  	callerPage.setData( {
-  		viewData : data.data
-  	} );
-    // 选中第几个tab
-    //_fn.select( 0, callerPage );
+    if ( options.type == 'show' && callerPage.data && callerPage.data.viewData && callerPage.data.viewData.currentTab ) {
+      return;
+    }
+    // 获取购物车数据
+    _fn.getViewData( function( res ) {
+      var data = callerPage.data,
+          newData = {
+        'viewData.cat' : res.data
+      };
+      //if ( options.type == 'changeTab' ) {
+        newData['viewData.currentTab'] = res.data[0]
+      //} else if ( options.type == 'show' ) {
+      //  newData['viewData.currentTab'] = ( data && data.viewData && data.viewData.currentTab ) ? data.viewData.currentTab : res.data[0]
+      //}
+      callerPage.setData( {
+        'viewData.cat' : res.data,
+        'viewData.currentTab' : res.data[0]
+      } );
+    } );
   }
 };
 
 events = {
-  sortChangeSort : function( e ) {
-    var currentTarget = e.currentTarget,
-        index = currentTarget.dataset.sortIndex;
-    _fn.select( index, this );
-  },
-  sortGotoSearch : function( e ) {
-    wx.navigateTo( {
-      url : '../search/search?autofocus=true'
-    } );
-  },  
-  sortClickProxy : function( e ) {
-    var target = e.target,
-        event = target.dataset.event;
-    if ( typeof _fn[event] == 'function' ) {
-      _fn[event]( e, this );
+  changeTab : function( e ) {
+    var dataset = e.currentTarget.dataset,
+        callerPage = this,
+        viewData = callerPage.data.viewData,
+        id = dataset.id,
+        i, len;
+
+    for ( i = 0, len = viewData.cat.length; i < len; ++i ) {
+      if ( id == viewData.cat[i].catId ) {
+        callerPage.setData( {
+          'viewData.currentTab' : viewData.cat[i]
+        } );
+        return;
+      }
     }
-  }  
+    // 判断选中态等情况
+    //wx.navigateTo( { url : '../checkout/checkout?cartid=' + e.currentTarget.dataset.cartid } );
+  }
 }
 
 _fn = {
-	init : function( callerPage ) {
-		if ( callerPage.initedSort ) {
-			return;
-		}
-		utils.mix( callerPage, events );
-		callerPage.initedSort = true;
-	},
-  select : function( index, callerPage ) {
-    var sortList = callerPage.data.currentData.sortList,
-        i, s;
-
-    for ( i = 0; s = sortList[i]; ++i ) {
-      s.selected = i == index ? true : false;
+  init : function( callerPage ) {
+    if ( callerPage.initedCategory ) {
+      return;
     }
-    // 设置翻页
-    callerPage.setData( callerPage.data );
-
-
-    serviceItems.search( {
-      sortId : sortList[index].id
-    }, function( res ) {
-      var item = res.data.list.shift();
-      res.data.list.push( item );
-
-      callerPage.setData( {
-        'currentData.itemList' : res.data,
-        'currentData.itemList.showAddCart' : true
-      } );
+    utils.mix( callerPage, {
+      categoryClickProxy : function( e ) {
+        var target = e.currentTarget;
+        if ( target.dataset && target.dataset.fn && events[target.dataset.fn] ) {
+        console.log( e );
+          events[target.dataset.fn].call( this, e );
+        }
+      }
     } );
+    callerPage.initedCategory = true;
   },
-  addCart : function( e, callerPage ) {
-    var dataset = e.currentTarget.dataset,
-        self = callerPage;
-
-    serviceCart.add( dataset.storeId, dataset.skuId, 1, function( res ) {
-      self.setData( {
-        'cart.num' : res.data.num
-      } );
-    } );
-  }  
+  getViewData : function( callback ) {
+    ajax.query( {
+      url : app.host + '/cat'
+    }, callback );
+  }
 }
 
 module.exports = handle;
+
+
+
+
+

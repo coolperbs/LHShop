@@ -1,52 +1,32 @@
 
 <template name="cart">
 <view class="cart">
-	<view class="shop" wx:for="{[1,2,3]}">
+	<view class="shop" wx:for="{{shopCart}}" wx:key="id" wx:for-item="shopCart">
 		<view class="head">
 			<image class="checkbox"></image>
 			<view class="info">
 				<view class="name">
-					<image class="logo" src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-					xx店铺 >
+					<image class="logo" src="{{shopCart.logo}}"></image>
+					{{shopCart.name}} >
 				</view>
 				<view class="act">领券</view>
 			</view>
 		</view>
 		<view class="cont-list">
-			<view class="item">
+			<view class="item" wx:for="{{shopCart.carts}}" wx:key="id" wx:for-item="sku">
 				<image class="checkbox"></image>
 				<view class="cont">
-					<image class="pics" src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+					<image class="pics" src="{{sku.skuImg}}"></image>
 					<view class="info">
-						<view class="name ellipsis-2">商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题</view>
-						<view class="sub-info">子信息</view>
+						<view class="name ellipsis-2">{{sku.skuTitle}}</view>
+						<view class="sub-info">{{sku.skuSubTitle}}</view>
 						<view class="count">
 							<view>
-							 	<view class="price"><view class="sub">¥</view>598.00</view> × 1
+							 	<view class="price"><view class="sub">¥</view>{{sku.skuPrice / 100}}</view> × 1
 							</view>
 							<view class="cart-act">
-				                <view class="minus">-</view>
-				                <view class="num">1</view>
-				                <view class="plus">+</view>
-				            </view>
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="item">
-				<image class="checkbox"></image>
-				<view class="cont">
-					<image class="pics" src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-					<view class="info">
-						<view class="name ellipsis-2">商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题</view>
-						<view class="sub ellipsis-2">子信息</view>
-						<view class="count">
-							<view>
-							 	<view class="price"><view class="sub">¥</view>598.00</view> × 1
-							</view>
-							<view class="cart-act">
-				                <view class="minus">-</view>
-				                <view class="num">1</view>
+				                <view class="minus" id="{{sku.skuId}}">-</view>
+				                <view class="num">{{sku.skuNum}}</view>
 				                <view class="plus">+</view>
 				            </view>
 						</view>
@@ -56,9 +36,9 @@
 		</view>
 		<view class="all">
 			<view>
-				共<view class="price"><view class="sub">¥</view>598.00</view>元
+				共<view class="price"><view class="sub">¥</view>{{shopCart.shopTotalPrice / 100}}</view>元
 			</view>
-			<view class="btn">去结算</view>
+			<view class="btn" catchtap="cartClickProxy" data-fn="goCheck" data-cartid="{{shopCart.id}}">去结算</view>
 		</view>
 	</view>
 	<view class="last-child"></view>

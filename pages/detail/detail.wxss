@@ -3,14 +3,18 @@ page { width: 100%; font-weight : normal; height : 100%; font-size : 28rpx; back
 .price { display: inline-block; font-size : 40rpx; font-weight : bold; color : #df393c; }
 .price .sub { display: inline-block; font-size : 30rpx; }
 
-.main { height : 100%; width : 100%; }
+.origin-price { display: inline-block; font-size : 26rpx; font-weight : bold; color : #ccc;  text-decoration:line-through; }
+
+.main { height : 100%; width : 100%; transition: all 0.5s ease; }
+.main.showpop {  transform-style: preserve-3d; perspective-origin: 100% 0; transform: perspective(1500px) translateZ(-400rpx); }
 .main .head { background-color: #fff; }
 .main .head .banner { height : 600rpx; }
 .main .head .banner image { height : 100%; width : 100%; }
 .main .head .desc { padding : 30rpx; }
 .main .head .desc .title { font-size : 36rpx; color : #101010; line-height : 50rpx; }
 .main .head .desc .sub-title { font-size : 30rpx; color : #999; line-height: 50rpx; margin-top : 10rpx; }
-.main .head .desc .price { margin-top : 20rpx; }
+.main .head .desc .price-info { margin-top : 20rpx; }
+.main .head .desc .price-info .price { margin-right : 20rpx; }
 .main .head .services { margin-top : 20rpx; align-items: center; font-size : 26rpx; display: flex; padding : 20rpx; justify-content : space-between; border-top : solid 1px #f9f9f9; }
 .main .head .services .cell { display: flex; align-items : center; color : #999; }
 .main .head .services .cell image { margin-right : 10rpx; width : 24rpx; height : 24rpx; }
@@ -29,7 +33,7 @@ page { width: 100%; font-weight : normal; height : 100%; font-size : 28rpx; back
 .main .cont .parameters .row .value { width : 590rpx; color : #999; }
 .main .cont .brand { padding : 30rpx; }
 .main .cont .brand .brief { display: flex; font-size : 36rpx; align-items: center; margin-top : 20rpx; }
-.main .cont .brand .brief .logo { width : 120rpx; height : 120rpx; margin-right : 20rpx; border-radius: 8rpx; }
+.main .cont .brand .brief .logo { width : 120rpx; height : 120rpx; margin-right : 20rpx; border-radius: 8rpx; box-shadow: 0 10rpx 10rpx #efefef; }
 .main .cont .brand .desc { margin-top : 60rpx; color : #999; font-size : 30rpx; line-height: 36rpx; padding-bottom : 20rpx; }
 
 .main .more { margin-top : 20rpx; height : 200rpx; background-color: #f9f9f9; }
@@ -44,9 +48,11 @@ page { width: 100%; font-weight : normal; height : 100%; font-size : 28rpx; back
 .toolbar .btn { height: 100%; width : 100%; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
 .toolbar .btn.primary { background-color: #df393c; }
 
-.mask { height: 100%; width : 100%; background-color: #000; opacity: 0.3; z-index: 100; position: fixed; left : 0; top : 0; }
+.mask { transition: opacity 0.5s ease; height: 0; width : 0; opacity: 0; background-color: #000; z-index: 100; position: fixed; left : 0; top : 0; }
+.mask.showpop { height : 100%; width : 100%; opacity: 0.6; }
 
-.pop { padding : 20rpx; padding-bottom : 0; width : 710rpx; display: flex; flex-direction: column; background-color: #fff; position: fixed; bottom : 100rpx; left : 0; z-index: 101; height : 70%; }
+.pop { transform: translate3d( 0, 130%, 0); transition: all 0.5s ease; padding : 20rpx; padding-bottom : 0; width : 710rpx; display: flex; flex-direction: column; background-color: #fff; position: fixed; bottom : 100rpx; left : 0; z-index: 101; height : 70%; }
+.pop.showpop { transform: translate3d( 0, 0, 0);  }
 .pop .head { padding-bottom : 20rpx; height : 140rpx; display: flex; }
 .pop .head .info { display: flex; flex-direction: column; justify-content: space-between; width : 490rpx; }
 .pop .head .info .main { height : 30rpx; display: flex; margin-top : 20rpx; align-items: flex-end; }

@@ -2,7 +2,7 @@
 .category .searchbox { border-bottom: solid 1px #efefef; position: fixed; height : 100rpx; width : 100%; left : 0; top : 0; background-color: #fff; display: flex; align-items: center; justify-content: center; }
 .category .searchbox input { width : 670rpx; height : 60rpx; border-radius: 30rpx; padding : 0 20rpx; background-color: #eee; }
 .category .menu { margin-top : 100rpx; margin-bottom: 100rpx; width : 200rpx; border-right: solid 1px #f9f9f9; }
-.category .menu .item { border-left: solid 8rpx transparent; text-indent: -8rpx;  color : #aaa; font-size : 30rpx; width : 100%; text-align: center; padding : 10rpx 0; margin : 10rpx 0; }
+.category .menu .item { border-left: solid 8rpx transparent; text-indent: -8rpx;  color : #aaa; font-size : 30rpx; text-align: center; padding : 10rpx 20rpx; margin : 20rpx 0; }
 .category .menu .item.current { color : #111; border-left-color: #df393c; }
 .category .menu .item:first-child { margin-top : 20rpx; }
 .category .menu .item:last-child { margin-bottom : 20rpx; }

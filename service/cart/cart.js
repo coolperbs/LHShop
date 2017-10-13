@@ -1,71 +1,28 @@
 var ajax = require('../../common/ajax/ajax'), 
-	error = require( '../error' ),
-	utils = require( '../../common/utils/utils' ),
-	config = require( '../../config.js' ),
+	app = getApp(),
 	url, CFG, _fn, handle;
-
-CFG = {
-	storeName : 'cart',	//前端key
-	isMergeCart : 'isMergeCart',
-	tempId : 'tempid'
-}
-
 
 
 url = {
-	// add : config.host.trading + '/mch/cart/add',	// 考虑接口的剥离方哪里？
-	// query : 'http://devapi.trading.nx.com:9000/mch/cart/get',
-	// clear : 'http://devapi.trading.nx.com:9000/mch/cart/clear',
-	// del : 'http://devapi.trading.nx.com:9000/mch/cart/del',
-	// update : 'http://devapi.trading.nx.com:9000/mch/cart/update'
-	add : config.HOST.trading + '/mch/cart/add',	// 考虑接口的剥离方哪里？
-	query : config.HOST.trading + '/mch/cart/get',
-	clear : config.HOST.trading + '/mch/cart/clear',
-	del : config.HOST.trading + '/mch/cart/del',
-	update : config.HOST.trading + '/mch/cart/update'	
+	add : app.host + '/app/cart/add',
+	query : app.host + '/app/cart/list',
+	clear : app.host + '/app/cart/deleteAll',
+	del : app.host + '/app/cart/delete',
+	cut : app.host + '/app/cart/cut'
+	//update : app.host + '/mch/cart/update'	
 }
 
 
 handle = {
-	isMerged : function() {
-		return wx.getStorageSync( CFG.isMergeCart ) ? true : false;
-	},
 
-	merge : function( callback ) {
-		var self = this;
-		this.query( { shopId : [] }, function( res ) {
-			callback && callback( self.isMerged() );
-		} );
-	},
-
-	// param = { num : 1, shopId : 1, sku : 1 }
+	// param = { skuNum : 1, skuId : 1 }
 	add : function( param, callback ) {
-		var defaultData = {
-				checked: true, //是否选中
-				data: true,    //是否需要返回购物车数据
-				num: 2,        //商品数量
-				sku: 123,      //商品SKU
-				//tempId: "xxx", //临时购物车ID
-				shopId:123     //门店ID
-			};
-
-		if ( Object.prototype.toString.apply( param ) !== '[object Object]' ) { // 之后再考虑多种传参的情况
-			callback( error.paramError );
-			return;
-		} 
-		param = utils.merge( defaultData, param );
-		param = _fn.addTempId( param );
-		//param = _fn.bindUserId(  ); // 处理临时id等东西
+		param = param || {};
+		param.skuNum = param.skuNum || 1;
 		ajax.query( {
 			url : url.add,
 			param : param
-		}, function( res ) {
-			res = _fn.callbackFilter( res );
-			if ( res.code == '0000' && res.success ) {	// 这里判断条件等返回字段统一，ok后处理
-				handle.save( res.data );	// 本地存储，是直接在这里处理？
-			}
-			callback( res );
-		} );
+		}, callback );
 	},
 
 	// param = { num : 1, shopId : 1, sku : 1 }
@@ -97,37 +54,12 @@ handle = {
 	// param = { shopId :  '' } || param = { shopId : [] }
 	query : function( param, callback ) {
 		// 应该是根据storeId来，storeId也可以不传
-		var defaultData = {
-			shopIds : [] //需要获取数据的门店ID数组，可以传入多个店铺
-			//tempId : "xxx" //临时购物车ID
-		};
-		var data = {};
-		if ( Object.prototype.toString.apply( param.shopId ) === '[object Array]' ) {
-			data.shopIds = param.shopId;
-		} else if ( param && param.shopId ) {
-			data.shopIds = [param.shopId]
-		} else {
-			callback( error.paramError );
-			return;
-		}
-		data = utils.merge( defaultData, data );
-		data = _fn.addTempId( data );
+		param = param || {};
+		//param.skuNum = param.skuNum || 1;
 		ajax.query( {
 			url : url.query,
-			param : data
-		}, function( res ) {
-			res = _fn.callbackFilter( res );
-			if ( res.code == '0000' && res.success ) {	// 这里判断条件等返回字段统一，ok后处理
-				handle.save( res.data );	// 本地存储，是直接在这里处理？
-			}
-			callback( res );
-		} );
-	},
-	get : function() {	// 全量返回
-		return wx.getStorageSync( CFG.storeName );
-	},
-	save : function( data ) {
-		wx.setStorageSync( CFG.storeName, data );
+			param : param
+		}, callback );
 	}
 };
 
