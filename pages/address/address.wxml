@@ -12,43 +12,39 @@
              data-name='iphone'
              placeholder="手机号码" value='{{addressInfo.iphone}}'/>
         </view>
+
+
          <view class="edit-item">
-            <picker mode="selector" range="{{province}}"
-             data-setname="province"
+            <picker mode="selector" 
+             range="{{location.provinceList}}"
              range-key="name"
-             bindchange='choiceAddress'
+             bindchange='changeLocation'
+             data-param="{{location.provinceParam}}"
              class="picker">
-                <view>{{province[addressInfo.province.index].name||'所在省份'}}</view>
+                <view>{{location.province.name||'所在省份'}}</view>
             </picker>
         </view>
         <view class="edit-item">
-             <picker mode="selector" range="{{city}}"
-             data-setname="city"
+             <picker mode="selector" 
+             range="{{location.cityList}}"
              range-key="name"
-             bindchange='choiceAddress'
+             bindchange='changeLocation'
+             data-param="{{location.cityParam}}"
              class="picker">
-                <view>{{city[addressInfo.city.index].name||'所在城市'}}</view>
+                <view>{{location.city.name||'所在城市'}}</view>
             </picker>
         </view>
          <view class="edit-item">
-             <picker mode="selector" range="{{district}}"
-             data-setname="district"
+             <picker mode="selector" 
+             range="{{location.countryList}}"
              range-key="name"
-             bindchange='choiceAddress'
+             bindchange='changeLocation'
+             data-param="{{location.countryParam}}"
              class="picker">
-                <view>{{district[addressInfo.district.index].name||'所在区域'}}</view>
+                <view>{{location.country.name||'所在区域'}}</view>
             </picker>
         </view>
-        <view class="edit-item">
-            <text></text>
-             <picker mode="selector" range="{{street}}"
-             data-setname="street"
-             range-key="name"
-             bindchange='choiceAddress'
-             class="picker">
-                <view>{{street[addressInfo.street.index].name||'所在街道'}}</view>
-            </picker>
-        </view>
+
          <view class="edit-item">
             <input type="text" 
             bindinput="inputInfo"
