@@ -1,91 +1,21 @@
 <template name="category">
-<view class="category" catchtap="sortClickProxy">
+<view class="category">
 	<view class="searchbox">
 		<input placeholder="请输入搜索内容"/>
 	</view>
 	<scroll-view class="menu" scroll-y="{{true}}">
-		<view class="item" wx:for="{{cat}}" wx:key="index">菜单2</view>
+		<view class="item ellipsis-1 {{ currentTab.catId == item.catId ? 'current' : '' }}" wx:for="{{cat}}" wx:key="index" catchtap="categoryClickProxy" data-fn="changeTab" data-id="{{item.catId}}">{{item.catName}}</view>
 	</scroll-view>
 	<scroll-view scroll-y="{true}" class="c-cont">
-		<view class="title">类目名称</view>
+		<block wx:for="{{ currentTab.childCategories }}" wx:key="catId" wx:for-item="level2">
+		<view class="title">{{level2.catName}}</view>
 		<view class="c-list">
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
-			<view class="cell">
-				<image src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
-				家庭清洁
-			</view>
+			<navigator url="../search/search?catid={{level3.catId}}" class="cell" wx:for="{{level2.childCategories}}" wx:key="catId" wx:for-item="level3">
+				<image src="{{level3.logo}}"></image>
+				{{level3.catName}}
+			</navigator>
 		</view>
+		</block>
 	</scroll-view>
 </view>	
 </template>
