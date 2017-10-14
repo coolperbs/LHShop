@@ -1,19 +1,30 @@
 <view class="page-search">
 	<view class="barline"></view>
-	<view class="search-box">
-		<input class="search-input" placeholder="输入你想要的宝贝吧" />
-		<image src="../../asset/search.png"/>
+	<view class="seach-header">
+		<view class="search-box">
+			<input class="search-input" placeholder="输入你想要的宝贝吧" bindinput="changeInput"/>
+			<image src="../../asset/search.png"/>
+		</view>
+		<view class="sort-menu">
+			<block wx:for="{{sortMenuData.menu}}" wx:key="{{index}}">
+				<view class="menu-item status-{{item.status}}" data-param="{{item.eventParam}}" catchtap="changeSort">
+					{{item.text}}
+					<image wx:if="{{!item.status}}" src="../../asset/sort-null.png" class="sort-logo"></image>
+					<image wx:if="{{item.status===1}}" src="../../asset/sort-up.png" class="sort-logo"></image>
+					<image wx:if="{{item.status===2}}" src="../../asset/sort-down.png" class="sort-logo"></image>
+				</view>
+			</block>
+			
+		</view>
 	</view>
-	<view class="search-content">
-		
-		<template is="recommond-ware"></template>
-		<template is="recommond-ware"></template>
-		<template is="recommond-ware"></template>
-		<template is="recommond-ware"></template>
-		<template is="recommond-ware"></template>
+	<scroll-view class="search-scroll" style="height:{{height}}" scroll-y="{{true}}" bindscrolltolower="getNext">
+		<view class="search-content">
+			<block wx:for="{{searchRes.totalData}}" wx:key="id">
+				<template is="recommond-ware" data="{{...item}}"></template>
+			</block>
+		</view>
+	</scroll-view>
 
-
-	</view>
 
 </view>
 
@@ -21,17 +32,17 @@
 <template name="recommond-ware">
 	<view class="tpl-recommond-ware">
 		<view class="top">
-			<image src="../../asset/back.jpeg" class="ware-img"/>
+			<image src="{{mainImage}}" class="ware-img"/>
 		</view>
 		<view class="bottom">
-			<view class="ware-name ellipsis-1"><text>时尚硅胶手表Bering</text></view>
-			<view class="feature ellipsis-1"><text>纤薄表身,大气表盘</text></view>
+			<view class="ware-name ellipsis-1"><text>{{title}}</text></view>
+			<view class="feature ellipsis-1"><text>{{subTitle}}</text></view>
 			<view class="price-info">
-				<text class="new-price">129</text>
-				<text class="old-price">258</text>
+				<view class="new-price">{{showPrice}}</view>
+				<view class="old-price">{{showOriginPrice}}</view>
 			</view>
 			<view class="addCart">
-				<image src="" class="cartimg"/>
+				<image src="../../asset/cart.png" class="cartimg"/>
 			</view>
 		</view>
 	</view>

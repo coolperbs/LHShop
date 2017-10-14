@@ -54,6 +54,13 @@ var _fn = {
 				page.setData({
 					address:data.totalData
 				});
+			},
+			getList:function(res){
+				return res.data;
+
+			},
+			getHasMore:function(res){
+				return false
 			}
 		});
 		page.listWeiget.next();

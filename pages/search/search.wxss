@@ -1,21 +1,35 @@
 @import '../../views/mine/mine.wxss'
 .search-content{
-	margin-top: 34rpx;
 	display:flex;
 	flex-wrap:wrap;
-	padding: 44rpx;
-	margin-top: 80rpx
+	
 }
-.search-box{
-	height:80rpx;
+.seach-header{
 	z-index:100;
-	border-bottom:solid 1px #f8f8f8;
-	background-color:#fff;
 	position:fixed;
 	top:1px;
 	left:0;
+	width: 100%
+}
+.search-box{
+	height:80rpx;
+	border-bottom:solid 1px #f8f8f8;
+	background-color:#fff;
 	width:100%;
 	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.sort-menu{
+	display:flex;
+	height: 80rpx;
+	border-bottom:solid 1px #f8f8f8;
+	background-color: white;
+}
+.sort-menu .menu-item{
+	width: 250rpx;
+	text-align: center;
+	display: flex;
 	align-items:center;
 	justify-content:center;
 }
@@ -34,4 +48,19 @@ height:30rpx;
 position:absolute;
 z-index:10;
 left:85rpx;
+}
+.search-scroll{
+	display:flex;
+	flex-wrap:wrap;
+	width: 100%;
+	padding: 44rpx 44rpx 0 44rpx;
+	margin-top: 160rpx
+}
+.sort-logo{
+	width: 40rpx;
+	height: 50rpx;
+}
+.cartimg{
+	width: 50rpx;
+	height: 50rpx
 }

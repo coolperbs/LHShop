@@ -2,20 +2,10 @@ var ajax = require('../../common/ajax/ajax');
 
 class List{
 	constructor(props) {
-		this.url = props.url;
-		this.param = props.param;
-		this.render = props.render;
-		this.isSingle = props.isSingle || false//是否分页，默认为true，
-
-		this.curData = [];
-		this.totalData = [];
-		this.curPage = 0;
-		this.isLast = false;
-		this.isLock = false;  
+		props = props || {};
+		this.setConfig(props);
 	}
-	clear(){
-
-	}
+	
 	next(){//下一页
 		if(this.isLast || this.isLock){
 			return;
@@ -28,9 +18,9 @@ class List{
 		this.getData(function(res){
 			self.isLock = false;
 			if(res.data && res.code === '0000'){
-				self.curData = res.data;
+				self.curData = res.data.list;
 				if(!self.isSingle){
-					self.isLast = resData.lastPage;
+					self.isLast = !res.data.hasMore;
 					self.totalData = self.totalData.concat(self.curData);
 				}else{
 					self.totalData = self.curData;
@@ -48,28 +38,49 @@ class List{
 
 		});
 	}
-	getData(callback){
-		var param = this.param;
-		if(!this.isSingle){
-			param.param.currentPage = this.curPage;
-		}
-		ajax.query({//换ajax。query
-			url:this.url,
-			data:param
-		},function(res){
-			if(callback && typeof callback === 'function'){
-				callback(res);
-			}
-
-		});
-	}
-	remove(){//清除一条数据
-
-	}
 	update(e){//更新一条数据
 		if(this.isSingle){
 			this.next();
 		}
+	}
+	getData(callback){
+		var param = this.param;
+		if(!this.isSingle){
+			param.currentPage = this.curPage;
+		}
+		var self = this;
+		ajax.query({//换ajax。query
+			url:this.url,
+			param:param
+		},function(res){
+
+			var resData = {
+				code : res.code,
+				data:{
+					list:self.getList(res),
+					hasMore:self.getHasMore(res)
+				}
+			}
+
+			if(callback && typeof callback === 'function'){
+				callback(resData);
+			}
+
+		});
+	}
+	setConfig(props){
+		this.url = props.url;//请求地址
+		this.param = props.param;//请求参数
+		this.render = props.render;//渲染函数
+		this.isSingle = props.isSingle || false//是否分页，默认为true，
+		this.getList = props.getList;
+		this.getHasMore = props.getHasMore;
+
+		this.curData = [];//当前新增数据
+		this.totalData = [];//全部数据
+		this.curPage = 0;//当前页码
+		this.isLast = false;
+		this.isLock = false;  
 	}
 }
 class Tab{
@@ -190,7 +201,7 @@ class DropMenu{
 			var headerId = 'header-'+k;
 			self.header.push({
 				text:v.header.text,
-				dataId:v.id,
+				// dataId:v.id,
 				param:{isActive:false,id:headerId}
 			});
 			var menuData = [];
@@ -198,7 +209,7 @@ class DropMenu{
 				var itemId = headerId+'menu-'+km;
 				menuData.push({
 					text:vm.text,
-					dataId:vm.id,
+					// dataId:vm.id,
 					param:{
 						id:itemId,
 						headerId:headerId,
@@ -433,6 +444,7 @@ class Address{
 module.exports = {
 	List:List,
 	tab:Tab,
+	DropMenu:DropMenu,
 	uploader:Uploader,
 	Address:Address
 }

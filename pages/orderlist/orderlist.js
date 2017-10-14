@@ -44,18 +44,36 @@ var _fn = {
 				page.setData({
 					listData:listData
 				});
+			},
+			getList:function(res){
+				return [1,2,3]
+			},
+			getHasMore:function(res){
+				return [1,2,3]
 			}
 		});
 		var waitingPayList = new List({//待付款
 			url:'orderList',
 			param:{
 				status:'waitingPay'
+			},
+			getList:function(res){
+				return [1,2,3]
+			},
+			getHasMore:function(res){
+				return [1,2,3]
 			}
 		});
 		var waitingSendList = new List({//代发货
 			url:'orderList',
 			param:{
 				status:'waitingSend'
+			},
+			getList:function(res){
+				return [1,2,3]
+			},
+			getHasMore:function(res){
+				return [1,2,3]
 			}
 		});
 		var waitingReciveList = new List({//待收货
