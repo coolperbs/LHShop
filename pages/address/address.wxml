@@ -2,15 +2,15 @@
     <view class="address-edit">
         <view class="edit-item">
             <input type="text"
-             bindinput="inputInfo"
+             bindinput="changeInput"
              placeholder="收货人"
-             data-name='name' value='{{addressInfo.name}}'/>
+             data-name='userName' value='{{formData.userName}}'/>
         </view>
         <view class="edit-item" data-name='iphone'>
             <input type="number"
-             bindinput="inputInfo"
-             data-name='iphone'
-             placeholder="手机号码" value='{{addressInfo.iphone}}'/>
+             bindinput="changeInput"
+             data-name='userPhone'
+             placeholder="手机号码" value='{{formData.userPhone}}'/>
         </view>
 
 
@@ -21,7 +21,7 @@
              bindchange='changeLocation'
              data-param="{{location.provinceParam}}"
              class="picker">
-                <view>{{location.province.name||'所在省份'}}</view>
+                <view>{{formData.provinceName||'所在省份'}}</view>
             </picker>
         </view>
         <view class="edit-item">
@@ -31,7 +31,7 @@
              bindchange='changeLocation'
              data-param="{{location.cityParam}}"
              class="picker">
-                <view>{{location.city.name||'所在城市'}}</view>
+                <view>{{formData.cityName||'所在城市'}}</view>
             </picker>
         </view>
          <view class="edit-item">
@@ -41,25 +41,24 @@
              bindchange='changeLocation'
              data-param="{{location.countryParam}}"
              class="picker">
-                <view>{{location.country.name||'所在区域'}}</view>
+                <view>{{formData.countryName||'所在区域'}}</view>
             </picker>
         </view>
 
          <view class="edit-item">
             <input type="text" 
-            bindinput="inputInfo"
+            bindinput="changeInput"
             placeholder="详细地址" 
-            data-name='address' value='{{addressInfo.address}}'/>
+            data-name='address' value='{{formData.address}}'/>
         </view>
         <view class="edit-item" bindtap="changeDefault">
             <text>设置默认地址</text>
-            <view class="check-default">
-                <image wx:if="{{addressInfo.isDefault}}" src="../../asset/check.png" />
-                <!-- <image wx:else src="../../asset/check-none.png" /> -->
-                <image wx:else src="../../asset/check.png" />
+            <view class="check-default" catchtap="changeDefault">
+                <image  wx:if="{{formData.defaulted===2}}" src="../../asset/check-none.png" />
+                <image  wx:else src="../../asset/check.png" />
             </view>
         </view>
     </view>
-    <view class="btn-default save-btn" bindtap="submitAddress"><text>保存</text></view>
-    <view class="btn-default cancel-btn" bindtap="submitAddress"><text>取消</text></view>
+    <view class="btn-default save-btn" bindtap="saveAddress"><text>保存</text></view>
+    <view class="btn-default cancel-btn" bindtap="cancel"><text>取消</text></view>
 </view>

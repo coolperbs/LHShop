@@ -1,10 +1,84 @@
+var weigetUtils = require('../../common/utils/weigetUtil');
+var List = weigetUtils.List;
+var config = require('../../config');
+var host = config.host;
+var ajax = require('../../common/ajax/ajax');
+var addressService = require('../../service/address/address');
+
 Page({
-	onShow:function(){
-		console.log('addresslist');
+	onLoad:function(option){
+		var self = this;
+		_fn.init(self);
 	},
-	toAddress:function(){
+	toAddress:function(e){
 		wx.navigateTo({
 			url:'../address/address'
 		})
+	},
+	toModify:function(e){
+		var self = this;
+		var addressid = e.currentTarget.dataset.addressid;
+		var updateData = self.data.address.filter((v,k)=>{
+			return v.addressId === addressid;
+		})[0];
+		addressService.cache(updateData);
+		wx.navigateTo({
+			url:'../address/address?addressId='+addressid
+		});
+	},
+	update:function(e){
+		var self = this;
+		var key = e.currentTarget.dataset.key;
+		var addressId = e.currentTarget.dataset.addressid;
+		var updateData = self.data.address.filter((v,k)=>{
+			return v.addressId === addressId;
+		})[0];
+		if(key === 'defaulted'){
+			if(updateData.defaulted === 1){
+				updateData.defaulted = 2
+			}else{
+				updateData.defaulted = 1
+			}
+		}
+		_fn.updateAddress(updateData,function(res){
+			self.listWeiget.next();
+		});
 	}
-})
+});
+var _fn = {
+	init:function(page){
+		page.listWeiget = page.listWeiget || new List({
+			url:host+'/app/address/list',
+			isSingle:true,
+			render:function(data){
+				page.setData({
+					address:data.totalData
+				});
+			}
+		});
+		page.listWeiget.next();
+	},
+	updateAddress:function(data,callback){
+		var url = host + '/app/address/update';
+		var param = data;
+		ajax.query({
+			url:url,
+			param:param
+		},function(res){
+			if(res.code === '0000'){
+				wx.showToast({
+					title:'修改成功'
+				});
+				if(callback && typeof callback === 'function'){
+					callback(res);
+				}
+			}else{
+				wx.showMadal({
+					showCancel:false,
+					title:'提示',
+					content:'修改失败('+res.code+')'
+				})
+			}
+		})
+	}
+}

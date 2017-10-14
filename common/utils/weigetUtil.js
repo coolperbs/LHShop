@@ -1,8 +1,11 @@
+var ajax = require('../../common/ajax/ajax');
+
 class List{
 	constructor(props) {
 		this.url = props.url;
 		this.param = props.param;
 		this.render = props.render;
+		this.isSingle = props.isSingle || false//是否分页，默认为true，
 
 		this.curData = [];
 		this.totalData = [];
@@ -18,40 +21,55 @@ class List{
 			return;
 		}
 		this.isLock = true;
-		this.curPage = this.curPage + 1;
-		this.param.param.currentPage = this.curPage;
-		var self = this;
-		wx.request({//换ajax。query
-			url:this.url,
-			data:this.param,
-			complete:function(res){
-				this.isLock = false;
-				// console.log(res);
-				if(res.data && res.data.code === '0000' && res.data.data){
-					var resData = res.data.data;
-					self.isLock = resData.isLock;
+		if(!this.isSingle){
+			this.curPage = this.curPage + 1;
+		}
+		var self =this;
+		this.getData(function(res){
+			self.isLock = false;
+			if(res.data && res.code === '0000'){
+				self.curData = res.data;
+				if(!self.isSingle){
 					self.isLast = resData.lastPage;
-					self.curData = resData.result;
 					self.totalData = self.totalData.concat(self.curData);
-
-					if(self.render && typeof self.render==='function'){
-						self.render({
-							totalData:self.totalData,
-							recordData:{
-								page:self.curPage
-							}
-						});
-					}
-
+				}else{
+					self.totalData = self.curData;
 				}
+				if(self.render && typeof self.render==='function'){
+					self.render({
+						totalData:self.totalData,
+						eventParam:JSON.stringify({
+							page:self.curPage
+						})
+					});
+				}
+
 			}
+
+		});
+	}
+	getData(callback){
+		var param = this.param;
+		if(!this.isSingle){
+			param.param.currentPage = this.curPage;
+		}
+		ajax.query({//换ajax。query
+			url:this.url,
+			data:param
+		},function(res){
+			if(callback && typeof callback === 'function'){
+				callback(res);
+			}
+
 		});
 	}
 	remove(){//清除一条数据
 
 	}
-	update(){//更新一条数据
-
+	update(e){//更新一条数据
+		if(this.isSingle){
+			this.next();
+		}
 	}
 }
 class Tab{
@@ -288,6 +306,9 @@ class Address{
 				this.curCountryId = null;
 
 			}else if(param.type === 'city'){
+				if(!index || this.cityList.length<=0){
+					return;
+				}
 				this.curCity = this.cityList[index]
 				this.curCityId = this.curCity.adcode;
 
@@ -296,6 +317,9 @@ class Address{
 				this.curCountryId = null;
 
 			}else if(param.type === 'country'){
+				if(!index || this.countryList.length<=0){
+					return;
+				}
 				this.curCountry = this.countryList[index]
 				this.curCountryId = this.curCountry.adcode;
 				this.finish();
