@@ -39,7 +39,7 @@ Page( {
 				className : 'footer-category',
 				view : 'category'
 			},{
-				text:'活动',
+				text:'分销',
 				className:'footer-activity',
 				view:'activity'
 			},{

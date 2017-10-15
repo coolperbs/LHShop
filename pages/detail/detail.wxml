@@ -171,7 +171,7 @@
             <view class="btn primary" catchtap="showPop">马上购买</view>
         </view>
     </block>
-    <view wx:if="{{ pop.show }}" catchtap="hidePop" class="btn primary">确定</view>
+    <view wx:if="{{ pop.show }}" catchtap="submit" class="btn primary">确定</view>
 </view>
 
 

@@ -28,8 +28,52 @@ handle = {
 
 events = {
   goCheck : function( e ) {
+    var shopId = e.currentTarget.dataset.shopid;
+    if ( !shopId ) {
+      wx.showToast( { title : '缺少shopId' } );
+      return;
+    }
     // 判断选中态等情况
-    wx.navigateTo( { url : '../checkout/checkout?cartid=' + e.currentTarget.dataset.cartid } );
+    wx.navigateTo( { url : '../checkout/checkout?shopid=' + shopId } );
+  },
+  cut : function( e ) {
+    var cartId = e.currentTarget.dataset.cartid,
+        cartNum = e.currentTarget.dataset.num,
+        callerPage = this;
+
+    if ( cartNum == 1 ) {
+      events.del.apply( this, [e] )
+      return;
+    }
+    service.cart.cut( { cartId : cartId }, function( res ) {
+      _fn.refreshPage( callerPage, res );
+    } );
+  }, 
+  add : function( e ) {
+    var cartId = e.currentTarget.dataset.cartid,
+        callerPage = this;
+
+    service.cart.add( { cartId : cartId }, function( res ) {
+      _fn.refreshPage( callerPage, res );
+    } );
+  },
+  del : function( e ) {
+    var cartId = e.currentTarget.dataset.cartid,
+        callerPage = this;
+
+    wx.showModal( {
+      title : '提示',
+      content : '确定删除该商品？',
+      showCancel : true,
+      success : function( res ) {
+        if ( res.cancel ) {
+          return;
+        }
+        service.cart.del( { cartId : cartId }, function( res ) {
+          _fn.refreshPage( callerPage, res );
+        } );
+      }
+    } );
   }
 }
 
@@ -48,6 +92,14 @@ _fn = {
     } );
 		callerPage.initedCart = true;
 	},
+  refreshPage : function( callerPage, res ) {
+    if ( utils.isErrorRes( res ) ) {
+      return;
+    }
+    callerPage.setData( {
+      viewData : res.data
+    } );
+  }
 }
 
 module.exports = handle;

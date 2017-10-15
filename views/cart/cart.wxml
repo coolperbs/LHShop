@@ -13,21 +13,21 @@
 			</view>
 		</view>
 		<view class="cont-list">
-			<view class="item" wx:for="{{shopCart.carts}}" wx:key="id" wx:for-item="sku">
+			<view class="item" wx:for="{{shopCart.carts}}" wx:key="id" wx:for-item="cart">
 				<image class="checkbox"></image>
 				<view class="cont">
-					<image class="pics" src="{{sku.skuImg}}"></image>
+					<image class="pics" src="{{cart.skuImg}}"></image>
 					<view class="info">
-						<view class="name ellipsis-2">{{sku.skuTitle}}</view>
-						<view class="sub-info">{{sku.skuSubTitle}}</view>
+						<view class="name ellipsis-2">{{cart.skuTitle}}</view>
+						<view class="sub-info">{{cart.skuSubTitle}}</view>
 						<view class="count">
 							<view>
-							 	<view class="price"><view class="sub">¥</view>{{sku.skuPrice / 100}}</view> × 1
+							 	<view class="price"><view class="sub">¥</view>{{cart.skuPrice / 100}}</view> × 1
 							</view>
 							<view class="cart-act">
-				                <view class="minus" id="{{sku.skuId}}">-</view>
-				                <view class="num">{{sku.skuNum}}</view>
-				                <view class="plus">+</view>
+				                <view class="minus" id="{{cart.skuId}}" catchtap="cartClickProxy" data-fn="cut" data-num="{{cart.skuNum}}" data-cartid="{{cart.id}}">-</view>
+				                <view class="num">{{cart.skuNum}}</view>
+				                <view class="plus" catchtap="cartClickProxy" data-fn="add" data-cartid="{{cart.id}}">+</view>
 				            </view>
 						</view>
 					</view>
@@ -38,7 +38,7 @@
 			<view>
 				共<view class="price"><view class="sub">¥</view>{{shopCart.shopTotalPrice / 100}}</view>元
 			</view>
-			<view class="btn" catchtap="cartClickProxy" data-fn="goCheck" data-cartid="{{shopCart.id}}">去结算</view>
+			<view class="btn" catchtap="cartClickProxy" data-fn="goCheck" data-shopid="{{shopCart.id}}">去结算</view>
 		</view>
 	</view>
 	<view class="last-child"></view>

@@ -5,6 +5,7 @@ var ajax = require('../../common/ajax/ajax'),
 
 url = {
 	add : app.host + '/app/cart/add',
+	addOut : app.host + '/app/out/cart/add',
 	query : app.host + '/app/cart/list',
 	clear : app.host + '/app/cart/deleteAll',
 	del : app.host + '/app/cart/delete',
@@ -25,30 +26,32 @@ handle = {
 		}, callback );
 	},
 
-	// param = { num : 1, shopId : 1, sku : 1 }
-	del : function( param, callback ) {
-		var defaultData = {
-				checked : true, //是否选中
-				data : true,    //是否需要购物车返回数据
-				num : 2,        //更新数量
-				shopId : 1,     //门店ID
-				sku : 123,      //SKUID
-				tempId : "xxx", //临时购物车ID
-				updateType : 3 //更新类型(1, "设置商品数量"),(2, "增加商品数量"),(3, "减少商品数量");
-			};
-		param.num = param.num || 1;
-		param = utils.merge( defaultData, param );
-		param = _fn.addTempId( param );
+	addOut : function( param, callback ) {
+		param = param || {};
+		param.skuNum = param.skuNum || 1;
 		ajax.query( {
-			url : url.update,
+			url : url.addOut,
 			param : param
-		}, function( res ) {
-			res = _fn.callbackFilter( res );
-			if ( res.code == '0000' && res.success ) {	// 这里判断条件等返回字段统一，ok后处理
-				handle.save( res.data );	// 本地存储，是直接在这里处理？
-			}
-			callback( res );			
-		} );
+		}, callback );
+	},
+
+	// param = { num : 1, shopId : 1, sku : 1 }
+	cut : function( param, callback ) {
+		param = param || {};
+		param.skuNum = param.skuNum || 1;
+		ajax.query( {
+			url : url.cut,
+			param : param
+		}, callback );		
+	},
+
+	del : function( param, callback ) {
+		param = param || {};
+		param.skuNum = param.skuNum || 1;
+		ajax.query( {
+			url : url.del,
+			param : param
+		}, callback );		
 	},
 
 	// param = { shopId :  '' } || param = { shopId : [] }

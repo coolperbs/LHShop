@@ -32,10 +32,14 @@ Page({
 	// 添加购物车
 	addCart : function( e ) {
 		var pageData = this.data.pageData;
-		// this.showPop();
-		// return;
+		this.showPop();
 		// 如果没有规格参数 就直接加购
-		service.cart.add( {
+		return;
+	},
+	submit : function() {
+		var pageData = this.data.pageData;
+		this.hidePop();
+		service.cart.addOut( {
 			skuId : pageData.skuId
 		}, function( e ) {
 			if ( e.code == '1000' ) {
@@ -44,7 +48,6 @@ Page({
 				} );
 				return;
 			}
-
 			wx.showToast( { title : '添加成功!' } );
 		} );
 	},

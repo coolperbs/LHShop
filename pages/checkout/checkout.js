@@ -41,7 +41,7 @@ Page({
 _fn = {
 	getPageData : function( callback ) {
 		ajax.query( {
-			url : app.host + '/app/trade/cartbuy/' + pageParam.cartid
+			url : app.host + '/app/trade/cartbuy/' + pageParam.shopid
 		}, callback );
 	},
 
@@ -90,13 +90,15 @@ _fn = {
 		var datetime = wx.getStorageSync( 'datetime' );
 		var type;
 
+		console.log( pageParam );
 		//type = caller.data.paytype.indexOf( caller.data.type );
 		ajax.query( {
 			url : app.host + '/app/order/cart/submit',
 			//url : 'https://gateway.hotel.yimeixinxijishu.com/app/order/list',
 			param : {
 				addressId : 1,
-				cartids : pageParam.cartid
+				shopId : pageParam.shopid,
+				address : data.pageData.defaultAddress
 			}
 		}, callback );
 	},

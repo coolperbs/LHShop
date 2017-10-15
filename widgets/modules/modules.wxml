@@ -1,7 +1,7 @@
 <!-- 轮播图模块 -->
 <template name="slider">
 	<view class="slider">
-		<swiper autoplay data-moduleindex="{{index}}" bindchange="modulesSliderChange">
+		<swiper autoplay indicator-dots="{{true}}" data-moduleindex="{{index}}" bindchange="modulesSliderChange">
 			<swiper-item wx:for="{{data}}" >
 				<navigator url="{{item.link}}">
 					<image src="{{item.img}}"></image>

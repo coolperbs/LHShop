@@ -5,6 +5,10 @@
 <view class="content">
 	<view class="order-info module">
 		<view class="row">
+			<view class="key">区域</view>
+			<view class="value"></view>
+		</view>
+		<view class="row">
 			<view class="key">支付方式</view>
 			<view class="value">{{tradeInfo.paymentTypeDesc}}</view>
 		</view>
