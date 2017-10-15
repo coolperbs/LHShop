@@ -5,69 +5,6 @@ class List{
 		props = props || {};
 		this.setConfig(props);
 	}
-	
-	next(){//下一页
-		if(this.isLast || this.isLock){
-			return;
-		}
-		this.isLock = true;
-		if(!this.isSingle){
-			this.curPage = this.curPage + 1;
-		}
-		var self =this;
-		this.getData(function(res){
-			self.isLock = false;
-			if(res.data && res.code === '0000'){
-				self.curData = res.data.list;
-				if(!self.isSingle){
-					self.isLast = !res.data.hasMore;
-					self.totalData = self.totalData.concat(self.curData);
-				}else{
-					self.totalData = self.curData;
-				}
-				if(self.render && typeof self.render==='function'){
-					self.render({
-						totalData:self.totalData,
-						eventParam:JSON.stringify({
-							page:self.curPage
-						})
-					});
-				}
-
-			}
-
-		});
-	}
-	update(e){//更新一条数据
-		if(this.isSingle){
-			this.next();
-		}
-	}
-	getData(callback){
-		var param = this.param;
-		if(!this.isSingle){
-			param.currentPage = this.curPage;
-		}
-		var self = this;
-		ajax.query({//换ajax。query
-			url:this.url,
-			param:param
-		},function(res){
-
-			var resData = {
-				code : res.code,
-				data:{
-					list:self.getList(res),
-					hasMore:self.getHasMore(res)
-				}
-			}
-
-			if(callback && typeof callback === 'function'){
-				callback(resData);
-			}
-
-		});
-	}
 	setConfig(props){
 		this.url = props.url;//请求地址
 		this.param = props.param;//请求参数
@@ -82,6 +19,97 @@ class List{
 		this.isLast = false;
 		this.isLock = false;  
 	}
+	next(){//下一页
+		if(this.isLast || this.isLock){
+			return;
+		}
+		this.isLock = true;
+		if(!this.isSingle){
+			this.curPage = this.curPage + 1;
+		}
+		var self =this;
+		this.getData(this.curPage,function(res){
+			self.isLock = false;
+			if(res.data && res.code === '0000'){
+				self.curData = res.data.list;
+				if(!self.isSingle){
+					self.isLast = !res.data.hasMore;
+					self.totalData = self.totalData.concat(self.curData);
+				}else{
+					self.totalData = self.curData;
+				}
+				if(self.render && typeof self.render==='function'){
+					self.render({
+						totalData:self.totalData,
+					});
+				}
+
+			}
+
+		});
+	}
+	update(page){//更新该页一下的数据
+		if(this.isSingle){
+			this.next();
+		}else{
+			var updatePageList = [];
+			var currentPage = this.curPage;
+			while (page<=currentPage){
+				updatePageList.push(page)
+				page++
+			}
+			var self = this;
+			var updatedData = {};
+			var finishNum = 0;
+			var combineUpdateList = [];
+			updatePageList.forEach((v,k)=>{
+				self.getData(v,function(resData){
+					//结束逻辑
+					updatedData[resData.page] = resData
+					finishNum ++ ;
+					if(finishNum>=updatePageList.length){//合并并且替换
+						updatePageList.forEach((vc,kc)=>{
+							combineUpdateList = combineUpdateList.concat(updatedData[vc].list);
+						});
+						self.totalData = self.totalData.filter((v,k)=>{
+							if(JSON.parse(v.eventParam).page<page){//过滤小于page的数据
+								return v;
+							}
+						});
+						self.totalData = self.totalData.concat(combineUpdateList);
+					}
+
+				});
+			});
+
+		}
+	}
+	getData(page,callback){
+		var param = this.param;
+		if(!this.isSingle){
+			param.currentPage = page;
+		}
+		var self = this;
+		ajax.query({//换ajax。query
+			url:this.url,
+			param:param
+		},function(res){
+
+			var resData = {
+				code : res.code,
+				data:{
+					page:param.currentPage,
+					list:self.getList(res),
+					hasMore:self.getHasMore(res)
+				}
+			}
+
+			if(callback && typeof callback === 'function'){
+				callback(resData);
+			}
+
+		});
+	}
 }
 class Tab{
 	constructor(props) {
@@ -94,6 +122,7 @@ class Tab{
 			this.tabData.push({
 				name:v.name,
 				style:'width:'+750/this.num+'rpx',
+				extra : v.extra,
 				param:JSON.stringify({
 					index:k
 				})

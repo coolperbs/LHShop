@@ -60,7 +60,3 @@ left:85rpx;
 	width: 40rpx;
 	height: 50rpx;
 }
-.cartimg{
-	width: 50rpx;
-	height: 50rpx
-}
