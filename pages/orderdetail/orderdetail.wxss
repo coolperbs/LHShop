@@ -92,6 +92,7 @@ page{
 	font-size: 14px;
 	color:#9b9aa2;
 	margin-top:10rpx;
+	width:510rpx;
 
 }
 .view-orders .order-wrapper .body .ware-detail .ware-count{

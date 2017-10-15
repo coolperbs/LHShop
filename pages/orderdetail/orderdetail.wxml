@@ -1,52 +1,51 @@
 <view class="page-orderdetail view-orders">
-	<view class="address-info">
+	<view wx:if="{{detail.address}}" class="address-info">
 		<view class="left">
 			<image src="../../asset/loc.png"/>
 		</view>
 		<view class="right">
-			<view class="user">边思 17761275029</view>
-			<view class="address">四川省成都市锦江区观音桥西街49号</view>
+			<view class="user">{{detail.address.userName}} {{detail.address.userPhone}}</view>
+			<view class="address">{{detail.address.address}}</view>
 		</view>
-
 	</view>
 
-	<view class="order-info ">
-		<template is='order-detail'></template>
+	<view wx:if="{{detail.order}}" class="order-info ">
+		<template is='order-detail' data="{{...detail.order}}"></template>
 
 		<view class="cost-container">
 		<view class="header">
-			订单创建时间: 2017-10-05 9:25
+			订单创建时间: {{detail.order.showOrderTime}}
 		</view>
-	        <view class="item">
+	        <view class="item" wx:if="{{detail.order.showTotalPrice}}">
 	            <view class="cost-name">
 	                商品总价
 	            </view>
 	            <view class="cost-count">
-	                 ¥50.00
+	                 ¥{{detail.order.showTotalPrice}}
 	            </view>
 	        </view>
-	         <view class="item">
+	         <!-- <view class="item">
 	            <view class="cost-name">
 	                运费
 	            </view>
 	            <view class="cost-count">
 	                ¥10.00
 	            </view>
-	        </view>
-	        <view class="item">
+	        </view> -->
+	        <!-- <view class="item">
 	            <view class="cost-name">
 	                订单总价
 	            </view>
 	            <view class="cost-count">
 	                ¥60.00
 	            </view>
-	        </view>
+	        </view> -->
 	        <view class="item">
 	            <view class="cost-name">
-	                实际付款
+	                订单总价
 	            </view>
 	            <view class="cost-count total">
-	                ¥55.00
+	                ¥{{detail.order.showPayPrice}}
 	            </view>
 	        </view>
 	    </view>
@@ -100,94 +99,41 @@
 
 
 <template name="order-detail">
-	<view class="line-wrapper" data-recordPos="{{recordPos||''}}">
-		<view class="lower" >
-			<view class="lower-btn" data-orderId="{{id}}" data-pageNo="{{pageNo}}" bindtap="deleteOrder">
-				<image src="../../asset/trash.png"></image>
-			</view>
-		</view>
-			<view class="detail-scroll-body {{position}}" 
-			bindtouchstart="startOrderScroll" 
-			bindtouchend="stopOrderScroll" 
-			data-orderId="{{id}}" 
-			data-orderStatus="{{orderStatus}}">
+	<view class="line-wrapper" >
+			<view class="detail-scroll-body {{position}}" data-orderStatus="{{orderStatus}}">
 				<view class="order-wrapper" data-status="{{statusInfo.status}}">		
 						<view class="header order-part">
 							<view class="header-left">
 								<!-- <view class="storeName">{{shopName}}</view> -->
-								<view class="orderId">订单号:12344566</view>
+								<view class="orderId">订单号:{{orderId}}</view>
 							</view>
-							<view class="orderState" > 待付款 </view>
+							<view class="orderState" > {{orderStatus}} </view>
 							
 						</view>
-						<view class="body order-part" bindtap="toOrderDetail" 
-						data-orderId="{{id}}"
-						data-pageNo="{{pageNo}}">
-							<view class="ware-img img-floor">
-								<image class="f1" src="../../asset/back.jpeg"></image>
+						<block wx:for="{{skus}}" wx:key="*this">
+							<view class="body order-part">
+								<view class="ware-img img-floor">
+									<image class="f1" src="{{item.mainImage}}"></image>
+								</view>
+								<view class="ware-detail">
+									<view class="ware-name ellipsis-2">{{item.title}}</view>
+									<view class="ware-feature ellipsis-1">{{item.subTitel}}</view>
+									<text class="price">￥{{item.showOriginPrice}}</text> 
+									<view class="ware-count">x{{item.skuNum}}</view>
+								</view>
 							</view>
-							<view class="ware-detail">
-								<view class="ware-name ellipsis-2">编程机器人DIY条件IronBot</view>
-								<view class="ware-feature ellipsis-2">大红色</view>
-								<text class="price">100.00</text> 
-								<view class="ware-count">x10</view>
-							</view>
-							
-						</view>
-
-
-						<view class="body order-part" bindtap="toOrderDetail" 
-						data-orderId="{{id}}"
-						data-pageNo="{{pageNo}}">
-							<view class="ware-img img-floor">
-								<image class="f1" src="../../asset/back.jpeg"></image>
-							</view>
-							<view class="ware-detail">
-								<view class="ware-name ellipsis-2">编程机器人DIY条件IronBot</view>
-								<text class="price">100.00</text> 
-							</view>
-							
-						</view>
-
-
-						<view class="body order-part" bindtap="toOrderDetail" 
-						data-orderId="{{id}}"
-						data-pageNo="{{pageNo}}">
-							<view class="ware-img img-floor">
-								<image class="f1" src="../../asset/back.jpeg"></image>
-							</view>
-							<view class="ware-detail">
-								<view class="ware-name ellipsis-2">编程机器人DIY条件IronBot</view>
-								<text class="price">100.00</text> 
-							</view>
-							
-						</view>
-
-
-						<view class="body order-part" bindtap="toOrderDetail" 
-						data-orderId="{{id}}"
-						data-pageNo="{{pageNo}}">
-							<view class="ware-img img-floor">
-								<image class="f1" src="../../asset/back.jpeg"></image>
-							</view>
-							<view class="ware-detail">
-								<view class="ware-name ellipsis-2">编程机器人DIY条件IronBot</view>
-								<text class="price">100.00</text> 
-							</view>
-							
-						</view>
+						</block>
 
 
 						<view class="footer">
 							<view class="next-step left">
-									<text class="yingfukuan">共 4 件商品</text> 
-									<text style="margin-left:10rpx" class="total">合计: ￥500</text>
+									<text class="yingfukuan">共 {{skus.length}} 件商品</text> 
+									<text style="margin-left:10rpx" class="total">合计: ￥{{showTotalPrice}}</text>
 							</view>
 
 							
 						</view>
 				</view>
 			</view>
-		<!-- </scroll-view> -->
 	</view>
 </template>

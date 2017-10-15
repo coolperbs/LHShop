@@ -1,6 +1,8 @@
 var service = require( '../../service/service' ),
+	us = require('../../lib/underscore'),
 	handle,
 	events,
+	dataHandler,
 	_fn;
 
 handle = {
@@ -10,6 +12,15 @@ handle = {
 		console.log('mine');
 		_fn.init( callerPage );
 		// 请求数据，渲染数据
+		wx.getStorage({
+			key:'userinfo',
+			success:function(res){
+				var userinfo = res.data.user;
+				dataHandler.setData({
+					userinfo:userinfo
+				})
+			}
+		});
 	},
 
 	events : {
@@ -26,6 +37,11 @@ handle = {
 		goAddressList:function(){
 			wx.navigateTo({
 				url:'../../pages/addresslist/addresslist'
+			})
+		},
+		goLogin:function(){
+			wx.navigateTo({
+				url:'../../page/login/login'
 			})
 		}
 	}
@@ -46,7 +62,29 @@ _fn = {
 				city : city
 			}
 		} );
+		dataHandler = new DataHandler(callerPage);
 	}
 }
+
+var DataHandler = function(callerPage){
+	this.callerPage = callerPage;
+	this.mineData = {};
+	this.setData = function(data){
+		var isCurrentPage = this.callerPage.data.currentView == 'mine';
+		if(!isCurrentPage){
+			return;
+		}
+		var mineData = us.extend(this.mineData,data);
+		this.callerPage.setData({
+			viewData:{
+				mine:mineData
+			}
+		});
+	};
+	this.getData = function(){
+		return this.mineData;
+	};
+
+};
 
 module.exports = handle;

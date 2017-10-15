@@ -85,7 +85,7 @@ class List{
 		}
 	}
 	getData(page,callback){
-		var param = this.param;
+		var param = this.param||{};
 		if(!this.isSingle){
 			param.currentPage = page;
 		}

@@ -10,16 +10,21 @@
 			</block>
 			<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
 		</view>
-			<view class="view-orders base">
-				<scroll-view class="scroll-view" 
-				scroll-y="true" 
-				bindscrolltolower="scrollToLower" 
-				style="height:{{scrollHeight}}px">
-					<block wx:for="{{orderList}}" wx:key="id">
+		<view wx:if='{{orderList && orderList.length>0}}' class="view-orders base">
+			<scroll-view class="scroll-view" 
+			scroll-y="true" 
+			bindscrolltolower="scrollToLower" 
+			style="height:{{scrollHeight}}px">
+				<block wx:for="{{orderList}}" wx:key="id">
+					<view catchtap="toDetail" data-orderId="{{item.orderId}}">
 						<template is="order" data = "{{...item}}"></template>
-					</block>
-				</scroll-view>
-			</view>
+					</view>
+				</block>
+			</scroll-view>
+		</view>
+		<view wx:else>
+			<template is="empty-order"></template>
+		</view>
 </view>
 
 
@@ -27,7 +32,7 @@
 	<view class="goLogin-wrapper">
 		<image class="login-logo" src="../../asset/empty-order.png" ></image>
 		<view class="login-msg">您当前还没有订单</view>
-		<view class="login-btn" bindtap='toIndexHome'>去逛逛</view>
+		<view class="login-btn" catchtap='toIndexHome'>去逛逛</view>
 	</view>
 </template>
 
@@ -61,7 +66,7 @@
 								<view class="ware-detail">
 									<view class="ware-name ellipsis-2">{{item.title}}</view>
 									<view class="ware-feature ellipsis-1">{{item.subTitle}}</view>
-									<text class="price">{{item.price}}</text> 
+									<text class="price">{{item.showPrice}}</text> 
 									<view class="ware-count">x{{item.skuNum}}</view>
 								</view>
 							</view>
@@ -74,7 +79,7 @@
 						<view class="footer">
 							<view class="next-step left">
 									<text class="yingfukuan">应付款</text> 
-									<text class="showPayPrice">{{payPrice}}</text>
+									<text class="showPayPrice">{{showPayPrice}}</text>
 							</view>
 
 							<view class="btn-group right">
@@ -116,6 +121,10 @@
 								申请售后
 								</view> -->
 							</view>
+
+
+
+				
 						</view>
 				</view>
 			</view>

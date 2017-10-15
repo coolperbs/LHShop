@@ -3,6 +3,7 @@ var Tab = weigetUtil.tab;
 var List = weigetUtil.List;
 var config = require('../../config');
 var host = config.host;
+var utils = require('../../common/utils/utils');
 Page({
 	onShow:function(){
 		console.log('orderList');
@@ -33,6 +34,16 @@ Page({
 		self.list.next();
 	},
 	toDetail:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+		wx.navigateTo({
+			url:'../orderdetail/orderdetail?orderid='+orderId
+
+		});
+	},
+	toIndexHome:function(e){
+		wx.navigateTo({
+			url:'../index/index'
+		});
 
 	}
 });
@@ -100,7 +111,23 @@ var _fn = {
 				type:status
 			},
 			getList:function(res){
-				return res.data.order || [];
+				// return res.data.order || [];
+				// console(999)
+				var ret = [];
+				if(res.data.order && res.data.order.length>=0){
+					res.data.order = res.data.order.map((v,k)=>{
+						v.showPayPrice = utils.fixPrice(v.payPrice);
+						if(v.skus){
+							v.skus.map((vSku,kSku)=>{
+								vSku.showPrice = utils.fixPrice(vSku.price);
+								return vSku
+							});
+						}
+						return v;
+					});
+					ret = res.data.order;
+				}
+				return ret;
 			},
 			getHasMore:function(res){
 				return res.data.hasMore || false;
@@ -116,3 +143,13 @@ var _fn = {
 		return dataList;
 	}
 }
+
+
+
+
+	// 		<view class="sure-btn white" wx:if="{{ orderStatus == 32 || orderStatus == 256 }}" catchtap="jump" data-type="aftersale">申请售后</view>
+	// <!-- 订单状态为16的订单没按钮显示，之前是显示取消订单 -->
+	// <view class="sure-btn white" wx:if="{{ orderStatus == 1024 }}" catchtap="deleteOrder" data-orderid="{{orderId}}">删除订单</view>
+	// <view class="sure-btn white" wx:if="{{ orderStatus == 8 }}" catchtap="cancelOrder" data-orderid="{{orderId}}">取消订单</view>
+	// <view class="sure-btn" catchtap="pay"  wx:if="{{ orderStatus == 8 }}">去支付 <view class="price"><view class="sub">¥</view>{{orderInfo.payPriceStr}}</view></view>
+	<view class="sure-btn" catchtap="jump" data-type="comment" wx:if="{{ orderStatus == 256 && orderInfo.commentNum * 1 <= 0 }}">评价抢免单</view>

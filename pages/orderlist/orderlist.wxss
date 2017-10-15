@@ -10,7 +10,7 @@ page{
 .view-orders{
 	background-color: #f8f8f8;
 	padding-top: 120rpx;
-	padding-bottom:50px;
+	/*padding-bottom:50px;*/
 }
 .view-orders .scroll-view{
 	height:100%;
@@ -312,7 +312,7 @@ page{
 	flex-direction:column;
 	justify-content:center;
 	align-items:center;
-	background-color: #F8F8F8
+	/*background-color: #F8F8F8*/
 
 }
 .goLogin-wrapper .login-logo{
@@ -328,7 +328,7 @@ page{
 .goLogin-wrapper .login-btn{
 	font-size:17px;
 	color:#FFFFFF;
-	background:#161823;
+	background:#d6204b;
 	box-shadow:0 5px 10px 0 rgba(0,0,0,0.20);
 	border-radius:80px;
 	width:320rpx;

@@ -1,76 +1,77 @@
 
 .view-mine{
-	background-color: #eeeff1
+	background-color: #eeeff1;
+	/*height: 100%*/
 }
 
-.pannel{
+.view-mine .pannel{
 	margin-bottom:20rpx;
 	background-color: white;
 	padding: 44rpx;
 }
 
-.user{
+.view-mine .user{
 	display:flex;
 height:140rpx;
 justify-content:space-between;
 /*padding:44rpx;*/
 }
-.user .left{}
-.user .left .name{
+.view-mine .user .left{}
+.view-mine .user .left .name{
 	font-size:24px;
 
 }
-.user .left .notice{
+.view-mine .user .left .notice{
 	height: 17px;
 	line-height: 17px;
 }
-.user .left .check-user{
+.view-mine .user .left .check-user{
 	font-size:12px;
 color:#a6a6a6;
 height:14px;
 line-height:14px
 }
-.user .right .header-img{
+.view-mine .user .right .header-img{
 	width:140rpx;
 height:140rpx;
 border-radius:50%;
 }
 
 
-.order{}
-.order .header{
+.view-mine .order{}
+.view-mine .order .header{
 display:flex;
 height:80rpx;
 justify-content:space-between;
 align-items:flex-start;
 border-bottom:1rpx solid #e5e5e5;
 }
-.order .header .title{
+.view-mine .order .header .title{
 	font-size:16px;
 color:#202020;
 }
-.order .header .check-more{
+.view-mine .order .header .check-more{
 	font-size:12px;
 color:#9e9e9e;
 }
 
-.order .content{
+.view-mine .order .content{
 	display:flex;
 justify-content:space-between;
 margin-top: 34rpx;
 }
-.order .content .item{
+.view-mine .order .content .item{
 	width:165rpx;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
 
 }
-.order .content .item .item-logo{
+.view-mine .order .content .item .item-logo{
 	width: 50rpx;
 	height: 50rpx;
 }
-.order .content .item .item-txt{
+.view-mine .order .content .item .item-txt{
 	font-size: 13px;
 	color:#1d1d1d;
 	margin-top: 12rpx;
@@ -78,108 +79,143 @@ margin-top: 34rpx;
 }
 
 
-.my-service{}
-.my-service .header{
+.view-mine .my-service{}
+.view-mine .my-service .header{
 	display:flex;
 height:80rpx;
 justify-content:space-between;
 align-items:flex-start;
 border-bottom:1rpx solid #e5e5e5;
 }
-.my-service .header .title{
+.view-mine .my-service .header .title{
 	font-size:16px;
 	color:#202020;
 }
-.my-service .content{
+.view-mine .my-service .content{
 		display:flex;
 justify-content:space-between;
 margin-top: 34rpx;
 }
-.my-service .content .item{
+.view-mine .my-service .content .item{
 	width:165rpx;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
 }
-.my-service .content .item .item-logo{
+.view-mine .my-service .content .item .item-logo{
 		width: 50rpx;
 	height: 50rpx;
 }
-.my-service .content .item .item-txt{
+.view-mine .my-service .content .item .item-txt{
 		font-size: 13px;
 	color:#1d1d1d;
 	margin-top: 12rpx;
 	color: #313131
 }
 
-.recommond{}
-.recommond .header{
+.view-mine .recommond{}
+.view-mine .recommond .header{
 	display:flex;
 	height:80rpx;
 	justify-content:space-between;
 	align-items:flex-start;
 	border-bottom:1rpx solid #e5e5e5;
 }
-.recommond .header .title{
+.view-mine .recommond .header .title{
 	font-size:16px;
 	color:#202020;
 }
-.recommond .content{
+.view-mine .recommond .content{
 	margin-top: 34rpx;
 	display:flex;
 flex-wrap:wrap;
 }
-.tpl-recommond-ware{
+.view-mine .tpl-recommond-ware{
 	width:331rpx;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
 }
-.tpl-recommond-ware .top{}
-.tpl-recommond-ware .top .ware-img{
+.view-mine .tpl-recommond-ware .top{}
+.view-mine .tpl-recommond-ware .top .ware-img{
 	width:300rpx;
 	height:300rpx;
 }
-.tpl-recommond-ware .bottom{
+.view-mine .tpl-recommond-ware .bottom{
 	display:flex;
 	flex-direction:column;
 	height:200rpx;
 	width:300rpx;
 	position: relative;
 }
-.tpl-recommond-ware .bottom .ware-name{
+.view-mine .tpl-recommond-ware .bottom .ware-name{
 	font-size:14px;
 	color:#232323;
 	height:25px;
 	line-height:25px;
 }
-.tpl-recommond-ware .bottom .feature{
+.view-mine .tpl-recommond-ware .bottom .feature{
 	font-size:13px;
 	color:#969696;
 	height:25px;
 	line-height:25px;
 }
-.tpl-recommond-ware .bottom .price-info{}
-.tpl-recommond-ware .bottom .price-info .new-price:before,
-.tpl-recommond-ware .bottom .price-info .old-price:before{
+.view-mine .tpl-recommond-ware .bottom .price-info{}
+.view-mine .tpl-recommond-ware .bottom .price-info .new-price:before,
+.view-mine .tpl-recommond-ware .bottom .price-info .old-price:before{
 	content:'￥';
 }
-.tpl-recommond-ware .bottom .price-info .new-price{
+.view-mine .tpl-recommond-ware .bottom .price-info .new-price{
 	color:#d24740;
 	font-size: 14px;
 	margin-right: 10rpx;
 }
-.tpl-recommond-ware .bottom .price-info .old-price{
+.view-mine .tpl-recommond-ware .bottom .price-info .old-price{
 	color:#969696;
 	font-size: 12px;
 	text-decoration: line-through;
 }
-.tpl-recommond-ware .bottom .addCart{
+.view-mine .tpl-recommond-ware .bottom .addCart{
 	position:absolute;
 	top:110rpx;
 	right:0;
 }
-.tpl-recommond-ware .bottom .addCart .cartimg{
+.view-mine .tpl-recommond-ware .bottom .addCart .cartimg{
 	width: 50rpx;
 	height: 50rpx
+}
+
+
+.view-mine .goLogin-wrapper{
+	position:relative;
+	height:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	/*background-color: #F8F8F8*/
+
+}
+.view-mine .goLogin-wrapper .login-logo{
+	width:150rpx;
+	height:160rpx;
+	margin-bottom:140rpx;
+}
+.view-mine .goLogin-wrapper .login-msg{
+	font-size:16px;
+	color:#999999;
+	margin-bottom:112rpx;
+}
+.view-mine .goLogin-wrapper .login-btn{
+	font-size:17px;
+	color:#FFFFFF;
+	background:#d6204b;
+	box-shadow:0 5px 10px 0 rgba(0,0,0,0.20);
+	border-radius:80px;
+	width:320rpx;
+	height:100rpx;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin-bottom:200rpx;
 }

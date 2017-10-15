@@ -1,90 +1,102 @@
 <template name="mine">
 	<view class="view-mine">
-		<view class="user pannel">
-			<view class="left">
-				<view class="name">
-					<text class="name">边思</text>
+		<view wx:if="{{mine.userinfo}}" >
+			<view class="user pannel">
+				<view class="left">
+					<view class="name">
+						<text class="name">{{mine.userinfo.nickName}}</text>
+					</view>
+					<view class="notice">
+						<text class="check-user" bindtap="goUserProfile">
+							查看并并编辑用户的个人资料
+						</text>
+					</view>
 				</view>
-				<view class="notice">
-					<text class="check-user" bindtap="goUserProfile">
-						查看并并编辑用户的个人资料
-					</text>
+				<view class="right">
+					<image src="../../asset/back.jpeg" class="header-img"/>				
 				</view>
-			</view>
-			<view class="right">
-				<image src="../../asset/back.jpeg" class="header-img"/>				
-			</view>
-			
+				
 
+			</view>
+			<view class="order pannel">
+				<view class="header">
+					<view class="title">
+						我的订单
+					</view>
+					<view class="check-more" catchtap="events" data-func="goOrderList">
+						查看更多订单
+					</view>
+				</view>
+				<view class="content">
+					<view class="item" data-status="1" catchtap="events" data-func="goOrderList">
+						<image src="../../asset/pay.png" class="item-logo"/>
+						<text class="item-txt">待付款</text>
+					</view>
+					<view class="item" data-status="2" catchtap="events" data-func="goOrderList">
+						<image src="../../asset/deliver.png" class="item-logo"/>
+						<text class="item-txt">代发货</text>
+					</view>
+					<view class="item" data-status="3" catchtap="events" data-func="goOrderList">
+						<image src="../../asset/send.png" class="item-logo"/>
+						<text class="item-txt">待收货</text>
+					</view>
+					<view class="item" data-status="4" catchtap="events" data-func="goOrderList">
+						<image src="../../asset/finish.png" class="item-logo"/>
+						<text class="item-txt">已完成</text>
+					</view>
+				</view>
+			</view>
+			<view class="my-service pannel">
+				<view class="header">
+					<view class="title">
+						我的服务
+					</view>
+				</view>
+				<view class="content">
+					<view class="item" data-status="1" catchtap="events" data-func="goMyCoupon">
+						<image src="../../asset/coupons.png" class="item-logo"/>
+						<text class="item-txt">优惠券</text>
+					</view>
+					<view class="item" data-status="1" catchtap="events" data-func="goAddressList">
+						<image src="../../asset/location.png" class="item-logo"/>
+						<text class="item-txt">地址</text>
+					</view>
+					<view class="item" data-status="1" bindtap="goCollection">
+						<image src="../../asset/favor.png" class="item-logo"/>
+						<text class="item-txt">收藏</text>
+					</view>
+					<view class="item" data-status="1" bindtap="goAbout">
+						<image src="../../asset/info.png" class="item-logo"/>
+						<text class="item-txt">关于我们</text>
+					</view>
+				</view>
+			</view>
+			<view class="recommond pannel">
+				<view class="header">
+					<view class="title">猜你喜欢</view>
+				</view>
+				<view class="content">
+					<template is="recommond-ware"></template>
+					<template is="recommond-ware"></template>
+					<template is="recommond-ware"></template>
+					<template is="recommond-ware"></template>
+					<template is="recommond-ware"></template>
+				</view>
+			</view>
 		</view>
-		<view class="order pannel">
-			<view class="header">
-				<view class="title">
-					我的订单
-				</view>
-				<view class="check-more" catchtap="events" data-func="goOrderList">
-					查看更多订单
-				</view>
-			</view>
-			<view class="content">
-				<view class="item" data-status="1" catchtap="events" data-func="goOrderList">
-					<image src="../../asset/back.jpeg" class="item-logo"/>
-					<text class="item-txt">待付款</text>
-				</view>
-				<view class="item" data-status="2" catchtap="events" data-func="goOrderList">
-					<image src="../../asset/back.jpeg" class="item-logo"/>
-					<text class="item-txt">代发货</text>
-				</view>
-				<view class="item" data-status="3" catchtap="events" data-func="goOrderList">
-					<image src="../../asset/back.jpeg" class="item-logo"/>
-					<text class="item-txt">待收货</text>
-				</view>
-				<view class="item" data-status="4" catchtap="events" data-func="goOrderList">
-					<image src="../../asset/back.jpeg" class="item-logo"/>
-					<text class="item-txt">售后服务</text>
-				</view>
-			</view>
-		</view>
-		<view class="my-service pannel">
-			<view class="header">
-				<view class="title">
-					我的服务
-				</view>
-			</view>
-			<view class="content">
-				<view class="item" data-status="1" catchtap="events" data-func="goMyCoupon">
-					<image src="../../asset/back.jpeg" class="item-logo"/>
-					<text class="item-txt">优惠券</text>
-				</view>
-				<view class="item" data-status="1" catchtap="events" data-func="goAddressList">
-					<image src="../../asset/back.jpeg" class="item-logo"/>
-					<text class="item-txt">地址</text>
-				</view>
-				<view class="item" data-status="1" bindtap="goCollection">
-					<image src="../../asset/back.jpeg" class="item-logo"/>
-					<text class="item-txt">收藏</text>
-				</view>
-				<view class="item" data-status="1" bindtap="goAbout">
-					<image src="../../asset/back.jpeg" class="item-logo"/>
-					<text class="item-txt">关于我们</text>
-				</view>
-			</view>
-		</view>
-		<view class="recommond pannel">
-			<view class="header">
-				<view class="title">猜你喜欢</view>
-			</view>
-			<view class="content">
-				<template is="recommond-ware"></template>
-				<template is="recommond-ware"></template>
-				<template is="recommond-ware"></template>
-				<template is="recommond-ware"></template>
-				<template is="recommond-ware"></template>
-			</view>
+		<view wx:else>
+			<template is="need-login"></template>
 		</view>
 	</view>
 </template>
 
+<template name= "need-login">
+	<view class="goLogin-wrapper">
+		<image class="login-logo" src="../../asset/empty-order.png" ></image>
+		<view class="login-msg">您还没有登录</view>
+		<view class="login-btn" catchtap="events" data-func="goLogin">去登陆</view>
+	</view>
+</template>
 
 
 
