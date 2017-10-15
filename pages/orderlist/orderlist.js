@@ -1,6 +1,8 @@
 var weigetUtil = require('../../common/utils/weigetUtil');
 var Tab = weigetUtil.tab;
 var List = weigetUtil.List;
+var config = require('../../config');
+var host = config.host;
 Page({
 	onShow:function(){
 		console.log('orderList');
@@ -9,117 +11,108 @@ Page({
 	},
 	changeTab:function(e){
 		var self = this;
+		//切换tab
 		var tabData = self.tab.change(e);
 		self.setData({tab:tabData});
-
+		//切换数据
+		var extraParam = JSON.parse(e.currentTarget.dataset.extra);
+		var status = extraParam.type;
+		self.listMap = self.listMap || {};
+		self.list = self.listMap[status]
+		if(!self.list){
+			self.list = _fn.getListWeiget(self,{status:status})
+			self.list.next();
+		}else{
+			self.setData({
+				orderList:self.list.totalData
+			})
+		}
 	},
 	scrollToLower:function(e){
-		console.log(333);
 		var self = this;
 		self.list.next();
+	},
+	toDetail:function(e){
 
 	}
 });
 
 var _fn = {
 	init:function(page){
-		// console.log(weigetUtils);
-		wx.getSystemInfo({
-			success:function(res){
-				var scrollHeight = res.windowHeight-60;
-				page.setData({
-					scrollHeight:scrollHeight
+		if(!page.inited){
+			wx.getSystemInfo({
+				success:function(res){
+					var scrollHeight = res.windowHeight-60;
+					page.setData({
+						scrollHeight:scrollHeight
 
-				});
-			}
-		});
-		var weiget = page.weiget = page.weiget || {};
-		var allList = new List({//全部订单
-			url:'http://47.92.75.170:9000/mch/order/list',
-			param:{
-				param:{},
-				token:'B9E790B21A34C5AEE7FD72312ED287BF65755F9A7C7B1B1A1312846CF80941B1CFAA7EAF50D0AAE1792F587AB28B9E1116B8BEF7203F60F64C59420F607E3AB7907BF97398BDD7846D4E5864883DFABC5504706E8E5941EDEDEA61C1E300E3CB24DA23AB61D8209406B4BA5ECDE1591F68E721CD31577FD6354F98E7CB5471D1'
-			},
-			render:function(listData){
-				page.setData({
-					listData:listData
-				});
-			},
-			getList:function(res){
-				return [1,2,3]
-			},
-			getHasMore:function(res){
-				return [1,2,3]
-			}
-		});
-		var waitingPayList = new List({//待付款
-			url:'orderList',
-			param:{
-				status:'waitingPay'
-			},
-			getList:function(res){
-				return [1,2,3]
-			},
-			getHasMore:function(res){
-				return [1,2,3]
-			}
-		});
-		var waitingSendList = new List({//代发货
-			url:'orderList',
-			param:{
-				status:'waitingSend'
-			},
-			getList:function(res){
-				return [1,2,3]
-			},
-			getHasMore:function(res){
-				return [1,2,3]
-			}
-		});
-		var waitingReciveList = new List({//待收货
-			url:'orderList',
-			param:{
-				status:'waitingRecive'
-			}
-		});
-		var aftersaleList = new List({//售后
-			url:'orderList',
-			param:{
-				status:'waitingAfterSale'
-			}
-		});
+					});
+				}
+			});
+			page.param = page.param || {};
+			var status = page.param.status || 1
+			_fn.getTabWeiget(page);
+			page.list = _fn.getListWeiget(page,{status:status});
+			page.list.next();
+		}else{
+			_fn.updateList(page);//回退本页面时刷新数据
+		}
+		page.inited = true
+	},
+	updateList:function(page){
+		var updateParam = page.updateParam;
+		if(updateParam){
+			var fromPage = updateParam.page
+			self.list.update(fromPage)
+			page.updateParam = null;
+		}
+	},
+	getTabWeiget:function(page){
 		page.tab = new Tab({
 			offset:29,
 			tabs:[{
 				name:"全部",
-				data:allList
-
+				extra:JSON.stringify({type:1})
 			},{
 				name:'待付款',
-				data:waitingPayList
-
+				extra:JSON.stringify({type:2})
 			},{
 				name:'待发货',
-				data:waitingReciveList
-
+				extra:JSON.stringify({type:3})
 			},{
 				name:'待收货',
-				data:waitingReciveList
-
+				extra:JSON.stringify({type:4})
 			},{
-				name:'售后',
-				data:aftersaleList
-
+				name:'已完成',
+				extra:JSON.stringify({type:5})
 			},]
 		});
 		var tabData = page.tab.change();
-		page.setData({
-			tab:tabData
+		console.log(tabData);
+		page.setData({tab:tabData});
+
+	},
+	getListWeiget:function(page,param){
+		var status = param.status || 1;
+		var dataList = new List({
+			url:host+'/app/order/list',
+			param:{
+				type:status
+			},
+			getList:function(res){
+				return res.data.order || [];
+			},
+			getHasMore:function(res){
+				return res.data.hasMore || false;
+			},
+			render:function(res){
+				page.setData({
+					orderList:res.totalData
+				});
+			}
 		});
-		page.list = tabData.curData;
-		page.list.next();
-
-
-
+		page.listMap = page.listMap || {};
+		page.listMap[param.status] = dataList;
+		return dataList;
 	}
 }
