@@ -94,12 +94,18 @@ class List{
 			url:this.url,
 			param:param
 		},function(res){
-
+			var list = self.getList(res);
+			list = list.map((v,k)=>{
+				v.eventParam= {
+					page:page
+				}
+				return v;
+			});
 			var resData = {
 				code : res.code,
 				data:{
 					page:param.currentPage,
-					list:self.getList(res),
+					list:list,
 					hasMore:self.getHasMore(res)
 				}
 			}

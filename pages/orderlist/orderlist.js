@@ -4,6 +4,7 @@ var List = weigetUtil.List;
 var config = require('../../config');
 var host = config.host;
 var utils = require('../../common/utils/utils');
+var orderService = require('../../service/order/order');
 Page({
 	onShow:function(){
 		console.log('orderList');
@@ -37,13 +38,44 @@ Page({
 		var orderId = e.currentTarget.dataset.orderid;
 		wx.navigateTo({
 			url:'../orderdetail/orderdetail?orderid='+orderId
-
 		});
+		// var eventParam = e.currentTarget.dataset.param;
+		// var page = eventParam.page;
+		// self.list.update(page,function(res){
+		// 	self.setData({orderList:res.totalData})
+		// });
 	},
 	toIndexHome:function(e){
 		wx.navigateTo({
 			url:'../index/index'
 		});
+
+	},
+	delete:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+		orderService.deleteOrder({
+			orderId:orderId,
+			callback:function(res){
+				console.log('delete',res);
+			}
+		});
+
+	},
+	cancel:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+		orderService.cancelOrder({
+			orderId:orderId,
+			callback:function(res){
+				console.log('delete',res);
+			}
+		});
+	},
+	toComment:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+
+	},
+	toAftersale:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
 
 	}
 });
@@ -117,8 +149,10 @@ var _fn = {
 				if(res.data.order && res.data.order.length>=0){
 					res.data.order = res.data.order.map((v,k)=>{
 						v.showPayPrice = utils.fixPrice(v.payPrice);
+						v.showOrderStatus = orderService.getOrderStatusMining(v.orderStatus).label;
 						if(v.skus){
 							v.skus.map((vSku,kSku)=>{
+								console.log(33);
 								vSku.showPrice = utils.fixPrice(vSku.price);
 								return vSku
 							});
@@ -152,4 +186,4 @@ var _fn = {
 	// <view class="sure-btn white" wx:if="{{ orderStatus == 1024 }}" catchtap="deleteOrder" data-orderid="{{orderId}}">删除订单</view>
 	// <view class="sure-btn white" wx:if="{{ orderStatus == 8 }}" catchtap="cancelOrder" data-orderid="{{orderId}}">取消订单</view>
 	// <view class="sure-btn" catchtap="pay"  wx:if="{{ orderStatus == 8 }}">去支付 <view class="price"><view class="sub">¥</view>{{orderInfo.payPriceStr}}</view></view>
-	<view class="sure-btn" catchtap="jump" data-type="comment" wx:if="{{ orderStatus == 256 && orderInfo.commentNum * 1 <= 0 }}">评价抢免单</view>
+	// <view class="sure-btn" catchtap="jump" data-type="comment" wx:if="{{ orderStatus == 256 && orderInfo.commentNum * 1 <= 0 }}">评价抢免单</view>

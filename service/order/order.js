@@ -17,7 +17,7 @@ var handle = {
 			}
 		})
 	},
-	deleteOrder:function(){
+	deleteOrder:function(param){
 		var orderId = param.orderId;
 		var callback = param.callback;
 		ajax.query({
@@ -31,7 +31,7 @@ var handle = {
 		})
 
 	},
-	cancelOrder:function(){
+	cancelOrder:function(param){
 		var orderId = param.orderId;
 		var callback = param.callback;
 		ajax.query({
@@ -43,7 +43,27 @@ var handle = {
 				callback(res);
 			}
 		})
-	}
+	},
+	getOrderStatusMining:function(status){
+		let statusDict = [
+			{code:8,status:'WaitingPay',label:'待支付'},
+			{code:16 ,status:'WaitingProduction', label:' 待生产'},
+			{code:32,status:'Producting', label:'生产中'},
+			{code:64,status:'WaitingPickup', label:'待自提，待取货'},
+			{code:128,status:'Delivery', label:'配送中'},
+			{code:256,status:'Complete', label:'妥投'},
+			{code:512,status:'Finished',label:'已完成'},
+			{code:1024 ,status:'Canceled', label:'已取消'},
+		]
+		let statusInfo = statusDict.filter((v,k)=>{
+			return v.code.toString() === status.toString();
+		});
+		if(statusInfo && statusInfo[0]){
+			return statusInfo[0];
+		}else{
+			return {code:0,status:'common',label:'common'};
+		}
+	},
 }
 
 module.exports = handle;
