@@ -12,7 +12,7 @@
 	"projectname": "LH-shop",
 	"condition": {
 		"weapp": {
-			"current": 0,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -51,9 +51,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "我的收藏",
-					"pathName": "pages/collect/collect",
+					"pathName": "pages/favorite/favorite",
 					"query": ""
 				},
 				{

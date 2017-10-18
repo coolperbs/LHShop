@@ -131,7 +131,7 @@ var _fn = {
 			},]
 		});
 		var tabData = page.tab.change();
-		console.log(tabData);
+		// console.log(tabData);
 		page.setData({tab:tabData});
 
 	},

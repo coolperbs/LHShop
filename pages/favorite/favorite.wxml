@@ -1,0 +1,70 @@
+<view class="page-collect">
+	<view class="head">
+		<block wx:for="{{tab.tabData}}" wx:key="index">
+			<view class="box {{item.isCur?'current':''}}" 
+			data-param="{{item.param}}" 
+			data-extra = "{{item.extra}}"
+			bindtap="changeTab"
+			style="{{item.style}}">{{item.name}}{{index===0?'('+(skuNum?skuNum:0)+')':'('+(shopNum?shopNum:0)+')'}}</view>
+		</block>
+		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
+	</view>
+	<scroll-view class="scrollview">
+		<block wx:for="{{favList}}">
+			<block wx:if="{{curType==='sku'}}">
+				<template is="ware" data="{{...item}}"></template>
+			</block>
+			<block wx:else>
+				<template is="store" data="{{...item}}"></template>
+				
+			</block>
+		</block>
+	</scroll-view>
+</view>
+
+<template name="store">
+	<view class="store" bindtap="toDetail" data-id="id" data-type="shop">
+		<view class="left">
+			<image src="{{logo}}"/>
+		</view>
+		<view class="right">
+			<view class="name ellipsis-1">
+				{{name}}
+			</view>
+			<view class="detail ellipsis-1">
+				{{introduce}}
+			</view>
+			<view class="cancel cancel" data-id="{{favoriteId}}" data-type="shop" catchtap="cancel">
+				<image src="../../asset/cancel-collect.png" />
+			</view>
+		</view>
+	</view>
+	
+</template>
+<template name="ware">
+	<view class="ware" bindtap="toDetail" data-id="{{skuId}}" data-type="sku">
+		<view class="left">
+			<image src="{{mainImage}}"/>
+		</view>
+		<view class="right">
+			<view class="title ellipsis-2">
+				{{title}}
+			</view>
+			<view class="sub-title ellipsis-1">
+				{{subTitle}}
+			</view>
+			<view class="price">
+				<text class="dw">￥</text>
+				<text class="zs">{{priceZS}}</text>
+				<text class="xs">{{priceXS}}</text>
+			</view>
+			<view class="addCart " data-id="{{skuId}}" catchtap="addCart">
+				<image src="../../asset/shopping-cart.png" />
+			</view>
+			<view class="cancel cancel" data-id="{{favoriteId}}" data-type="sku" catchtap="cancel">
+				<image src="../../asset/cancel-collect.png" />
+			</view>
+		</view> 
+	</view>
+	
+</template>
