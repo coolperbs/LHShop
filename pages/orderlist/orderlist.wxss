@@ -103,7 +103,7 @@ page{
 	/*width:498rpx;*/
 	position:absolute;
 	right:0;
-	bottom:40rpx;
+	bottom:20rpx;
 }
 
 .view-orders .order-wrapper .body .ware-detail .price:before{
@@ -112,7 +112,7 @@ page{
 
 .view-orders .order-wrapper .body .ware-detail .price{
 	position:absolute;
-	bottom:40rpx;
+	bottom:20rpx;
 	font-size:14px;
 	color:#4A4A4A;
 }

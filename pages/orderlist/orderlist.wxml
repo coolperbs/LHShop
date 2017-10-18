@@ -16,7 +16,7 @@
 			bindscrolltolower="scrollToLower" 
 			style="height:{{scrollHeight}}px">
 				<block wx:for="{{orderList}}" wx:key="id">
-					<view catchtap="toDetail" data-orderId="{{item.orderId}}">
+					<view>
 						<template is="order" data = "{{...item}}"></template>
 					</view>
 				</block>
@@ -40,8 +40,9 @@
 <template name="order">
 	<view class="line-wrapper">
 			<view class="detail-scroll-body " 
-			data-orderId="{{id}}" 
-			data-orderStatus="{{orderStatus}}">
+			catchtap="toDetail" 
+			data-param="{{eventParam}}"
+			data-orderId="{{orderId}}"> 
 				<view class="order-wrapper" data-status="{{statusInfo.status}}">		
 						<view class="header order-part">
 							<view class="header-left">
@@ -89,6 +90,7 @@
 								
 								<view wx:if="{{ orderStatus=='8' }}" 
 								data-orderId="{{orderId}}" 
+								data-param="{{eventParam}}"
 								class="btn cancel" 
 								catchtap="cancel"> 
 								取消订单 
@@ -104,7 +106,7 @@
 
 								<view wx:if="{{ orderStatus == 256 && orderInfo.commentNum * 1 <= 0 }}"
 								data-orderId="{{orderId}}" 
-								data-pageNo="{{pageNo}}"
+								data-param="{{eventParam}}"
 								class="btn finished comment" 
 								catchtap="commentOrder"> 
 								去评价
@@ -113,6 +115,7 @@
 
 								<view wx:if="{{orderStatus=='32' || orderStatus=='256'}}" 
 								data-orderId="{{orderId}}" 
+								data-param="{{eventParam}}"
 								class="btn finished comment" 
 								catchtap="afterSaleOrder"> 
 								申请售后
