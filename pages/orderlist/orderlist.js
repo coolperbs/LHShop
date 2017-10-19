@@ -36,14 +36,12 @@ Page({
 	},
 	toDetail:function(e){
 		var orderId = e.currentTarget.dataset.orderid;
+		var eventParam = e.currentTarget.dataset.param;
+		var self = this;
+		self.updateParam = eventParam;
 		wx.navigateTo({
 			url:'../orderdetail/orderdetail?orderid='+orderId
 		});
-		// var eventParam = e.currentTarget.dataset.param;
-		// var page = eventParam.page;
-		// self.list.update(page,function(res){
-		// 	self.setData({orderList:res.totalData})
-		// });
 	},
 	toIndexHome:function(e){
 		wx.navigateTo({
@@ -51,22 +49,55 @@ Page({
 		});
 
 	},
-	delete:function(e){
+	payOrder:function(e){
 		var orderId = e.currentTarget.dataset.orderid;
-		orderService.deleteOrder({
+		orderService.pay({
 			orderId:orderId,
 			callback:function(res){
-				console.log('delete',res);
+				console.log(res);
 			}
-		});
+		})
+
+	},
+
+	delete:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+		var eventParam = e.currentTarget.dataset.param;
+		var self = this;
+		wx.showModal({
+			title:'提示',
+			content:'您确定要删除这笔订单么?',
+			success:function(res){
+				if(res.confirm){
+					orderService.deleteOrder({
+						orderId:orderId,
+						callback:function(res){
+							self.updateParam = eventParam;
+							_fn.updateList(self);
+						}
+					});
+				}
+			}
+		})
 
 	},
 	cancel:function(e){
 		var orderId = e.currentTarget.dataset.orderid;
-		orderService.cancelOrder({
-			orderId:orderId,
-			callback:function(res){
-				console.log('delete',res);
+		var eventParam = e.currentTarget.dataset.param
+		var self = this;
+		wx.showModal({
+			title:'提示',
+			content:'您确定要取消这笔订单么?',
+			success:function(res){
+				if(res.confirm){
+					orderService.cancelOrder({
+						orderId:orderId,
+						callback:function(res){
+							self.updateParam = eventParam;
+							_fn.updateList(self);
+						}
+					});
+				}
 			}
 		});
 	},
@@ -105,8 +136,8 @@ var _fn = {
 	updateList:function(page){
 		var updateParam = page.updateParam;
 		if(updateParam){
-			var fromPage = updateParam.page
-			self.list.update(fromPage)
+			var updatePage = JSON.parse(updateParam).page
+			page.list.update(updatePage)
 			page.updateParam = null;
 		}
 	},
@@ -131,7 +162,7 @@ var _fn = {
 			},]
 		});
 		var tabData = page.tab.change();
-		console.log(tabData);
+		// console.log(tabData);
 		page.setData({tab:tabData});
 
 	},
@@ -152,7 +183,6 @@ var _fn = {
 						v.showOrderStatus = orderService.getOrderStatusMining(v.orderStatus).label;
 						if(v.skus){
 							v.skus.map((vSku,kSku)=>{
-								console.log(33);
 								vSku.showPrice = utils.fixPrice(vSku.price);
 								return vSku
 							});
@@ -179,11 +209,3 @@ var _fn = {
 }
 
 
-
-
-	// 		<view class="sure-btn white" wx:if="{{ orderStatus == 32 || orderStatus == 256 }}" catchtap="jump" data-type="aftersale">申请售后</view>
-	// <!-- 订单状态为16的订单没按钮显示，之前是显示取消订单 -->
-	// <view class="sure-btn white" wx:if="{{ orderStatus == 1024 }}" catchtap="deleteOrder" data-orderid="{{orderId}}">删除订单</view>
-	// <view class="sure-btn white" wx:if="{{ orderStatus == 8 }}" catchtap="cancelOrder" data-orderid="{{orderId}}">取消订单</view>
-	// <view class="sure-btn" catchtap="pay"  wx:if="{{ orderStatus == 8 }}">去支付 <view class="price"><view class="sub">¥</view>{{orderInfo.payPriceStr}}</view></view>
-	// <view class="sure-btn" catchtap="jump" data-type="comment" wx:if="{{ orderStatus == 256 && orderInfo.commentNum * 1 <= 0 }}">评价抢免单</view>

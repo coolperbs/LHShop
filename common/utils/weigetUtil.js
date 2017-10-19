@@ -52,34 +52,59 @@ class List{
 		if(this.isSingle){
 			this.next();
 		}else{
-			var updatePageList = [];
-			var currentPage = this.curPage;
-			while (page<=currentPage){
-				updatePageList.push(page)
-				page++
-			}
+			// var updatePageList = [];
+			// var currentPage = this.curPage;
+			// while (page<=currentPage){
+			// 	updatePageList.push(page)
+			// 	page++
+			// }
+			// var self = this;
+			// var updatedData = {};
+			// var finishNum = 0;
+			// var combineUpdateList = [];
+			// updatePageList.forEach((v,k)=>{
+			// 	self.getData(v,function(resData){
+			// 		//结束逻辑
+			// 		updatedData[resData.page] = resData
+			// 		finishNum ++ ;
+			// 		if(finishNum>=updatePageList.length){//合并并且替换
+			// 			updatePageList.forEach((vc,kc)=>{
+			// 				combineUpdateList = combineUpdateList.concat(updatedData[vc].list);
+			// 			});
+			// 			self.totalData = self.totalData.filter((v,k)=>{
+			// 				if(JSON.parse(v.eventParam).page<page){//过滤小于page的数据
+			// 					return v;
+			// 				}
+			// 			});
+			// 			self.totalData = self.totalData.concat(combineUpdateList);
+			// 		}
+
+			// 	});
+			// });
+			this.isLock = true;
+			this.curPage = page;
+			this.totalData = this.totalData.filter((v,k)=>{
+				var vPage = JSON.parse(v.eventParam).page;
+				return vPage<page; 
+			});
 			var self = this;
-			var updatedData = {};
-			var finishNum = 0;
-			var combineUpdateList = [];
-			updatePageList.forEach((v,k)=>{
-				self.getData(v,function(resData){
-					//结束逻辑
-					updatedData[resData.page] = resData
-					finishNum ++ ;
-					if(finishNum>=updatePageList.length){//合并并且替换
-						updatePageList.forEach((vc,kc)=>{
-							combineUpdateList = combineUpdateList.concat(updatedData[vc].list);
+			self.getData(page,function(res){
+				self.isLock = false;
+				if(res.data && res.code === '0000'){
+					self.curData = res.data.list;
+					if(!self.isSingle){
+						self.isLast = !res.data.hasMore;
+						self.totalData = self.totalData.concat(self.curData);
+					}else{
+						self.totalData = self.curData;
+					}
+					if(self.render && typeof self.render==='function'){
+						self.render({
+							totalData:self.totalData,
 						});
-						self.totalData = self.totalData.filter((v,k)=>{
-							if(JSON.parse(v.eventParam).page<page){//过滤小于page的数据
-								return v;
-							}
-						});
-						self.totalData = self.totalData.concat(combineUpdateList);
 					}
 
-				});
+				}
 			});
 
 		}
@@ -96,9 +121,9 @@ class List{
 		},function(res){
 			var list = self.getList(res);
 			list = list.map((v,k)=>{
-				v.eventParam= {
+				v.eventParam= JSON.stringify({
 					page:page
-				}
+				});
 				return v;
 			});
 			var resData = {

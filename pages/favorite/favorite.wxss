@@ -1,6 +1,16 @@
-.head { z-index:100;border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
-.head .box { height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
-.head .box.current { color : #ea622e; border-bottom : solid 6rpx #ea622e; }
+.page-collect .head { z-index:100;border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
+.page-collect .head .box { text-align:center;height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
+.page-collect .head .box.current { color : #d6204b;  }
+.page-collect .tab_ul{
+	position:absolute;
+	height:3px;
+	background-color:#d6204b;
+	left:0;
+	bottom:0;
+	width:250rpx;
+	transition: all .3s;
+
+}
 
 .scrollview{
 	margin-top: 120rpx
@@ -36,10 +46,10 @@ position: relative;
 }
 .store .right image{
 	position:absolute;
-	right:20rpx;
+	right:30rpx;
 	width:40rpx;
-	height:60rpx;
-	top:40rpx;
+	height:40rpx;
+	bottom:20rpx;
 }
 
 
@@ -65,9 +75,16 @@ flex-direction:column;
 padding:20rpx 0 10rpx 20rpx;
 position: relative;
 }
-.ware .right .name{
+.ware .right .title{
 	font-size:14px;
 	color:#232326;
+	width:450rpx;
+}
+.ware .right .sub-title{
+	font-size:14px;
+	color:#bababa;
+	width:450rpx;
+	margin-top: 20rpx
 }
 .ware .right .detail{
 	font-size: 13px;
@@ -84,7 +101,7 @@ position: relative;
 .ware .right .price{
 	color:#f02323;
 	position:absolute;
-	bottom:120rpx;
+	bottom:30rpx;
 }
 .ware .right .addCart{
 	position:absolute;

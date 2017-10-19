@@ -13,35 +13,97 @@ Page({
 		wx.navigateTo({
 			url:'../addresslist/addresslist'
 		});
+	},
+	payOrder:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+		orderService.pay({
+			orderId:orderId,
+			callback:function(res){
+				_fn.init(self);
+			}
+		})
+
+	},
+
+	delete:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+		var eventParam = e.currentTarget.dataset.param;
+		var self = this;
+		wx.showModal({
+			title:'提示',
+			content:'您确定要删除这笔订单么?',
+			success:function(res){
+				if(res.confirm){
+					orderService.deleteOrder({
+						orderId:orderId,
+						callback:function(res){
+							_fn.init(self);
+						}
+					});
+				}
+			}
+		})
+
+	},
+	cancel:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+		var eventParam = e.currentTarget.dataset.param
+		var self = this;
+		wx.showModal({
+			title:'提示',
+			content:'您确定要取消这笔订单么?',
+			success:function(res){
+				if(res.confirm){
+					orderService.cancelOrder({
+						orderId:orderId,
+						callback:function(res){
+							_fn.init(self);
+						}
+					});
+				}
+			}
+		});
+	},
+	toComment:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+
+	},
+	toAftersale:function(e){
+		var orderId = e.currentTarget.dataset.orderid;
+
 	}
 });
 var _fn = {
 	init:function(page){
 		_fn.getData(page,function(res){
-			if(res.code === '0000'){
-				var resData = res.data;
-				var resDattOrder = resData.order;
-				var orderTimeObj = utils.timeToDateObj(resDattOrder.orderTime)
-
-				resDattOrder.showOrderTime = orderTimeObj.year +'-'+ orderTimeObj.month +"-"+ orderTimeObj.day +" "+orderTimeObj.hours+":"+orderTimeObj.minutes;
-				resDattOrder.showTotalPrice = utils.fixPrice(resDattOrder.totalPrice);
-				resDattOrder.showPayPrice = utils.fixPrice(resDattOrder.payPrice);
-				resDattOrder.skus = resDattOrder.skus.map((v,k)=>{
-					v.showOriginPrice = utils.fixPrice(v.originPrice);
-					return v;
-				});
-				page.setData({
-					detail:resData
-				});
-			}
-
+			page.setData({
+				detail:res.data
+			});
 		});
 	},
 	getData:function(page,callback){
 		var orderId = page.param.orderid;
 		orderService.getOrderDetail({
 			orderId:orderId,
-			callback:callback
+			callback:function(res){
+				if(res.code === '0000'){
+					var resData = res.data;
+					var resDattOrder = resData.order;
+					var orderTimeObj = utils.timeToDateObj(resDattOrder.orderTime)
+
+					resDattOrder.showOrderTime = orderTimeObj.year +'-'+ orderTimeObj.month +"-"+ orderTimeObj.day +" "+orderTimeObj.hours+":"+orderTimeObj.minutes;
+					resDattOrder.showTotalPrice = utils.fixPrice(resDattOrder.totalPrice);
+					resDattOrder.showPayPrice = utils.fixPrice(resDattOrder.payPrice);
+					resDattOrder.showOrderStatus = orderService.getOrderStatusMining(resDattOrder.orderStatus).label;
+					resDattOrder.skus = resDattOrder.skus.map((v,k)=>{
+						v.showOriginPrice = utils.fixPrice(v.originPrice);
+						return v;
+					});
+				}
+				if(callback && typeof callback==='function'){
+					callback(res);
+				}
+			}
 		})
 	}
 }

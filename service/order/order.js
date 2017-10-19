@@ -64,6 +64,64 @@ var handle = {
 			return {code:0,status:'common',label:'common'};
 		}
 	},
+	pay:function(param){//支付订单
+		var orderId = param.orderId;
+		var callback = param.callback;
+		_fn.payOrder( {
+			orderId : orderId
+		}, function( payRes ) {
+			if ( !payRes || payRes.code != '0000' || !payRes.success ) {
+				wx.showModal( {
+					title : '提示',
+					content : payRes.msg || '系统错误',
+					showCancel : false,
+					complete : function() { 
+						if(callback && typeof callback === 'function'){
+							callback(false);
+						}
+					}
+				
+				} );
+				return;
+			}
+			// 3.唤醒微信支付
+			_fn.wxPay( {
+				timeStamp : payRes.data.timeStamp,
+				nonceStr : payRes.data.nonceStr,
+				package : 'prepay_id=' + payRes.data.prepayId,
+				paySign : payRes.data.sign					
+			}, function(res) {
+				if(callback && typeof callback === 'function'){
+					callback(res);
+				}
+				// wx.redirectTo( { url : '../orderdetail/orderdetail?orderId=' + orderId  } );
+			} );
+		} );
+	}
+}
+var _fn = {
+	payOrder : function( param, callback ) {
+		ajax.query( {
+			url : host + '/app/pay/wechatPrePay',
+			param : param
+		}, callback );		
+
+	},
+	wxPay : function( param, callback ) {
+		wx.requestPayment( {
+			timeStamp : param.timeStamp,
+			nonceStr : param.nonceStr,
+			package : param.package,
+			signType : 'MD5',
+			paySign : param.paySign,			
+			success : function() {
+				callback && callback( true );
+			},
+			fail : function( ) {
+				callback && callback( false );
+			}
+		} );
+	}
 }
 
 module.exports = handle;

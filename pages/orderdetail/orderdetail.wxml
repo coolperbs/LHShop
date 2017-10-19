@@ -55,43 +55,41 @@
 	<view class="bottom-btns order-wrapper">
 		<view class="footer">
 			<view class="btn-group right">
-				<view data-orderId="{{id}}" 
-				data-price="{{payPrice}}"
-				data-pageNo="{{pageNo}}"
+				<view  wx:if="{{ detail.order.orderStatus == 8 }}"
+				data-orderId="{{ detail.order.orderId}}"
 				class="btn waitingPay" 
-				bindtap="payOrder"> 
+				catchtap="payOrder"> 
 				去支付 
 				</view>
 				
-				<!-- <view data-orderId="{{id}}" 
-				data-pageNo="{{pageNo}}"
+				<view wx:if="{{ detail.order.orderStatus=='8' }}" 
+				data-orderId="{{ detail.order.orderId}}" 
 				class="btn cancel" 
-				wx:if="{{ orderStatus=='16' || orderStatus=='32' }}" 
-				bindtap="cancelOrder"> 
+				catchtap="cancel"> 
 				取消订单 
 				</view>
-	-->
-				<view data-orderId="{{id}}" 
-				data-pageNo="{{pageNo}}"
+
+				<view wx:if="{{ detail.order.orderStatus == 1024 }}"
+				data-orderId="{{ detail.order.orderId}}" 
 				class="btn delete" 
-				bindtap="deleteOrder"> 
+				catchtap="delete"> 
 				删除订单 
 				</view>
 
-				<!-- <view data-orderId="{{id}}" 
-				data-pageNo="{{pageNo}}"
+				<view wx:if="{{ detail.order.orderStatus == 256 && detail.order.orderInfo.commentNum * 1 <= 0 }}"
+				data-orderId="{{detail.order.orderId}}" 
 				class="btn finished comment" 
-				bindtap="commentOrder"> 
+				catchtap="commentOrder"> 
 				去评价
-				</view> -->
+				</view>
 
 
-				<!-- <view data-orderId="{{id}}" 
+				<view wx:if="{{detail.order.orderStatus=='32' || detail.order.orderStatus=='256'}}" 
+				data-orderId="{{detail.order.orderId}}" 
 				class="btn finished comment" 
-				wx:if="{{orderStatus=='512' || orderStatus=='256'}}" 
-				bindtap="afterSaleOrder"> 
+				catchtap="afterSaleOrder"> 
 				申请售后
-				</view> -->
+				</view>
 			</view>
 		</view>
 	</view>
@@ -107,7 +105,7 @@
 								<!-- <view class="storeName">{{shopName}}</view> -->
 								<view class="orderId">订单号:{{orderId}}</view>
 							</view>
-							<view class="orderState" > {{orderStatus}} </view>
+							<view class="orderState" > {{showOrderStatus}} </view>
 							
 						</view>
 						<block wx:for="{{skus}}" wx:key="*this">
