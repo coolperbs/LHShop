@@ -1,35 +1,57 @@
 <view class="head-nav" ></view>
 
-<view class="page-tips" wx:if="{{tradeInfo.tips}}">{{tradeInfo.tips}}</view>
-
+<form bindsubmit="submit">
 <view class="content">
 	<view class="order-info module">
 		<view class="row">
+			<view class="key">联系人</view>
+			<view class="value">
+				<input name="userName" placeholder="请填写联系人" value="{{address.userName}}"/>
+			</view>
+		</view>
+		<view class="row">
+			<view class="key">手机号</view>
+			<view class="value">
+				<input name="userPhone" placeholder="请填写手机号" value="{{address.userPhone}}"/>
+			</view>
+		</view>
+ 		<view class="row">
 			<view class="key">区域</view>
-			<view class="value"></view>
+			<view class="value address">
+	            <picker mode="selector" 
+	             range="{{location.provinceList}}"
+	             range-key="name"
+	             bindchange='changeLocation'
+	             data-param="{{location.provinceParam}}"
+	             class="picker">
+	                <view class="ellipsis-1">{{address.provinceName||'请选择省'}}</view>
+	            </picker>
+	             <picker mode="selector" 
+	             range="{{location.cityList}}"
+	             range-key="name"
+	             bindchange='changeLocation'
+	             data-param="{{location.cityParam}}"
+	             class="picker">
+	                <view class="ellipsis-1">{{address.cityName||'请选择市'}}</view>
+	            </picker>	
+	             <picker mode="selector" 
+	             range="{{location.countryList}}"
+	             range-key="name"
+	             bindchange='changeLocation'
+	             data-param="{{location.countryParam}}"
+	             class="picker">
+	                <view class="ellipsis-1">{{address.countryName||'请选择区'}}</view>
+	            </picker>	                        
+			</view>
 		</view>
 		<view class="row">
-			<view class="key">支付方式</view>
-			<view class="value">{{tradeInfo.paymentTypeDesc}}</view>
+			<view class="key">详细地址</view>
+			<view class="value">
+				<input name="address" placeholder="请填写详细地址" value="{{address.address}}"/>
+			</view>
 		</view>
-		<view class="row {{ tradeInfo.shipmentList.length > 1 ? 'ableclick' : '' }}">
-			<view class="key">配送方式</view>
-				<block wx:if="{{tradeInfo.shipmentList.length > 1}}">
-					<picker class="value" mode="selector" value="1" range="{{tradeInfo.shipmentList}}" bindchange="changeShipment">
-						<view>{{tradeInfo.currentShipment.name}}<image class="more" src="../../asset/arrow-right.png"></image></view>
-					</picker>
-				</block>
-				<view class="value" wx:if="{{tradeInfo.shipmentList.length == 1}}">
-					<view>{{tradeInfo.currentShipment.name}}</view>
-				</view>
-		</view>
-		<navigator class="row ableclick" wx:if="{{tradeInfo.currentShipment.type == 1}}" url="../address/address">
-			<view class="key">配送地址</view>
-			<view class="value ellipsis-1">{{tradeInfo.addressShowName || '请填写收货信息'}}<image class="more" src="../../asset/arrow-right.png"></image></view>
-		</navigator>
-		<view class="row">
-			<view class="key">取货时间</view>
-			<view class="value">{{tradeInfo.currentShipment.timeDesc}}</view>
+		<view class="row" catchtap="showAddress">
+			<view class="value address">切换地址</view>
 		</view>
 	</view>
 
@@ -78,31 +100,17 @@
 
 		<view class="total">
 			<!--<view class="sub-info">(已抵扣余额{{tradeInfo.modules.balance.data.availableStr}}元)</view>-->
-			应付: <view class="price"><view class="sub">¥</view>{{ tradeInfo.modules.submit.data.payprice ? tradeInfo.modules.submit.data.paypriceStr : '0.00'}}</view>
-		</view>
-	</view>
-
-
-</view>
-
-<view class="waiting" wx:if="{{showLoading}}">
-	<view class="box">
-		<view class="status">
-			<view class="loading">
-				<image src="../../asset/loading.png"></image>
+			应付: <view class="price">
+				<view class="sub">¥</view>{{ pageData.totalPrice / 100 }}
 			</view>
-			<view class="text">正在创建订单</view>
-		</view>
-		<view class="step">
-			<view class="s {{ step >= 1 ? 'on' : '' }}">{{tradeInfo.shopName}}</view>
-			<view class="s {{ step >= 2 ? 'on' : '' }}">{{tradeInfo.currentShipment.name}}</view>
-			<view class="s {{ step >= 3 ? 'on' : '' }}">{{tradeInfo.currentShipment.timeDesc}}</view>
 		</view>
 	</view>
+
+
 </view>
 
 <view class="toolbar" wx:if="{{pageData}}">
-	<view class="btn" catchtap="submit">
+	<view class="btn">
 		<view class="text">立即支付</view>
 		<view class="info">
 			<view class="price">
@@ -110,5 +118,21 @@
 			</view>
 		</view>
 		<view class="text">元</view>
+		<button form-type="submit"></button>
 	</view>
 </view>
+</form>
+<view class="mask {{ !!showAddress ? 'show' : '' }}" catchtap="hideAddress"></view>
+<view class="address-list {{ !!showAddress ? 'show' : '' }}">
+	<scroll-view scroll-y="{{true}}">
+		<view class="address" wx:for="[asdfasd,asdf,asdf,asdf,asdf,]">
+			<view class="name">姓名 手机</view>
+			<view class="detail">省 市 区 详细收货地址</view>
+		</view>
+		<view class="new">新建地址</view>
+	</scroll-view>
+</view>
+
+
+
+

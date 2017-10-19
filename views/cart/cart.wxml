@@ -3,7 +3,9 @@
 <view class="cart">
 	<view class="shop" wx:for="{{shopCart}}" wx:key="id" wx:for-item="shopCart">
 		<view class="head">
-			<image class="checkbox"></image>
+			<view class="checkbox">
+				<image src="../../asset/checked.png"></image>
+			</view>
 			<view class="info">
 				<view class="name">
 					<image class="logo" src="{{shopCart.logo}}"></image>
@@ -14,7 +16,9 @@
 		</view>
 		<view class="cont-list">
 			<view class="item" wx:for="{{shopCart.carts}}" wx:key="id" wx:for-item="cart">
-				<image class="checkbox"></image>
+				<view class="checkbox {{ cart.cheacked == 1 ? 'checked' : ''}}">
+					<image src="../../asset/checked.png"></image>
+				</view>
 				<view class="cont">
 					<image class="pics" src="{{cart.skuImg}}"></image>
 					<view class="info">

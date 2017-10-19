@@ -1,36 +1,39 @@
 var utils = require( '../../common/utils/utils.js' ),
-	serviceCart = require( '../../service/cart/cart.js' ),
+	service = require( '../../service/service' ),
 	events,
 	handle;
 
-handle = {
-	events : {
-		modulesAddCart : function( e ) {
-			return;
-			var dataset = e.currentTarget.dataset,
-				self = this;
+handle = {}
 
-			serviceCart.add( dataset.skuId, dataset.storeId, 1, function( data ) {
-				// 模拟添加
-				self.setData( {
-					'cart.num' : self.data.cart.num + 1	
-				} );
-			} );
-		},
-		modulesSliderChange : function( e ) {
+handle.events = {
+	jumpDetail : function( e ) {
+		var id = e.currentTarget.dataset.id;
+		if ( !id ){
 			return;
-			var cTarget = e.currentTarget,
-				index = cTarget.dataset.moduleindex,
-				slider = this.data.currentData.modules[index],
-				i, d,
-				key;
-
-			for ( i = 0; d = slider.data[i]; ++i ) {
-				d.selected = i == e.detail.current ? true : false;
-			}
-			this.setData( this.data );
 		}
-	}
+		wx.navigateTo( { url : '../detail/detail?id=' + id } );
+	},
+
+	addCart : function( e ) {
+		var id = e.currentTarget.dataset.id;
+		if ( !id ) {
+			return;
+		}
+		service.cart.addOut( {
+			skuId : id
+		}, function( res ) {
+			if ( res.code == '1000' ) {
+				wx.navigateTo( {
+					url : '../login/login'
+				} );
+				return;
+			}
+			if ( utils.isErrorRes( res ) ) {
+				return;
+			}
+			wx.showToast( { title : '添加成功!' } );
+		} );
+	}	
 }
 
 module.exports = handle;

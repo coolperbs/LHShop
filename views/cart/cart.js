@@ -19,7 +19,7 @@ handle = {
         return;
       }
       callerPage.setData( {
-        viewData : res.data
+        viewData : res.data || {}
       } );
       console.log( res );
     });

@@ -1,11 +1,83 @@
+/* 公共数据 */
+.modules { color : #4a4a4a; }
+.modules .price { margin : 0; line-height: 42rpx; font-size : 42rpx; font-weight: bold; color : #161823; display: inline; }
+.modules .price .sub { margin-right : 10rpx; display:inline; font-size : 28rpx; }
+.modules .origin-price { display: inline; margin : 0; text-decoration:line-through; font-size: 24rpx; color : #ccc; }
+.modules .plus-icon { display: flex; justify-content: center; align-items: center; font-size : 32rpx; height : 48rpx; width : 48rpx; border-radius: 50%; background-color: #161823; color : #fff; }
+
+/* 搜索模块 */
+.modules .search { padding : 20rpx; }
+.modules .search .input { display: flex; height : 60rpx; align-items: center; padding : 0 20rpx; border-radius: 30rpx; background-color: #eee; color : #aaa; }
+.modules .search .input image { width : 32rpx; height : 32rpx; margin-right : 20rpx; }
+
+/* 1n */
+.modules .n1{ border-top : solid 1px #f0f0f0; }
+.modules .n1 .item { padding : 20rpx; display: flex; border-bottom : solid 1px #f0f0f0; }
+.modules .n1 .item .pic { width : 240rpx; height : 240rpx;}
+.modules .n1 .item .pic image { width : 100%; height : 100%; }
+.modules .n1 .item .info { margin-left : 20rpx; padding : 20rpx 0; width : 450rpx; display: flex; flex-direction: column; justify-content: space-between; }
+.modules .n1 .item .info .title { font-size : 32rpx; line-height: 38rpx; }
+.modules .n1 .item .info .sub-title { font-size : 26rpx; line-height: 32rpx; color : #9B9B9B; }
+.modules .n1 .item .info .origin-price { margin-left: 20rpx; }
+.modules .n1 .item .info .info-act { position: relative; height : 42rpx; }
+.modules .n1 .item .info .info-act .add { background-color: #161823; color : #fff; border-radius: 8rpx; padding : 0 20rpx; height : 50rpx; line-height: 50rpx; font-size : 28rpx; position: absolute; right : 0; top : 0; }
+
+/* 2n */
+.modules .n2 { display: flex; flex-wrap: wrap; border-top : solid 1px #f0f0f0; width: 100%; }
+.modules .n2 .item-wrapper { width : 50%; }
+.modules .n2 .item-wrapper:nth-child(odd) .item { border-right : solid 1px #f0f0f0; }
+.modules .n2 .item { border-bottom : solid 1px #f0f0f0; padding : 20rpx; }
+.modules .n2 .item .pic { margin : 0 auto; width : 320rpx; height : 320rpx; }
+.modules .n2 .item .pic image { width : 100%; height : 100%; }
+.modules .n2 .item .info { height : 200rpx; display: flex; margin-top : 20rpx; flex-direction: column; justify-content: space-between; }
+.modules .n2 .item .title { font-size : 32rpx; line-height: 38rpx; }
+.modules .n2 .item .sub-title { font-size : 24rpx; color : #ccc; line-height: 26rpx; }
+.modules .n2 .item .info .origin-price { margin-left : 20rpx; }
+.modules .n2 .item .info .info-act { margin-top : 20rpx; position: relative; height : 48rpx; }
+.modules .n2 .item .info .info-act .add { position: absolute; right: 0; top : 50%; margin-top : -24rpx; height: 48rpx; width : 48rpx; }
+.modules .n2 .item .info .info-act .add image { width: 100%; height: 100%; }
+
+/* 3n */
+.modules .n3 { display: flex; flex-wrap: wrap; border-top : solid 1px #f0f0f0; width: 100%; }
+.modules .n3 .item-wrapper { width : 33.33%; }
+.modules .n3 .item { border-bottom : solid 1px #f0f0f0; border-right : solid 1px #f0f0f0; padding : 20rpx; }
+.modules .n3 .item-wrapper:nth-child(3) .item { border-right : 0; }
+.modules .n3 .item .pic { margin : 0 auto; width : 200rpx; height : 200rpx; }
+.modules .n3 .item .pic image { width : 100%; height : 100%; }
+.modules .n3 .item .info { height : 140rpx; display: flex; margin-top : 20rpx; flex-direction: column; justify-content: space-between; }
+.modules .n3 .item .title { font-size : 28rpx; line-height: 34rpx; }
+.modules .n3 .item .sub-title { font-size : 24rpx; color : #ccc; line-height: 26rpx; }
+.modules .n3 .item .info .price { font-size : 36rpx; }
+.modules .n3 .item .info .origin-price { margin-left : 20rpx; }
+.modules .n3 .item .info .info-act { margin-top : 20rpx; position: relative; height : 48rpx; }
+.modules .n3 .item .info .info-act .add { position: absolute; right: 0; top : 50%; margin-top : -24rpx; height: 48rpx; width : 48rpx; }
+.modules .n3 .item .info .info-act .add image { width: 100%; height: 100%; }
+
+/* 横向滚动的商品 */
+.modules .n-scroll { width: 100%; }
+.modules .n-scroll .scroll-wrapper { display: flex; }
+.modules .n-scroll .item-wrapper { width : 300rpx; }
+.modules .n-scroll .item { padding : 20rpx; }
+.modules .n-scroll .item-wrapper:nth-child(3) .item { border-right : 0; }
+.modules .n-scroll .item .pic { margin : 0 auto; width : 200rpx; height : 200rpx; }
+.modules .n-scroll .item .pic image { width : 100%; height : 100%; }
+.modules .n-scroll .item .info { height : 140rpx; display: flex; margin-top : 20rpx; flex-direction: column; justify-content: space-between; }
+.modules .n-scroll .item .title { font-size : 28rpx; line-height: 34rpx; }
+.modules .n-scroll .item .sub-title { font-size : 24rpx; color : #ccc; line-height: 26rpx; }
+.modules .n-scroll .item .info .price { font-size : 36rpx; }
+.modules .n-scroll .item .info .origin-price { margin-left : 20rpx; }
+.modules .n-scroll .item .info .info-act { margin-top : 20rpx; position: relative; height : 48rpx; }
+.modules .n-scroll .item .info .info-act .add { position: absolute; right: 0; top : 50%; margin-top : -24rpx; height: 48rpx; width : 48rpx; }
+.modules .n-scroll .item .info .info-act .add image { width: 100%; height: 100%; }
+
 .modules { width : 100%; overflow: hidden; padding-bottom: 100rpx; }
 .modules .header { position: fixed; top : 0; left : 0; width : 100%; z-index : 1; background-color: #fff; }
-.modules .header .tab { display: flex; border-bottom: solid 1px #eee; }
+.modules .header .tab { display: flex; border-bottom: solid 1px #f0f0f0; }
 .modules .header .tab view { color : #404040; flex-grow : 1; text-align: center; height : 80rpx; font-size: 28rpx; line-height: 80rpx; }
 .modules .header .tab view.current { color : #f5692e; }
 
-.modules .slider { width : 100%; }
-.modules .slider image { width : 100%; }
+.modules .slider { width : 100%; height : 350rpx; }
+.modules .slider image { width : 100%; height : 350rpx; }
 
 .modules .entry { display: flex; width : 100%; }
 .modules .entry view { padding : 10rpx; flex-grow : 1; text-align: center; font-size : 24rpx; color : #888; }
@@ -13,8 +85,12 @@
 
 .modules .banner image{ width : 100%; height : 240rpx; }
 
+.modules .normal-image { line-height: 0; }
+.modules .normal-image,
+.modules .normal-image image{ width: 100%; }
+
 /* 九宫格 */
-.modules .module-1 { display: flex; flex-wrap: wrap; border-top : solid 1px #ccc; }
+.modules .module-1 { display: flex; flex-wrap: wrap; border-top : solid 1px #eee; }
 .modules .module-1.flex-col .col { width : 33.33%; }
 .modules .module-1 .item{ position: relative; left : 1px; padding : 14rpx; border-right : solid 1px #eee; border-bottom : solid 1px #eee; }
 .modules .module-1 .item .image { width : 210rpx; height : 210rpx; }

@@ -41,11 +41,14 @@ Page({
 		this.hidePop();
 		service.cart.addOut( {
 			skuId : pageData.skuId
-		}, function( e ) {
-			if ( e.code == '1000' ) {
+		}, function( res ) {
+			if ( res.code == '1000' ) {
 				wx.navigateTo( {
 					url : '../login/login'
 				} );
+				return;
+			}
+			if ( utils.isErrorRes( res ) ) {
 				return;
 			}
 			wx.showToast( { title : '添加成功!' } );

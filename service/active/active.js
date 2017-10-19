@@ -1,10 +1,36 @@
 var ajax = require('../../common/ajax/ajax'), 
-	utils = require( '../../common/utils/utils' ),
-	_fn, handle;
+	app = getApp(),
+	url, CFG, _fn, handle;
+
+
+url = {
+	get : app.actHost + '/act/render'
+}
 
 
 handle = {
-
+	// param = { shops : '1,2,4', shopId : 1, actId : '1', type }
+	query : function( param, callback ) {
+		ajax.query( {
+			url : url.get,
+			param : param
+		}, callback );
+	},
+	getHome : function( callback ) {
+		var param = param || {};
+		param.type = 1;
+		handle.query( param, callback );
+	},
+	getShop : function( param, callback ) {
+		var param = param || {};
+		param.type = 2;
+		handle.query( param, callback );
+	},
+	getActive : function( param, callback ) {
+		var param = param || {};
+		param.type = 3;
+		handle.query( param, callback );
+	}
 };
 
 _fn = {

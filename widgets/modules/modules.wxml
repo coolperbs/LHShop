@@ -1,55 +1,133 @@
 <!-- 轮播图模块 -->
-<template name="slider">
+<template name="3-4">
 	<view class="slider">
 		<swiper autoplay indicator-dots="{{true}}" data-moduleindex="{{index}}" bindchange="modulesSliderChange">
-			<swiper-item wx:for="{{data}}" >
-				<navigator url="{{item.link}}">
-					<image src="{{item.img}}"></image>
-				</navigator>
+			<swiper-item wx:for="{{data}}" wx:key="index">
+				<image mode="scaleToFill" src="http://yimeiimage.oss-cn-shenzhen.aliyuncs.com/201710/ef8d36a8-9cdb-4177-815b-a6bedcc2ba67"></image>
 			</swiper-item>
 		</swiper>
-		<view class="pagination">
-			<block wx:for="{{data}}">
-				<view wx:if="{{item.selected}}" class="current"></view>
-				<view wx:else></view>
-			</block>
+	</view>
+</template>
+
+<!-- 搜索模块 -->
+<template name="5-6">
+	<view class="search">
+		<view class="input">
+			<image src="../../asset/search-gray.png"></image>
+			{{data.content}}
 		</view>
 	</view>
 </template>
 
 <!-- 入口模块 -->
-<template name="entry">
+<template name="4-5">
 	<view class="entry">
-		<view wx:for="{{data}}">
-			<navigator url="{{item.link}}">
-				<image src="{{item.img}}"></image>
-				{{item.text}}
-			</navigator>
+		<view wx:for="{{data}}" wx:key="index">
+			<image src="{{item.url}}"></image>
+				{{item.title}}
 		</view>
 	</view>
 </template>
 
-<!-- 商品列表 -->
-<template name="module-1">
-	<view class="module-1 flex-col">
-		<view class="item-wrapper col" wx:for="{{data}}">
+<!-- 普通图片 -->
+<template name="2-3">
+	<view class="normal-image">
+		<image mode="widthFix" src="{{data.url}}"></image>
+	</view>
+</template>
+
+<!-- 1N商品 -->
+<template name="1-1">
+	<view class="n1">
+		<view class="item" wx:for="{{data.wareSkus}}" wx:key="index">
+			<view class="pic" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">
+				<image src="{{item.mainImage}}"></image>
+			</view>
+			<view class="info">
+				<view class="title ellipsis-2" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">{{item.title}}</view>
+				<view class="sub-title ellipsis-2" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">{{item.subTitle}}</view>
+				<view class="info-act">
+					<view class="price"><view class="sub">¥</view>{{ item.price ? item.price / 100 : item.originPrice / 100 }}</view>
+					<view class="origin-price" wx:if="{{item.originPrice}}">¥{{ item.originPrice / 100 }}</view>
+					<view class="add" catchtap="moduleClickProxy" data-fn="addCart" data-id="{{item.skuId}}">立即加购</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<!-- 2N商品 -->
+<template name="1-2">
+	<view class="n2">
+		<view class="item-wrapper"  wx:for="{{data.wareSkus}}" wx:key="index">
 			<view class="item">
-				<navigator url="{{item.link}}">
-					<image class="image" src="{{item.img}}"></image>
-					<text class="title">{{item.title}}</text>
-					<view class="price">
-						<view class="last">¥{{item.originPrice}}<view></view></view>
-						<view class="current">¥{{item.price}}</view>
+				<view class="pic" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">
+					<image src="{{item.mainImage}}"></image>
+				</view>
+				<view class="info">
+					<view class="title ellipsis-2" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">{{item.title}}</view>
+					<view class="sub-title ellipsis-2" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">{{item.subTitle}}</view>
+					<view class="info-act">
+						<view class="price"><view class="sub">¥</view>{{ item.price ? item.price / 100 : item.originPrice / 100 }}</view>
+						<view class="origin-price" wx:if="{{item.originPrice}}">¥{{ item.originPrice / 100 }}</view>
+						<view class="add" catchtap="moduleClickProxy" data-fn="addCart" data-id="{{item.skuId}}">
+							<image src="../../asset/add.png"></image>
+						</view>
 					</view>
-					<view catchtap="modulesAddCart" data-sku-id="{{item.skuId}}" data-store-id="{{item.storeId}}" class="icon add-cart">
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<!-- 3N商品 -->
+<template name="1-7">
+	<view class="n3">
+		<view class="item-wrapper"  wx:for="{{data.wareSkus}}" wx:key="index">
+			<view class="item">
+				<view class="pic" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">
+					<image src="{{item.mainImage}}"></image>
+				</view>
+				<view class="info">
+					<view class="title ellipsis-2" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">{{item.title}}</view>
+					<view class="info-act">
+						<view class="price"><view class="sub">¥</view>{{ item.price ? item.price / 100 : item.originPrice / 100 }}</view>
+						<view class="add" catchtap="moduleClickProxy" data-fn="addCart" data-id="{{item.skuId}}">
+							<image src="../../asset/add.png"></image>
+						</view>
 					</view>
-				</navigator>
+				</view>
 			</view>
 		</view>
 	</view>		
 </template>
 
-<!-- 左右楼层混搭 -->
+<!-- 滚动商品 -->
+<template name="1-8">
+	<scroll-view class="n-scroll" scroll-x="{{ true }}">
+		<view class="scroll-wrapper" style="width:{{300 * data.wareSkus.length}}rpx;">
+			<view class="item-wrapper"  wx:for="{{data.wareSkus}}" wx:key="index">
+				<view class="item">
+					<view class="pic" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">
+						<image src="{{item.mainImage}}"></image>
+					</view>
+					<view class="info">
+						<view class="title ellipsis-2" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">{{item.title}}</view>
+						<view class="info-act">
+							<view class="price"><view class="sub">¥</view>{{ item.price ? item.price / 100 : item.originPrice / 100 }}</view>
+							<view class="add" catchtap="moduleClickProxy" data-fn="addCart" data-id="{{item.skuId}}">
+								<image src="../../asset/add.png"></image>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+</template>>
+
+<!--
+左右楼层混搭
 <template name="module-2">
 	<view class="module-2 flex-col">
 		<view class="col">
@@ -79,10 +157,10 @@
 	</view>		
 </template>
 
-<!-- 并排图片 -->
+并排图片
 <template name="module-3">
 	<view class="module-3 flex-col" style="height:{{data[0].height/data[0].width*750/data.length}}rpx;">
-		<view class="col" wx:for="{{data}}">
+		<view class="col" wx:for="{{data}}" wx:key="index">
 			<navigator url="{{item.link}}" wx:if="{{item.link}}">
 				<image src="{{item.img}}" style="width:{{750/data.length}}rpx;height:{{item.height/item.width*750/data.length}}rpx;"></image>
 			</navigator>
@@ -90,32 +168,4 @@
 		</view>
 	</view>	
 </template>
-
-
-<!--
-<view class="module-4 flex-col">
-	<view class="col">
-		<navigator>
-			<image src="http://img.dmall.com/mIndex/201612/3405594d-e5bf-41c6-b997-39cdd419c331_480x480H"></image>
-		</navigator>
-	</view>
-	<view class="col">
-		<navigator>
-			<image src="http://img.dmall.com/mIndex/201612/3405594d-e5bf-41c6-b997-39cdd419c331_480x480H"></image>
-		</navigator>
-	</view>
-	<view class="col">
-		<navigator>
-			<image src="http://img.dmall.com/mIndex/201612/3405594d-e5bf-41c6-b997-39cdd419c331_480x480H"></image>
-		</navigator>
-	</view>
-	<view class="col">
-		<navigator>
-			<image src="http://img.dmall.com/mIndex/201612/3405594d-e5bf-41c6-b997-39cdd419c331_480x480H"></image>
-		</navigator>
-	</view>
-</view>	
-
-<view class="banner">
-	<image src="http://img.dmall.com/mIndex/201612/4b8df615-62db-48d0-af87-d7de52c75262_750H"></image>
-</view>-->
+-->
