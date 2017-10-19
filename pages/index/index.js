@@ -34,11 +34,11 @@ Page( {
 				text : '首页',
 				className : 'footer-home',
 				view : 'home'
-			},{
+			},/*{
 				text : '分类',
 				className : 'footer-category',
 				view : 'category'
-			},{
+			},*/{
 				text:'分销',
 				className:'footer-activity',
 				view:'activity'
