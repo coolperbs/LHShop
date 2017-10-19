@@ -1,9 +1,10 @@
 .cart { background-color: #f6f6f6; min-height: 100%; font-size : 28rpx; }
 
-.cart .checkbox { display: inline-block; width : 36rpx; height : 36rpx; border-radius: 50%; border : solid 1px #ccc; }
-.cart .checkbox.checked { border : none; width : 46rpx; height : 46rpx; }
+.cart .checkbox { display: inline-block; width : 48rpx; height : 48rpx; border-radius: 50%; }
 .cart .checkbox image { display: none; width : 100%; height : 100%; }
-.cart .checkbox.checked image{ display: block; }
+.cart .checkbox .off { display: block;  }
+.cart .checkbox.checked .on { display: block; }
+.cart .checkbox.checked .off { display: none; }
 .cart .price { display: inline-block; font-size : 32rpx; font-weight : bold; color : #df393c; }
 .cart .price .sub { display: inline-block; font-size : 24rpx; color : #df393c; }
 

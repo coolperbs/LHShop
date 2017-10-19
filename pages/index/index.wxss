@@ -8,7 +8,7 @@ page { height : 100%; }
 
 .toolbar { display: flex; height : 100rpx; border-top: solid 1px #eee; position: fixed; bottom : 0; width : 100%; background-color: white;z-index:100010;}
 .toolbar .tab { flex-grow : 1; display: flex; align-items: center; font-size : 24rpx; color : #888; position: relative; justify-content : center; }
-.toolbar .tab .icon { width:50rpx; }
+.toolbar .tab .icon { width:54rpx; }
 .toolbar .tab image { opacity : 0.5; }
 .toolbar image.current { opacity: 1; }
 .toolbar .tab .num { background-color: #eb2243; color : #fff; width : 36rpx; height : 36rpx; border-radius : 50%; text-align: center; line-height: 36rpx; font-size : 20rpx; position: absolute; left : 50%; margin-left : 10rpx; top : 5rpx; }

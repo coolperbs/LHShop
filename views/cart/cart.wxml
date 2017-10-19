@@ -3,8 +3,9 @@
 <view class="cart">
 	<view class="shop" wx:for="{{shopCart}}" wx:key="id" wx:for-item="shopCart">
 		<view class="head">
-			<view class="checkbox">
-				<image src="../../asset/checked.png"></image>
+			<view class="checkbox {{ shopCart.allCheacked == 1 ? 'checked' : '' }}">
+				<image class="off" src="../../asset/unchecked.png"></image>
+				<image class="on" src="../../asset/checked.png"></image>
 			</view>
 			<view class="info">
 				<view class="name">
@@ -16,8 +17,9 @@
 		</view>
 		<view class="cont-list">
 			<view class="item" wx:for="{{shopCart.carts}}" wx:key="id" wx:for-item="cart">
-				<view class="checkbox {{ cart.cheacked == 1 ? 'checked' : ''}}">
-					<image src="../../asset/checked.png"></image>
+				<view catchtap="cartClickProxy" data-fn="check" data-checked="{{ cart.cheacked == 1 ? true : false }}" data-cartid="{{cart.id}}" class="checkbox {{ cart.cheacked == 1 ? 'checked' : ''}}">
+					<image class="off" src="../../asset/unchecked.png"></image>
+					<image class="on" src="../../asset/checked.png"></image>
 				</view>
 				<view class="cont">
 					<image class="pics" src="{{cart.skuImg}}"></image>
@@ -42,7 +44,7 @@
 			<view>
 				共<view class="price"><view class="sub">¥</view>{{shopCart.shopTotalPrice / 100}}</view>元
 			</view>
-			<view class="btn" catchtap="cartClickProxy" data-fn="goCheck" data-shopid="{{shopCart.id}}">去结算</view>
+			<view class="btn" catchtap="cartClickProxy" data-fn="goCheckOut" data-shopid="{{shopCart.id}}">去结算</view>
 		</view>
 	</view>
 	<view class="last-child"></view>

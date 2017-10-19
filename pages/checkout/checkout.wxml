@@ -125,12 +125,20 @@
 <view class="mask {{ !!showAddress ? 'show' : '' }}" catchtap="hideAddress"></view>
 <view class="address-list {{ !!showAddress ? 'show' : '' }}">
 	<scroll-view scroll-y="{{true}}">
-		<view class="address" wx:for="[asdfasd,asdf,asdf,asdf,asdf,]">
-			<view class="name">姓名 手机</view>
-			<view class="detail">省 市 区 详细收货地址</view>
+		<view class="address" catchtap="selectAddress" wx:for="{{addressList.list}}" wx:key="addressId" data-id="{{ item.addressId }}">
+			<view class="checkbox {{ item.addressId == addressList.selectedId ? 'checked' : '' }}">
+				<image class="on" src="../../asset/checked.png"></image>
+				<image class="off" src="../../asset/unchecked.png"></image>
+			</view>
+			<view class="info">
+				<view class="name">{{item.userName}} {{item.userPhone}}</view>
+				<view class="detail">{{item.provinceName}}{{item.cityName}}{{item.countryName}} {{item.address}}</view>
+			</view>
 		</view>
-		<view class="new">新建地址</view>
 	</scroll-view>
+	<view class="act">
+		<view class="btn" catchtap="newAddress">创建新地址</view>
+	</view>
 </view>
 
 

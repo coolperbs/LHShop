@@ -9,12 +9,22 @@ url = {
 	query : app.host + '/app/cart/list',
 	clear : app.host + '/app/cart/deleteAll',
 	del : app.host + '/app/cart/delete',
-	cut : app.host + '/app/cart/cut'
+	cut : app.host + '/app/cart/cut',
+	check : app.host + '/app/cart/cheack',
+	unCheck : app.host + '/app/cart/uncheack'
 	//update : app.host + '/mch/cart/update'	
 }
 
 
 handle = {
+	check : function( param, callback ) {
+		var checkUrl = param.checked ? url.check : url.unCheck;
+		param = param || {};
+		ajax.query( {
+			url : checkUrl,
+			param : param
+		}, callback );
+	},
 
 	// param = { skuNum : 1, skuId : 1 }
 	add : function( param, callback ) {

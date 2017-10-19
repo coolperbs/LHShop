@@ -25,12 +25,61 @@ Page({
 				_fn.initAddress( self, res.data.defaultAddress );
 			}
 		} );
+		//this.showAddress();
+	},
+
+	selectAddress : function( e ) {
+		var id = e.currentTarget.dataset.id,
+			data = this.data,
+			addressList = data.addressList || {},
+			addressInfo,
+			i, len;
+
+		addressList = addressList.list || [];
+		for ( i = 0, len = addressList.length; i < len; ++i ) {
+			if ( addressList[i].addressId == id ) {
+				addressInfo = addressList[i];
+				break;
+			}
+		}
+		addressInfo = addressInfo || {};
+		addressInfo.id = addressInfo.addressId;
+		_fn.initAddress( this, addressInfo );
+		this.hideAddress();
+		// this.setData( {
+		// 	'addressList.selectedId' : id
+		// } );
+	},
+
+	newAddress : function() {
+		var address = {};
+		_fn.initAddress( this, address );
+		this.hideAddress();
 	},
 
 	showAddress : function() {
+		var self = this,
+			address = self.data.address || {},
+			id = address.id;
 		// 请求列表
-		this.setData( {
-			showAddress : true
+		self.setData( {
+			showAddress : true,
+			'addressList.selectedId' : id
+		} );
+		utils.showLoading( 300 );
+		_fn.getAddressList( self, function( list ){
+			var data = self.data,
+				selectedId = null;
+			utils.hideLoading();
+			if ( data && data.address && data.address.id ) {
+				selectedId = data.address.id;
+			}
+			self.setData( {
+				addressList : {
+					selectedId : selectedId,
+					list : list
+				}
+			} );
 		} );
 	},
 
@@ -62,12 +111,26 @@ Page({
 	},
 	changeLocation:function(e){
 		var self = this;
-		console.log( self.data );
 		self.address.change(e);
 	}
 });
 
 _fn = {
+	getAddressList : function( caller, callback ) {
+		var data = caller.data;
+		if ( data.addressList ) {
+			callback && callback( data.addressList.list );
+		}
+		ajax.query( {
+			url : app.host + '/app/address/list'
+		}, function( res ) {
+			if ( utils.isErrorRes( res ) ) {
+				return;
+			}
+			callback && callback( res.data );
+		} );
+	},
+
 	getPageData : function( callback ) {
 		ajax.query( {
 			url : app.host + '/app/trade/cartbuy/' + pageParam.shopid
@@ -77,6 +140,7 @@ _fn = {
 		if ( !address ) {
 			return;
 		}
+		console.log( 'ff' );
 		caller.address = new Address({
 			provinceId : address.province,
 			cityId : address.city,
@@ -184,7 +248,7 @@ _fn = {
 	createOrder : function( caller, callback ) {
 		var data = caller.data;
 		var type;
-		var address = data.address;
+		var address = data.address || {};
 
 		address.addressId = address.id || '';
 		ajax.query( {

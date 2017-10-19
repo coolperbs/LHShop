@@ -21,13 +21,24 @@ handle = {
       callerPage.setData( {
         viewData : res.data || {}
       } );
-      console.log( res );
     });
   }
 };
 
 events = {
-  goCheck : function( e ) {
+  check : function( e ) {
+    var cartId = e.currentTarget.dataset.cartid,
+        checked = e.currentTarget.dataset.checked,
+        callerPage = this;
+
+    service.cart.check( {
+      cartId : cartId,
+      checked : !checked
+    }, function( res ) {
+      _fn.refreshPage( callerPage, res );
+    } );
+  },
+  goCheckOut : function( e ) {
     var shopId = e.currentTarget.dataset.shopid;
     if ( !shopId ) {
       wx.showToast( { title : '缺少shopId' } );
