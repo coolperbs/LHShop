@@ -60,3 +60,58 @@ left:85rpx;
 	width: 40rpx;
 	height: 50rpx;
 }
+
+.page-search .tpl-recommond-ware{
+	width:331rpx;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+}
+.page-search .tpl-recommond-ware .top{}
+.page-search .tpl-recommond-ware .top .ware-img{
+	width:300rpx;
+	height:300rpx;
+}
+.page-search .tpl-recommond-ware .bottom{
+	display:flex;
+	flex-direction:column;
+	height:200rpx;
+	width:300rpx;
+	position: relative;
+}
+.page-search .tpl-recommond-ware .bottom .ware-name{
+	font-size:14px;
+	color:#232323;
+	height:25px;
+	line-height:25px;
+}
+.page-search .tpl-recommond-ware .bottom .feature{
+	font-size:13px;
+	color:#969696;
+	height:25px;
+	line-height:25px;
+}
+.page-search .tpl-recommond-ware .bottom .price-info{}
+.page-search .tpl-recommond-ware .bottom .price-info .new-price:before,
+.page-search .tpl-recommond-ware .bottom .price-info .old-price:before{
+	content:'￥';
+}
+.page-search .tpl-recommond-ware .bottom .price-info .new-price{
+	color:#d24740;
+	font-size: 14px;
+	margin-right: 10rpx;
+}
+.page-search .tpl-recommond-ware .bottom .price-info .old-price{
+	color:#969696;
+	font-size: 12px;
+	text-decoration: line-through;
+}
+.page-search .tpl-recommond-ware .bottom .addCart{
+	position:absolute;
+	top:110rpx;
+	right:0;
+}
+.page-search .tpl-recommond-ware .bottom .addCart .cartimg{
+	width: 50rpx;
+	height: 50rpx
+}
