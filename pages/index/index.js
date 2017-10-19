@@ -27,22 +27,22 @@ views = {
 Page( {
 	data : {
 		viewData : {},
-		currentView : 'cart',
+		currentView : 'home',
 		tab : {
 			currentTab : 0,
 			list : [{
 				text : '首页',
 				className : 'footer-home',
 				view : 'home'
-			},/*{
+			},{
 				text : '分类',
 				className : 'footer-category',
 				view : 'category'
-			},*/{
+			},/*{
 				text:'分销',
 				className:'footer-activity',
 				view:'activity'
-			},{
+			},*/{
 				text:'购物车',
 				className:'footer-cart',
 				view:'cart'
