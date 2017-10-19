@@ -1,0 +1,19 @@
+<view class="head">
+	<view class="shop-info">
+		<image src=""></image>
+		<view class="name">
+			<view>xx店铺</view>
+			<view>皇冠</view>
+		</view>
+	</view>
+	<view class="act">
+		<view class="star">
+			<view>12.1万</view>
+			<view>粉丝数</view>
+		</view>
+		<view class="flow">关注</view>
+	</view>
+	<image src=""></image>
+</view>
+
+<view>活动楼层</view>
