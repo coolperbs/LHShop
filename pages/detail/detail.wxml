@@ -162,13 +162,14 @@
                 购物车
             </view>
             <view class="cell">
-                <image src="../../asset/heart-white.png"></image>
+                <image wx:if="{{pageData.favorite == 1}}" src="../../asset/heart-red.png"></image>
+                <image wx:elseif src="../../asset/heart-line.png"></image>
                 收藏
             </view>
         </view>
         <view class="buttons">
             <view class="btn" catchtap="addCart">加入购物车</view>
-            <view class="btn primary" catchtap="showPop">马上购买</view>
+            <view class="btn primary" catchtap="buyNow">马上购买</view>
         </view>
     </block>
     <view wx:if="{{ pop.show }}" catchtap="submit" class="btn primary">确定</view>

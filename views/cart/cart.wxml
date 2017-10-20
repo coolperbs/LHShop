@@ -1,53 +1,61 @@
 
 <template name="cart">
 <view class="cart">
-	<view class="shop" wx:for="{{shopCart}}" wx:key="id" wx:for-item="shopCart">
-		<view class="head">
-			<view class="checkbox {{ shopCart.allCheacked == 1 ? 'checked' : '' }}">
-				<image class="off" src="../../asset/unchecked.png"></image>
-				<image class="on" src="../../asset/checked.png"></image>
-			</view>
-			<view class="info">
-				<view class="name">
-					<image class="logo" src="{{shopCart.logo}}"></image>
-					{{shopCart.name}} >
-				</view>
-				<view class="act">领券</view>
-			</view>
-		</view>
-		<view class="cont-list">
-			<view class="item" wx:for="{{shopCart.carts}}" wx:key="id" wx:for-item="cart">
-				<view catchtap="cartClickProxy" data-fn="check" data-checked="{{ cart.cheacked == 1 ? true : false }}" data-cartid="{{cart.id}}" class="checkbox {{ cart.cheacked == 1 ? 'checked' : ''}}">
+	<block wx:if="{{ shopCart && shopCart.length > 0 }}">
+		<view class="shop" wx:for="{{shopCart}}" wx:key="id" wx:for-item="shopCart">
+			<view class="head">
+				<view class="checkbox {{ shopCart.allCheacked == 1 ? 'checked' : '' }}">
 					<image class="off" src="../../asset/unchecked.png"></image>
 					<image class="on" src="../../asset/checked.png"></image>
 				</view>
-				<view class="cont">
-					<image class="pics" src="{{cart.skuImg}}"></image>
-					<view class="info">
-						<view class="name ellipsis-2">{{cart.skuTitle}}</view>
-						<view class="sub-info">{{cart.skuSubTitle}}</view>
-						<view class="count">
-							<view>
-							 	<view class="price"><view class="sub">¥</view>{{cart.skuPrice / 100}}</view> × 1
+				<view class="info">
+					<view class="name">
+						<image class="logo" src="{{shopCart.logo}}"></image>
+						{{shopCart.name}} >
+					</view>
+					<view class="act">领券</view>
+				</view>
+			</view>
+			<view class="cont-list">
+				<view class="item" wx:for="{{shopCart.carts}}" wx:key="id" wx:for-item="cart">
+					<view catchtap="cartClickProxy" data-fn="check" data-checked="{{ cart.cheacked == 1 ? true : false }}" data-cartid="{{cart.id}}" class="checkbox {{ cart.cheacked == 1 ? 'checked' : ''}}">
+						<image class="off" src="../../asset/unchecked.png"></image>
+						<image class="on" src="../../asset/checked.png"></image>
+					</view>
+					<view class="cont">
+						<image class="pics" src="{{cart.skuImg}}"></image>
+						<view class="info">
+							<view class="name ellipsis-2">{{cart.skuTitle}}</view>
+							<view class="sub-info">{{cart.skuSubTitle}}</view>
+							<view class="count">
+								<view>
+								 	<view class="price"><view class="sub">¥</view>{{cart.skuPrice / 100}}</view> × 1
+								</view>
+								<view class="cart-act">
+					                <view class="minus" id="{{cart.skuId}}" catchtap="cartClickProxy" data-fn="cut" data-num="{{cart.skuNum}}" data-cartid="{{cart.id}}">-</view>
+					                <view class="num">{{cart.skuNum}}</view>
+					                <view class="plus" catchtap="cartClickProxy" data-fn="add" data-cartid="{{cart.id}}">+</view>
+					            </view>
 							</view>
-							<view class="cart-act">
-				                <view class="minus" id="{{cart.skuId}}" catchtap="cartClickProxy" data-fn="cut" data-num="{{cart.skuNum}}" data-cartid="{{cart.id}}">-</view>
-				                <view class="num">{{cart.skuNum}}</view>
-				                <view class="plus" catchtap="cartClickProxy" data-fn="add" data-cartid="{{cart.id}}">+</view>
-				            </view>
 						</view>
 					</view>
 				</view>
 			</view>
-		</view>
-		<view class="all">
-			<view>
-				共<view class="price"><view class="sub">¥</view>{{shopCart.shopTotalPrice / 100}}</view>元
+			<view class="all">
+				<view>
+					共<view class="price"><view class="sub">¥</view>{{shopCart.shopTotalPrice / 100}}</view>元
+				</view>
+				<view class="btn" catchtap="cartClickProxy" data-fn="goCheckOut" data-shopid="{{shopCart.id}}">去结算</view>
 			</view>
-			<view class="btn" catchtap="cartClickProxy" data-fn="goCheckOut" data-shopid="{{shopCart.id}}">去结算</view>
 		</view>
-	</view>
-	<view class="last-child"></view>
+		<view class="last-child"></view>
+	</block>
+	<block wx:elseif>
+		<view class="goLogin-wrapper">
+			<view class="login-msg">购物车还没有商品哟</view>
+			<view class="login-btn" catchtap="events" data-func="goLogin">去逛逛</view>
+		</view>
+	</block>
 </view>
 </template>
 

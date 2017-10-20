@@ -16,6 +16,7 @@ handle = {
         return;
       }
       if ( utils.isErrorRes( res ) ) {
+        callerPage.setData( {viewData : {}} );
         return;
       }
       callerPage.setData( {
