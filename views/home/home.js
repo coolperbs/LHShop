@@ -10,7 +10,7 @@ handle = {
 	render : function( callerPage ) {
 		_fn.init( callerPage );
 
-		service.active.getHome( function( res ) {
+		service.active.getHome( { shops : '1' }, function( res ) {
 			if ( utils.isErrorRes( res ) ) {
 				return;
 			}

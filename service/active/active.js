@@ -16,7 +16,7 @@ handle = {
 			param : param
 		}, callback );
 	},
-	getHome : function( callback ) {
+	getHome : function( param, callback ) {
 		var param = param || {};
 		param.type = 1;
 		handle.query( param, callback );
