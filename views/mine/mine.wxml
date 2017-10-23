@@ -23,24 +23,24 @@
 					<view class="title">
 						我的订单
 					</view>
-					<view class="check-more" catchtap="events" data-func="goOrderList">
+					<view class="check-more" catchtap="events" data-status="1" data-func="goOrderList">
 						查看更多订单
 					</view>
 				</view>
 				<view class="content">
-					<view class="item" data-status="1" catchtap="events" data-func="goOrderList">
+					<view class="item" data-status="2" catchtap="events" data-func="goOrderList">
 						<image src="../../asset/pay.png" class="item-logo"/>
 						<text class="item-txt">待付款</text>
 					</view>
-					<view class="item" data-status="2" catchtap="events" data-func="goOrderList">
+					<view class="item" data-status="3" catchtap="events" data-func="goOrderList">
 						<image src="../../asset/deliver.png" class="item-logo"/>
 						<text class="item-txt">代发货</text>
 					</view>
-					<view class="item" data-status="3" catchtap="events" data-func="goOrderList">
+					<view class="item" data-status="4" catchtap="events" data-func="goOrderList">
 						<image src="../../asset/send.png" class="item-logo"/>
 						<text class="item-txt">待收货</text>
 					</view>
-					<view class="item" data-status="4" catchtap="events" data-func="goOrderList">
+					<view class="item" data-status="5" catchtap="events" data-func="goOrderList">
 						<image src="../../asset/finish.png" class="item-logo"/>
 						<text class="item-txt">已完成</text>
 					</view>

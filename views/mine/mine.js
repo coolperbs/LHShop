@@ -25,8 +25,9 @@ handle = {
 
 	events : {
 		goOrderList : function( caller, e ) {
+			var status = e.currentTarget.dataset.status;
 			wx.navigateTo({
-				url:'../../pages/orderlist/orderlist'
+				url:'../../pages/orderlist/orderlist?status='+status
 			});
 		},
 		goMyCoupon :function(){
@@ -41,7 +42,7 @@ handle = {
 		},
 		goLogin:function(){
 			wx.navigateTo({
-				url:'../../page/login/login'
+				url:'../../pages/login/login'
 			})
 		}
 	}
@@ -49,19 +50,19 @@ handle = {
 
 _fn = {
 	init : function( callerPage ) {
-		var datetime = wx.getStorageSync( 'datetime' ),
-			city = wx.getStorageSync( 'city' ),
-			allDay;
+		// var datetime = wx.getStorageSync( 'datetime' ),
+		// 	city = wx.getStorageSync( 'city' ),
+		// 	allDay;
 
-		allDay = datetime[1].time - datetime[0].time;
-		allDay = Math.round( allDay / ( 24 * 60 * 60 * 1000 ) );
-		callerPage.setData( {
-			viewData : {
-				datetime : datetime,
-				allDay : allDay,
-				city : city
-			}
-		} );
+		// allDay = datetime[1].time - datetime[0].time;
+		// allDay = Math.round( allDay / ( 24 * 60 * 60 * 1000 ) );
+		// callerPage.setData( {
+		// 	viewData : {
+		// 		datetime : datetime,
+		// 		allDay : allDay,
+		// 		city : city
+		// 	}
+		// } );
 		dataHandler = new DataHandler(callerPage);
 	}
 }

@@ -66,11 +66,18 @@ Page({
 	},
 	toComment:function(e){
 		var orderId = e.currentTarget.dataset.orderid;
+		var skuId = e.currentTarget.dataset.skuid;
+		wx.navigateTo({
+			url:'../comment/comment?orderId='+orderId+'&skuId='+skuId
+		})
 
 	},
 	toAftersale:function(e){
 		var orderId = e.currentTarget.dataset.orderid;
-
+		var skuId = e.currentTarget.dataset.skuid;
+		wx.navigateTo({
+			url:'../aftersale/aftersale?orderId='+orderId+'&skuId='+skuId
+		})
 	}
 });
 var _fn = {

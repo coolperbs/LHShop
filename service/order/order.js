@@ -4,7 +4,6 @@ var ajax = require('../../common/ajax/ajax');
 var host = config.host;
 var handle = {
 	getOrderDetail:function(param){
-		console.log(123,param);
 		var orderId = param.orderId;
 		var callback = param.callback;
 		ajax.query({

@@ -1,0 +1,54 @@
+<view class="page-commentlist commentList">
+	<view class="head">
+		<block wx:for="{{tab.tabData}}" wx:key="index">
+			<view class="box {{item.isCur?'current':''}}" 
+			data-param="{{item.param}}" 
+			data-extra = "{{item.extra}}"
+			bindtap="changeTab"
+			style="{{item.style}}">{{item.name}}</view>
+		</block>
+		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
+	</view>
+
+	<scroll-view class="list-container" style="height:{{height}}px" scroll-y="true" bing bindscrolltolower="loadMore">
+		<block wx:for="{{commentList}}">
+			<template is="comment-item" data="{{...item}}"></template>
+		</block>
+	</scroll-view>	
+</view>
+
+<template name="comment-item">
+	<view class="comment-wrapper" bindtap="selectComment">
+		<view class="left">
+			<block wx:if="{{userAvatarUrl}}">
+				<image src="{{userAvatarUrl}}"></image>
+			</block>
+			<block wx:else>
+				<image src="../../asset/default-user.png"></image>
+			</block>
+			<!-- <image src="{{userHeadImage}}"></image> -->
+		</view>
+		<view class="right">
+			<view>
+				<view class="name">{{username}}</view>
+				<view class="starts">
+					<block wx:for='{{stars}}' wx:key="id">
+						<view class="star" data-value="{{item.val}}" data-id="{{id}}">
+							<block wx:if="{{!score || item.val>score}}">
+								<image src="../../asset/star-nor.png"></image>
+							</block>
+							<block wx:else>
+								<image src="../../asset/star-sel.png"></image>
+							</block>
+						</view>
+					</block>
+				</view>
+				<view class="content ellipsis-2">{{content}}</view>
+			</view>
+			<view class='time-wrapper'>
+				<view class="time">{{showCreateTime}}</view>
+			</view>
+		</view>
+	</view>
+	
+</template>
