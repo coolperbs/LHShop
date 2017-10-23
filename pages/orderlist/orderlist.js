@@ -6,9 +6,13 @@ var host = config.host;
 var utils = require('../../common/utils/utils');
 var orderService = require('../../service/order/order');
 Page({
-	onShow:function(){
+	onLoad:function(option){
 		console.log('orderList');
 		var self = this;
+		var status = option.status;
+		self.param = {
+			status :status
+		}
 		_fn.init(self);
 	},
 	changeTab:function(e){
@@ -107,7 +111,10 @@ Page({
 	},
 	toAftersale:function(e){
 		var orderId = e.currentTarget.dataset.orderid;
+		wx.navigateTo({
+			url:'../aftersale/aftersale'
 
+		});
 	}
 });
 
@@ -142,23 +149,29 @@ var _fn = {
 		}
 	},
 	getTabWeiget:function(page){
+		var status = page.param.status||1;
 		page.tab = new Tab({
 			offset:29,
 			tabs:[{
 				name:"全部",
-				extra:JSON.stringify({type:1})
+				extra:JSON.stringify({type:1}),
+				isSelect:status/1 === 1?true:false
 			},{
 				name:'待付款',
-				extra:JSON.stringify({type:2})
+				extra:JSON.stringify({type:2}),
+				isSelect:status/1 === 2?true:false
 			},{
 				name:'待发货',
-				extra:JSON.stringify({type:3})
+				extra:JSON.stringify({type:3}),
+				isSelect:status/1 === 3?true:false
 			},{
 				name:'待收货',
-				extra:JSON.stringify({type:4})
+				extra:JSON.stringify({type:4}),
+				isSelect:status/1 === 4?true:false
 			},{
 				name:'已完成',
-				extra:JSON.stringify({type:5})
+				extra:JSON.stringify({type:5}),
+				isSelect:status/1 === 5?true:false
 			},]
 		});
 		var tabData = page.tab.change();

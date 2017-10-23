@@ -76,20 +76,20 @@
 				删除订单 
 				</view>
 
-				<view wx:if="{{ detail.order.orderStatus == 256 && detail.order.orderInfo.commentNum * 1 <= 0 }}"
+				<!-- <view wx:if="{{ detail.order.orderStatus == 256 && detail.order.orderInfo.commentNum * 1 <= 0 }}"
 				data-orderId="{{detail.order.orderId}}" 
 				class="btn finished comment" 
 				catchtap="commentOrder"> 
 				去评价
-				</view>
+				</view> -->
 
 
-				<view wx:if="{{detail.order.orderStatus=='32' || detail.order.orderStatus=='256'}}" 
+				<!-- <view wx:if="{{detail.order.orderStatus=='32' || detail.order.orderStatus=='256'}}" 
 				data-orderId="{{detail.order.orderId}}" 
 				class="btn finished comment" 
 				catchtap="afterSaleOrder"> 
 				申请售后
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -116,9 +116,13 @@
 								<view class="ware-detail">
 									<view class="ware-name ellipsis-2">{{item.title}}</view>
 									<view class="ware-feature ellipsis-1">{{item.subTitel}}</view>
-									<text class="price">￥{{item.showOriginPrice}}</text> 
+									<text class="price">{{item.showOriginPrice}}</text> 
 									<view class="ware-count">x{{item.skuNum}}</view>
 								</view>
+							</view>
+							<view class="btn-wrapper">
+								<view style="border:1px solid red;padding:20rpx" class="toComment btn" catchtap="toComment" data-orderId='{{orderId}}' data-skuId='{{item.skuId}}'>评论</view>
+								<view style="border:1px solid red;padding:20rpx" class="toComment btn" catchtap="toAftersale" data-orderId='{{orderId}}' data-skuId='{{item.skuId}}'>申请售后</view>
 							</view>
 						</block>
 

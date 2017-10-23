@@ -104,22 +104,23 @@
 								删除订单 
 								</view>
 
-								<view wx:if="{{ orderStatus == 256 && orderInfo.commentNum * 1 <= 0 }}"
+								<!-- <view wx:if="{{ orderStatus == 256 && orderInfo.commentNum * 1 <= 0 }}"
 								data-orderId="{{orderId}}" 
 								data-param="{{eventParam}}"
 								class="btn finished comment" 
 								catchtap="commentOrder"> 
 								去评价
-								</view>
+								</view> -->
 
 
-								<view wx:if="{{orderStatus=='32' || orderStatus=='256'}}" 
+								<!-- <view wx:if="{{orderStatus=='32' || orderStatus=='256'}}"  -->
+								<!-- <view
 								data-orderId="{{orderId}}" 
 								data-param="{{eventParam}}"
 								class="btn finished comment" 
-								catchtap="afterSaleOrder"> 
+								catchtap="toAftersale"> 
 								申请售后
-								</view>
+								</view> -->
 							</view>
 
 

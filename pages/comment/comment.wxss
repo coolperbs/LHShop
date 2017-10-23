@@ -1,7 +1,11 @@
+page{
+	height: 100%
+}
 .page-comment{
 	background-color:#f0f0f0;
 	padding-top:1rpx;
 	padding-bottom:30rpx;
+	height: 100%;
 }
 .page-comment .pannel{
 	background-color:#fff;
@@ -151,8 +155,9 @@ padding:0 90rpx;
 	display:flex;
 	justify-content:center;
 	align-items:center;
-
-
+	position:fixed;
+	width:710rpx;
+	bottom: 20rpx
 }
 .ware-price{
 	position:absolute;
@@ -168,4 +173,22 @@ padding:0 90rpx;
 	bottom:0;
 	right:0;
 }
+.page-comment .btn-wrapper{
+	margin-bottom: 20rpx;
+}
+.page-comment .btn-wrapper .logo{
+	width:120rpx;
+	height:120rpx;
+	margin-right:10rpx;
+}
 
+.page-comment .checkbox{
+	width:30rpx;
+	height:30rpx;
+	margin-right: 10rpx;
+}
+.page-comment .isNoName{
+	height:100rpx;
+	display:flex;
+	align-items:center;
+}

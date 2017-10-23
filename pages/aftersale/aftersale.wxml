@@ -1,42 +1,37 @@
 <view class="page-aftersale">
 	<view class="ware pannel">
-		<image class="ware-img" src="//m.360buyimg.com/mobilecms/s800x800_jfs/t3289/285/3021217604/113441/2ca1f98d/57ea421fN6c9b74f6.jpg!q70.jpg" />
+		<image class="ware-img" src="{{ware.mainImage}}" />
 		<view class="ware-detail">
-			<view class="name ellipsis-2">小米合金密码箱</view>
-			<text class="price">¥1799</text>
-			<text class="num">x1</text>
+			<view class="name ellipsis-2">{{ware.title}}</view>
+			<text class="price">{{ware.showOriginPrice}}</text>
+			<text class="num">x{{ware.skuNum}}</text>
 		</view>
 	</view>
 
 	<view class="return-detail pannel">
 		<view class="line">
-			<text class="title">退货原因</text>
-			<view class="content" >			
-				<!-- <text class="chose-return-reason">请选择</text> -->
-				<picker mode="selector" range="{{reasonItems}}" bindchange="changeReason">
-					<view class="text">{{submitObj&&submitObj.returnReason?submitObj.returnReason.reasonDesc:'请选择'}}</view>
-				</picker>
-				<image class='logo' src="../../asset/arrow-right.png"/>
-			</view>
-		</view>
-		<!-- <view class="line">
-			<text class='title'>退款金额</text>
-			<view class='content'>¥88.00</view>
-		</view> -->
-		<view class="line">
-			<text class='title'>退货数量</text>
+			<text class='title'>售后类型</text>
 			<view class='content' bindtap="changeNum">
 				<!-- <text>1</text> -->
-				<picker mode="selector" range="{{numItems}}" bindchange="changeNum">
-					<view class="text">{{submitObj&&submitObj.returnNum?submitObj.returnNum:'请选择'}}</view>
+				<picker mode="selector" 
+					 range="{{type}}"
+					 range-key="name"
+					 data-key="type" 
+					 bindchange="changeInput">
+					<view class="text">{{formData&&formData.typeName?formData.typeName:'请选择'}}</view>
 				</picker>
 				<image class="logo" src="../../asset/arrow-right.png"/>
 			</view>
 		</view>
-		<view class="line">
+		<view class="line big">
 			<text class='title'>退款说明</text>
 			<view class='content notice'>
-				<input placeholder="选填" placeholder-style="font-size:16px;color:#e5e5e5" bindinput="changeNotice"/>
+				<textarea 
+				data-key="content"
+				cursor-spacing="100"
+				placeholder="选填" 
+				placeholder-style="font-size:16px;color:#e5e5e5" 
+				bindinput="changeInput"></textarea>
 			</view>
 		</view>
 	</view>
@@ -44,11 +39,8 @@
 	<view class="upload pannel">
 		<text class="title">上传凭证</text>
 		<view class="btn-wrapper">
-			<block wx:for="{{imageList}}" wx:key="index">
-				<image src="{{item}}" class="logo" bindtap="delImg" data-index="{{index}}"/>
-			</block>
-			<block wx:if="{{!imageList || imageList.length<3}}">
-				<image src="../../asset/addimg-btn.png" class="logo" bindtap="uploadImg"/>
+			<block wx:for="{{uploadData.btns}}">
+				<image src="{{item.imgUrl}}" data-param="{{item.eventParam}}" class="logo" catchtap="changeFile"/>
 			</block>
 		</view>
 	</view>

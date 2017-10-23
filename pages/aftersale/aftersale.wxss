@@ -32,7 +32,7 @@ page{
 .page-aftersale .ware .ware-detail .price{
 	position: absolute;
 	bottom:0;
-	left: 0
+	left: 0;
 }
 .page-aftersale .ware .ware-detail .num{
 	position: absolute;
@@ -51,6 +51,13 @@ align-items:center;
 width:100%;
 justify-content:space-between;
 font-size: 15px;
+}
+.page-aftersale .line.big{
+	height: 300rpx;
+	align-items: flex-start;
+}
+.page-aftersale .line.big .title{
+	margin-top: 20rpx
 }
 .page-aftersale .line .title{
 	width:200rpx;
@@ -80,7 +87,7 @@ margin-top:40rpx;
 .page-aftersale .upload .btn-wrapper .logo{
 	width:120rpx;
 	height:120rpx;
-	margin-right:20rpx;
+	margin-right:10rpx;
 }
 .page-aftersale .upload .title{
 	margin:0 20rpx;
