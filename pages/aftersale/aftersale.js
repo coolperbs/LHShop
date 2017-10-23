@@ -1,4 +1,4 @@
-aftersaledetail·var weigetUtil = require('../../common/utils/weigetUtil');
+var weigetUtil = require('../../common/utils/weigetUtil');
 var orderService = require('../../service/order/order');
 var utils = require('../../common/utils/utils');
 var FileUploader = weigetUtil.FileUploader;
