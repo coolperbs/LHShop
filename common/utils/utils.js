@@ -109,6 +109,10 @@ handle = {
   hideLoading : function() {
     clearTimeout( loadingTimmer );
     wx.hideLoading();
+  },
+  topToHome : function( viewName ) {
+    wx.setStorageSync( 'homeView', viewName + '' );
+    wx.reLaunch( { url : '../index/index' } );
   }
 }
 

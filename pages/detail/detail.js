@@ -61,7 +61,7 @@ Page({
 
 		if ( buyType == 2 ) {	// 立即购买
 			wx.navigateTo( {
-				url : '../checkout/checkout'
+				url : '../checkout/checkout?skuid=' + pageData.skuId + '&skunum=1'
 			} );
 		} else if ( buyType == 1 ) { //加购
 			service.cart.addOut( {
@@ -93,10 +93,42 @@ Page({
 		this.setData( {
 			'tab.current' : data.id
 		} );
+	},
+	toCart : function() {
+		utils.topToHome( 'cart' );
+	},
+	follow : function() {
+		var self = this,
+			data = self.data,
+			favorite = data.pageData.favorite;
+
+		favorite = favorite == 1 ? 2 : 1;
+		_fn.follow( {
+			type : 1,
+			favoriteId : 1,
+			skuId : data.pageData.skuId
+		}, function( res ) {
+			if ( utils.isErrorRes( res ) ) {
+				return;
+			}
+			wx.showToast( {
+				title : '这里要修改下'
+			} );
+			self.setData( {
+				'pageData.favorite' : favorite
+			} );
+		} );
 	}
 });
 
 _fn = {
+	follow : function( param, callback ) {
+		param = param || {};
+		ajax.query( {
+			url : app.host + '/app/favorite',
+			param : param
+		}, callback );
+	},
 	getPageData : function( callback ) {
 		ajax.query( {
 			url : app.host + '/app/ware/detail/' + pageParam.id

@@ -27,6 +27,19 @@ handle = {
 };
 
 events = {
+  checkAll : function( e ) {
+    var shopId = e.currentTarget.dataset.shopid,
+        allChecked = e.currentTarget.dataset.allchecked,
+        callerPage = this;
+
+
+    service.cart.checkAll( {
+      shopId : shopId,
+      checked : allChecked == 1 ? false : true,
+    }, function( res ) {
+      _fn.refreshPage( callerPage, res );
+    } );
+  },
   check : function( e ) {
     var cartId = e.currentTarget.dataset.cartid,
         checked = e.currentTarget.dataset.checked,
@@ -86,6 +99,9 @@ events = {
         } );
       }
     } );
+  },
+  gotoBuy : function() {
+    utils.topToHome( 'home' );
   }
 }
 
