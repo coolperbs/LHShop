@@ -97,6 +97,24 @@
 					"name": "售后列表",
 					"pathName": "pages/aftersalelist/aftersalelist",
 					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "商详",
+					"pathName": "pages/detail/detail",
+					"query": "id=2"
+				},
+				{
+					"id": -1,
+					"name": "结算",
+					"pathName": "pages/checkout/checkout",
+					"query": "skuId=2&skuNum=1"
+				},
+				{
+					"id": -1,
+					"name": "结算",
+					"pathName": "pages/checkout/checkout",
+					"query": "skuid=2&skunum=1"
 				}
 			]
 		},

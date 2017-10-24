@@ -27,7 +27,7 @@ views = {
 Page( {
 	data : {
 		viewData : {},
-		currentView : 'home',
+		currentView : 'cart',
 		tab : {
 			currentTab : 0,
 			list : [{
@@ -72,8 +72,11 @@ Page( {
 		// 每次显示都刷新一次购物车
 		// 这样保证在商详添加后在首页也能显示
 		var self = this,
+			viewName = wx.getStorageSync( 'homeView' ),
 			currentView = self.data.currentView || 'home';
 
+		currentView = viewName ? viewName : currentView;
+		wx.removeStorageSync( 'homeView' );
 		_fn.selectView.call( this, currentView, { type : 'show' } );
 	},
 

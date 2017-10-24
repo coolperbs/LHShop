@@ -11,12 +11,23 @@ url = {
 	del : app.host + '/app/cart/delete',
 	cut : app.host + '/app/cart/cut',
 	check : app.host + '/app/cart/cheack',
-	unCheck : app.host + '/app/cart/uncheack'
+	unCheck : app.host + '/app/cart/uncheack',
+	checkAll : app.host + '/app/cart/cheackAll',
+	unCheckAll : app.host + '/app/cart/uncheackAll'
 	//update : app.host + '/mch/cart/update'	
 }
 
 
 handle = {
+	checkAll : function( param, callback ) {
+		var checkUrl = param.checked ? url.checkAll : url.unCheckAll;
+		param = param || {};
+		ajax.query( {
+			url : checkUrl,
+			param : param
+		}, callback );
+	},
+
 	check : function( param, callback ) {
 		var checkUrl = param.checked ? url.check : url.unCheck;
 		param = param || {};

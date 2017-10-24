@@ -18,6 +18,10 @@ Page({
 			if ( utils.isErrorRes( res ) ) {
 				return;
 			}
+			if ( res.data.sku && ( !res.data.skus || res.data.skus.length <= 0 ) ) {
+				res.data.skus = [ res.data.sku ];
+			}
+			res.data.sku
 			self.setData( {
 				pageData : res.data
 			} );
@@ -132,15 +136,26 @@ _fn = {
 	},
 
 	getPageData : function( callback ) {
+		var url = '';
+
+		if ( pageParam.skuid && pageParam.skunum ) {
+			url = app.host + '/app/trade/buynow/' + pageParam.skuid + '/' + pageParam.skunum;
+		}
+		else if ( pageParam.shopid ) {  // 门店购买
+			url = app.host + '/app/trade/cartbuy/' + pageParam.shopid;
+		} else {
+			wx.showToast( { title : '缺少页面相关参数' } );
+			return;
+		}
+
 		ajax.query( {
-			url : app.host + '/app/trade/cartbuy/' + pageParam.shopid
+			url : url
 		}, callback );
 	},
 	initAddress : function( caller, address ) {
 		if ( !address ) {
 			return;
 		}
-		console.log( 'ff' );
 		caller.address = new Address({
 			provinceId : address.province,
 			cityId : address.city,
@@ -249,14 +264,23 @@ _fn = {
 		var data = caller.data;
 		var type;
 		var address = data.address || {};
+		var param = {};
 
 		address.addressId = address.id || '';
+		if ( pageParam.skunum && pageParam.skuid ) {
+			param.skuNum = pageParam.skunum;
+			param.skuId = pageParam.skuid;
+			param.shopId = 1;
+		} else if ( pageParam.shopid ) {
+			param.shopId = pageParam.shopid;
+		} else {
+			wx.showToast( { title : '缺少页面相关参数' } );
+			return;
+		}
+		param.address = address;
 		ajax.query( {
 			url : app.host + '/app/order/cart/submit',
-			param : {
-				shopId : pageParam.shopid,
-				address : address
-			}
+			param : param
 		}, callback );
 	},
 

@@ -4,7 +4,7 @@
 	<block wx:if="{{ shopCart && shopCart.length > 0 }}">
 		<view class="shop" wx:for="{{shopCart}}" wx:key="id" wx:for-item="shopCart">
 			<view class="head">
-				<view class="checkbox {{ shopCart.allCheacked == 1 ? 'checked' : '' }}">
+				<view class="checkbox {{ shopCart.allCheacked == 1 ? 'checked' : '' }}" data-allchecked="{{ shopCart.allCheacked }}" data-shopid="{{shopCart.id}}" catchtap="cartClickProxy" data-fn="checkAll">
 					<image class="off" src="../../asset/unchecked.png"></image>
 					<image class="on" src="../../asset/checked.png"></image>
 				</view>
@@ -50,10 +50,10 @@
 		</view>
 		<view class="last-child"></view>
 	</block>
-	<block wx:elseif>
+	<block wx:else>
 		<view class="goLogin-wrapper">
 			<view class="login-msg">购物车还没有商品哟</view>
-			<view class="login-btn" catchtap="events" data-func="goLogin">去逛逛</view>
+			<view class="login-btn" catchtap="cartClickProxy" data-fn="gotoBuy">去逛逛</view>
 		</view>
 	</block>
 </view>
