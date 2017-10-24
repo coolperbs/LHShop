@@ -8,7 +8,6 @@ var utils = require('../../common/utils/utils');
 
 Page({
 	onLoad:function(option){
-		console.log(333);
 		var self = this;
 		var skuId = option.skuid||1;
 		self.param ={
@@ -31,7 +30,7 @@ Page({
 			self.list.next();
 		}else{
 			self.setData({
-				orderList:self.list.totalData
+				commentList:self.list.totalData
 			})
 		}
 	},
@@ -95,17 +94,17 @@ var _fn = {
 		var reqParam = {};
 		reqParam.skuId = skuId;
 		if(type===2){
-			reqParam.star = '5';
+			reqParam.level = 1;
 		}else if(type===3){
-			reqParam.star = '3-4';
+			reqParam.level = 2;
 		}else if(type===4){
-			reqParam.star = '2-1'
+			reqParam.level = 3;
 		}else if(type===5){
 			reqParam.querySelf = 1
 		}
 
 		var dataList = new List({
-			url:host+'/app/aftersale/list',
+			url:host+'/app/comment/list',
 			param:reqParam,
 			getList:function(res){
 				if(res.data && res.data.comments){

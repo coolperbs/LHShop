@@ -109,20 +109,22 @@
 							
 						</view>
 						<block wx:for="{{skus}}" wx:key="*this">
-							<view class="body order-part">
-								<view class="ware-img img-floor">
-									<image class="f1" src="{{item.mainImage}}"></image>
+							<view class="body ware-part">
+								<view class="ware-info">
+									<view class="ware-img img-floor">
+										<image class="f1" src="{{item.mainImage}}"></image>
+									</view>
+									<view class="ware-detail">
+										<view class="ware-name ellipsis-2">{{item.title}}</view>
+										<view class="ware-feature ellipsis-1">{{item.subTitel}}</view>
+										<text class="price">{{item.showOriginPrice}}</text> 
+										<view class="ware-count">x{{item.skuNum}}</view>
+									</view>
 								</view>
-								<view class="ware-detail">
-									<view class="ware-name ellipsis-2">{{item.title}}</view>
-									<view class="ware-feature ellipsis-1">{{item.subTitel}}</view>
-									<text class="price">{{item.showOriginPrice}}</text> 
-									<view class="ware-count">x{{item.skuNum}}</view>
+								<view class="btn-wrapper">
+									<view class="toComment btn" catchtap="toComment" data-orderId='{{orderId}}' data-skuId='{{item.skuId}}'>评论</view>
+									<view class="toComment btn" catchtap="toAftersale" data-orderId='{{orderId}}' data-skuId='{{item.skuId}}'>申请售后</view>
 								</view>
-							</view>
-							<view class="btn-wrapper">
-								<view style="border:1px solid red;padding:20rpx" class="toComment btn" catchtap="toComment" data-orderId='{{orderId}}' data-skuId='{{item.skuId}}'>评论</view>
-								<view style="border:1px solid red;padding:20rpx" class="toComment btn" catchtap="toAftersale" data-orderId='{{orderId}}' data-skuId='{{item.skuId}}'>申请售后</view>
 							</view>
 						</block>
 

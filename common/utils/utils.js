@@ -103,6 +103,15 @@ handle = {
       seconds : date.getSeconds()
     };   
   },
+  formateTime :function(time,isContainTime){
+    var timeObj = this.timeToDateObj(time);
+    var timeStr = timeObj.year+"-"+timeObj.month+"-"+timeObj.day
+    if(isContainTime){
+      timeStr = timeStr+" "+timeObj.hours+":"+timeObj.minutes;
+    }
+    return timeStr;
+
+  },
   orderStatusStr : function( s ) {
     return orderStatus[ s ];
   },

@@ -1,3 +1,4 @@
+@import '../../widgets/common/common.wxss'
 .page-collect .head { z-index:100;border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
 .page-collect .head .box { text-align:center;height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
 .page-collect .head .box.current { color : #d6204b;  }

@@ -1,4 +1,5 @@
 var weigetUtil = require('../../common/utils/weigetUtil');
+var aftersaleService = require('../../service/aftersale/aftersale');
 var orderService = require('../../service/order/order');
 var utils = require('../../common/utils/utils');
 var FileUploader = weigetUtil.FileUploader;
@@ -9,21 +10,31 @@ var host = config.host;
 Page({
 	onLoad:function(param){
 		var self = this;
-		var orderId = param.orderId;
-		var skuId = param.skuId;
+		var aftersaleId = param.aftersaleId;
 		this.typeEnum = [{name:'退货',key:'1'},{name:'换货',key:'2'},{name:'维修',key:'3'}];
-		self.param = {
-			orderId:orderId,
-			skuId:skuId
+		if(aftersaleId){
+			var aftersaleItem = aftersaleService.cache();
+			self.param = {
+				aftersaleId:aftersaleItem.id
+			}
+			self.aftersaleItem = aftersaleItem;
+			self.formData = {};
+		}else{
+			var orderId = param.orderId;
+			var skuId = param.skuId;
+			self.param = {
+				orderId:orderId,
+				skuId:skuId
+			}
+			self.formData = {
+				orderId:orderId,
+				skuId:skuId
+			}
+			self.setData({
+				type:this.typeEnum,
+				formData:self.formData
+			});
 		}
-		self.formData = {
-			orderId:orderId,
-			skuId:skuId
-		}
-		self.setData({
-			type:this.typeEnum,
-			formData:self.formData
-		});
 		_fn.init(self);
 	},
 	onShow:function(){
@@ -79,25 +90,42 @@ Page({
 });
 var _fn = {
 	init:function(page){
-		_fn.getOrderDetail(page,function(res){
-			if(res.code === '0000' && res.data && res.data.order && res.data.order.skus){
-				var skuId = page.param.skuId;
-				var ware = res.data.order.skus.filter((v,k)=>{
-					v.showOriginPrice = utils.fixPrice(v.originPrice);
-					return v.skuId = skuId;
-				})[0];
-				page.setData({
-					ware:ware
-				});
-			}
-		});
+		if(page.param.orderId){
+			_fn.getOrderDetail(page,function(res){
+				if(res.code === '0000' && res.data && res.data.order && res.data.order.skus){
+					var skuId = page.param.skuId;
+					var ware = res.data.order.skus.filter((v,k)=>{
+						v.showOriginPrice = utils.fixPrice(v.originPrice);
+						return v.skuId = skuId;
+					})[0];
+					page.setData({
+						ware:ware
+					});
+				}
+			});
+		}else if(page.param.aftersaleId){
+			page.setData({
+				ware:page.aftersaleItem.sku
+			});
+			
+		}
+		var fileList = [];
+		if(page.aftersaleItem){
+			fileList = [
+				page.aftersaleItem.img1,
+				page.aftersaleItem.img2,
+				page.aftersaleItem.img3,
+				page.aftersaleItem.img4,
+				page.aftersaleItem.img5,
+				page.aftersaleItem.img6,
+				page.aftersaleItem.img7,
+				page.aftersaleItem.img8
+			]
+		}
+		console.log(111,fileList);
 		page.fileUploader = new FileUploader({
 			orderId:page.param.orderId,
-			files:[
-					// 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=936744394,1185026573&fm=173&s=5B10D6AC5401BEF64E1904AE03007012&w=218&h=146&img.JPEG',
-					// 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1217380447,2330680278&fm=173&s=E000DF1900C34AE7643034E40300A030&w=218&h=146&img.JPEG',
-					// '//img13.360buyimg.com/n4/s130x130_jfs/t3016/173/2034301510/26897/9a20d7b7/57d2406dNefb35cb8.jpg'
-			],
+			files:fileList,
 			afterChange:function(res){
 				if(res.btns){
 					res.btns.forEach((v,k)=>{

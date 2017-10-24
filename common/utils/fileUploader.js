@@ -43,13 +43,15 @@ class FileUploader{
         var renderData = {btns:[]};
         if(this.files && this.files.length>0){
             this.files.forEach((fv,fk)=>{
-                renderData.btns.push({
-                    imgUrl:fv,
-                    eventParam:JSON.stringify({
-                        type:'finished',
-                        index:fk
+                if(fv){
+                    renderData.btns.push({
+                        imgUrl:fv,
+                        eventParam:JSON.stringify({
+                            type:'finished',
+                            index:fk
+                        })
                     })
-                })
+                }
             });
         }
         if(renderData.btns.length<this.max){

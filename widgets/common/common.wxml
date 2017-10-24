@@ -1,0 +1,19 @@
+<template name="list-bottom">
+	<view class="list-bottom">
+		<block wx:if="{{type===1}}">
+			<image src="../../asset/bottom-loading.png"/>
+			<text>正在努力为您加载数据...</text>
+		</block><!--加载中-->
+		<block wx:esif="{{type===2}}">
+			<text>已经到底了...</text>
+		</block><!--加载完毕-->
+	</view>
+</template>
+
+
+<template name="nodata-page">
+	<view class="nodata-page">
+		<image src="../../asset/empty-data.png"/>
+		<text class="msg">暂无数据</text>
+	</view>
+</template>

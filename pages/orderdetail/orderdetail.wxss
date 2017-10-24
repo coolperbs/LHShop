@@ -65,7 +65,7 @@ page{
 	/*letter-spacing: 0;*/
 }
 .view-orders .order-wrapper .body{
-	height:218rpx;
+	/*height:218rpx;*/
 }
 .view-orders .order-wrapper .body .ware-img{
 	width:160rpx;
@@ -125,6 +125,22 @@ page{
 	/*letter-spacing: 0;*/
 	margin-top: 15px
 }
+.view-orders .order-wrapper .btn-wrapper{
+	display:flex;
+	/*width:100%;*/
+	justify-content:flex-end;
+	padding-right: 20rpx;
+}
+.view-orders .order-wrapper .ware-part{
+	width: 100%;
+	padding-bottom: 20rpx;
+}
+.view-orders .order-wrapper .ware-part .ware-info{
+	width:100%;
+	height:218rpx;
+	display:flex;
+	position:relative;
+}
 .view-orders .order-wrapper .footer{
 	height:100rpx;
 	/*margin-top:1px;*/
@@ -180,6 +196,7 @@ page{
 .view-orders .order-wrapper .footer .btn-group{
 	display:flex;
 }
+.view-orders .order-wrapper .btn,
 .view-orders .order-wrapper .footer .btn{
 /*	position:relative;
 	top:35rpx;

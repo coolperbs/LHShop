@@ -1,3 +1,4 @@
+<import src='../../widgets/common/common.wxml'/> 
 <view class="page-collect">
 	<view class="head">
 		<block wx:for="{{tab.tabData}}" wx:key="index">
@@ -9,17 +10,24 @@
 		</block>
 		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
 	</view>
-	<scroll-view class="scrollview">
-		<block wx:for="{{favList}}">
-			<block wx:if="{{curType==='sku'}}">
-				<template is="ware" data="{{...item}}"></template>
+		<scroll-view class="scrollview" style="height:{{scrollHeight}}">
+			<block wx:if="{{favList.length>0}}">
+				<block wx:for="{{favList}}">
+					<block wx:if="{{curType==='sku'}}">
+						<template is="ware" data="{{...item}}"></template>
+					</block>
+					<block wx:else>
+						<template is="store" data="{{...item}}"></template>
+						
+					</block>
+				</block>
+				<template is="list-bottom" data="{{type:'1'}}"></template>
 			</block>
 			<block wx:else>
-				<template is="store" data="{{...item}}"></template>
-				
+					<template is="nodata-page"></template>
 			</block>
-		</block>
-	</scroll-view>
+		</scroll-view>
+	
 </view>
 
 <template name="store">
