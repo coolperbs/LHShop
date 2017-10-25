@@ -105,7 +105,9 @@ Page({
 		}
 
 
-		_fn.checkForm( this, e );
+		if ( !_fn.checkForm( this, e ) ) {
+			return;
+		}
 		_fn.submit( this, function( res ) {
 			// 如果是在线支付就继续调用
 			if ( utils.isErrorRes( res )) {
@@ -202,23 +204,24 @@ _fn = {
 		var newData = e.detail.value || {};
 		if ( ( newData.userName + '' ).trim() == '' ) {
 			wx.showToast( { title : '请填写联系人' } );
-			return;
+			return false;
 		}
 		if ( ( newData.userPhone + '' ).trim() == '' ) {
 			wx.showToast( { title : '请填写手机号' } );
-			return;
+			return false;
 		}
 		if( !(/^1[34578]\d{9}$/.test( newData.userPhone )) ){ 
         	wx.showToast( { title : '请填写正确的手机号' } );  
-        	return; 
+        	return false; 
     	} 
 		if ( ( newData.address + '' ).trim() == '' ) {
 			wx.showToast( { title : '请填写详细地址' } );
-			return;
+			return false;
 		}
 		caller.data.address.userName = newData.userName;
 		caller.data.address.userPhone = newData.userPhone;
 		caller.data.address.address = newData.address;
+		return true;
 	},
 	submit : function( caller ) {
 		var data = caller.data;

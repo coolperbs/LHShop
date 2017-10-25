@@ -27,7 +27,7 @@ views = {
 Page( {
 	data : {
 		viewData : {},
-		currentView : 'cart',
+		currentView : 'home',
 		tab : {
 			currentTab : 0,
 			list : [{
@@ -58,7 +58,6 @@ Page( {
 		wx.setNavigationBarTitle( {
 			title : app.config.title 
 		} );
-		//_fn.showTips( this );
 	},
 
 	onReachBottom : function( e ) {
@@ -69,15 +68,17 @@ Page( {
 	},
 
 	onShow : function() {
+		var self = this;
+		//service.loc.getShops( function( shops ) {
 		// 每次显示都刷新一次购物车
 		// 这样保证在商详添加后在首页也能显示
-		var self = this,
-			viewName = wx.getStorageSync( 'homeView' ),
+		var viewName = wx.getStorageSync( 'homeView' ),
 			currentView = self.data.currentView || 'home';
 
 		currentView = viewName ? viewName : currentView;
 		wx.removeStorageSync( 'homeView' );
-		_fn.selectView.call( this, currentView, { type : 'show' } );
+		_fn.selectView.call( self, currentView, { type : 'show' } );
+		//} );
 	},
 
 	changeTab : function( e ) {

@@ -1,8 +1,10 @@
+<import src="../../widgets/modules/modules.wxml"/>
+
 <view class="head">
 	<view class="shop-info">
-		<image class="logo" mode="aspectFit" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508479881000&di=cb89c017fcda38b0229b1cc8a00c6788&imgtype=0&src=http%3A%2F%2Fwenwen.soso.com%2Fp%2F20111106%2F20111106212612-1504106179.jpg"></image>
+		<image class="logo" mode="aspectFit" src="{{shopInfo.logo}}"></image>
 		<view class="info">
-			<view class="name">xx店铺</view>
+			<view class="name">{{shopInfo.name}}</view>
 			<view class="sub">皇冠、钻石等数量</view>
 		</view>
 	</view>
@@ -11,9 +13,25 @@
 			<view class="num">12.1万</view>
 			<view>粉丝数</view>
 		</view>
-		<view class="flow"><image src="../../asset/heart-white.png"></image>关注</view>
+		<view class="follow"><image src="../../asset/heart-white.png"></image>关注</view>
 	</view>
 	<image mode="aspectFill" class="back-pic" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508479706623&di=ad540e964bc09899b32c3602be00b9b7&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01055658464b2aa8012060c815adab.jpg%40900w_1l_2o_100sh.jpg"></image>
 </view>
 
-<view>活动楼层</view>
+<view class="nav">
+	<view class="tab {{ tab.currentTab.name == 'home' ? 'current' : '' }}" catchtap="changeTab" data-index="1" data-name="home">店铺首页</view>
+	<view class="tab {{ tab.currentTab.name == 'all' ? 'current' : '' }}" catchtap="changeTab" data-index="2" data-name="all">全部宝贝</view>
+	<view class="tab {{ tab.currentTab.name == 'new' ? 'current' : '' }}" catchtap="changeTab" data-index="3" data-name="new">新品上架</view>
+	<view class="line" style="width : {{750/3}}rpx;transform: translate3d( {{ 750 / 3 * ( tab.currentTab.index - 1 ) }}rpx, 0, 0);"></view>
+</view>
+
+<scroll-view class="cont" scroll-top="{{scrollTop}}" scroll-y="{{ true }}" bindscrolltolower="getMore">
+	<view class="block"></view>
+	<view class="list modules">
+		<block wx:for="{{pageData.moduleList}}" wx:key="modulePrototypeId">
+			<template is="{{item.modulePrototypeId}}-{{item.templatePrototypeId}}" data="{{...item, index}}"></template>
+		</block>
+	</view>
+</scroll-view>
+
+<!--<view>活动楼层</view>-->

@@ -10,16 +10,22 @@ handle = {
 	render : function( callerPage ) {
 		_fn.init( callerPage );
 
-		service.active.getHome( { shops : '1' }, function( res ) {
-			if ( utils.isErrorRes( res ) ) {
-				return;
-			}
+		// 定位获取门店信息
+		service.loc.getShops( function( shops ) {
+			// 获取首页信息
+			service.active.getHome( { shops : '1' }, function( res ) {
+				var city = wx.getStorageSync( 'city' );
+				if ( utils.isErrorRes( res ) ) {
+					return;
+				}
 
-			callerPage.setData( {
-				'viewData.pageData' : res.data,
-				'viewData.showShops' : false
+				callerPage.setData( {
+					'viewData.pageData' : res.data,
+					'viewData.showShops' : false,
+					'viewData.shops' : shops,
+					'viewData.city' : city
+				} );
 			} );
-			console.log( res );
 		} );
 	}
 }
@@ -40,6 +46,12 @@ events = {
 		this.setData( {
 			'viewData.showShops' : false
 		} );
+	},
+	goHome : function( e ) {
+		wx.navigateTo( { url : '../shop/shop?shopid=' + e.currentTarget.dataset.shopid } );
+	},
+	goCity : function() {
+		wx.navigateTo( { url : '../city/city' } );
 	}
 }
 

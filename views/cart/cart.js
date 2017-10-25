@@ -19,8 +19,10 @@ handle = {
         callerPage.setData( {viewData : {}} );
         return;
       }
+      res.data = res.data || {};
+      res.data.shopCart = res.data.shopCart || [];
       callerPage.setData( {
-        viewData : res.data || {}
+        viewData : res.data
       } );
     });
   }
