@@ -1,24 +1,39 @@
-var modules = require( '../../widgets/modules/modules.js' ),
-	utils = require( '../../common/utils/utils.js' ),
-	serviceCart = require( '../../service/cart/cart.js' ),
+var utils = require( '../../common/utils/utils.js' ),
+	modules = require( '../../widgets/modules/modules.js' ),
+	service = require( '../../service/service.js' ),
 	data = require( 'data.js' ),
+	pageParam,
 	_fn;
 
 Page( {
-	data : data.data,
-	modulesAddCart : function( e ) {
-		var dataset = e.currentTarget.dataset,
-			self = this;
-
-		serviceCart.add( dataset.skuId, dataset.storeId, 1, function( data ) {
-			// 模拟添加
-			wx.showToast( {
-				title : '添加成功',
-				icon : 'success',
-				duration : 1000
-			} );
-		} );
-	}
+	onLoad : function( options ) {
+		pageParam = options || {};
+		_fn.getStoreInfo( this );
+	},
+	moduleClickProxy : function( e ) {
+		var target = e.currentTarget;
+		if ( target.dataset && target.dataset.fn && modules.events[target.dataset.fn] ) {
+		  modules.events[target.dataset.fn].call( this, e );
+		}
+    }
 } );
 
+_fn = {
+	getStoreInfo : function( caller ) {
+		utils.showLoading( 300 );
+		service.active.getActive( {
+			actId : pageParam.actid,
+			shops : '1'
+		}, function( res ) {
+			utils.hideLoading();
+			if ( utils.isErrorRes( res ) ) {
+				return;
+			}
+			caller.setData( {
+				pageData : res.data || {}
+			} );
+			console.log( res );
+		} );
+	}
+}
 

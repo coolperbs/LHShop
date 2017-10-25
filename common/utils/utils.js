@@ -107,7 +107,9 @@ handle = {
     return orderStatus[ s ];
   },
   hideLoading : function() {
-    clearTimeout( loadingTimmer );
+    if ( loadingTimmer ) {
+      clearTimeout( loadingTimmer );
+    }
     wx.hideLoading();
   },
   topToHome : function( viewName ) {

@@ -100,20 +100,23 @@ Page({
 	follow : function() {
 		var self = this,
 			data = self.data,
+			param,
 			favorite = data.pageData.favorite;
 
 		favorite = favorite == 1 ? 2 : 1;
-		_fn.follow( {
+		param = {
 			type : 1,
-			favoriteId : 1,
-			skuId : data.pageData.skuId
-		}, function( res ) {
+			skuId : data.pageData.skuId			
+		}
+		if ( favorite == 2 ) {
+			param.favoriteId = self.data.pageData.favoriteId;
+		}
+
+		_fn.follow( param, function( res ) {
 			if ( utils.isErrorRes( res ) ) {
 				return;
 			}
-			wx.showToast( {
-				title : '这里要修改下'
-			} );
+
 			self.setData( {
 				'pageData.favorite' : favorite
 			} );

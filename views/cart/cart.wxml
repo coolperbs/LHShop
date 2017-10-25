@@ -50,7 +50,7 @@
 		</view>
 		<view class="last-child"></view>
 	</block>
-	<block wx:else>
+	<block wx:if="{{ shopCart && shopCart.length == 0 }}">
 		<view class="goLogin-wrapper">
 			<view class="login-msg">购物车还没有商品哟</view>
 			<view class="login-btn" catchtap="cartClickProxy" data-fn="gotoBuy">去逛逛</view>

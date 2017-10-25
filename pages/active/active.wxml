@@ -1,7 +1,7 @@
 <import src="../../widgets/modules/modules.wxml"/>
 
-<view class="active modules base-style">
-	<block wx:for="{{modules}}">
-		<template is="{{item.type}}" data="{{...item, index}}"></template>
-	</block>		
-</view>	
+<view class="modules">
+	<block wx:for="{{pageData.moduleList}}" wx:key="index">
+		<template is="{{item.modulePrototypeId}}-{{item.templatePrototypeId}}" data="{{...item, index}}"></template>
+	</block>
+</view>

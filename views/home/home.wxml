@@ -24,10 +24,10 @@
 		<view class="mask {{ showShops ? 'show' : '' }}" catchtap="homeClickProxy" data-fn="hideShops"></view>
 		<view class="shop-list {{ showShops ? 'show' : '' }}">
 			<scroll-view scroll-x="{{true}}">
-				<view class="scroll-wrapper" style="width:{{180*16}}rpx;">
-					<view class="tab" wx:for="asdfasfdsadfsadf" wx:key="index">
-						<image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508323575828&di=10d63ebe48a40de03a5d95d0a6498e75&imgtype=0&src=http%3A%2F%2Fm.qqzhi.com%2Fupload%2Fimg_4_1146787466D463651502_23.jpg"></image>
-						<view class="name ellipsis-1">店铺名称店铺名称</view>
+				<view class="scroll-wrapper" style="width:{{180*shops.length}}rpx;">
+					<view class="tab" wx:for="{{shops}}" data-shopid="{{item.id}}" catchtap="homeClickProxy" data-fn="goHome" wx:key="index">
+						<image src="{{item.logo}}"></image>
+						<view class="name ellipsis-1">{{item.name}}</view>
 					</view>
 				</view>
 			</scroll-view>

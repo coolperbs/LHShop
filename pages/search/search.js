@@ -59,7 +59,7 @@ var _fn = {
 		var searchParam = _fn.getSearchParam(page);
 		page.dataList = page.dataList || new List();
 		page.dataList.setConfig({
-			url:host+'/app/ware/search ',
+			url:host+'/app/ware/search',
 			param:searchParam,
 			render:function(data){
 				data.totalData = data.totalData.map((v,k)=>{

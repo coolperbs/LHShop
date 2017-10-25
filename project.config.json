@@ -108,13 +108,19 @@
 					"id": -1,
 					"name": "结算",
 					"pathName": "pages/checkout/checkout",
-					"query": "skuId=2&skuNum=1"
+					"query": "skuid=2&skunum=1"
 				},
 				{
-					"id": -1,
-					"name": "结算",
-					"pathName": "pages/checkout/checkout",
-					"query": "skuid=2&skunum=1"
+					"id": 16,
+					"name": "店铺首页",
+					"pathName": "pages/shop/shop",
+					"query": "shopid=1"
+				},
+				{
+					"id": 17,
+					"name": "活动页面",
+					"pathName": "pages/active/active",
+					"query": "actid=7"
 				}
 			]
 		},
