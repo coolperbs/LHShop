@@ -3,9 +3,9 @@
 <template name="home">
 	<view class="home modules">
 		<view class="h-head">
-			<view url="../city/city" class="city">
+			<view catchtap="homeClickProxy" data-fn="goCity" class="city">
 				<image src="../../asset/loc.png"></image>
-				<view class="ellipsis-1">北京市</view>
+				<view class="ellipsis-1">{{city.name}}</view>
 			</view>
 			<view url="../search/search" class="searchbox">
 				<view class="input">

@@ -16,18 +16,6 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "订单列表",
-					"pathName": "pages/orderlist/orderlist",
-					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "订单详情",
-					"pathName": "pages/orderdetail/orderdetail",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "地址详情",
 					"pathName": "pages/address/address",
 					"query": ""

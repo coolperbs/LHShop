@@ -11,14 +11,18 @@ url = {
 
 handle = {
 	getShops : function( callback ) {
-		handle.getShopList( callback );
-	},
-	getShopList : function( callback ) {
 		var shops = wx.getStorageSync( 'shops' );
 		if ( shops ) {
 			callback( shops );
 			return;
 		}
+
+		// 获取地址信息
+		handle.getLocInfo( function( res ) {
+			handle.getShopList( callback );
+		} );
+	},
+	getShopList : function( callback ) {
 		ajax.query( {
 			param : {
 				citycode : '028',
@@ -36,9 +40,31 @@ handle = {
 			callback( wx.getStorageSync( 'shops' ) );
 		} );
 	},
-	getLocInfo : function(){
-		// 1.调用定位
-		// 2.根据定位获取地址信息
+
+	getLocInfo : function( callback ){
+		var city = wx.getStorageSync( 'city' );
+		if ( city ) {
+			callback( city );
+			return;
+		}
+		// 1.根据定位获取地址信息
+		// 获取坐标
+		wx.getLocation( {
+			type : 'gcj02',
+			success : function( loc ) {
+				handle.getShopList( callback );
+			},
+			fail : function() {
+				wx.showModal( {
+					title : '提示',
+					content : '不能获取坐标，请手动选择城市',
+					showCancel : false,
+					complete : function() {
+						wx.navigateTo( { url : '../city/city' } );
+					}
+				} );
+			}
+		} );		
 	}
 };
 

@@ -29,10 +29,10 @@ _fn = {
 			if ( utils.isErrorRes( res ) ) {
 				return;
 			}
+			wx.setNavigationBarTitle( { title : res.data.title || '' } );
 			caller.setData( {
 				pageData : res.data || {}
 			} );
-			console.log( res );
 		} );
 	}
 }
