@@ -1,0 +1,32 @@
+.nodata-page{
+	width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+/*justify-content:center;*/
+align-items:center;
+padding-top: 30%
+
+}
+.nodata-page image{
+	width:200rpx;
+	height:200rpx;
+	margin-bottom:40rpx;
+}
+
+.list-bottom{
+	height:80rpx;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:13px;
+	color:#bababa;
+}
+.list-bottom image{
+	width: 12px;
+	height: 12px;
+	margin-right: 10rpx
+}
+.list-bottom .loading{
+	color: #2c2c2c
+}

@@ -41,6 +41,7 @@ class List{
 				if(self.render && typeof self.render==='function'){
 					self.render({
 						totalData:self.totalData,
+						isLast:self.isLast
 					});
 				}
 

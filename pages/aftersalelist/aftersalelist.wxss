@@ -1,0 +1,295 @@
+
+.page-aftersalelist{
+	/*background-color: red;*/
+}
+
+
+.page-aftersalelist .head { z-index:100;border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
+.page-aftersalelist .head .box { text-align:center;height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
+.page-aftersalelist .head .box.current { color : #d6204b;  }
+.tab_ul{
+	position:absolute;
+	height:3px;
+	background-color:#d6204b;
+	left:0;
+	bottom:0;
+	width:90rpx;
+	transition: all .3s;
+
+}
+
+
+.page-aftersalelist .tab{
+	display:flex;
+	height:50px;
+	align-items:center;
+	position: fixed;
+	top:0;
+	background-color: #fff;
+	width:100%;
+	z-index: 100
+}
+.page-aftersalelist .tab .tab-item{
+	display:flex;
+	height:50px;
+	align-items:center;
+	border-bottom:1px solid #f8f8f8;
+	width:25%;
+	text-align:center;
+	justify-content:center;
+	flex-direction:column;
+	color:#434552;
+}
+.page-aftersalelist .tab .tab-item .content{
+	display:flex;
+	height:100%;
+	align-items:center;
+	text-align:center;
+	justify-content:center;
+	flex-direction:column;
+	color:#999999;
+	width:100rpx;
+	position: relative;
+}
+.page-aftersalelist .tab .tab-item.active .content{
+	color:#434552;
+}
+.page-aftersalelist .tab .tab-item .tab-title{
+	font-size: 13px;
+	margin-bottom: 17rpx;
+}
+.page-aftersalelist .tab .tab-item .tab-num{
+	font-size: 12px
+}
+.page-aftersalelist .tab .tab-item.active .content:after{
+	content:'';
+	height: 3px;
+	width:100%;
+	background-color: #434552; 
+	position: absolute;
+	bottom: 0;
+}
+.page-aftersalelist .list-container{
+	margin-top:50px;
+	padding-bottom:50rpx;
+}
+.page-aftersalelist .comment-wrapper{
+	/*height:210rpx;*/
+	border-bottom:1px solid #f8f8f8;
+	display:flex;
+	padding:40rpx 40rpx 6rpx 40rpx;
+}
+
+.page-aftersalelist .left image{
+	height:100rpx;
+	width:100rpx;
+	border-radius: 50%
+}
+.page-aftersalelist .right{
+	display:flex;
+	justify-content:space-between;
+	width:540rpx;
+	font-size: 15px;
+	padding-left:18rpx;
+	position: relative;
+
+}
+.page-aftersalelist .right .top{}
+.page-aftersalelist .right .bottom{}
+.page-aftersalelist .right .name{
+	font-size: 16px;
+	color: #434552;
+	letter-spacing: 0;
+	padding-bottom: 15rpx;
+	line-height: 16px;
+}
+.page-aftersalelist .right .time{
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #CCCCCC;
+	letter-spacing: 0;
+}
+.page-aftersalelist .right .content{}
+.page-aftersalelist .starts{
+	display:flex;
+	/*justify-content:space-between;*/
+	margin-bottom: 12rpx;
+	line-height: 30rpx
+
+
+}
+.page-aftersalelist .starts image{
+	width:30rpx;
+	height:30rpx;
+	margin-right:12rpx;
+
+}
+.page-aftersalelist .tickets{
+	/*position:absolute;*/
+	display:flex;
+	flex-wrap:wrap;
+	min-height: 72rpx
+}
+.page-aftersalelist .ticket{
+	font-family:PingFangSC-Light;
+	font-size:11px;
+	color:#4A4A4A;
+	letter-spacing:0;
+	line-height:12px;
+	background:#F5F5F5;
+	border-radius:100px;
+	padding:0 30rpx;
+	margin-right:20rpx;
+	margin-bottom:20rpx;
+	height:44rpx;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.page-aftersalelist .time-wrapper{
+	position: absolute;
+	right: 0;
+}
+.page-aftersalelist .content{
+	width:550rpx;
+	color:#bababa;
+	font-size:13px;
+
+}
+
+
+
+.page-aftersalelist .gooditem{
+	
+
+	background:#FFFFFF;
+	box-shadow:0 5px 15px 0 rgba(0,0,0,0.05);
+	margin:30rpx;
+	/*border-bottom:1px solid #f8f8f8;*/
+}
+.page-aftersalelist .gooditem .header .left{
+	display:flex;
+	justify-content:flex-start;
+	padding-left:20rpx;
+	flex-direction:column;
+	border-bottom:1px solid #fafafa;
+	color:#bababa;
+	font-size:13px;
+
+}
+.page-aftersalelist .gooditem .body{
+	display:flex;
+	height:180rpx;
+	padding:20rpx 28rpx 20rpx 20rpx;
+	background-color:white;
+}
+.page-aftersalelist .gooditem .body .left{
+	width:180rpx;
+	height:180rpx;
+}
+.page-aftersalelist .gooditem .body .left image{
+	width:100%;
+	height:100%;
+}
+.page-aftersalelist .gooditem .body .right{
+	display:flex;
+	flex-direction:column;
+	position:relative;
+	width:460rpx;
+	justify-content:space-between;
+	padding:20rpx 0 20rpx 10rpx;
+}
+.page-aftersalelist .gooditem .body .right .name{
+	font-size:16px;
+	color:#4A4A4A;
+	letter-spacing:0;
+}
+.page-aftersalelist .gooditem .body .right .num{
+	font-size:18px;
+	color:#4A4A4A;
+	letter-spacing:0;
+}
+.page-aftersalelist .gooditem .body .right .price{
+	display:flex;
+	width:210rpx;
+	position:relative;
+	height:18px;
+	justify-content:space-between;
+}
+.page-aftersalelist .gooditem .body .right .price .marketPrice{
+	font-size:14px;
+	color:#9B9B9B;
+	letter-spacing:0;
+	position:relative;
+	bottom:-2px;
+}
+.page-aftersalelist .gooditem .body .right .price .unitPrice{
+	font-size:18px;
+	color:#0A0C11;
+	letter-spacing:0;
+	/*line-height:12px;*/
+	position:relative;
+	/*top:-16px;*/
+
+}
+
+.page-aftersalelist .gooditem .body .right .price .marketPrice:before{
+	content:"¥";
+
+}
+.page-aftersalelist .gooditem .body .right .price .unitPrice:before{
+	content:"¥";
+	font-size:13px;
+	position:relative;
+	/*top:-4px;*/
+	margin-right:4rpx;
+
+	
+}
+.page-aftersalelist .gooditem .body .right .btn{
+	position:absolute;
+	bottom:0;
+	right:0;
+	font-family:PingFangSC-Regular;
+	font-size:13px;
+	color:#9B9B9B;
+	letter-spacing:0;
+	background:#FFFFFF;
+	border:1px solid #F5F5F5;
+	border-radius:100px;
+	width:128rpx;
+	height:64rpx;
+	line-height:32px;
+	text-align:center;
+}
+.page-aftersalelist .gooditem .body .right .refoundStatus{
+	position:absolute;
+	bottom:15rpx;
+	right:0;
+	font-family:PingFangSC-Regular;
+	font-size:13px;
+	letter-spacing:0;
+	background:#FFFFFF;
+	width:150rpx;
+	text-align:center;
+}
+.page-aftersalelist .gooditem .body .right .refoundStatus-3{
+	color:#e9c274;
+}
+.page-aftersalelist .gooditem .body .right .refoundStatus-4{
+	color:#d7745c;
+}
+.page-aftersalelist .gooditem .body .right .refoundStatus-5{
+	color:#e9c274;
+}
+.page-aftersalelist .gooditem .body .right .refoundStatus-6{
+	color:#8a8a8a;
+}
+.page-aftersalelist .gooditem .body .right .refoundStatus-7{}
+.page-aftersalelist .goodlist{
+	background:#FFFFFF;
+	box-shadow:0 5px 15px 0 rgba(0,0,0,0.05);
+	margin:30rpx;
+
+}
+

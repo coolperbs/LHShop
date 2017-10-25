@@ -1,5 +1,6 @@
 var service = require( '../../service/service' ),
 	us = require('../../lib/underscore'),
+	utils = require('../../common/utils/utils'),
 	handle,
 	events,
 	dataHandler,
@@ -16,6 +17,7 @@ handle = {
 			key:'userinfo',
 			success:function(res){
 				var userinfo = res.data.user;
+				userinfo.showCreated = utils.formateTime(userinfo.created);
 				dataHandler.setData({
 					userinfo:userinfo
 				})
@@ -43,6 +45,16 @@ handle = {
 		goLogin:function(){
 			wx.navigateTo({
 				url:'../../pages/login/login'
+			})
+		},
+		goFavorite:function(){
+			wx.navigateTo({
+				url:'../../pages/favorite/favorite'
+			})
+		},
+		goAftersale:function(){
+			wx.navigateTo({
+				url:'../../pages/aftersalelist/aftersalelist'
 			})
 		}
 	}

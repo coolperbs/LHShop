@@ -8,12 +8,15 @@
 					</view>
 					<view class="notice">
 						<text class="check-user" bindtap="goUserProfile">
-							查看并并编辑用户的个人资料
+							<!-- 查看并并编辑用户的个人资料 -->
+							<block wx:if="{{mine.userinfo.showCreated}}">
+								注册于 {{mine.userinfo.showCreated}}
+							</block>
 						</text>
 					</view>
 				</view>
 				<view class="right">
-					<image src="../../asset/back.jpeg" class="header-img"/>				
+					<image src="{{mine.userinfo.avatarUrl}}" class="header-img"/>				
 				</view>
 				
 
@@ -61,13 +64,13 @@
 						<image src="../../asset/location.png" class="item-logo"/>
 						<text class="item-txt">地址</text>
 					</view>
-					<view class="item" data-status="1" bindtap="goCollection">
+					<view class="item" data-status="1" catchtap="events" data-func="goFavorite">
 						<image src="../../asset/favor.png" class="item-logo"/>
 						<text class="item-txt">收藏</text>
 					</view>
-					<view class="item" data-status="1" bindtap="goAbout">
-						<image src="../../asset/info.png" class="item-logo"/>
-						<text class="item-txt">关于我们</text>
+					<view class="item" data-status="1" catchtap="events" data-func="goAftersale">
+						<image src="../../asset/aftersale.png" class="item-logo"/>
+						<text class="item-txt">售后</text>
 					</view>
 				</view>
 			</view>

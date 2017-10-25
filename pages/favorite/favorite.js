@@ -86,6 +86,15 @@ Page({
 
 var _fn = {
 	init:function(page){
+		wx.getSystemInfo({
+			success:function(res){
+				var scrollHeight = (res.windowHeight-60)+'px';
+				page.setData({
+					scrollHeight:scrollHeight
+
+				});
+			}
+		});
 		_fn.initTab(page);
 		_fn.initPageList(page,'sku');
 		_fn.initPageList(page,'shop');

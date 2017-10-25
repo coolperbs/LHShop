@@ -10,7 +10,7 @@
         <text>暂无地址</text>
     </view>
     <view class="add-btn btn-default" bindtap="toAddress" data-name="create">
-        <image src="../../asset/add.png"/>
+        <image src="../../asset/add-white.png"/>
         新建地址
     </view>
 </view>

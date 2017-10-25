@@ -1,0 +1,86 @@
+<view class="page-aftersalelist aftersaleList">
+	<view class="head">
+		<block wx:for="{{tab.tabData}}" wx:key="index">
+			<view class="box {{item.isCur?'current':''}}" 
+			data-param="{{item.param}}" 
+			data-extra = "{{item.extra}}"
+			bindtap="changeTab"
+			style="{{item.style}}">{{item.name}}</view>
+		</block>
+		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
+	</view>
+
+	<scroll-view class="list-container" style="height:{{height}}px" scroll-y="true" bing bindscrolltolower="loadMore">
+		<block wx:for="{{aftersaleList}}">
+			<template is="aftersale-good" data="{{...item}}"></template>
+		</block>
+	</scroll-view>	
+</view>
+
+
+<template name="aftersale-good">
+	<view class="gooditem" bindtap="toDetail" data-id="{{id}}">
+		<view class="header">
+			<view class="left">
+				<view class="headerMsg">售后单号:{{id}}</view>
+				<view class="headerMsg">订单号:{{orderId}}</view>
+			</view>
+		</view>
+		<view class="body">
+			<view class="left">
+				<image src='{{img1}}'></image>
+			</view>
+			<view class="right">
+				<text class="name ellipsis-1">1111</text>
+				<text class="num">x222</text>
+				<view class="price">
+					<text class="unitPrice">1122</text>
+				</view>
+				<block wx:if="{{status==='remain'}}">
+					<text class="btn" bindtap="toAfterSaleDetail" data-skuId="{{skuId}}">退款</text>
+				</block>
+				<block wx:else>
+					<text class="refoundStatus refoundStatus-{{status}}">{{statusTxt}}</text>
+				</block>
+			</view>
+		</view>
+	</view>
+</template>
+
+
+
+<template name="aftersale-item">
+	<view class="aftersale-wrapper" bindtap="selectaftersale">
+		<view class="left">
+			<block wx:if="{{userAvatarUrl}}">
+				<image src="{{userAvatarUrl}}"></image>
+			</block>
+			<block wx:else>
+				<image src="../../asset/default-user.png"></image>
+			</block>
+			<!-- <image src="{{userHeadImage}}"></image> -->
+		</view>
+		<view class="right">
+			<view>
+				<view class="name">{{username}}</view>
+				<view class="starts">
+					<block wx:for='{{stars}}' wx:key="id">
+						<view class="star" data-value="{{item.val}}" data-id="{{id}}">
+							<block wx:if="{{!score || item.val>score}}">
+								<image src="../../asset/star-nor.png"></image>
+							</block>
+							<block wx:else>
+								<image src="../../asset/star-sel.png"></image>
+							</block>
+						</view>
+					</block>
+				</view>
+				<view class="content ellipsis-2">{{content}}</view>
+			</view>
+			<view class='time-wrapper'>
+				<view class="time">{{showCreateTime}}</view>
+			</view>
+		</view>
+	</view>
+	
+</template>
