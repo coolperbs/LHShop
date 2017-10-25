@@ -25,6 +25,9 @@ Page({
 	},
 	getNext:function(){
 		var self=this;
+		self.setData({
+			isLoading:true
+		})
 		self.dataList.next()
 	}
 });
@@ -67,8 +70,10 @@ var _fn = {
 					v.showOriginPrice = utils.fixPrice(v.price);
 					return v;
 				});
+				console.log(11,data);
 				page.setData({
-					searchRes:data
+					searchRes:data,
+					isLoading:false
 				})
 			},
 			getList:function(res){

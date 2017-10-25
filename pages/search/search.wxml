@@ -1,3 +1,4 @@
+<import src='../../widgets/common/common.wxml'/> 
 <view class="page-search">
 	<view class="barline"></view>
 	<view class="seach-header">
@@ -9,7 +10,7 @@
 			<block wx:for="{{sortMenuData.menu}}" wx:key="{{index}}">
 				<view class="menu-item status-{{item.status}}" data-param="{{item.eventParam}}" catchtap="changeSort">
 					{{item.text}}
-					<image wx:if="{{!item.status}}" src="../../asset/sort-null.png" class="sort-logo"></image>
+					<image wx:if="{{! item.status}}" src="../../asset/sort-null.png" class="sort-logo"></image>
 					<image wx:if="{{item.status===1}}" src="../../asset/sort-up.png" class="sort-logo"></image>
 					<image wx:if="{{item.status===2}}" src="../../asset/sort-down.png" class="sort-logo"></image>
 				</view>

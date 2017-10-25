@@ -21,7 +21,7 @@
 						
 					</block>
 				</block>
-				<template is="list-bottom" data="{{type:'1'}}"></template>
+				<!-- <template is="list-bottom" data="{{type:'1'}}"></template> -->
 			</block>
 			<block wx:else>
 					<template is="nodata-page"></template>

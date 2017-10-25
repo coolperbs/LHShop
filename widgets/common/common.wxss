@@ -13,3 +13,20 @@ padding-top: 30%
 	height:200rpx;
 	margin-bottom:40rpx;
 }
+
+.list-bottom{
+	height:80rpx;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:13px;
+	color:#bababa;
+}
+.list-bottom image{
+	width: 12px;
+	height: 12px;
+	margin-right: 10rpx
+}
+.list-bottom .loading{
+	color: #2c2c2c
+}

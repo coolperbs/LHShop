@@ -1,4 +1,5 @@
 @import '../../views/mine/mine.wxss'
+@import '../../widgets/common/common.wxss'
 .search-content{
 	display:flex;
 	flex-wrap:wrap;
@@ -53,7 +54,7 @@ left:85rpx;
 	display:flex;
 	flex-wrap:wrap;
 	width: 100%;
-	padding: 44rpx 44rpx 0 44rpx;
+	/*padding: 44rpx 44rpx 0 44rpx;*/
 	margin-top: 160rpx
 }
 .sort-logo{
@@ -62,7 +63,8 @@ left:85rpx;
 }
 
 .page-search .tpl-recommond-ware{
-	width:331rpx;
+	/*width:331rpx;*/
+	width: 50%;
 	display:flex;
 	flex-direction:column;
 	align-items:center;

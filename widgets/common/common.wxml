@@ -1,10 +1,10 @@
 <template name="list-bottom">
 	<view class="list-bottom">
-		<block wx:if="{{type===1}}">
+		<block wx:if="{{type/1===1}}">
 			<image src="../../asset/bottom-loading.png"/>
-			<text>正在努力为您加载数据...</text>
+			<text class="loading">正在努力为您加载数据...</text>
 		</block><!--加载中-->
-		<block wx:esif="{{type===2}}">
+		<block wx:elif="{{type/1===2}}">
 			<text>已经到底了...</text>
 		</block><!--加载完毕-->
 	</view>
