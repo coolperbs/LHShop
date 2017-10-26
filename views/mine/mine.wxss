@@ -1,4 +1,5 @@
 
+@import '../../widgets/modules/modules.wxss'
 .view-mine{
 	background-color: #eeeff1;
 	height: 100%

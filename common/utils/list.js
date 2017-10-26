@@ -91,7 +91,7 @@ class List{
 			url:this.url,
 			param:param
 		},function(res){
-			var list = self.getList(res);
+			var list = self.getList(res)||[];
 			list = list.map((v,k)=>{
 				v.eventParam= JSON.stringify({
 					page:page
