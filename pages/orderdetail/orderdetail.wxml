@@ -122,8 +122,21 @@
 									</view>
 								</view>
 								<view class="btn-wrapper">
-									<view class="toComment btn" catchtap="toComment" data-orderId='{{orderId}}' data-skuId='{{item.skuId}}'>评论</view>
-									<view class="toComment btn" catchtap="toAftersale" data-orderId='{{orderId}}' data-skuId='{{item.skuId}}'>申请售后</view>
+									<view wx:if="{{detail.order.orderStatus=='256' && !item.commentId}}"
+									class="toComment btn" 
+									catchtap="toComment" 
+									data-orderId='{{orderId}}' 
+									data-skuId='{{item.skuId}}'>
+										评论
+									</view>
+
+									<view wx:if="{{(detail.order.orderStatus=='32' || detail.order.orderStatus=='256') && !item.aftersaleId}}"
+									class="toComment btn" 
+									catchtap="toAftersale" 
+									data-orderId='{{orderId}}' 
+									data-skuId='{{item.skuId}}'>
+										申请售后
+									</view>
 								</view>
 							</view>
 						</block>

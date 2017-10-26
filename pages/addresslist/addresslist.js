@@ -8,6 +8,10 @@ var addressService = require('../../service/address/address');
 Page({
 	onLoad:function(option){
 		var self = this;
+		// _fn.init(self);
+	},
+	onShow:function(){
+		var self = this;
 		_fn.init(self);
 	},
 	toAddress:function(e){

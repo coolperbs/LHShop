@@ -1,5 +1,7 @@
 var weigetUtils = require('../../common/utils/weigetUtil');
+// var moduleEventProxy = require('../../common/utils/moduleEventProxy');
 var utils = require('../../common/utils/utils');
+var modules = require( '../../widgets/modules/modules.js' );
 // var DropMenu = weigetUtils.DropMenu;
 var List = weigetUtils.List;
 var config = require('../../config');
@@ -29,10 +31,18 @@ Page({
 			isLoading:true
 		})
 		self.dataList.next()
-	}
+	},
+	moduleClickProxy : function( e ) {
+		var page =this;
+		var target = e.currentTarget;
+		if ( target.dataset && target.dataset.fn && modules.events[target.dataset.fn] ) {
+		  modules.events[target.dataset.fn].call( page, e );
+		}
+    },
 });
 
 var _fn = {
+
 	init:function(page){
 		wx.getSystemInfo({
 			success:function(res){
@@ -70,9 +80,12 @@ var _fn = {
 					v.showOriginPrice = utils.fixPrice(v.price);
 					return v;
 				});
-				console.log(11,data);
 				page.setData({
-					searchRes:data,
+					searchRes:{
+						data:{
+							wareSkus:data.totalData
+						}
+					},
 					isLoading:false
 				})
 			},
@@ -88,6 +101,7 @@ var _fn = {
 	getSearchParam:function(page){
 		page.param = page.param || {};
 		return {
+			citycode:wx.getStorageSync('city').code||'010',
 			catId:page.param.catId,
 			shopId:page.param.shopId,
 			title:page.data.title,

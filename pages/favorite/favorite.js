@@ -1,3 +1,5 @@
+/**切换模板，切花图片**/
+
 var favoriteService = require('../../service/favorite/favorite');
 var cartService = require('../../service/cart/cart');
 var weigetUtil = require('../../common/utils/weigetUtil');
@@ -59,7 +61,7 @@ Page({
 		var id = e.currentTarget.dataset.id;
 		if(type === 'shop'){
 			wx.navigateTo({
-				url:'../shop/shop?id='+id
+				url:'../shop/shop?shopid='+id
 			});
 		}else if(type === 'sku'){
 			wx.navigateTo({

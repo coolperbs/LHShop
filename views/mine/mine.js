@@ -1,13 +1,21 @@
+/**
+2.我的分销
+**/
+
 var service = require( '../../service/service' ),
 	us = require('../../lib/underscore'),
 	utils = require('../../common/utils/utils'),
+	weigetUtil = require('../../common/utils/weigetUtil'),
+	 List = weigetUtil.List,
+	 config = require('../../config'),
+	 host = config.host,
 	handle,
 	events,
 	dataHandler,
 	_fn;
 
 handle = {
-	name : 'home',
+	name : 'mine',
 	//data : data.data,
 	render : function( callerPage ) {
 		console.log('mine');
@@ -56,26 +64,55 @@ handle = {
 			wx.navigateTo({
 				url:'../../pages/aftersalelist/aftersalelist'
 			})
+		},
+		getNextPage:function( caller,e){
+			var favoriteList = caller.mineData.favoriteList;
+			favoriteList.next();
 		}
 	}
 }
 
 _fn = {
 	init : function( callerPage ) {
-		// var datetime = wx.getStorageSync( 'datetime' ),
-		// 	city = wx.getStorageSync( 'city' ),
-		// 	allDay;
-
-		// allDay = datetime[1].time - datetime[0].time;
-		// allDay = Math.round( allDay / ( 24 * 60 * 60 * 1000 ) );
-		// callerPage.setData( {
-		// 	viewData : {
-		// 		datetime : datetime,
-		// 		allDay : allDay,
-		// 		city : city
-		// 	}
-		// } );
-		dataHandler = new DataHandler(callerPage);
+		if(!callerPage.initMine){
+			callerPage.mineData = callerPage.mineData || {};
+			dataHandler = new DataHandler(callerPage);
+			_fn.createFavoriteList(callerPage);
+			callerPage.initMine = true;
+		}
+	},
+	createFavoriteList:function(callerPage){
+		wx.getSystemInfo({
+			success:function(res){
+				var scrollHeight = (res.windowHeight)+'px';
+				dataHandler.setData({
+					scrollHeight:scrollHeight
+				});
+			}
+		});
+		callerPage.mineData.favoriteList = new List({
+			url:host+'/app/ware/like',//adsdfaf
+			param:{//adfafasdf
+				// type:status
+				citycode:wx.getStorageSync('city').code||'010'
+			},
+			getList:function(res){
+				return res.data.wareSkus
+			},
+			getHasMore:function(res){
+				return res.data.hasMore || false;
+			},
+			render:function(res){
+				dataHandler.setData({
+					favorite:{
+						data:{
+							wareSkus:res.totalData
+						}
+					}
+				});
+			}
+		});
+		callerPage.mineData.favoriteList.next();
 	}
 }
 

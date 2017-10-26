@@ -10,7 +10,8 @@
 		</block>
 		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
 	</view>
-		<scroll-view class="scrollview" style="height:{{scrollHeight}}">
+		<scroll-view class="scrollview" style="height:{{scrollHeight}}"
+		scroll-y="{{true}}">
 			<block wx:if="{{favList.length>0}}">
 				<block wx:for="{{favList}}">
 					<block wx:if="{{curType==='sku'}}">
@@ -31,7 +32,7 @@
 </view>
 
 <template name="store">
-	<view class="store" bindtap="toDetail" data-id="id" data-type="shop">
+	<view class="store" bindtap="toDetail" data-id="{{id}}" data-type="shop">
 		<view class="left">
 			<image src="{{logo}}"/>
 		</view>

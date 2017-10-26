@@ -1,5 +1,6 @@
 @import '../../views/mine/mine.wxss'
 @import '../../widgets/common/common.wxss'
+@import '../../widgets/modules/modules.wxss'
 .search-content{
 	display:flex;
 	flex-wrap:wrap;
