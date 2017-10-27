@@ -66,7 +66,7 @@ var _fn = {
 				}
 			});
 			_fn.createTab(page);
-			page.list = _fn.createList(page,{type:1});
+			page.list = _fn.createList(page,{type:""});
 			page.list.next();
 		}else{
 			_fn.updateList(page);//回退本页面时刷新数据
@@ -79,19 +79,19 @@ var _fn = {
 			offset:29,
 			tabs:[{
 				name:"全部",
-				extra:JSON.stringify({type:1}),
+				extra:JSON.stringify({type:""}),
 			},{
 				name:'处理中',
-				extra:JSON.stringify({type:2}),
+				extra:JSON.stringify({type:1}),
 			},{
 				name:'已完成',
-				extra:JSON.stringify({type:3}),
+				extra:JSON.stringify({type:2}),
 			},{
 				name:'被驳回',
 				extra:JSON.stringify({type:4}),
 			},{
 				name:'已取消',
-				extra:JSON.stringify({type:5}),
+				extra:JSON.stringify({type:3}),
 			},]
 		});
 		var tabData = page.tab.change();
@@ -105,14 +105,14 @@ var _fn = {
 		var skuId = page.param.skuId;
 		var reqParam = {};
 		reqParam.skuId = skuId;
-		if(type===2){
-			reqParam.level = 1;
+		if(type===1){
+			reqParam.stat = 1;
+		}else if(type===2){
+			reqParam.stat = 2;
 		}else if(type===3){
-			reqParam.level = 2;
+			reqParam.stat = 3;
 		}else if(type===4){
-			reqParam.level = 3;
-		}else if(type===5){
-			reqParam.querySelf = 1
+			reqParam.stat = 4
 		}
 
 		var dataList = new List({
@@ -122,8 +122,11 @@ var _fn = {
 				if(res.data && res.data.aftersales){
 					res.data.aftersales = res.data.aftersales || [];
 					res.data.aftersales = res.data.aftersales.map((v,k)=>{
-						// var timeObj = utils.timeToDateObj(v.commentCreated);
-						// v.showCreateTime = timeObj.year+'-'+timeObj.month+"-"+timeObj.day
+						// console.log(v);
+						v.aftersale = v.aftersale || {};
+						v.ware = v.ware || {};
+						v.aftersale.showCreated = utils.formateTime(v.aftersale.created);
+						v.ware.showPrice = utils.fixPrice(v.ware.price);
 						return v;
 					});
 				}
@@ -139,7 +142,7 @@ var _fn = {
 			}
 		});
 		page.listMap = page.listMap || {};
-		page.listMap[param.status] = dataList;
+		page.listMap[param.type] = dataList;
 		return dataList;
 	}
 
