@@ -10,6 +10,7 @@ Page({
 		var self = this;
 		if(option.addressId){
 			self.formData = addressService.cache();
+			console.log(self.formData)
 			addressService.cache({});
 		}else{
 			self.formData = {defaulted:2};
@@ -51,7 +52,12 @@ Page({
 });
 var _fn = {
 	init:function(page){
+		page.formData = page.formData || {};
 		page.address = new Address({
+			provinceId:page.formData.province || '',
+			countryId:page.formData.country || '',
+			cityId : page.formData.city || '',
+
 			changeCallback:function(data){
 				var formData = page.formData;
 				if(data.province){
@@ -90,6 +96,10 @@ var _fn = {
 		page.address.change();
 	},
 	saveAddress:function(page){
+		var validateRes = _fn.validateForm(page)
+		if(!validateRes){
+			return;
+		}
 		var url = host + '/app/address/add';
 		var param = page.formData;
 		ajax.query({
@@ -113,9 +123,12 @@ var _fn = {
 		})
 	},
 	updateAddress:function(page){
+		var validateRes = _fn.validateForm(page)
+		if(!validateRes){
+			return;
+		}
 		var url = host + '/app/address/update';
 		var param = page.formData;
-		param.addressId = 12
 		ajax.query({
 			url:url,
 			param:param
@@ -128,13 +141,52 @@ var _fn = {
 					wx.navigateBack();
 				},1500);
 			}else{
-				wx.showMadal({
+				wx.showModal({
 					showCancel:false,
 					title:'提示',
 					content:'修改失败('+res.code+')'
 				})
 			}
 		})
+	},
+	validateForm:function(page){
+		var formData = page.formData || {};
+		var checkRes = true;
+		var errMsg;
+		switch(true){
+			case !formData.userName:
+				errMsg = '请输入收货人名称'
+				checkRes = false;
+				break;
+			case !formData.userPhone:
+				errMsg = '请输入收货人手机号码'
+				checkRes = false;
+				break;
+			case formData.userPhone.length !== 11:
+				errMsg = '请输入正确手机号码'
+				checkRes = false
+				break;
+			case !formData.provinceName:
+				errMsg = '请选择省份'
+				checkRes = false;
+				break;
+			case !formData.cityName:
+				errMsg = '请选择城市'
+				checkRes = false;
+				break;
+			case !formData.address:
+				errMsg = '请输入详细地址'
+				checkRes = false;
+				break;
+		}
+		if(errMsg && !checkRes){
+			wx.showModal({
+				title:'提示',
+				showCancel:false,
+				content:errMsg
+			});
+		}
+		return checkRes;
 	}
 }
 

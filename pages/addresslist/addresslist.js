@@ -25,6 +25,7 @@ Page({
 		var updateData = self.data.address.filter((v,k)=>{
 			return v.addressId === addressid;
 		})[0];
+		console.log(9999,updateData);
 		addressService.cache(updateData);
 		wx.navigateTo({
 			url:'../address/address?addressId='+addressid
