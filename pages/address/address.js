@@ -174,7 +174,7 @@ var _fn = {
 				errMsg = '请选择城市'
 				checkRes = false;
 				break;
-			case !formData.addressid:
+			case !formData.address:
 				errMsg = '请输入详细地址'
 				checkRes = false;
 				break;
