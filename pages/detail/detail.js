@@ -118,6 +118,7 @@ Page({
 			}
 
 			self.setData( {
+				'pageData.favoriteId' : res.data.favoriteId || data.pageData.favoriteId,
 				'pageData.favorite' : favorite
 			} );
 		} );
