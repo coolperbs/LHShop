@@ -1,8 +1,68 @@
+
+var ajax = require('../../common/ajax/ajax');
+var config = require('../../config');
+var host = config.host;
+
+
 Page({
     onShow:function(){
         console.log('join')
+    },
+    changeInput:function(e){
+    	var dataset = e.currentTarget.dataset;
+    	var key = dataset.key;
+    	var val = e.currentTarget.detail.value;
+    	var self = this;
+    	self.formData = self.formData || {};
+    	self.formData[key] = val; 
     }
 });
+var _fn = {
+	submit :function(page){
+		var validateRes = _fn.validate(page);
+		if(validateRes){
+			ajax.query({
+				url:host+'/app/store/apply'
+			},function(res){
+				if(res.code==='0000'){
+					wx.showModal({
+						title:'提示',
+						content:'申请成功,我们会尽快与您联系'
+					});
+				}
+			});
+		}
+	}
+	validate:function(page){
+		var fomrData = page.formData;
+		var errMsg,validateRes;
+		switch(true){
+			case !formData.name:
+				errMsg = '请输入店铺名称';
+				validateRes = false;
+				break;
+			case !formData.subname:
+				errMsg = '请输入主营项目'
+				validateRes = false;
+				break;
+			case !formData.telphone:
+				errMsg = "请输入手机号码"
+				validateRes = false;
+				break;
+			case formData.telphone.length != 11:
+				errMsg = "请输入正确手机号码"
+				validateRes = false;
+				break;
+			case !formData.userName:
+				errMsg = "请输入您的姓名"
+				validateRes = false;
+				break;
+		}
+
+	}
+}
+
+
 
 // //获取应用实例
 // var app = getApp();

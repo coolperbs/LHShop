@@ -31,7 +31,7 @@ page{
 	width:50%;
 	display:flex;
 	justify-content:center;
-	font-size:14px;
+	font-size:28rpx;
 	height:100%;
 
 }
@@ -98,7 +98,7 @@ page{
 }	
 .page-mycoupon .online-coupon-wrapper .how-use .coupon-type{
 	/*font-family: PingFangSC-Semibold;*/
-	font-size:14px;
+	font-size:28rpx;
 	color:#434552;
 	margin-bottom:16rpx;
 	line-height: 28rpx
@@ -106,29 +106,29 @@ page{
 
 }
 .page-mycoupon .online-coupon-wrapper .how-use .coupon-date{
-	font-size:12px;
+	font-size:24rpx;
 	color:#a3a3a3;
 	margin-bottom:10rpx;
 	line-height: 34rpx
 }
 .page-mycoupon .online-coupon-wrapper .how-use .coupon-note{
-	font-size: 12px;
+	font-size: 24rpx;
 	color: #a3a3a3;
 	line-height: 34rpx;
 }
 .page-mycoupon .online-coupon-wrapper .price{
 	z-index:1;
-	/*width:204rpx;*/
-	display:flex;
-	flex-direction:column;
-	/*height:230rpx;*/
-	align-items:center;
-	padding:70rpx 0 0 70rpx;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:70rpx 0 0 60rpx;
+width:140rpx;
+
 
 }
 .page-mycoupon .online-coupon-wrapper .price .couponPrice{
 	font-family: PingFangSC-Medium;
-	font-size: 32px;
+	font-size: 56rpx;
 	color: #e53236;
 	/*margin-top: 46rpx;*/
 	letter-spacing: 0;
@@ -137,14 +137,14 @@ page{
 .page-mycoupon .online-coupon-wrapper .price .couponPrice .num:before{
 	content:'￥';
 	font-family:PingFangSC-Medium;
-	font-size:16px;
+	font-size:32rpx;
 	position:absolute;
-	top:5px;
-	left:-15px;
+	top:10rpx;
+	left:-30rpx;
 }
 .page-mycoupon .online-coupon-wrapper .price .couponCondition{
 	font-family: PingFangSC-Medium;
-	font-size: 12px;
+	font-size: 24rpx;
 	color: #a3a3a3;
 	letter-spacing: 0;
 }
@@ -188,14 +188,14 @@ page{
 }
 .page-mycoupon .coupon-empty .title{
 	font-family: PingFangSC-Light;
-	font-size: 16px;
+	font-size: 32rpx;
 	color: #666666;
 	letter-spacing: 0;
 	margin-top: 92rpx
 }
 .page-mycoupon .coupon-empty .subtitle{
 	font-family: PingFangSC-Light;
-	font-size: 14px;
+	font-size: 28rpx;
 	color: #999999;
 	letter-spacing: 0;
 	margin-top: 20rpx;

@@ -21,6 +21,10 @@
 				</view>
 			</block> 
 		</view>
+		<view class="btn-wrapper">
+			<view class="btn use" data-type="use" catchtap="back">使用优惠券</view>
+			<view class="btn cancel" data-type="cancel" catchtap="back">取消</view>
+		</view>
 	</scroll-view>
 	<view wx:else>
 		<template is="couponuse-empty"></template>

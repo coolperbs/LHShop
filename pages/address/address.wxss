@@ -30,8 +30,8 @@ page{
     border:none;
 }
 .address-edit .edit-item:last-child text{
-    padding-left:30rpx;
-    display: inline-block;
+    padding-left:90rpx;
+display:inline-block;
 }
 .address-edit .edit-item text{
     position:absolute;
@@ -60,19 +60,21 @@ page{
 }
 .address-edit .check-default{
     position:absolute;
-    z-index:100;
-    top:35rpx;
-    right:40rpx;
-    margin-top:-12rpx;
-    width:24rpx;
-    height:24rpx;
-    background-size:24rpx;
-    background-repeat:no-repeat;
+z-index:100;
+top:42rpx;
+left:22px;
+margin-top:-12rpx;
+width:24rpx;
+height:24rpx;
+background-size:24rpx;
+background-repeat:no-repeat;
+
+
     
 }
 .address-edit .check-default image{
-    width:60rpx;
-    height:40rpx;
+    width:30rpx;
+    height:30rpx;
     
 }
 .save-btn{

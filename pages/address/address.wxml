@@ -56,8 +56,8 @@
         <view class="edit-item" bindtap="changeDefault">
             <text>设置默认地址</text>
             <view class="check-default" catchtap="changeDefault">
-                <image  wx:if="{{formData.defaulted===2}}" src="../../asset/check-none.png" />
-                <image  wx:else src="../../asset/check.png" />
+                <image  wx:if="{{formData.defaulted===2}}" src="../../asset/check-box-empty.png" />
+                <image  wx:else src="../../asset/check-box.png" />
             </view>
         </view>
     </view>
