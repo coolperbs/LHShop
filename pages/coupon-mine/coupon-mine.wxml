@@ -1,0 +1,64 @@
+<view class="barline"></view>
+<view class="page-mycoupon">
+	<view class="head">
+		<block wx:for="{{tab.tabData}}" wx:key="index">
+			<view class="box {{item.isCur?'current':''}}" 
+			data-param="{{item.param}}" 
+			data-extra = "{{item.extra}}"
+			bindtap="changeTab"
+			style="{{item.style}}">{{item.name}}</view>
+		</block>
+		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
+	</view>
+
+
+	<scroll-view wx:if="{{coupons && coupons.length>0}}" class="coupon-list" scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="scrollToLower" >
+		<view class="listInner">
+			<view wx:for="{{coupons}}" class="wrapper">
+				<template is="online-coupon" data="{{...item}}"></template>
+			</view>
+			
+		</view>
+	</scroll-view>
+	<view wx:else>
+		<template is="couponmine-empty"></template>
+	</view>
+</view>
+<template name="couponmine-empty">
+	<view class="coupon-empty">
+		<image class="coupon-empty-img" src="../../asset/empty-data.png"></image>
+		<!-- <view class="message"> -->
+			<text class="title">很遗憾</text>
+			<text class="subtitle">您暂无数据</text>
+		<!-- </view> -->
+	</view>
+</template>
+
+<template name="online-coupon">
+	<view class="online-coupon-wrapper selected">
+		<view class="price">
+			<view class="couponPrice">
+				<text wx:if="{{proType!==2}}" class="unit" style="font-size: 15px">￥</text>
+				<text class="num">{{showPrice}}</text>
+				<text wx:if="{{proType===2}}" class="unitAfter" style="font-size: 17px">折</text>
+			</view>
+			<view class="couponCondition">
+				
+			</view>
+		</view>
+		<view class="how-use">
+			<view class="coupon-type">{{showProType}}</view>
+			<view class="coupon-date">有效期:{{showStartTime}}-{{showEndTime}}</view>
+			<view class="coupon-note">{{name}}</view>
+		</view>
+		<image src="../../asset/online-coupon.png" 
+		class="online-coupon-bg"></image>
+		<!-- <view class="online-coupon-bg"></view> -->
+		<view class="rt-logo">
+			
+				<view wx:if="{{isFetch}}" class="selected">
+					<image src="../../asset/coupon-fetched.png"/>
+				</view>
+		</view>
+	</view>
+</template>

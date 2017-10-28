@@ -1,6 +1,20 @@
 page{
 	background-color: #f8f8f8;
 }
+
+.page-mycoupon .head { z-index:100;border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
+.page-mycoupon .head .box { text-align:center;height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
+.page-mycoupon .head .box.current { color : #d6204b;  }
+.tab_ul{
+	position:absolute;
+	height:3px;
+	background-color:#d6204b;
+	left:0;
+	bottom:0;
+	width:90rpx;
+	transition: all .3s;
+
+}
 .page-mycoupon{}
 .page-mycoupon .header-tab{
 	display:flex;
@@ -35,6 +49,9 @@ page{
 	font-weight:bolder;
 	color:#d73b3e;
 }
+.page-mycoupon .listInner{
+	padding-top: 20rpx
+}
 .page-mycoupon .tab-item.active .notice:after{
 	content:" ";
 	position:absolute;
@@ -49,7 +66,7 @@ page{
 	margin-top: 100rpx;
 }
 .page-mycoupon .wrapper{
-	padding-top: 40rpx;
+	/*padding-top: 40rpx;*/
 	/*height: 100%*/
 }
 
@@ -106,7 +123,7 @@ page{
 	flex-direction:column;
 	/*height:230rpx;*/
 	align-items:center;
-	padding:40rpx 0 0 70rpx;
+	padding:70rpx 0 0 70rpx;
 
 }
 .page-mycoupon .online-coupon-wrapper .price .couponPrice{
@@ -167,7 +184,7 @@ page{
 .page-mycoupon .coupon-empty image{
 	height: 176rpx;
 	width: 176rpx;
-	margin-top: 142rpx;
+	margin-top: 242rpx;
 }
 .page-mycoupon .coupon-empty .title{
 	font-family: PingFangSC-Light;

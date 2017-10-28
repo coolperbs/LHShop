@@ -235,7 +235,7 @@ _fn = {
 			var orderId = orderRes.data.orderId;
 			
 			if ( caller.data.type == '到店支付' ) {
-				wx.redirectTo( { url : '../orderdetail/orderdetail?orderId=' + orderId  } );
+				wx.redirectTo( { url : '../orderdetail/orderdetail?orderid=' + orderId  } );
 				return;
 			}
 			// 2.获取支付订单
@@ -247,7 +247,7 @@ _fn = {
 						title : '提示',
 						content : payRes.msg || '系统错误',
 						showCancel : false,
-						complete : function() { wx.redirectTo( { url : '../orderdetail/orderdetail?orderId=' + orderId } ) }
+						complete : function() { wx.redirectTo( { url : '../orderdetail/orderdetail?orderid=' + orderId } ) }
 					} );
 					return;
 				}
@@ -258,7 +258,7 @@ _fn = {
 					package : 'prepay_id=' + payRes.data.prepayId,
 					paySign : payRes.data.sign					
 				}, function() {
-					wx.redirectTo( { url : '../orderdetail/orderdetail?orderId=' + orderId  } );
+					wx.redirectTo( { url : '../orderdetail/orderdetail?orderid=' + orderId  } );
 				} );
 			} );
 		} );

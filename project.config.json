@@ -12,7 +12,7 @@
 	"projectname": "LH-shop",
 	"condition": {
 		"weapp": {
-			"current": -1,
+			"current": 16,
 			"list": [
 				{
 					"id": -1,
@@ -27,9 +27,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "我的优惠券",
-					"pathName": "pages/mycoupon/mycoupon",
+					"id": 2,
+					"name": "优惠券-我的",
+					"pathName": "pages/coupon-mine/coupon-mine",
 					"query": ""
 				},
 				{
@@ -109,6 +109,18 @@
 					"name": "活动页面",
 					"pathName": "pages/active/active",
 					"query": "actid=7"
+				},
+				{
+					"id": -1,
+					"name": "优惠券-领取",
+					"pathName": "pages/coupon-fetch/coupon-fetch",
+					"query": ""
+				},
+				{
+					"id": 17,
+					"name": "优惠券-使用",
+					"pathName": "pages/coupon-use/coupon-use",
+					"query": ""
 				}
 			]
 		},

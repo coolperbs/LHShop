@@ -30,7 +30,7 @@
              range-key="name"
              bindchange='changeLocation'
              data-param="{{location.cityParam}}"
-             disabled="{{location.cityList&&location.cityList.length>0}}"
+             disabled="{{!location.cityList||location.cityList.length<0}}"
              class="picker">
                 <view>{{formData.cityName||'所在城市'}}</view>
             </picker>
@@ -41,7 +41,7 @@
              range-key="name"
              bindchange='changeLocation'
              data-param="{{location.countryParam}}"
-             disabled="{{location.countryList&&location.countryList.length>0}}"
+             disabled="{{!location.countryList||location.countryList.length<0}}"
              class="picker">
                 <view>{{formData.countryName||'所在区域'}}</view>
             </picker>
