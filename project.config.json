@@ -12,7 +12,7 @@
 	"projectname": "LH-shop",
 	"condition": {
 		"weapp": {
-			"current": 17,
+			"current": 13,
 			"list": [
 				{
 					"id": -1,
@@ -96,7 +96,7 @@
 					"id": 13,
 					"name": "结算",
 					"pathName": "pages/checkout/checkout",
-					"query": "skuid=1&skunum=2"
+					"query": "skuid=1&skunum=4"
 				},
 				{
 					"id": 16,

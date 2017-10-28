@@ -2,6 +2,7 @@ var ajax = require( '../../common/ajax/ajax' ),
 	weigetUtils = require('../../common/utils/weigetUtil'),
 	service = require( '../../service/service' ),
 	utils = require( '../../common/utils/utils' ),
+	couponService = require('../../service/coupon/coupon'),
 	app = getApp(),
 	Address = weigetUtils.Address,
 	pageParam,
@@ -94,7 +95,12 @@ Page({
 	},
 
 	goCoupons : function() {
-		wx.navigateTo( { url : '../mycoupon/mycoupon' } );
+		couponService.cache( {
+			selectCoupon : this.data.pageData.defaultCoupon,
+			available : this.data.pageData.availableCoupons,
+			unavailable : this.data.pageData.unavailabilityCoupons
+		} );
+		wx.navigateTo( { url : '../coupon-use/coupon-use' } );
 	},
 
 	submit : function( e ) {

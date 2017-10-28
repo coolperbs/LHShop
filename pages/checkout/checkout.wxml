@@ -90,7 +90,7 @@
 			<view class="row" catchtap="goCoupons">
 				<view class="key">优惠券</view>
 				<view class="value ellipsis-1">
-					{{ tradeInfo.modules.coupon.data.currLabel }}
+					{{ pageData.defaultCoupon.name || '请选择' }}
 					<image class="more" src="../../asset/arrow-right.png">
 				</image>
 			</view>
