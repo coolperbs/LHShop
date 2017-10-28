@@ -42,7 +42,7 @@ handle = {
 		},
 		goMyCoupon :function(){
 			wx.navigateTo({
-				url:'../../pages/mycoupon/mycoupon'
+				url:'../../pages/coupon-mine/coupon-mine'
 			});
 		},
 		goAddressList:function(){
