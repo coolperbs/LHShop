@@ -1,4 +1,6 @@
-<scroll-view class="main {{pop.show ? 'showpop' : ''}}" scroll-y="{{ true }}">
+<import src="../../widgets/modules/modules.wxml"/>
+
+<scroll-view class="main {{pop.show ? 'showpop' : ''}}" bindscrolltolower="getMore" scroll-y="{{ true }}">
     <view class="head">
         <swiper class="banner" indicator-color="rgba(0, 0, 0, 0.3)" indicator-active-color="#111111" indicator-dots="{{true}}">
             <swiper-item wx:for="{{pageData.mainImage}}" wx:key="index">
@@ -40,7 +42,7 @@
 
         <!-- 图文详情 start -->
         <view class="images" wx:if="{{ tab.current=='imgs' }}">
-            <image mode="widthFix" src="https://img.alicdn.com/imgextra/i4/1980947930/TB2YzOOqYlmpuFjSZFlXXbdQXXa_!!1980947930.jpg"></image>
+            <image mode="widthFix" wx:for="{{pageData.detailImage}}" wx:key="index" src="{{item}}"></image>
         </view>
         <!-- 图文详情 end -->
 
@@ -66,9 +68,14 @@
         <!-- 品牌描述 end -->
     </view>
 
-    <view class="more">
-        猜你喜欢
+    <view class="more modules">
+        <view class="m-title">猜你喜欢</view>
+        <block wx:for="{{moduleList}}" wx:key="modulePrototypeId">
+            <template is="{{item.modulePrototypeId}}-{{item.templatePrototypeId}}" data="{{...item, index}}"></template>
+        </block>
     </view>
+
+
 
     <view class="last-node"></view>
 </scroll-view>
@@ -89,59 +96,19 @@
 
     <scroll-view class="cont" scroll-y="{{ true }}">
         <view class="spec">
-            <view class="row">
-                <view class="name">一级规格</view>
+            <view class="row" wx:for="{{ pageData.saleProSku.pros }}" wx:for-index="proIndex" wx:key="proId">
+                <view class="name">{{item.proName}}</view>
                 <view class="cells">
-                    <view class="slt current">黑猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                </view>
-            </view>
-            <view class="row">
-                <view class="name">二级规格</view>
-                <view class="cells">
-                    <view class="slt">黑猫</view>
-                    <view class="slt current">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫白猫白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">黑猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">黑猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
-                    <view class="slt">白猫</view>
+                    <view catchtap="changePros" class="slt {{ pageData.attributesObj[ item.proId + ':' + slt.valueId ] ? 'current' : ''}}" wx:for="{{item.values}}" wx:key="valueId" wx:for-item="slt" data-level="{{proIndex}}" data-id="{{item.proId}}:{{slt.valueId}}">{{slt.valueName}}</view>
                 </view>
             </view>
         </view>
         <view class="count">
             <view class="name">数量</view>
             <view class="act">
-                <view class="minus">-</view>
-                <view class="num">1</view>
-                <view class="plus">+</view>
+                <view class="minus" catchtap="minus">-</view>
+                <view class="num">{{buyNum}}</view>
+                <view class="plus" catchtap="plus">+</view>
             </view>
         </view>
         <view class="last"></view>

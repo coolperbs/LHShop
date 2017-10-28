@@ -35,14 +35,46 @@ Page( {
     	}
     	isGetMore = true;
     	_fn.search( this, {
-    		currentPage : ++currentPage
+    		currentPage : currentPage + 1
     	} );
+    },
+    follow : function( e ) {
+		var self = this,
+			data = self.data,
+			param,
+			favoriteId = data.shopInfo.favoriteId;
+
+		param = {
+			type : 2,
+			shopId : data.shopInfo.id
+		}
+
+		if ( favoriteId ) {
+			param.favoriteId = favoriteId;
+		}
+
+		_fn.follow( param, function( res ) {
+			if ( utils.isErrorRes( res ) ) {
+				return;
+			}
+
+			self.setData( {
+				'shopInfo.favoriteId' : res.data.favoriteId || ''
+			} );
+		} );    	
     }
 } );
 
 _fn = {
+	follow : function( param, callback ) {
+		param = param || {};
+		ajax.query( {
+			url : app.host + '/app/favorite',
+			param : param
+		}, callback );
+	},	
 	changeTab : function( caller, tabInfo ) {
-		currentPage = 1;// 切到第一页
+		//currentPage = 1;// 切到第一页
 		hasMore = true;		
 		caller.setData( {
 			'tab.currentTab' : tabInfo
@@ -98,7 +130,7 @@ _fn = {
 
 		param = param || {};
 		param.currentPage = param.currentPage || 1;
-		param.shopId = pageParam.shopId;
+		param.shopId = pageParam.shopId || data.shopInfo.id;
 		if ( data.tab && data.tab.currentTab && data.tab.currentTab.name == 'new' ) {
 			param.publishDateSort = 1;
 		} else if ( data.tab && data.tab.currentTab && data.tab.currentTab.name == 'all' ) {

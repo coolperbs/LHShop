@@ -5,17 +5,28 @@
 		<image class="logo" mode="aspectFit" src="{{shopInfo.logo}}"></image>
 		<view class="info">
 			<view class="name">{{shopInfo.name}}</view>
-			<view class="sub">皇冠、钻石等数量</view>
+			<view class="sub">
+				<image src="../../asset/star-gold.png"></image>
+				<image src="../../asset/star-gold.png"></image>
+				<image src="../../asset/star-gold.png"></image>
+				<image src="../../asset/star-gold.png"></image>
+				<image src="../../asset/star-gold.png"></image>
+			</view>
 		</view>
 	</view>
 	<view class="act">
 		<view class="star">
-			<view class="num">12.1万</view>
+			<view class="num">{{shopInfo.favoriteCount}}</view>
 			<view>粉丝数</view>
 		</view>
-		<view class="follow"><image src="../../asset/heart-white.png"></image>关注</view>
+		<view class="follow" catchtap="follow" wx:if="{{ !shopInfo.favoriteId }}" >
+			<image src="../../asset/heart-line.png"></image>关注
+		</view>
+		<view class="follow" catchtap="follow" wx:if="{{ shopInfo.favoriteId }}" >
+			<image src="../../asset/heart-white.png"></image>已关注
+		</view>
 	</view>
-	<image mode="aspectFill" class="back-pic" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508479706623&di=ad540e964bc09899b32c3602be00b9b7&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01055658464b2aa8012060c815adab.jpg%40900w_1l_2o_100sh.jpg"></image>
+	<image mode="aspectFill" class="back-pic" src="{{shopInfo.backLogo}}"></image>
 </view>
 
 <view class="nav">

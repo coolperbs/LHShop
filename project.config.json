@@ -87,16 +87,16 @@
 					"query": ""
 				},
 				{
-					"id": 14,
+					"id": 12,
 					"name": "商详",
 					"pathName": "pages/detail/detail",
-					"query": "id=2"
+					"query": "id=1"
 				},
 				{
-					"id": -1,
+					"id": 13,
 					"name": "结算",
 					"pathName": "pages/checkout/checkout",
-					"query": "skuid=2&skunum=1"
+					"query": "skuid=1&skunum=2"
 				},
 				{
 					"id": 16,
