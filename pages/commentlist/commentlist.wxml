@@ -32,9 +32,9 @@
 			<view>
 				<view class="name">{{username}}</view>
 				<view class="starts">
-					<block wx:for='{{stars}}' wx:key="id">
-						<view class="star" data-value="{{item.val}}" data-id="{{id}}">
-							<block wx:if="{{!score || item.val>score}}">
+					<block wx:for='{{[0,1,2,3,4]}}' wx:key="id">
+						<view class="star"  data-value="{{item}}">
+							<block wx:if="{{star-1<item}}">
 								<image src="../../asset/star-nor.png"></image>
 							</block>
 							<block wx:else>
@@ -48,6 +48,11 @@
 			<view class='time-wrapper'>
 				<view class="time">{{showCreateTime}}</view>
 			</view>
+		</view>
+		<view class='files'>
+			<block wx:for="{{files}}" wx:key="index">
+				<image src="{{item}}" class="commentFile"/>
+			</block>
 		</view>
 	</view>
 	

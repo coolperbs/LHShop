@@ -112,6 +112,12 @@ var _fn = {
 					res.data.comments = res.data.comments.map((v,k)=>{
 						var timeObj = utils.timeToDateObj(v.commentCreated);
 						v.showCreateTime = timeObj.year+'-'+timeObj.month+"-"+timeObj.day
+						v.files = [];
+						for(var i = 1 ; i<=9 ; i++){
+							if(v['img'+i]){
+								v.files.push(v['img'+i])	
+							}
+						}
 						return v;
 					});
 				}

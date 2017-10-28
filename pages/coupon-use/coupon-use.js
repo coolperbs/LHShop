@@ -23,7 +23,7 @@ Page({
 		self.usefulCoupon.available = self.usefulCoupon.available || [];
 		self.usefulCoupon.unavailable = self.usefulCoupon.unavailable || [];
 		self.tabType = 'available';
-		couponService.cache(null);
+		couponService.cache({});
 		_fn.init(self);
 	},
 	useCoupon:function(e){
@@ -65,6 +65,14 @@ Page({
 		self.setData({
 			coupons:self.usefulCoupon[self.tabType]
 		})
+	},
+	back:function(e){
+		var type = e.currentTarget.dataset.type;
+		if(type === 'cancel' ){
+			couponService.cache({});
+		}
+		console.log(couponService.cache());
+		wx.navigateBack();
 	}
 });
 
@@ -82,7 +90,8 @@ var _fn = {
 		})	
 		page.usefulCoupon.unavailable.map((v,k)=>{
 			v.showProType = couponeTypeEnum[v.proType];
-			v.showPrice = utils.fixPrice(v.proValue);
+			// v.showPrice = utils.fixPrice(v.proValue);
+			v.showPrice = v.proValue;
 			v.showStartTime = utils.formateTime(v.startTime);
 			v.showEndTime = utils.formateTime(v.endTime);
 			return v;
