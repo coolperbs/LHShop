@@ -55,7 +55,9 @@
 		class="online-coupon-bg"></image>
 		<!-- <view class="online-coupon-bg"></view> -->
 		<view class="rt-logo">
-			
+				<view wx:if="{{isUse}}" class="selected use">
+					<image src="../../asset/checked.png"/>
+				</view>
 				<view wx:if="{{isFetch}}" class="selected">
 					<image src="../../asset/coupon-fetched.png"/>
 				</view>
