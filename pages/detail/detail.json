@@ -2,5 +2,5 @@
 	"navigationBarTitleText": "",
 	"navigationBarTextStyle" : "black",
 	"backgroundColor" : "#efefef",
-	"disableScroll" : false
+	"disableScroll" : true
 }

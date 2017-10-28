@@ -141,7 +141,7 @@ _fn = {
 		var url = '';
 
 		if ( pageParam.skuid && pageParam.skunum ) {
-			url = app.host + '/app/trade/buynow/' + pageParam.skuid + '/' + pageParam.skunum;
+			url = app.host + '/app/trade/buynow/' + pageParam.skuid + '/' + pageParam.skunum + '/0'; //后面那个是优惠券Id
 		}
 		else if ( pageParam.shopid ) {  // 门店购买
 			url = app.host + '/app/trade/cartbuy/' + pageParam.shopid;
