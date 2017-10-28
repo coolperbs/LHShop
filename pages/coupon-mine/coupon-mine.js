@@ -88,7 +88,8 @@ var _fn =  {
 			getList:function(data){
 				data.data.coupon.map((v,k)=>{
 					v.showProType = couponeTypeEnum[v.proType];
-					v.showPrice = utils.fixPrice(v.proValue);
+					// v.showPrice = utils.fixPrice(v.proValue);
+					v.showPrice = v.proValue;
 					v.showStartTime = utils.formateTime(v.startTime);
 					v.showEndTime = utils.formateTime(v.endTime);
 					return v
