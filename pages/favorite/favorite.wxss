@@ -1,10 +1,10 @@
 @import '../../widgets/common/common.wxss'
-.page-collect .head { z-index:100;border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
+.page-collect .head { z-index:100;border-bottom: solid 2rpx #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
 .page-collect .head .box { text-align:center;height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
 .page-collect .head .box.current { color : #d6204b;  }
 .page-collect .tab_ul{
 	position:absolute;
-	height:3px;
+	height:6rpx;
 	background-color:#d6204b;
 	left:0;
 	bottom:0;
@@ -19,7 +19,7 @@
 .store{
 	height:150rpx;
 	display:flex;
-	border-bottom:1px solid #f0f0f0;
+	border-bottom:2rpx solid #f0f0f0;
 }
 .store .left{
 	width:250rpx;
@@ -27,7 +27,7 @@
 	align-items:center;
 }
 .store .left image{
-	width:120px;
+	width:240rpx;
 	height:100rpx;
 }
 .store .right{
@@ -38,10 +38,10 @@ padding:20rpx 0 10rpx 20rpx;
 position: relative;
 }
 .store .right .name{
-	font-size: 15px
+	font-size: 30rpx
 }
 .store .right .detail{
-	font-size: 13px;
+	font-size: 26rpx;
 	color:#ababab;
 	margin-top:20rpx;
 }
@@ -57,7 +57,7 @@ position: relative;
 .ware{
 	height:300rpx;
 	display:flex;
-	border-bottom:1px solid #f0f0f0;
+	border-bottom:2rpx solid #f0f0f0;
 }
 .ware .left{
 	width:250rpx;
@@ -65,7 +65,7 @@ position: relative;
 	align-items:center;
 }
 .ware .left image{
-	width:250px;
+	width:500rpx;
 	height:250rpx;
 	border-radius:5rpx;
 }
@@ -77,18 +77,18 @@ padding:20rpx 0 10rpx 20rpx;
 position: relative;
 }
 .ware .right .title{
-	font-size:14px;
+	font-size:28rpx;
 	color:#232326;
 	width:450rpx;
 }
 .ware .right .sub-title{
-	font-size:14px;
+	font-size:28rpx;
 	color:#bababa;
 	width:450rpx;
 	margin-top: 20rpx
 }
 .ware .right .detail{
-	font-size: 13px;
+	font-size: 26rpx;
 	color:#ababab;
 	margin-top:20rpx;
 }
@@ -115,6 +115,6 @@ position: relative;
 	right:100rpx;
 }
 
-.ware .right .price .dw{font-size: 15px}
-.ware .right .price .zs{font-size: 17px}
-.ware .right .price .xs{font-size: 13px}
+.ware .right .price .dw{font-size: 30rpx}
+.ware .right .price .zs{font-size: 34rpx}
+.ware .right .price .xs{font-size: 26rpx}

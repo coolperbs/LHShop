@@ -14,7 +14,7 @@ page{
 }
 .address-edit{
     background-color:white;
-    box-shadow:0 4px 10px 0 rgba(0,0,0,0.05);
+    box-shadow:0 8rpx 20rpx 0 rgba(0,0,0,0.05);
     padding:10rpx;
 }
 .address-edit .edit-item{
@@ -62,7 +62,7 @@ display:inline-block;
     position:absolute;
 z-index:100;
 top:42rpx;
-left:22px;
+left:44rpx;
 margin-top:-12rpx;
 width:24rpx;
 height:24rpx;

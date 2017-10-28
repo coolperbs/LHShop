@@ -58,7 +58,10 @@ var _fn = {
 				if(res.code==='0000'){
 					wx.showModal({
 						title:'提示',
-						content:'申请成功,我们会尽快与您联系'
+						content:'申请成功,我们会尽快与您联系',
+						success:function(){
+							wx.relaunch();
+						}
 					});
 				}else{
 					wx.showModal({
