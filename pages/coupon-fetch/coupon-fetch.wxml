@@ -1,0 +1,27 @@
+<import src="../coupon-mine/coupon-mine.wxml"/>
+
+
+<view class="barline"></view>
+<view class="page-couponfetch">
+	<scroll-view wx:if="{{coupons && coupons.length>0}}" class="coupon-list" scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="loadMore" >
+		<view class="wrapper">
+			<block wx:for="{{coupons}}">
+				<view catchtap="getCoupon" data-id="{{item.id}}">
+					<template is="online-coupon" data="{{...item}}"></template>
+				</view>
+			</block> 
+		</view>
+	</scroll-view>
+	<view wx:else>
+		<template is="couponfetch-empty"></template>
+	</view>
+</view>
+<template name="couponfetch-empty">
+	<view class="coupon-empty">
+		<image class="coupon-empty-img" src="../../asset/empty-data.png"></image>
+		<!-- <view class="message"> -->
+			<text class="title">很遗憾</text>
+			<text class="subtitle">您暂无可以领取的优惠券</text>
+		<!-- </view> -->
+	</view>
+</template>

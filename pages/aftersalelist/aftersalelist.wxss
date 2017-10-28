@@ -85,7 +85,7 @@
 	width:100rpx;
 	border-radius: 50%
 }
-.page-aftersalelist .right{
+.page-aftersalelist .body .right{
 	display:flex;
 	justify-content:space-between;
 	width:540rpx;
@@ -102,6 +102,7 @@
 	letter-spacing: 0;
 	padding-bottom: 15rpx;
 	line-height: 16px;
+	height: 32px;
 }
 .page-aftersalelist .right .time{
 	font-family: PingFangSC-Regular;
@@ -166,6 +167,9 @@
 	box-shadow:0 5px 15px 0 rgba(0,0,0,0.05);
 	margin:30rpx;
 	/*border-bottom:1px solid #f8f8f8;*/
+}.page-aftersalelist .gooditem .header{
+	display: flex;
+	justify-content: space-between;
 }
 .page-aftersalelist .gooditem .header .left{
 	display:flex;
@@ -175,6 +179,18 @@
 	border-bottom:1px solid #fafafa;
 	color:#bababa;
 	font-size:13px;
+	width:300rpx;
+}
+.page-aftersalelist .gooditem .header .right{
+	display:flex;
+	justify-content:flex-end;
+	padding-left:20rpx;
+	/*flex-direction:column;*/
+	border-bottom:1px solid #fafafa;
+	color:#bababa;
+	font-size:13px;
+	width:300rpx;
+	padding-right: 20rpx;
 
 }
 .page-aftersalelist .gooditem .body{
@@ -200,7 +216,7 @@
 	padding:20rpx 0 20rpx 10rpx;
 }
 .page-aftersalelist .gooditem .body .right .name{
-	font-size:16px;
+	font-size:14px;
 	color:#4A4A4A;
 	letter-spacing:0;
 }
@@ -224,7 +240,7 @@
 	bottom:-2px;
 }
 .page-aftersalelist .gooditem .body .right .price .unitPrice{
-	font-size:18px;
+	font-size:15px;
 	color:#0A0C11;
 	letter-spacing:0;
 	/*line-height:12px;*/

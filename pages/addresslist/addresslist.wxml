@@ -22,7 +22,7 @@
                 <text class="mobile">{{userPhone}}</text>
             </view>
             <view class="address text-ellipsis">
-                <text>{{provinceName}} {{cityName}} {{countyName}} {{address}}</text>
+                <text>{{provinceName}} {{cityName}} {{countryName}} {{address}}</text>
             </view>
         </view>
         <view class="handle">

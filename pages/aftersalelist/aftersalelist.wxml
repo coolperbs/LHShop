@@ -11,7 +11,7 @@
 	</view>
 
 	<scroll-view class="list-container" style="height:{{height}}px" scroll-y="true" bing bindscrolltolower="loadMore">
-		<block wx:for="{{aftersaleList}}">
+		<block wx:for="{{aftersaleList}}" wx:key="aftersale.id">
 			<template is="aftersale-good" data="{{...item}}"></template>
 		</block>
 	</scroll-view>	
@@ -19,29 +19,26 @@
 
 
 <template name="aftersale-good">
-	<view class="gooditem" bindtap="toDetail" data-id="{{id}}">
+	<view class="gooditem" bindtap="toDetail" data-id="{{aftersale.id}}">
 		<view class="header">
 			<view class="left">
-				<view class="headerMsg">售后单号:{{id}}</view>
-				<view class="headerMsg">订单号:{{orderId}}</view>
+				<view class="headerMsg">售后单号:{{aftersale.id}}</view>
+				<view class="headerMsg">订单号:{{aftersale.orderId}}</view>
+			</view>
+			<view class="right">
+				<view class="headerMsg">申请日期:{{aftersale.showCreated}}</view>
 			</view>
 		</view>
 		<view class="body">
 			<view class="left">
-				<image src='{{img1}}'></image>
+				<image src='{{ware.mainImage}}'></image>
 			</view>
 			<view class="right">
-				<text class="name ellipsis-1">1111</text>
-				<text class="num">x222</text>
+				<text class="name ellipsis-2">{{ware.title}}</text>
+				<!-- <text class="num">x222</text> -->
 				<view class="price">
-					<text class="unitPrice">1122</text>
+					<text class="unitPrice">{{ware.showPrice}}</text>
 				</view>
-				<block wx:if="{{status==='remain'}}">
-					<text class="btn" bindtap="toAfterSaleDetail" data-skuId="{{skuId}}">退款</text>
-				</block>
-				<block wx:else>
-					<text class="refoundStatus refoundStatus-{{status}}">{{statusTxt}}</text>
-				</block>
 			</view>
 		</view>
 	</view>

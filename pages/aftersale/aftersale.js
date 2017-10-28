@@ -14,6 +14,7 @@ Page({
 		this.typeEnum = [{name:'退货',key:'1'},{name:'换货',key:'2'},{name:'维修',key:'3'}];
 		if(aftersaleId){
 			var aftersaleItem = aftersaleService.cache();
+			console.log(aftersaleItem);
 			self.param = {
 				aftersaleId:aftersaleItem.id
 			}
@@ -57,11 +58,48 @@ Page({
 		self.formData[key] = val;
 		self.setData({formData:self.formData});
 	},
+	cancel:function(e){
+		var id = e.currentTarget.dataset.id;
+		var url = host+'/app/aftersale/cancel/'+id;
+		wx.showModal({
+			title:'提示',
+			content:'确认要取消申请么',
+			success:function(res){
+				if(res.confirm){
+					ajax.query({
+						url:url
+					},function(res){
+						if(res.code==='0000'){
+							wx.showModal({
+								title:'提示',
+								content:'申请已被取消',
+								showCancel:false,
+								success:function(res){
+									if(res.confirm){
+										wx.navigateBack()
+									}
+								}
+							})
+						}else{
+							wx.showModal({
+								title:'错误',
+								content:res.msg+'('+res.code+')',
+								showCancel:false
+							})
+						}
+					});
+					
+				}
+
+			}
+		})
+		// /app/comment/submit评论
+	},
 	submit:function(){
 		var formData = this.formData;
 		// console.log(formData);
 		// return;
-		var url = host+'/app/comment/submit';
+		var url = host+'/app/aftersale/submit';
 		// /app/comment/submit评论
 		ajax.query({
 			url:url,
@@ -104,25 +142,35 @@ var _fn = {
 				}
 			});
 		}else if(page.param.aftersaleId){
+			var filterType = page.typeEnum.filter((v,k)=>{
+				if(v.key/1 === page.aftersaleItem.aftersale.type/1){
+					return v;
+				}
+			})[0];
+			page.aftersaleItem.aftersale.typeName = filterType.name;
 			page.setData({
-				ware:page.aftersaleItem.sku
+				ware:page.aftersaleItem.ware,
+				formData:page.aftersaleItem.aftersale,
+				disable:true,//不可编辑
+				cancelable:page.aftersaleItem.aftersale.stat===1?true:false
+				// cancelable:true
 			});
 			
 		}
 		var fileList = [];
 		if(page.aftersaleItem){
 			fileList = [
-				page.aftersaleItem.img1,
-				page.aftersaleItem.img2,
-				page.aftersaleItem.img3,
-				page.aftersaleItem.img4,
-				page.aftersaleItem.img5,
-				page.aftersaleItem.img6,
-				page.aftersaleItem.img7,
-				page.aftersaleItem.img8
+				page.aftersaleItem.aftersale.img1,
+				page.aftersaleItem.aftersale.img2,
+				page.aftersaleItem.aftersale.img3,
+				page.aftersaleItem.aftersale.img4,
+				page.aftersaleItem.aftersale.img5,
+				page.aftersaleItem.aftersale.img6,
+				page.aftersaleItem.aftersale.img7,
+				page.aftersaleItem.aftersale.img8
 			]
 		}
-		console.log(111,fileList);
+		// console.log(111,fileList);
 		page.fileUploader = new FileUploader({
 			orderId:page.param.orderId,
 			files:fileList,

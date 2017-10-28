@@ -1,0 +1,37 @@
+<import src="../coupon-mine/coupon-mine.wxml"/>
+
+
+<view class="barline"></view>
+<view class="page-couponuse">
+	<view class="head">
+		<block wx:for="{{tab.tabData}}" wx:key="index">
+			<view class="box {{item.isCur?'current':''}}" 
+			data-param="{{item.param}}" 
+			data-extra = "{{item.extra}}"
+			bindtap="changeTab"
+			style="{{item.style}}">{{item.name}}</view>
+		</block>
+		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
+	</view>
+	<scroll-view wx:if="{{coupons && coupons.length>0}}" class="coupon-list" scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="loadMore" >
+		<view class="wrapper">
+			<block wx:for="{{coupons}}">
+				<view catchtap="useCoupon" data-id="{{item.id}}">
+					<template is="online-coupon" data="{{...item}}"></template>
+				</view>
+			</block> 
+		</view>
+	</scroll-view>
+	<view wx:else>
+		<template is="couponuse-empty"></template>
+	</view>
+</view>
+<template name="couponuse-empty">
+	<view class="coupon-empty">
+		<image class="coupon-empty-img" src="../../asset/empty-data.png"></image>
+		<!-- <view class="message"> -->
+			<text class="title">很遗憾</text>
+			<text class="subtitle">您暂无可以使用的优惠券</text>
+		<!-- </view> -->
+	</view>
+</template>

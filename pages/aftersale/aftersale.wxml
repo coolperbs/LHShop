@@ -4,7 +4,7 @@
 		<view class="ware-detail">
 			<view class="name ellipsis-2">{{ware.title}}</view>
 			<text class="price">{{ware.showOriginPrice}}</text>
-			<text class="num">x{{ware.skuNum}}</text>
+			<text wx:if="{{ware.skuNum}}" class="num">x{{ware.skuNum}}</text>
 		</view>
 	</view>
 
@@ -17,6 +17,7 @@
 					 range="{{type}}"
 					 range-key="name"
 					 data-key="type" 
+					 disabled = "{{disable}}"
 					 bindchange="changeInput">
 					<view class="text">{{formData&&formData.typeName?formData.typeName:'请选择'}}</view>
 				</picker>
@@ -27,11 +28,15 @@
 			<text class='title'>退款说明</text>
 			<view class='content notice'>
 				<textarea 
+				disabled = "{{disable}}"
 				data-key="content"
 				cursor-spacing="100"
 				placeholder="选填" 
+				value = '{{formData.content}}'
 				placeholder-style="font-size:16px;color:#e5e5e5" 
-				bindinput="changeInput"></textarea>
+				bindinput="changeInput">
+
+				</textarea>
 			</view>
 		</view>
 	</view>
@@ -40,17 +45,18 @@
 		<text class="title">上传凭证</text>
 		<view class="btn-wrapper">
 			<block wx:for="{{uploadData.btns}}">
-				<image src="{{item.imgUrl}}" data-param="{{item.eventParam}}" class="logo" catchtap="changeFile"/>
+				<image wx:if="{{disable}}" src="{{item.imgUrl}}" data-param="{{item.eventParam}}" class="logo" catchtap=""/>
+				<image wx:if="{{!disable}}" src="{{item.imgUrl}}" data-param="{{item.eventParam}}" class="logo" catchtap="changeFile"/>
 			</block>
 		</view>
 	</view>
 	<form report-submit="{{true}}" bindsubmit="submit">
-		<button class="submit-btn" form-type="submit">
+		<view wx:if="{{!disable}}" class="submit-btn" form-type="submit" catchtap="submit">
 			申请售后
-		</button>
-		<button class="cancel-btn" form-type="cancel">
-			取消
-		</button>
+		</view>
+		<view wx:if="{{cancelable}}" data-id="{{formData.id}}" class="submit-btn" form-type="submit" catchtap="cancel">
+			取消申请
+		</view>
 	</form>
 
 
