@@ -14,7 +14,7 @@
 
 	<scroll-view wx:if="{{coupons && coupons.length>0}}" class="coupon-list" scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="scrollToLower" >
 		<view class="listInner">
-			<view wx:for="{{coupons}}" class="wrapper">
+			<view wx:for="{{coupons}}" class="wrapper" wx:key="id">
 				<template is="online-coupon" data="{{...item}}"></template>
 			</view>
 			

@@ -2,7 +2,7 @@
 @import '../../widgets/modules/modules.wxss'
 .view-mine{
 	background-color: #eeeff1;
-	height: 100%
+	/*height: 100%*/
 }
 
 .view-mine .pannel{
