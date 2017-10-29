@@ -14,8 +14,9 @@ var couponeTypeEnum = {
 
 
 Page({
-	onLoad:function(){
+	onLoad:function(option){
 		var self = this;
+		self.shopId = option.shopId || 1;
 		_fn.init(self);
 	},
 	getCoupon:function(e){
@@ -56,8 +57,10 @@ Page({
 
 var _fn = {
 	init:function(page){
+		var shopId = page.shopId;
 		page.couponList = new List({
 			url:host + '/app/coupon',
+			param:{shopId:shopId},
 			isSingle:true,
 			render:function(data){
 				page.setData({

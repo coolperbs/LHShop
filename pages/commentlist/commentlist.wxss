@@ -78,6 +78,10 @@
 	border-bottom:2rpx solid #f8f8f8;
 	display:flex;
 	padding:40rpx 40rpx 6rpx 40rpx;
+	flex-direction: column;
+}
+.page-commentlist .comment-wrapper .main{
+	display:flex;
 }
 .page-commentlist .left{
 	height:100rpx;
@@ -166,10 +170,22 @@
 }
 .page-commentlist .files{
 	display: flex;
+	padding-left:120rpx;
+margin-top:20rpx;
+
 }
 
 
 .page-commentlist .files image{
-	width: 100rpx;
-	height: 100rpx;
+	width:80rpx;
+	height:80rpx;
+	border:1px solid #f0f0f0;
+	margin:10rpx;
+
+}
+.page-commentlist .files .msg{
+	height: 80rpx;
+	line-height: 80rpx;
+	font-size: 28rpx;
+	color :#bababa
 }

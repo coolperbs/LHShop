@@ -48,7 +48,10 @@ Page({
 		});
 	},
 	toIndexHome:function(e){
-		wx.navigateTo({
+		// wx.navigateTo({
+		// 	url:'../index/index'
+		// });
+		wx.reLaunch({
 			url:'../index/index'
 		});
 

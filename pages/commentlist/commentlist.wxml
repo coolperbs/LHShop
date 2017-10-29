@@ -19,37 +19,40 @@
 
 <template name="comment-item">
 	<view class="comment-wrapper" bindtap="selectComment">
-		<view class="left">
-			<block wx:if="{{userAvatarUrl}}">
-				<image src="{{userAvatarUrl}}"></image>
-			</block>
-			<block wx:else>
-				<image src="../../asset/default-user.png"></image>
-			</block>
-			<!-- <image src="{{userHeadImage}}"></image> -->
-		</view>
-		<view class="right">
-			<view>
-				<view class="name">{{username}}</view>
-				<view class="starts">
-					<block wx:for='{{[0,1,2,3,4]}}' wx:key="id">
-						<view class="star"  data-value="{{item}}">
-							<block wx:if="{{star-1<item}}">
-								<image src="../../asset/star-nor.png"></image>
-							</block>
-							<block wx:else>
-								<image src="../../asset/star-sel.png"></image>
-							</block>
-						</view>
-					</block>
-				</view>
-				<view class="content ellipsis-2">{{content}}</view>
+		<view class="main">
+			<view class="left">
+				<block wx:if="{{userAvatarUrl}}">
+					<image src="{{userAvatarUrl}}"></image>
+				</block>
+				<block wx:else>
+					<image src="../../asset/default-user.png"></image>
+				</block>
+				<!-- <image src="{{userHeadImage}}"></image> -->
 			</view>
-			<view class='time-wrapper'>
-				<view class="time">{{showCreateTime}}</view>
+			<view class="right">
+				<view>
+					<view class="name">{{username}}</view>
+					<view class="starts">
+						<block wx:for='{{[0,1,2,3,4]}}' wx:key="id">
+							<view class="star"  data-value="{{item}}">
+								<block wx:if="{{star-1<item}}">
+									<image src="../../asset/star-nor.png"></image>
+								</block>
+								<block wx:else>
+									<image src="../../asset/star-sel.png"></image>
+								</block>
+							</view>
+						</block>
+					</view>
+					<view class="content ellipsis-2">{{content}}</view>
+				</view>
+				<view class='time-wrapper'>
+					<view class="time">{{showCreateTime}}</view>
+				</view>
 			</view>
 		</view>
 		<view class='files'>
+			<!-- <view class="msg">上传文件</view> -->
 			<block wx:for="{{files}}" wx:key="index">
 				<image src="{{item}}" class="commentFile"/>
 			</block>

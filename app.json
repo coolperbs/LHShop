@@ -11,7 +11,8 @@
     "pages/login/login",
     "pages/map/map",
 
-
+    "pages/fx-money/fx-money",
+    "pages/fx-team/fx-team",
     "pages/orderlist/orderlist",
     "pages/orderdetail/orderdetail",
     "pages/address/address",

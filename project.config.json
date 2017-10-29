@@ -12,7 +12,7 @@
 	"projectname": "LH-shop",
 	"condition": {
 		"weapp": {
-			"current": 12,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -120,6 +120,18 @@
 					"id": 17,
 					"name": "优惠券-使用",
 					"pathName": "pages/coupon-use/coupon-use",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分销-我的团队",
+					"pathName": "pages/fx-team/fx-team",
+					"query": ""
+				},
+				{
+					"id": 19,
+					"name": "分销-我的金额",
+					"pathName": "pages/fx-money/fx-money",
 					"query": ""
 				}
 			]
