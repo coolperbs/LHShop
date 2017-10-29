@@ -93,7 +93,7 @@ _fn = {
 		} );
 	},
 	init : function( callerPage ) {
-		if ( callerPage.initedHome ) {
+		if ( callerPage.initedDistribution ) {
 			return;
 		}
 		utils.mix( callerPage, {
@@ -104,7 +104,7 @@ _fn = {
 	        }
 	      }
 	    } );
-	    callerPage.initedHome = true;
+	    callerPage.initedDistribution = true;
 	}
 }
 
