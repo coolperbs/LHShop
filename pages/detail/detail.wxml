@@ -33,6 +33,10 @@
         </view>
     </view>
 
+    <view>
+        <navigator url="../commentlist/commentlist">评论列表</navigator>
+    </view>
+
     <view class="cont">
         <view class="tabs">
             <view class="tab {{ tab.current=='imgs' ? 'current' : '' }}" catchtap="changeTab" data-id="imgs">图文详情</view>
@@ -82,15 +86,15 @@
 
 <view class="pop {{pop.show ? 'showpop' : '' }}">
     <view class="head">
-        <image class="img" src="https://img.alicdn.com/imgextra/i2/TB1fFswNVXXXXXRaFXXXXXXXXXX_!!0-item_pic.jpg_200x200Q50s50.jpg"></image>
+        <image class="img" src="{{pageData.mainImage[0]}}"></image>
         <view class="info">
             <!--<view class="title">中秋便携茶具礼盒限量版时光小黑盒 Pertouch泊喜</view>-->
             <view class="main">
-                <view class="price"><view class="sub">¥</view>598.00</view>
-                <view class="stock">库存100件</view>
+                <view class="price"><view class="sub">¥</view>{{ pageData.price ? pageData.price / 100 : pageData.originPrice / 100 }}</view>
+                <view class="stock">库存{{pageData.lastStock}}件</view>
             </view>
-            <view class="name">商品名称</view>
-            <view class="sub">规格信息</view>
+            <view class="name ellipsis-2">{{pageData.title}}</view>
+            <!--J<view class="sub ellipsis-2">{{pageData.subTitle}}</view>-->
         </view>
     </view>
 

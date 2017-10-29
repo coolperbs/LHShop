@@ -152,17 +152,21 @@ _fn = {
 	getPageData : function( callback ) {
 		var url = '',
 			couponId = 0,
+			city = wx.getStorageSync( 'city' ),
 			selectedCoupon = SCoupon;
 
-		console.log( SCoupon );
+		if ( !city || !city.code ) {
+			wx.showToast( { title : '缺少地址信息' } );
+			return;
+		}
 		if ( selectedCoupon && selectedCoupon.selectCoupon && selectedCoupon.selectCoupon.id ) {
 			couponId = selectedCoupon.selectCoupon.id;
 		}
 		if ( pageParam.skuid && pageParam.skunum ) {
-			url = app.host + '/app/trade/buynow/' + pageParam.skuid + '/' + pageParam.skunum + '/' + couponId; //后面那个是优惠券Id
+			url = app.host + '/app/trade/buynow/' + city.code + '/' + pageParam.skuid + '/' + pageParam.skunum + '/' + couponId; //后面那个是优惠券Id
 		}
 		else if ( pageParam.shopid ) {  // 门店购买
-			url = app.host + '/app/trade/cartbuy/' + pageParam.shopid + '/' + couponId;
+			url = app.host + '/app/trade/cartbuy/' + city.code + '/' + pageParam.shopid + '/' + couponId;
 		} else {
 			wx.showToast( { title : '缺少页面相关参数' } );
 			return;
