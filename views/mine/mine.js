@@ -1,7 +1,3 @@
-/**
-2.我的分销
-**/
-
 var service = require( '../../service/service' ),
 	us = require('../../lib/underscore'),
 	utils = require('../../common/utils/utils'),
@@ -63,6 +59,11 @@ handle = {
 		goAftersale:function(){
 			wx.navigateTo({
 				url:'../../pages/aftersalelist/aftersalelist'
+			})
+		},
+		goJoin:function(){
+			wx.navigateTo({
+				url:'../../pages/join/join'
 			})
 		},
 		getNextPage:function( caller,e){

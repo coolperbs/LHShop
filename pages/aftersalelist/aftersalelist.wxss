@@ -4,12 +4,12 @@
 }
 
 
-.page-aftersalelist .head { z-index:100;border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
+.page-aftersalelist .head { z-index:100;border-bottom: solid 2rpx #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
 .page-aftersalelist .head .box { text-align:center;height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
 .page-aftersalelist .head .box.current { color : #d6204b;  }
 .tab_ul{
 	position:absolute;
-	height:3px;
+	height:6rpx;
 	background-color:#d6204b;
 	left:0;
 	bottom:0;
@@ -21,7 +21,7 @@
 
 .page-aftersalelist .tab{
 	display:flex;
-	height:50px;
+	height:100rpx;
 	align-items:center;
 	position: fixed;
 	top:0;
@@ -31,9 +31,9 @@
 }
 .page-aftersalelist .tab .tab-item{
 	display:flex;
-	height:50px;
+	height:100rpx;
 	align-items:center;
-	border-bottom:1px solid #f8f8f8;
+	border-bottom:2rpx solid #f8f8f8;
 	width:25%;
 	text-align:center;
 	justify-content:center;
@@ -55,22 +55,22 @@
 	color:#434552;
 }
 .page-aftersalelist .tab .tab-item .tab-title{
-	font-size: 13px;
+	font-size: 26rpx;
 	margin-bottom: 17rpx;
 }
 .page-aftersalelist .tab .tab-item .tab-num{
-	font-size: 12px
+	font-size: 24rpx
 }
 .page-aftersalelist .tab .tab-item.active .content:after{
 	content:'';
-	height: 3px;
+	height: 6rpx;
 	width:100%;
 	background-color: #434552; 
 	position: absolute;
 	bottom: 0;
 }
 .page-aftersalelist .list-container{
-	margin-top:50px;
+	margin-top:100rpx;
 	padding-bottom:50rpx;
 }
 .page-aftersalelist .comment-wrapper{
@@ -89,7 +89,7 @@
 	display:flex;
 	justify-content:space-between;
 	width:540rpx;
-	font-size: 15px;
+	font-size: 30rpx;
 	padding-left:18rpx;
 	position: relative;
 
@@ -97,16 +97,16 @@
 .page-aftersalelist .right .top{}
 .page-aftersalelist .right .bottom{}
 .page-aftersalelist .right .name{
-	font-size: 16px;
+	font-size: 32rpx;
 	color: #434552;
 	letter-spacing: 0;
 	padding-bottom: 15rpx;
-	line-height: 16px;
-	height: 32px;
+	line-height: 32rpx;
+	height: 64rpx;
 }
 .page-aftersalelist .right .time{
 	font-family: PingFangSC-Regular;
-	font-size: 12px;
+	font-size: 24rpx;
 	color: #CCCCCC;
 	letter-spacing: 0;
 }
@@ -133,12 +133,12 @@
 }
 .page-aftersalelist .ticket{
 	font-family:PingFangSC-Light;
-	font-size:11px;
+	font-size:22rpx;
 	color:#4A4A4A;
 	letter-spacing:0;
-	line-height:12px;
+	line-height:24rpx;
 	background:#F5F5F5;
-	border-radius:100px;
+	border-radius:200rpx;
 	padding:0 30rpx;
 	margin-right:20rpx;
 	margin-bottom:20rpx;
@@ -154,7 +154,7 @@
 .page-aftersalelist .content{
 	width:550rpx;
 	color:#bababa;
-	font-size:13px;
+	font-size:26rpx;
 
 }
 
@@ -164,7 +164,7 @@
 	
 
 	background:#FFFFFF;
-	box-shadow:0 5px 15px 0 rgba(0,0,0,0.05);
+	box-shadow:0 10rpx 30rpx 0 rgba(0,0,0,0.05);
 	margin:30rpx;
 	/*border-bottom:1px solid #f8f8f8;*/
 }.page-aftersalelist .gooditem .header{
@@ -176,9 +176,9 @@
 	justify-content:flex-start;
 	padding-left:20rpx;
 	flex-direction:column;
-	border-bottom:1px solid #fafafa;
+	border-bottom:2rpx solid #fafafa;
 	color:#bababa;
-	font-size:13px;
+	font-size:26rpx;
 	width:300rpx;
 }
 .page-aftersalelist .gooditem .header .right{
@@ -186,9 +186,9 @@
 	justify-content:flex-end;
 	padding-left:20rpx;
 	/*flex-direction:column;*/
-	border-bottom:1px solid #fafafa;
+	border-bottom:2rpx solid #fafafa;
 	color:#bababa;
-	font-size:13px;
+	font-size:26rpx;
 	width:300rpx;
 	padding-right: 20rpx;
 
@@ -216,12 +216,12 @@
 	padding:20rpx 0 20rpx 10rpx;
 }
 .page-aftersalelist .gooditem .body .right .name{
-	font-size:14px;
+	font-size:28rpx;
 	color:#4A4A4A;
 	letter-spacing:0;
 }
 .page-aftersalelist .gooditem .body .right .num{
-	font-size:18px;
+	font-size:36rpx;
 	color:#4A4A4A;
 	letter-spacing:0;
 }
@@ -229,18 +229,18 @@
 	display:flex;
 	width:210rpx;
 	position:relative;
-	height:18px;
+	height:36rpx;
 	justify-content:space-between;
 }
 .page-aftersalelist .gooditem .body .right .price .marketPrice{
-	font-size:14px;
+	font-size:28rpx;
 	color:#9B9B9B;
 	letter-spacing:0;
 	position:relative;
-	bottom:-2px;
+	bottom:-4rpx;
 }
 .page-aftersalelist .gooditem .body .right .price .unitPrice{
-	font-size:15px;
+	font-size:30rpx;
 	color:#0A0C11;
 	letter-spacing:0;
 	/*line-height:12px;*/
@@ -255,7 +255,7 @@
 }
 .page-aftersalelist .gooditem .body .right .price .unitPrice:before{
 	content:"¥";
-	font-size:13px;
+	font-size:26rpx;
 	position:relative;
 	/*top:-4px;*/
 	margin-right:4rpx;
@@ -267,15 +267,15 @@
 	bottom:0;
 	right:0;
 	font-family:PingFangSC-Regular;
-	font-size:13px;
+	font-size:26rpx;
 	color:#9B9B9B;
 	letter-spacing:0;
 	background:#FFFFFF;
-	border:1px solid #F5F5F5;
-	border-radius:100px;
+	border:2rpx solid #F5F5F5;
+	border-radius:200rpx;
 	width:128rpx;
 	height:64rpx;
-	line-height:32px;
+	line-height:64rpx;
 	text-align:center;
 }
 .page-aftersalelist .gooditem .body .right .refoundStatus{
@@ -283,7 +283,7 @@
 	bottom:15rpx;
 	right:0;
 	font-family:PingFangSC-Regular;
-	font-size:13px;
+	font-size:26rpx;
 	letter-spacing:0;
 	background:#FFFFFF;
 	width:150rpx;
@@ -304,7 +304,7 @@
 .page-aftersalelist .gooditem .body .right .refoundStatus-7{}
 .page-aftersalelist .goodlist{
 	background:#FFFFFF;
-	box-shadow:0 5px 15px 0 rgba(0,0,0,0.05);
+	box-shadow:0 10rpx 30rpx 0 rgba(0,0,0,0.05);
 	margin:30rpx;
 
 }

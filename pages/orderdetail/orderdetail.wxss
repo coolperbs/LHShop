@@ -4,14 +4,14 @@ page{
 	height: 100%;
 	background-color:#f8f8f8;
 }
-.page-orderlist .head { z-index:100;border-bottom: solid 1px #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
+.page-orderlist .head { z-index:100;border-bottom: solid 2rpx #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
 .page-orderlist .head .box { height : 100rpx; line-height: 100rpx; padding : 0 20rpx; font-size : 28rpx; }
 .page-orderlist .head .box.current { color : #ea622e; border-bottom : solid 6rpx #ea622e; }
 
 .view-orders{
 	background-color: #f8f8f8;
 	/*padding-top: 120rpx;*/
-	padding-bottom:80px;
+	padding-bottom:160rpx;
 }
 .view-orders .scroll-view{
 	height:100%;
@@ -20,7 +20,7 @@ page{
 .view-orders .order-wrapper{
 	/*width:710rpx;
 	margin:0px 20rpx 20rpx 20rpx;*/
-	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.05);
+	box-shadow: 0 8rpx 20rpx 0 rgba(0,0,0,0.05);
 	display: flex;
 	flex-wrap: wrap;
 	position: relative;
@@ -47,19 +47,19 @@ page{
 }
 .view-orders .order-wrapper .header .header-left .storeName{
 	/*font-family: PingFangSC-Regular;*/
-	font-size: 14px;
+	font-size: 28rpx;
 	color: #999999;
 	line-height: 40rpx;
 	/*letter-spacing: 0;*/
 }
 .view-orders .order-wrapper .header .header-left .orderId{
-	font-size: 14px;
+	font-size: 28rpx;
 	color: #4A4A4A;
 	line-height: 34rpx
 }
 .view-orders .order-wrapper .header .orderState{
 	/*font-family: PingFangSC-Regular;*/
-	font-size: 14px;
+	font-size: 28rpx;
 	color: black;
 	/*margin-right:30rpx;*/
 	/*letter-spacing: 0;*/
@@ -84,13 +84,13 @@ page{
 }
 .view-orders .order-wrapper .body .ware-detail .ware-name{
 	font-family: PingFangSC-Regular;
-	font-size: 16px;
+	font-size: 32rpx;
 	color: #4A4A4A;
 	letter-spacing: 0;
 	width:510rpx;
 }
 .view-orders .order-wrapper .body .ware-detail .ware-feature{
-	font-size: 14px;
+	font-size: 28rpx;
 	color:#9b9aa2;
 	margin-top:10rpx;
 	width:510rpx;
@@ -98,7 +98,7 @@ page{
 }
 .view-orders .order-wrapper .body .ware-detail .ware-count{
 	font-family:PingFangSC-Regular;
-	font-size:14px;
+	font-size:28rpx;
 	color:#4a4a4a;
 	letter-spacing:0;
 	/*width:498rpx;*/
@@ -114,16 +114,16 @@ page{
 .view-orders .order-wrapper .body .ware-detail .price{
 	position:absolute;
 	bottom:40rpx;
-	font-size:14px;
+	font-size:28rpx;
 	color:#4A4A4A;
 }
 
 .view-orders .order-wrapper .body .ware-detail .ware-price{
 	/*font-family: PingFangSC-Regular;*/
-	font-size: 14px;
+	font-size: 28rpx;
 	color: #4A4A4A;
 	/*letter-spacing: 0;*/
-	margin-top: 15px
+	margin-top: 30rpx
 }
 .view-orders .order-wrapper .btn-wrapper{
 	display:flex;
@@ -153,21 +153,21 @@ page{
 }
 .view-orders .order-wrapper .footer .next-step{
 	/*font-family: PingFangSC-Regular;*/
-	font-size: 16px;
+	font-size: 32rpx;
 	color: #161823;
 	/*margin-left:10px;*/
-	font-size:14px;
+	font-size:28rpx;
 	color:#161823;
 	/*margin-left:30rpx;*/
-	line-height:44px;
+	line-height:88rpx;
 	/*letter-spacing: 0;*/
 }
 
 .view-orders .order-wrapper .block{
     background-color: #fff;
-    width:100px;
-    height:100px;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+    width:200rpx;
+    height:200rpx;
+    box-shadow: 0 6rpx 12rpx 0 rgba(0,0,0,0.2);
     position: absolute;
 }
 .view-orders .order-wrapper .block.first{
@@ -176,18 +176,18 @@ page{
     z-index: 1
   }
 .view-orders .order-wrapper .block.second{
-    right:2px;
-    bottom:2px;
+    right:4rpx;
+    bottom:4rpx;
     z-index: 2
   }
 .view-orders .order-wrapper .block.third{
-    right:4px;
-    bottom:4px;
+    right:8rpx;
+    bottom:8rpx;
     z-index: 3
   }
 .view-orders .order-wrapper .qrcodeWrapper{
-	width:44px;
-	height:44px;
+	width:88rpx;
+	height:88rpx;
 }
 .view-orders .order-wrapper .footer .qrcodeWrapper .qrcode{
 	width:100%;
@@ -211,9 +211,9 @@ page{
 	font-size:13px;*/
 
 	background:#FFFFFF;
-	border:1px solid #F5F5F5;
-	box-shadow:0 2px 2px 0 rgba(0,0,0,0.05);
-	border-radius:4px;
+	border:2rpx solid #F5F5F5;
+	box-shadow:0 4rpx 8rpx 0 rgba(0,0,0,0.05);
+	border-radius:8rpx;
 	height:64rpx;
 	font-size:26rpx;
 	text-align:center;
@@ -229,16 +229,16 @@ page{
 	color:white;
 }
 .view-orders .showPayPrice{
-	font-size: 16px;
+	font-size: 32rpx;
 	font-weight:bolder;
 }
 .view-orders .showPayPrice:before{
 	content:'￥';
-	font-size: 14px;
+	font-size: 28rpx;
 	font-weight: bolder
 }
 .view-orders .yingfukuan{
-	font-size: 13px
+	font-size: 26rpx
 }
 
 .view-orders .order-wrapper[data-status=WaitingProduction] .orderState{
@@ -269,7 +269,7 @@ page{
 	/*height: 460rpx*/
 }
 .view-orders .detail-scroll-body.left{
-	left:-80px;
+	left:-160rpx;
 	transition: all .2s
 }
 .view-orders .detail-scroll-body.right{
@@ -280,7 +280,7 @@ page{
 	/*width:160px !important;*/
 }
 .view-orders .lower-blank image{
-	width:80px;
+	width:160rpx;
 	height:100%;
 }
 .view-orders .lower-btn{
@@ -293,7 +293,7 @@ page{
 }
 .view-orders .lower{
 	position:absolute;
-	width:80px;
+	width:160rpx;
 	right:0;
 	height:100%;
 	display:flex;
@@ -335,16 +335,16 @@ page{
 	margin-bottom:140rpx;
 }
 .goLogin-wrapper .login-msg{
-	font-size:16px;
+	font-size:32rpx;
 	color:#999999;
 	margin-bottom:112rpx;
 }
 .goLogin-wrapper .login-btn{
-	font-size:17px;
+	font-size:34rpx;
 	color:#FFFFFF;
 	background:#161823;
-	box-shadow:0 5px 10px 0 rgba(0,0,0,0.20);
-	border-radius:80px;
+	box-shadow:0 10rpx 20rpx 0 rgba(0,0,0,0.20);
+	border-radius:160rpx;
 	width:320rpx;
 	height:100rpx;
 	display:flex;
@@ -426,11 +426,11 @@ page{
 
 }
 .address-info image{
-	width:28px;
-	height:28px;
+	width:56rpx;
+	height:56rpx;
 }
 .address-info .user{
-	font-size:20px;
+	font-size:40rpx;
 	color:#545454;
 }
 .address-info .left{
@@ -440,7 +440,7 @@ page{
 
 
 .cost-container{
-	box-shadow:0 4px 10px 0 rgba(0,0,0,0.05);
+	box-shadow:0 8rpx 20rpx 0 rgba(0,0,0,0.05);
 	display:flex;
 	flex-wrap:wrap;
 	position:relative;
@@ -455,7 +455,7 @@ page{
 	justify-content:space-between;
 	display:flex;
 	justify-content:space-between;
-	font-size:16px;
+	font-size:32rpx;
 	margin-bottom:15rpx;
 
 }
@@ -464,8 +464,8 @@ page{
 	justify-content:space-between;
 	height:80rpx;
 	display:flex;
-	border-bottom:1px solid #999999;
-	font-size:14px;
+	border-bottom:2rpx solid #999999;
+	font-size:28rpx;
 	color:#4A4A4A;
 	line-height:34rpx;
 	padding: 0 20rpx;

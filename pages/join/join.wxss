@@ -24,33 +24,34 @@ banner-container image {
 }
 
 .edit-container .edit-item {
-    display: flex;
-    flex-flow: row;
-    margin-top: 30rpx;
-    height: 120rpx;
-    font-size: 30rpx;
-    background: #fff;
-    border-radius: 10rpx;
+    display:flex;
+    flex-flow:row;
+    margin-top:30rpx;
+    height:100rpx;
+    font-size:30rpx;
+    background:#fff;
+    border-radius:30rpx;
+
 }
 
 .edit-container .edit-item .type-name {
     width: 187rpx;
-    height: 120rpx;
-    line-height: 120rpx;
+    height: 100rpx;
+    line-height: 100rpx;
     text-align: center;
     color: #000;
 }
 
 .edit-container .edit-item .type-input {
     flex-grow: 1;
-    height: 120rpx;
-    line-height: 120rpx;
+    height: 100rpx;
+    line-height: 100rpx;
 }
 
 .edit-container .edit-item .type-input input {
-    height: 118rpx;
+    height: 100rpx;
     width: 100%;
-    line-height: 120rpx;
+    line-height: 100rpx;
 }
 
 .edit-container .edit-item .type-input picker {
@@ -77,6 +78,7 @@ banner-container image {
     position: relative;
     padding-left: 45rpx;
     color: #000000;
+    margin-top:20rpx;
 }
 
 .info-container .agreement .icon {
@@ -133,12 +135,12 @@ banner-container image {
 }
 
 .pop-countent .head-text {
-    background-color: #f1473a;
-    font-size: 48rpx;
-    height: 100rpx;
-    line-height: 100rpx;
-    text-align: center;
-    color: #fff;
+    background-color:#f1473a;
+    font-size:30rpx;
+    height:80rpx;
+    line-height:80rpx;
+    text-align:center;
+    color:#fff;
 }
 
 .pop-countent .foot-text {

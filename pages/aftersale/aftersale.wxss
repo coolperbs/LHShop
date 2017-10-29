@@ -4,8 +4,8 @@ page{
 .page-aftersale{padding-top:30rpx;}
 .page-aftersale .pannel{
 	/*width:720rpx;*/
-	margin:0px 14rpx 20px 14rpx;
-	box-shadow:0 4px 10px 0 rgba(0,0,0,0.05);
+	margin:0 14rpx 40rpx 14rpx;
+	box-shadow:0 8rpx 20rpx 0 rgba(0,0,0,0.05);
 	display:flex;
 	background-color: #fff
 	/*flex-wrap:wrap*/
@@ -19,12 +19,12 @@ page{
 	width:180rpx;
 	height:180rpx;
 	margin:28rpx 0 32rpx 32rpx;
-	border:1px solid #f0f0f0;
+	border:2rpx solid #f0f0f0;
 	border-radius: 10rpx;
 }
 .page-aftersale .ware .ware-detail{
 	position:relative;
-	font-size:16px;
+	font-size:32rpx;
 	color:#4A4A4A;
 	margin:40rpx 0rpx 54rpx 20rpx;
 	width:450rpx;
@@ -45,12 +45,12 @@ page{
 .page-aftersale .line{
 height:100rpx;
 display:flex;
-border-bottom:1px solid #f8f8f8;
+border-bottom:1rpx solid #f8f8f8;
 align-items:center;
 /*padding:0 20rpx;*/
 width:100%;
 justify-content:space-between;
-font-size: 15px;
+font-size: 30rpx;
 }
 .page-aftersale .line.big{
 	height: 300rpx;
@@ -76,7 +76,7 @@ font-size: 15px;
 }
 .page-aftersale .upload{
 	flex-wrap: wrap;
-	font-size: 16px;
+	font-size: 32rpx;
 	padding:20rpx 0;
 }
 .page-aftersale .upload .btn-wrapper{
@@ -104,7 +104,7 @@ margin-top:40rpx;
 	display:flex;
 	justify-content:center;
 	align-items:center;
-	font-size: 15px;
+	font-size: 30rpx;
 }
 .page-aftersale .cancel-btn{
 	margin:20rpx;
@@ -115,5 +115,5 @@ margin-top:40rpx;
 	display:flex;
 	justify-content:center;
 	align-items:center;
-	font-size: 15px;
+	font-size: 30rpx;
 }

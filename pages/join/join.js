@@ -8,35 +8,79 @@ Page({
     onShow:function(){
         console.log('join')
     },
-    changeInput:function(e){
+    editAddinfo:function(e){
     	var dataset = e.currentTarget.dataset;
-    	var key = dataset.key;
-    	var val = e.currentTarget.detail.value;
+    	var key = dataset.type;
+    	var val = e.detail.value;
     	var self = this;
     	self.formData = self.formData || {};
     	self.formData[key] = val; 
-    }
+    },
+    submit:function(){
+    	var self = this;
+    	_fn.submit(self);
+    },
+    switchConsent() {
+    	var self = this;
+        self.isConsent = !self.isConsent;
+        this.setData({
+            isConsent:self.isConsent
+        });
+    },
+    /*
+     * 协议显示
+     */
+    agreementShow() {
+        console.log('1');
+        this.setData({
+            isShow: true
+        })
+    },
+    /*
+     * 协议隐藏
+     */
+    agreementHide() {
+        this.setData({
+            isShow: false
+        })
+    },
+
 });
 var _fn = {
 	submit :function(page){
 		var validateRes = _fn.validate(page);
 		if(validateRes){
+			var formData = page.formData;
 			ajax.query({
-				url:host+'/app/store/apply'
+				url:host+'/app/store/apply',
+				param:formData
 			},function(res){
 				if(res.code==='0000'){
 					wx.showModal({
 						title:'提示',
-						content:'申请成功,我们会尽快与您联系'
+						content:'申请成功,我们会尽快与您联系',
+						success:function(){
+							wx.relaunch();
+						}
+					});
+				}else{
+					wx.showModal({
+						title:'提示',
+						content:res.msg
 					});
 				}
 			});
 		}
 	},
 	validate:function(page){
-		var fomrData = page.formData;
-		var errMsg,validateRes;
+		var formData = page.formData||{};
+		var errMsg,validateRes=true;
+		var isConsent = page.isConsent;
 		switch(true){
+			case !isConsent:
+				errMsg = "请阅读入驻协议";
+				validateRes=false;
+				break;
 			case !formData.name:
 				errMsg = '请输入店铺名称';
 				validateRes = false;
@@ -57,7 +101,17 @@ var _fn = {
 				errMsg = "请输入您的姓名"
 				validateRes = false;
 				break;
+			default:
+				break;
 		}
+		if(errMsg){
+			wx.showModal({
+				title:"提示",
+				content:errMsg,
+				showCancel:false
+			})
+		}
+		return validateRes;
 
 	}
 }
@@ -165,6 +219,7 @@ var _fn = {
 //     /*
 //      * 
 //      */
+//     /*
 //     switchConsent() {
 
 //         let isConsent = this.data.isConsent;
@@ -189,7 +244,6 @@ var _fn = {
 //             isShow: false
 //         })
 //     },
-//     /*
 //      * 获取class分类
 //      */
 //     getClass() {

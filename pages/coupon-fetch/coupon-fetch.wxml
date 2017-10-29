@@ -5,7 +5,7 @@
 <view class="page-couponfetch">
 	<scroll-view wx:if="{{coupons && coupons.length>0}}" class="coupon-list" scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="loadMore" >
 		<view class="wrapper">
-			<block wx:for="{{coupons}}">
+			<block wx:for="{{coupons}}" wx:key="id">
 				<view catchtap="getCoupon" data-id="{{item.id}}">
 					<template is="online-coupon" data="{{...item}}"></template>
 				</view>

@@ -52,7 +52,7 @@
     
 	</view>
 
-	<view class="bottom-btns order-wrapper">
+	<view wx:if="{{detail.order.orderStatus == 8 || detail.order.orderStatus == 1024}}" class="bottom-btns order-wrapper">
 		<view class="footer">
 			<view class="btn-group right">
 				<view  wx:if="{{ detail.order.orderStatus == 8 }}"

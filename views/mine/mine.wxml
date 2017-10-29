@@ -107,6 +107,21 @@
 				</view>
 
 
+				<view class="my-service pannel">
+					<view class="header">
+						<view class="title">
+							其他
+						</view>
+					</view>
+					<view class="content">
+						<view class="item" data-status="1" catchtap="events" data-func="goJoin">
+							<image src="../../asset/join.png" class="item-logo"/>
+							<text class="item-txt">品牌加盟</text>
+						</view>
+					</view>
+				</view>
+
+
 				<block wx:if="{{mine.favorite}}">
 					<view class="recommond pannel">
 						<view class="header">
