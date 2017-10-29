@@ -76,9 +76,8 @@ _fn = {
 			url : app.host + '/app/traderInfo'
 		}, function( res ) {
 			var userInfo = wx.getStorageSync( 'userinfo' ) || {};
-			if ( utils.isErrorRes( res ) ) {
-
-				callerPage.setData( {
+			if ( res.code != '0000' ) {
+				caller.setData( {
 					'viewData.userInfo' : userInfo.user || {},
 					'viewData.isBind' : false,
 					'viewData.config' : app.config
