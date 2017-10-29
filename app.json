@@ -13,6 +13,7 @@
 
     "pages/fx-money/fx-money",
     "pages/fx-team/fx-team",
+    "pages/fx-takemoney/fx-takemoney",
     "pages/orderlist/orderlist",
     "pages/orderdetail/orderdetail",
     "pages/address/address",

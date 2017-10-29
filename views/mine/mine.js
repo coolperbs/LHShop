@@ -80,7 +80,7 @@ handle = {
 				url:'../../pages/fx-money/fx-money'
 			})
 		},
-		goFxTakMoney:function(){
+		goFxTakeMoney:function(){
 			wx.navigateTo({
 				url:'../../pages/fx-takemoney/fx-takemoney'
 			})
