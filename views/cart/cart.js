@@ -8,7 +8,7 @@ handle = {
     var self = this;
   	_fn.init( callerPage );
     // 获取购物车数据
-    service.cart.query({}, function( res ) {
+    service.cart.query( callerPage, {}, function( res ) {
       if ( res.code == '1000' ) {
         wx.navigateTo( {
           url : '../login/login'
@@ -72,7 +72,7 @@ events = {
       events.del.apply( this, [e] )
       return;
     }
-    service.cart.cut( { cartId : cartId }, function( res ) {
+    service.cart.cut( this, { cartId : cartId }, function( res ) {
       _fn.refreshPage( callerPage, res );
     } );
   }, 
@@ -80,7 +80,7 @@ events = {
     var cartId = e.currentTarget.dataset.cartid,
         callerPage = this;
 
-    service.cart.add( { cartId : cartId }, function( res ) {
+    service.cart.add( this, { cartId : cartId }, function( res ) {
       _fn.refreshPage( callerPage, res );
     } );
   },
@@ -96,7 +96,7 @@ events = {
         if ( res.cancel ) {
           return;
         }
-        service.cart.del( { cartId : cartId }, function( res ) {
+        service.cart.del( callerPage, { cartId : cartId }, function( res ) {
           _fn.refreshPage( callerPage, res );
         } );
       }

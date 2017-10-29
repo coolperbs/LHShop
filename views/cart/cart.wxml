@@ -9,11 +9,11 @@
 					<image class="on" src="../../asset/checked.png"></image>
 				</view>
 				<view class="info">
-					<view class="name">
+					<navigator class="name" url="../shop/shop?shopid={{shopCart.id}}">
 						<image class="logo" src="{{shopCart.logo}}"></image>
 						{{shopCart.name}} >
-					</view>
-					<view class="act">领券</view>
+					</navigator>
+					<navigator class="act" url="../coupon-fetch/coupon-fetch">领券</navigator>
 				</view>
 			</view>
 			<view class="cont-list">

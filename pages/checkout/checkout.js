@@ -6,6 +6,7 @@ var ajax = require( '../../common/ajax/ajax' ),
 	app = getApp(),
 	Address = weigetUtils.Address,
 	pageParam,
+	SCoupon = {},
 	_fn;
 
 Page({
@@ -14,6 +15,9 @@ Page({
 	},
 	onShow : function() {
 		var self = this;
+
+		SCoupon = couponService.cache();
+		couponService.cache( null );   
 		// 获取页面信息
 		_fn.getPageData( function( res ) {
 			if ( utils.isErrorRes( res ) ) {
@@ -24,8 +28,10 @@ Page({
 			}
 			res.data.sku
 			self.setData( {
-				pageData : res.data
+				pageData : res.data,
+				selectedCoupon : SCoupon.selectCoupon || {}
 			} );
+
 			if ( res && res.data && res.data.defaultAddress && !self.data.address ) {
 				_fn.initAddress( self, res.data.defaultAddress );
 			}
@@ -144,13 +150,19 @@ _fn = {
 	},
 
 	getPageData : function( callback ) {
-		var url = '';
+		var url = '',
+			couponId = 0,
+			selectedCoupon = SCoupon;
 
+		console.log( SCoupon );
+		if ( selectedCoupon && selectedCoupon.selectCoupon && selectedCoupon.selectCoupon.id ) {
+			couponId = selectedCoupon.selectCoupon.id;
+		}
 		if ( pageParam.skuid && pageParam.skunum ) {
-			url = app.host + '/app/trade/buynow/' + pageParam.skuid + '/' + pageParam.skunum + '/0'; //后面那个是优惠券Id
+			url = app.host + '/app/trade/buynow/' + pageParam.skuid + '/' + pageParam.skunum + '/' + couponId; //后面那个是优惠券Id
 		}
 		else if ( pageParam.shopid ) {  // 门店购买
-			url = app.host + '/app/trade/cartbuy/' + pageParam.shopid;
+			url = app.host + '/app/trade/cartbuy/' + pageParam.shopid + '/' + couponId;
 		} else {
 			wx.showToast( { title : '缺少页面相关参数' } );
 			return;
@@ -264,7 +276,11 @@ _fn = {
 					package : 'prepay_id=' + payRes.data.prepayId,
 					paySign : payRes.data.sign					
 				}, function() {
-					wx.redirectTo( { url : '../orderdetail/orderdetail?orderid=' + orderId  } );
+					wx.showLoading( { title : '正在更新支付结果...' } );
+					setTimeout( function() {
+						wx.hideLoading();
+						wx.redirectTo( { url : '../orderdetail/orderdetail?orderid=' + orderId  } );
+					}, 2000 );
 				} );
 			} );
 		} );
@@ -274,6 +290,7 @@ _fn = {
 		var type;
 		var address = data.address || {};
 		var param = {};
+		var url;
 
 		address.addressId = address.id || '';
 		if ( pageParam.skunum && pageParam.skuid ) {
@@ -286,9 +303,27 @@ _fn = {
 			wx.showToast( { title : '缺少页面相关参数' } );
 			return;
 		}
+		if ( caller.data.selectedCoupon && caller.data.selectedCoupon.id ) {
+			param.couponId = caller.data.selectedCoupon.id;
+		}
+
+		console.log( pageParam );
+
+		if ( pageParam.skuid && pageParam.skunum ) {
+			url = app.host + '/app/order/buynow/submit';
+		}
+		else if ( pageParam.shopid ) {  // 门店购买
+			url = app.host + '/app/order/cart/submit';
+		} else {
+			wx.showToast( { title : '缺少页面相关参数' } );
+			return;
+		}
+
+		console.log( 'f' );
+
 		param.address = address;
 		ajax.query( {
-			url : app.host + '/app/order/cart/submit',
+			url : url,
 			param : param
 		}, callback );
 	},

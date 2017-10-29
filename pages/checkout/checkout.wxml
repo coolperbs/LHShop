@@ -81,16 +81,20 @@
 		<view class="sum">
 			<view class="row">
 				<view class="key">商品金额</view>
-				<view class="value">¥{{tradeInfo.modules.price.data.waresPriceStr}}</view>
+				<view class="value">¥{{pageData.totalPrice /100}}</view>
 			</view>
-			<view class="row" wx:if="{{tradeInfo.modules.balance.data.availableStr}}">
+			<view class="row">
+				<view class="key">运费</view>
+				<view class="value">¥{{pageData.sheepPrice /100}}</view>
+			</view>
+			<!--<view class="row" wx:if="{{tradeInfo.modules.balance.data.availableStr}}">
 				<view class="key">余额</view>
 				<view class="value"><view class="sub">共¥{{ tradeInfo.modules.balance.data.total ? tradeInfo.modules.balance.data.totalStr : '0.00'}}，已抵扣</view>¥{{tradeInfo.modules.balance.data.availableStr}}</view>
-			</view>
+			</view>-->
 			<view class="row" catchtap="goCoupons">
 				<view class="key">优惠券</view>
 				<view class="value ellipsis-1">
-					{{ pageData.defaultCoupon.name || '请选择' }}
+					{{selectedCoupon.proValue ? '-' + selectedCoupon.proValue : '请选择'}}
 					<image class="more" src="../../asset/arrow-right.png">
 				</image>
 			</view>
@@ -101,7 +105,7 @@
 		<view class="total">
 			<!--<view class="sub-info">(已抵扣余额{{tradeInfo.modules.balance.data.availableStr}}元)</view>-->
 			应付: <view class="price">
-				<view class="sub">¥</view>{{ pageData.totalPrice / 100 }}
+				<view class="sub">¥</view>{{ pageData.payPrice / 100 }}
 			</view>
 		</view>
 	</view>
@@ -114,7 +118,7 @@
 		<view class="text">立即支付</view>
 		<view class="info">
 			<view class="price">
-				<view class="sub">¥</view>{{ pageData.totalPrice / 100 }}
+				<view class="sub">¥</view>{{ pageData.payPrice / 100 }}
 			</view>
 		</view>
 		<view class="text">元</view>

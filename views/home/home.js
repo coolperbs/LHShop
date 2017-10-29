@@ -48,6 +48,9 @@ events = {
 		} );
 	},
 	goHome : function( e ) {
+		this.setData( {
+			'viewData.showShops' : false
+		} );
 		wx.navigateTo( { url : '../shop/shop?shopid=' + e.currentTarget.dataset.shopid } );
 	},
 	goCity : function() {
