@@ -17,6 +17,7 @@ handle = {
 events = {
 	beAgent : function( e ) {
 		var phone = e.detail.value.phone,
+			userInfo = wx.getStorageSync( 'userinfo' ) || {},
 			caller = this;
 
 		if ( ( phone + '' ).trim() == '' ) {
@@ -35,9 +36,12 @@ events = {
 			}
 		}, function( res ) {
 			utils.hideLoading();
+			// 1002 已经是分销商
 			if ( utils.isErrorRes( res ) && res.code != '1002' ) {
 				return;
 			}
+			userInfo = userInfo.user || {};
+			wx.setStorageSync( 'upperuid', userInfo.id + '' );
 			_fn.getPageData( caller );
 		} );
 	},

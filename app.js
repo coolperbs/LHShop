@@ -69,11 +69,11 @@ var handle = {
 			return;
 		}
 
-		// upperuid是自己的情况
-		if ( userInfo && userInfo.user && userInfo.user.id == upperuid  ) {
-			wx.removeStorageSync( 'upperuid' );
-			return;
-		}
+		// upperuid是自己的情况，自己成为分销商就能分享了
+		// if ( userInfo && userInfo.user && userInfo.user.id == upperuid  ) {
+		// 	wx.removeStorageSync( 'upperuid' );
+		// 	return;
+		// }
 		ajax.query( {
 			url : this.host + '/app/binding',
 			param : {
