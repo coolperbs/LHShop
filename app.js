@@ -23,66 +23,71 @@ var handle = {
 	actHost : conf.actHost,
 	config : conf,
 	shareFunc : function() {
+		var upperuid = wx.getStorageSync( 'upperuid' ),
+			url = 'pages/index/index';
+
+		if ( upperuid ) {
+			url += '?upperuid=' + upperuid
+		}
 		return {
 			title : conf.title,
-			path : 'pages/index/index'
+			path : url
 		}
 	},
 	globalData:{
 		evt:"dev"//使用环境
 	},
-	onLaunch:function(){
+	onShow:function( options ){
+		var scene = options.scene,
+			query = options.query,
+			upperuid = query.upperuid,
+			str;
+
+		scene = scene ? scene + '' : '';
+        if ( scene.indexOf( 'upperuid_' ) == 0 ) {
+            str = options.scene.split( '_' );
+            upperuid = str[1] || '';
+        }		
+
+        upperuid = wx.getStorageSync( 'upperuid' ) || upperuid;
+        wx.setStorageSync( 'upperuid', upperuid );
+        this.bindUpperUid();
 		// _fn.setDate();
 		// _fn.setCity();
 		// _fn.getLocation();
+	},
+	bindUpperUid : function() {
+		var hasBind = wx.getStorageSync( 'hasBind' ),
+			upperuid =wx.getStorageSync( 'upperuid' ),
+			userInfo = wx.getStorageSync( 'userinfo' ) || {};
+
+		if ( !upperuid || !userInfo || !userInfo.token ) {
+			return;
+		}
+
+		if ( hasBind ) {
+			return;
+		}
+
+		// upperuid是自己的情况
+		if ( userInfo && userInfo.user && userInfo.user.id == upperuid  ) {
+			wx.removeStorageSync( 'upperuid' );
+			return;
+		}
+		ajax.query( {
+			url : this.host + '/app/binding',
+			param : {
+				ParentUserId : upperuid
+			}
+		}, function( res ) {
+			if ( res.code == '0000' || res.code == '1003' ) {
+				wx.setStorageSync( 'hasBind', true );
+			}
+		} );
 	}
 };
 
 _fn = {
-	setDate : function() {
-		var datetime = wx.getStorageSync( 'datetime' ),
-			start, end;
-		if ( datetime && datetime.length == 2 ) {
-			return;
-		}
-
-		start = new Date();
-	    start.setHours( 12 );
-	    start.setMinutes( 0 );
-	    start.setSeconds( 0 );
-
-	    end = new Date();
-	    end.setTime( start.getTime() + 24 * 60 * 60 * 1000 );
-		datetime = [{
-			time : start.getTime(),
-			day : start.getDate(),
-			month : start.getMonth() + 1,
-			year : start.getFullYear(),
-			week : weeks_ch[start.getDay()]			
-		},{
-			time : end.getTime(),
-			day : end.getDate(),
-			month : end.getMonth() + 1,
-			year : end.getFullYear(),
-			week : weeks_ch[end.getDay()]			
-		}];
-		wx.setStorageSync( 'datetime', datetime );		
-	},
-	setCity : function() {
-		var city = wx.getStorageSync( 'city' );
-		if ( city.name && city.code ) {
-			return;
-		}
-		wx.setStorageSync( 'city', { name : '北京市', code : '010' } );
-	},
-	getLocation : function() {
-		return;
-		wx.getLocation( {
-			success : function() {
-
-			}
-		} );
-	}
 }
 
 App( handle );
