@@ -25,13 +25,13 @@ Page({
 				return;
 			}
 
-			console.log( res );
 			if ( res.code != '0000' || res.success == false ) {
 				utils.hideLoading();
 				wx.showToast( { title : '登录失败' } );
 				return;
 			}
 			utils.hideLoading();
+			app.bindUpperUid();
 			_fn.next();
 		} );
 	},

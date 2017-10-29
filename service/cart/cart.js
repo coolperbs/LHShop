@@ -113,11 +113,14 @@ handle = {
 
 _fn = {
 	refreshNum : function( caller, res ) {
-		var num;
 		if ( res && res.data ) {
-			num = res.data.cartTotalNum;
 			wx.setStorageSync( 'cartNum', res.data.cartTotalNum || 0 );
 		} 
+
+		// 未登录的情况
+		if ( res && res.code == '1000' ) {
+			wx.setStorageSync( 'cartNum', 0 );
+		}
 		caller.setData( {
 			cartNum : wx.getStorageSync( 'cartNum' )
 		} );

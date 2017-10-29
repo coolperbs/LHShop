@@ -12,13 +12,14 @@
 	"projectname": "LH-shop",
 	"condition": {
 		"weapp": {
-			"current": 10,
+			"current": 13,
 			"list": [
 				{
-					"id": -1,
-					"name": "地址详情",
-					"pathName": "pages/address/address",
-					"query": ""
+					"id": 0,
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": "1001"
 				},
 				{
 					"id": 3,
@@ -105,10 +106,11 @@
 					"query": "shopid=1"
 				},
 				{
-					"id": 17,
-					"name": "活动页面",
-					"pathName": "pages/active/active",
-					"query": "actid=7"
+					"id": 15,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "upperuid=1",
+					"scene": "1001"
 				},
 				{
 					"id": -1,

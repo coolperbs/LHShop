@@ -75,7 +75,8 @@ Page( {
 		}
 	},
 
-	onShow : function() {
+	onShow : function( options ) {
+		
 		var self = this;
 		serviceCart.refreshNum( self );
 		//service.loc.getShops( function( shops ) {

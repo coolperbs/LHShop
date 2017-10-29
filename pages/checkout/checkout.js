@@ -295,6 +295,9 @@ _fn = {
 		var address = data.address || {};
 		var param = {};
 		var url;
+		var city = wx.getStorageSync( 'city' );
+
+
 
 		address.addressId = address.id || '';
 		if ( pageParam.skunum && pageParam.skuid ) {
@@ -307,11 +310,15 @@ _fn = {
 			wx.showToast( { title : '缺少页面相关参数' } );
 			return;
 		}
+		if ( !city || !city.code ) {
+			wx.showToast( { title : '缺少地址信息' } );
+			return;
+		}
+		param.citycode = city.code;
 		if ( caller.data.selectedCoupon && caller.data.selectedCoupon.id ) {
 			param.couponId = caller.data.selectedCoupon.id;
 		}
 
-		console.log( pageParam );
 
 		if ( pageParam.skuid && pageParam.skunum ) {
 			url = app.host + '/app/order/buynow/submit';
@@ -323,7 +330,6 @@ _fn = {
 			return;
 		}
 
-		console.log( 'f' );
 
 		param.address = address;
 		ajax.query( {
