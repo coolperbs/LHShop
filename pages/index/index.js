@@ -69,6 +69,7 @@ Page( {
 
 	onShow : function() {
 		var self = this;
+		serviceCart.refreshNum( self );
 		//service.loc.getShops( function( shops ) {
 		// 每次显示都刷新一次购物车
 		// 这样保证在商详添加后在首页也能显示

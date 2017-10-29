@@ -33,6 +33,7 @@ Page({
 	onShow : function() {
 		var self = this;
 		buyType = 1; // 默认为购物车购买
+		service.cart.refreshNum( this );
 		_fn.getPageData( this );
 	},
 
@@ -79,7 +80,7 @@ Page({
 				url : '../checkout/checkout?skuid=' + pageData.skuId + '&skunum=' + this.data.buyNum
 			} );
 		} else if ( buyType == 1 ) { //加购
-			service.cart.addOut( {
+			service.cart.addOut( this, {
 				skuId : pageData.skuId,
 				skuNum : this.data.buyNum
 			}, function( res ) {

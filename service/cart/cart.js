@@ -7,6 +7,7 @@ url = {
 	add : app.host + '/app/cart/add',
 	addOut : app.host + '/app/out/cart/add',
 	query : app.host + '/app/cart/list',
+	count : app.host + '/app/cart/count',
 	clear : app.host + '/app/cart/deleteAll',
 	del : app.host + '/app/cart/delete',
 	cut : app.host + '/app/cart/cut',
@@ -38,45 +39,57 @@ handle = {
 	},
 
 	// param = { skuNum : 1, skuId : 1 }
-	add : function( param, callback ) {
+	add : function( caller, param, callback ) {
 		param = param || {};
 		param.skuNum = param.skuNum || 1;
 		ajax.query( {
 			url : url.add,
 			param : param
-		}, callback );
+		}, function( res ) {
+			_fn.refreshNum( caller, res );
+			callback && callback( res );
+		} );
 	},
 
-	addOut : function( param, callback ) {
+	addOut : function( caller, param, callback ) {
 		param = param || {};
 		param.skuNum = param.skuNum || 1;
 		ajax.query( {
 			url : url.addOut,
 			param : param
-		}, callback );
+		}, function( res ) {
+			_fn.refreshNum( caller, res );
+			callback && callback( res );
+		} );
 	},
 
 	// param = { num : 1, shopId : 1, sku : 1 }
-	cut : function( param, callback ) {
+	cut : function( caller, param, callback ) {
 		param = param || {};
 		param.skuNum = param.skuNum || 1;
 		ajax.query( {
 			url : url.cut,
 			param : param
-		}, callback );		
+		}, function( res ) {
+			_fn.refreshNum( caller, res );
+			callback && callback( res );
+		} );		
 	},
 
-	del : function( param, callback ) {
+	del : function( caller, param, callback ) {
 		param = param || {};
 		param.skuNum = param.skuNum || 1;
 		ajax.query( {
 			url : url.del,
 			param : param
-		}, callback );		
+		}, function( res ) {
+			_fn.refreshNum( caller, res );
+			callback && callback( res );
+		} );		
 	},
 
 	// param = { shopId :  '' } || param = { shopId : [] }
-	query : function( param, callback ) {
+	query : function( caller, param, callback ) {
 		// 应该是根据storeId来，storeId也可以不传
 		param = param || {};
 		//param.skuNum = param.skuNum || 1;
@@ -84,10 +97,31 @@ handle = {
 			url : url.query,
 			param : param
 		}, callback );
+	},
+	refreshNum : function( caller, callback ) {
+		var param = {};
+		//param.skuNum = param.skuNum || 1;
+		ajax.query( {
+			url : url.count,
+			param : param
+		}, function( res ) {
+			_fn.refreshNum( caller, res );
+			callback && callback( res );
+		} );
 	}
 };
 
 _fn = {
+	refreshNum : function( caller, res ) {
+		var num;
+		if ( res && res.data ) {
+			num = res.data.cartTotalNum;
+			wx.setStorageSync( 'cartNum', res.data.cartTotalNum || 0 );
+		} 
+		caller.setData( {
+			cartNum : wx.getStorageSync( 'cartNum' )
+		} );
+	},
 	// 处理用户信息，单独打个标记，merge购物车，因为在结算的时候必须merge一次，成功后才下单
 	// 处理绑定信息
 	addTempId : function( param ) {

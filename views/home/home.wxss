@@ -1,7 +1,7 @@
 @import "../../widgets/modules/modules.wxss";
 
 .home { padding-top: 100rpx; color : #4a4a4a; }
-.home .h-head { background-color: #fff; z-index: 100; border-bottom : solid 1px #f9f9f9; position: fixed; top : 0; left : 0; width: 710rpx; height: 100rpx; display: flex; align-items: center; justify-content: space-between; padding : 0 20rpx; z-index : 10010; }
+.home .h-head { background-color: #fff; z-index: 100; border-bottom : solid 1px #f9f9f9; position: fixed; top : 0; left : 0; width: 714rpx; height: 100rpx; display: flex; align-items: center; justify-content: space-between; padding : 0 20rpx; z-index : 10010; }
 .home .h-head .searchbox { width : 100rpx; flex-grow: 1; margin : 0 20rpx; display: flex; align-items: center; }
 .home .h-head .searchbox .input { border-radius: 30rpx; height : 60rpx; flex-grow: 1; padding : 0 20rpx; background-color: #eee; color : #aaa; display: flex; align-items: center; }
 .home .h-head .searchbox .input image { width: 32rpx; height : 32rpx; margin-right : 20rpx; }

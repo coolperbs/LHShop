@@ -19,7 +19,7 @@ handle.events = {
 		if ( !id ) {
 			return;
 		}
-		service.cart.addOut( {
+		service.cart.addOut( this, {
 			skuId : id
 		}, function( res ) {
 			if ( res.code == '1000' ) {

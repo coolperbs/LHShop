@@ -32,7 +32,7 @@ var _fn = {
 				}
 			});
 		}
-	}
+	},
 	validate:function(page){
 		var fomrData = page.formData;
 		var errMsg,validateRes;

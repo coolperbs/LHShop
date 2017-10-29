@@ -33,6 +33,7 @@
 
 <view class="base toolbar">
 	<view wx:for="{{tab.list}}" data-view="{{item.view}}" wx:key="index" data-index="{{index}}" bindtap="changeTab" class="tab">
+		<view wx:if="{{item.view == 'cart' && cartNum > 0}}" class="num">{{cartNum || ''}}</view>
 		<image src="../../asset/{{item.className}}.png" mode="widthFix" class="icon bar {{ item.view == currentView ? 'current' : ''}}"></image>
 	</view>
 	<view class="line" style="display:none;left : {{ tab.currentTab * 150 + 35 }}rpx"></view>

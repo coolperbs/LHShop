@@ -122,16 +122,15 @@
         <view class="icons">
             <view class="cell">
                 <image src="../../asset/message-white.png"></image>
-                客服
             </view>
             <view class="cell" catchtap="toCart">
+                <view wx:if="{{ cartNum > 0}}" class="num">{{cartNum || ''}}</view>
+
                 <image src="../../asset/cart-white.png"></image>
-                购物车
             </view>
             <view class="cell" catchtap="follow">
                 <image wx:if="{{pageData.favorite == 1}}" src="../../asset/heart-red.png"></image>
                 <image wx:else src="../../asset/heart-line.png"></image>
-                收藏
             </view>
         </view>
         <view class="buttons">
