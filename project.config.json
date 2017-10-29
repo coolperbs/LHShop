@@ -124,32 +124,14 @@
 				},
 				{
 					"id": -1,
-					"name": "分销-订单",
-					"pathName": "pages/fx-shoporder/fx-shoporder",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "分销-我的下线",
-					"pathName": "pages/fx-downgrade/fx-downgrade",
-					"query": ""
-				},
-				{
-					"id": 20,
-					"name": "分销-提现申请",
-					"pathName": "pages/fx-moneyapply/fx-moneyapply",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "分销-我的商城消费记录",
-					"pathName": "pages/coupon-fetch/coupon-fetch",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "分销-我的团队",
-					"pathName": "pages/fx-members/fx-members",
+					"pathName": "pages/fx-team/fx-team",
+					"query": ""
+				},
+				{
+					"id": 19,
+					"name": "分销-我的金额",
+					"pathName": "pages/fx-money/fx-money",
 					"query": ""
 				}
 			]

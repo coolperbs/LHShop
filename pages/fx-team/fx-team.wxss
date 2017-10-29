@@ -1,0 +1,97 @@
+page{
+	height: 100%
+}
+.page-fxteam .head { z-index:100;border-bottom: solid 2rpx #f0f0f0; background-color: #fff; position: fixed; top : 0; left : 0; width : 100%; display: flex; align-items: center; justify-content: space-around; }
+.page-fxteam .head .box { display:flex;
+	flex-direction: column;
+	text-align:center;
+	height : 100rpx; 
+	/*line-height: 100rpx;*/
+	 padding : 0 20rpx; font-size : 28rpx; }
+.page-fxteam .head .box.current { color : #d6204b;  }
+.tab_ul{
+	position:absolute;
+	height:6rpx;
+	background-color:#d6204b;
+	left:0;
+	bottom:0;
+	width:200rpx;
+	transition: all .3s;
+
+}
+.empty-members{
+	position:relative;
+	height:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	/*background-color: #F8F8F8*/
+
+}
+.empty-members .login-logo{
+	width:150rpx;
+	height:160rpx;
+	margin-bottom:100rpx;
+	margin-top:180rpx
+}
+.empty-members.login-msg{
+	font-size:32rpx;
+	color:#999999;
+	margin-bottom:112rpx;
+}
+.empty-members .login-btn{
+	font-size:34rpx;
+	color:#FFFFFF;
+	background:#d6204b;
+	box-shadow:0 10rpx 20rpx 0 rgba(0,0,0,0.20);
+	border-radius:160rpx;
+	width:320rpx;
+	height:100rpx;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin-bottom:200rpx;
+}
+.page-fxteam .memberlist-wrapper{
+	padding-top: 120rpx
+}
+
+.page-fxteam .member-wrapper{
+	display:flex;
+	background-color:white;
+	border-bottom:2rpx solid #f8f8f8;
+	padding:25rpx 16rpx;
+	height:110rpx;
+}
+.page-fxteam .user-img{
+	width:80rpx;
+	height:80rpx;
+	border-radius:50%;
+}
+.page-fxteam .member-wrapper .left{
+	width: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+.page-fxteam .member-wrapper .right {
+	position: relative;
+	width: 75%
+}
+.page-fxteam .member-wrapper .right .joinDate{
+	position:absolute;
+	top:0;
+	right:10rpx;
+	font-size:26rpx;
+	color:#bababa;
+}
+.page-fxteam .member-wrapper .right .totalSale{
+	position: absolute;
+	bottom: 0;
+	left: 0rpx;
+}
+.page-fxteam .member-wrapper .right .totalSale .money{
+	color:#d6204b;
+}

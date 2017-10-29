@@ -70,14 +70,19 @@ handle = {
 			var favoriteList = caller.mineData.favoriteList;
 			favoriteList.next();
 		},
-		goFxMemebers:function(){
+		goFxTeam:function(){
 			wx.navigateTo({
-				url:'../../pages/fx-members/fx-members'
+				url:'../../pages/fx-team/fx-team'
 			})
 		},
-		goFxConsumeList:function(){
+		goFxMoney:function(){
 			wx.navigateTo({
-				url:'../../pages/fx-consumeList/fx-consumeList'
+				url:'../../pages/fx-money/fx-money'
+			})
+		},
+		goFxTakMoney:function(){
+			wx.navigateTo({
+				url:'../../pages/fx-takemoney/fx-takemoney'
 			})
 		},
 		goFxMoneyApply:function(){

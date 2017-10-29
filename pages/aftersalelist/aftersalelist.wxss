@@ -100,7 +100,7 @@
 	font-size: 32rpx;
 	color: #434552;
 	letter-spacing: 0;
-	padding-bottom: 15rpx;
+	/*padding-bottom: 15rpx;*/
 	line-height: 32rpx;
 	height: 64rpx;
 }

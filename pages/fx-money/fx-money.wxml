@@ -1,0 +1,95 @@
+<view class="page-fxmoney">
+	<view class="head">
+		<block wx:for="{{tab.tabData}}" wx:key="index">
+			<view class="box {{item.isCur?'current':''}}" 
+			data-param="{{item.param}}" 
+			data-extra = "{{item.extra}}"
+			bindtap="changeTab"
+			style="{{item.style}}">
+				<text class="tabName">{{item.name}}</text>
+				<text class="tabSubName">￥10000.01</text>
+			</view>
+		</block>
+		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
+	</view>
+
+	<view wx:if='{{members && members.length>0}}' class="memberlist-wrapper base">
+		<scroll-view class="scroll-view" 
+		scroll-y="true" 
+		bindscrolltolower="scrollToLower" 
+		style="height:{{scrollHeight}}px">
+			<block wx:for="{{members}}" wx:key="id">
+				<view>
+					<block wx:if="{{type===1}}">
+						<template is="xiaoshou" data = "{{...item}}"></template>
+					</block>
+					<block wx:if="{{type===2}}">
+						<template is="fencheng" data = "{{...item}}"></template>
+					</block>
+					<block wx:if="{{type===3}}">
+						<template is="tixian" data = "{{...item}}"></template>
+					</block>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
+	<view wx:else>
+		<template is="empty-members"></template>
+	</view>
+</view>
+
+
+<template name= "empty-members">
+	<view class="empty-members">
+		<image class="login-logo" src="../../asset/empty-data.png" ></image>
+		<view class="login-msg">当前金额记录为0</view>
+	</view>
+</template>
+
+<template name="xiaoshou">
+	<view class="record-wrapper">
+		<view class="record">
+			<view class="name ptl">
+				销售金额:<text class="money">￥100.00</text>
+			</view>
+			<view class="date ptr">1987-8-26</view>
+			<view class="left pbl">
+				余额:<text class="money">￥500.00</text>
+			</view>
+		</view>
+	</view>
+</template>
+<template name="fencheng">
+	<view class="record-wrapper">
+		<view class="record">
+			<view class="name ptl">
+				分成金额:<text class="money">￥100.00</text>
+			</view>
+			<view class="left pbl">
+				余额:<text class="money">￥500.00</text>
+			</view>
+			<view class="date ptr">1987-8-26</view>
+			<view class="totalSale pbr">
+				分销商:<text class="people">边大王</text>
+			</view>
+		</view>
+	</view>
+</template>
+<template name="tixian">
+	<view class="record-wrapper">
+		<view class="record">
+			<view class="ptl">
+				提现金额:<text class="money">￥100.00</text>
+			</view>
+			<view class="date ptr">
+				1987-8-26
+			</view>
+			<view class="left pbl">
+				余额:<text class="money">￥500.00</text>
+			</view>
+			<view class="totalSale pbr">
+				<text class="people">审批中</text>
+			</view>
+		</view>
+	</view>
+</template>

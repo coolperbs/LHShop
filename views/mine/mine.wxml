@@ -94,7 +94,7 @@
 						</view>
 						<view class="item" data-status="1" catchtap="events" data-func="goFxMoney">
 							<image src="../../asset/fx-consumelist.png" class="item-logo"/>
-							<text class="item-txt">金额变动</text>
+							<text class="item-txt">我的金额</text>
 						</view>
 						<view class="item" data-status="1" catchtap="events" data-func="goFxTakeMoney">
 							<image src="../../asset/fx-money.png" class="item-logo"/>

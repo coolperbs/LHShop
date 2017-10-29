@@ -1,0 +1,52 @@
+<view class="page-fxteam">
+	<view class="head">
+		<block wx:for="{{tab.tabData}}" wx:key="index">
+			<view class="box {{item.isCur?'current':''}}" 
+			data-param="{{item.param}}" 
+			data-extra = "{{item.extra}}"
+			bindtap="changeTab"
+			style="{{item.style}}">
+				<text class="tabName">{{item.name}}</text>
+				<text class="tabSubName">(60)</text>
+			</view>
+		</block>
+		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
+	</view>
+
+	<view wx:if='{{members && members.length>0}}' class="memberlist-wrapper base">
+		<scroll-view class="scroll-view" 
+		scroll-y="true" 
+		bindscrolltolower="scrollToLower" 
+		style="height:{{scrollHeight}}px">
+			<block wx:for="{{members}}" wx:key="id">
+				<view>
+					<template is="member" data = "{{...item}}"></template>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
+	<view wx:else>
+		<template is="empty-members"></template>
+	</view>
+</view>
+
+
+<template name= "empty-members">
+	<view class="empty-members">
+		<image class="login-logo" src="../../asset/empty-data.png" ></image>
+		<view class="login-msg">您当前还没有该级分销商</view>
+	</view>
+</template>
+
+<template name="member">
+	<view class="member-wrapper">
+		<view class="left">
+			<image src="https://wx.qlogo.cn/mmopen/vi_32/OpxWr4p95ta38iaKvfCcMVFpxXibpRGn9mLgd3fiax7fj5eRz5mMw7A6Vdx6XaQxlQibJC19vIytuaMrcxaygPQgXA/0"  class="user-img"/>
+		</view>
+		<view class="right">
+			<view class="name">边大王</view>
+			<view class="joinDate">加入日期:1987-8-26</view>
+			<view class="totalSale">累计销售:<text class="money">￥500.00</text></view>
+		</view>
+	</view>
+</template>
