@@ -12,7 +12,7 @@
 	"projectname": "LH-shop",
 	"condition": {
 		"weapp": {
-			"current": 13,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -109,7 +109,7 @@
 					"id": 15,
 					"name": "首页",
 					"pathName": "pages/index/index",
-					"query": "upperuid=1",
+					"query": "upperuid=2",
 					"scene": "1001"
 				},
 				{
