@@ -318,7 +318,8 @@ page{
 .goLogin-wrapper .login-logo{
 	width:150rpx;
 	height:160rpx;
-	margin-bottom:140rpx;
+	margin-bottom:100rpx;
+	margin-top:180rpx
 }
 .goLogin-wrapper .login-msg{
 	font-size:32rpx;

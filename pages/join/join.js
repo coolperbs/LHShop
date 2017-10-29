@@ -60,7 +60,9 @@ var _fn = {
 						title:'提示',
 						content:'申请成功,我们会尽快与您联系',
 						success:function(){
-							wx.relaunch();
+							wx.reLaunch({
+								url:'../index/index'
+							});
 						}
 					});
 				}else{

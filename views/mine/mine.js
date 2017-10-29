@@ -69,6 +69,26 @@ handle = {
 		getNextPage:function( caller,e){
 			var favoriteList = caller.mineData.favoriteList;
 			favoriteList.next();
+		},
+		goFxMemebers:function(){
+			wx.navigateTo({
+				url:'../../pages/fx-members/fx-members'
+			})
+		},
+		goFxConsumeList:function(){
+			wx.navigateTo({
+				url:'../../pages/fx-consumeList/fx-consumeList'
+			})
+		},
+		goFxMoneyApply:function(){
+			wx.navigateTo({
+				url:'../../pages/fx-moneyapply/fx-moneyapply'
+			})
+		},
+		goFxShopOrders:function(){
+			wx.navigateTo({
+				url:'../../pages/fx-shoporders/fx-shoporders'
+			})
 		}
 	}
 }

@@ -30,7 +30,7 @@
 
 <template name= "empty-order">
 	<view class="goLogin-wrapper">
-		<image class="login-logo" src="../../asset/empty-order.png" ></image>
+		<image class="login-logo" src="../../asset/empty-data.png" ></image>
 		<view class="login-msg">您当前还没有订单</view>
 		<view class="login-btn" catchtap='toIndexHome'>去逛逛</view>
 	</view>
