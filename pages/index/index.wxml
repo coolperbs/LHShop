@@ -2,6 +2,7 @@
 <import src="../../views/category/category.wxml"/>
 <!-- <import src="../../views/orders/activity.wxml"/> -->
 <import src="../../views/cart/cart.wxml"/>
+<import src="../../views/distribution/distribution.wxml"/>
 <import src="../../views/mine/mine.wxml"/>
 
 

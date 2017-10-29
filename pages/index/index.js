@@ -1,11 +1,11 @@
 var home = require( '../../views/home/home.js' ),
+	modules = require( '../../widgets/modules/modules.js' ),
 	// orders = require( '../../views/orders/orders.js' ),
 	category = require('../../views/category/category'),//分类
-	activity = require('../../views/activity/activity'),//活动
+	//activity = require('../../views/activity/activity'),//活动
 	cart = require('../../views/cart/cart'),//购物车
 	mine = require( '../../views/mine/mine.js' ),
-
-
+	distribution = require( '../../views/distribution/distribution.js' ),
 
 	serviceCart = require( '../../service/cart/cart' ),
 	serviceUser = require( '../../service/user/user' ),
@@ -18,7 +18,8 @@ var home = require( '../../views/home/home.js' ),
 views = {
 	home : home,
 	category:category,
-	activity,
+	distribution : distribution,
+	//activity,
 	cart:cart,
 	// orders : orders,
 	mine : mine
@@ -38,11 +39,11 @@ Page( {
 				text : '分类',
 				className : 'footer-category',
 				view : 'category'
-			},/*{
+			},{
 				text:'分销',
-				className:'footer-activity',
-				view:'activity'
-			},*/{
+				className:'footer-distribution',
+				view:'distribution'
+			},{
 				text:'购物车',
 				className:'footer-cart',
 				view:'cart'
@@ -60,6 +61,13 @@ Page( {
 		} );
 	},
 
+
+	moduleClickProxy : function( e ) {
+		var target = e.currentTarget;
+		if ( target.dataset && target.dataset.fn && modules.events[target.dataset.fn] ) {
+		  modules.events[target.dataset.fn].call( this, e );
+		}
+	},
 	onReachBottom : function( e ) {
 		var currentView = views[this.data.currentView] || {};
 		if ( currentView && currentView.events && currentView.events['reachBottom'] ) {
