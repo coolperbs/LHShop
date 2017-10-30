@@ -91,7 +91,8 @@
 					"id": 12,
 					"name": "商详",
 					"pathName": "pages/detail/detail",
-					"query": "id=3"
+					"query": "id=2",
+					"scene": "1001"
 				},
 				{
 					"id": 13,
@@ -135,6 +136,13 @@
 					"name": "分销-我的金额",
 					"pathName": "pages/fx-money/fx-money",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动",
+					"pathName": "pages/active/active",
+					"query": "actid=1",
+					"scene": "1001"
 				}
 			]
 		},

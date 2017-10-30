@@ -14,6 +14,7 @@
             <view class="price-info">
                 <view class="price"><view class="sub">¥</view>{{ pageData.price ? pageData.price / 100 : pageData.originPrice / 100 }}<view class="sub">元</view></view>
                 <view class="origin-price" wx:if="{{ pageData.price }}">¥{{pageData.originPrice / 100}}</view>
+                <view class="tags" wx:if="{{pageData.tags && pageData.tags.length}}">{{pageData.tags[0]}}</view>
             </view>
         </view>
 
@@ -33,8 +34,20 @@
         </view>
     </view>
 
-    <view>
-        <navigator url="../commentlist/commentlist">评论列表</navigator>
+    <view class="comment-list">
+        <view class="all">宝贝评价（{{allcomments || 0}}）</view>
+        <view class="comment" wx:if="{{comments[0]}}">
+            <view class="c-head">
+                <image src="{{comments[0].userAvatarUrl}}"></image>
+                {{comments[0].username}}:
+            </view>
+            <view class="c-content">{{comments[0].content}}</view>
+            <view class="c-img">
+                <image wx:for="{[1,2,3,4,5,6,7,8,9]}" wx:key="index" wx:if="{{comments[0]['img' + item]}}" src="{{comments[0]['img' + item]}}"></image>
+            </view>
+            <view class="c-sub">{{comments[0].commentCreatedObj.year}}-{{comments[0].commentCreatedObj.month}}-{{comments[0].commentCreatedObj.day}} {{comments[0].commentCreatedObj.hours}}:{{comments[0].commentCreatedObj.minutes}}:{{comments[0].commentCreatedObj.seconds}}</view>
+        </view>
+        <navigator url="../commentlist/commentlist?skuid={{pageData.skuId}}" class="c-more">查看全部评价</navigator>
     </view>
 
     <view class="cont">
@@ -125,6 +138,7 @@
     <block wx:if="{{ !pop.show }}">
         <view class="icons">
             <view class="cell">
+                <button class="call" open-type="contact"></button>
                 <image src="../../asset/message-white.png"></image>
             </view>
             <view class="cell" catchtap="toCart">
