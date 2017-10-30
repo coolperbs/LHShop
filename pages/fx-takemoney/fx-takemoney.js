@@ -1,5 +1,7 @@
 var app = getApp();
-var comfig = ""
+var config = require('../../config');
+var host = config.host;
+var ajax = require('../../common/ajax/ajax');
 Page({
 	onShow:function(){
 		console.log('fx-mymoney');
@@ -8,44 +10,19 @@ Page({
 		self.setData({
 			curTab:"bank"
 		})
-	},	
-	changeMoney:function(event){
-		var self = this
-		var balance = event.detail.value;
-		var submitObj = self.data.submitObj||{};
-		submitObj.balance = balance;
-		self.setData({
-			submitObj:submitObj
-		});
 	},
-
-	changeMobile:function(event){
-		var self = this
-		var mobile = event.detail.value;
-		var submitObj = self.data.submitObj||{};;
-		submitObj.mobile = mobile;
-		self.setData({
-			submitObj:submitObj
-		});
-	},
-	changeName:function(event){
-		var self = this
-		var cash_name = event.detail.value;
-		var submitObj = self.data.submitObj||{};;
-		submitObj.cash_name = cash_name;
-		self.setData({
-			submitObj:submitObj
-		});
-	},
-	changeTabInput:function(event){
+	changeInput:function(e){
 		var self = this;
-		var key = event.currentTarget.dataset.key;
-		var value = event.detail.value;
-		var submitObj = self.data.submitObj||{};
-		submitObj[key] = value;
-		self.setData({
-			submitObj:submitObj
-		});
+		var key = e.currentTarget.dataset.key;
+		var val = e.detail.value;
+		self.formData = self.formData || {};
+		if(key==='account'){
+			var type = e.currentTarget.dataset.type;
+			self.formData.type = type;
+			self.formData.carnum = val;
+		}else{
+			self.formData[key] = val
+		}
 	},
 	submit:function(){
 		var self = this;
@@ -61,66 +38,84 @@ Page({
 });
 var _fn = {
 	getBalance:function(callerPage){
-		let userkey = app.globalData.userKey;
-		wx.request({
-			url:`${SERVER_BASE}/Mobile/UserApi/getdsalebalance?`,
-			method:'GET',
-			header: {
-				'content-type':'application'
-			},
-			data:{
-				userkey:userkey
-			},
-			success: function(res){
-				callerPage.setData({
-					summary:res.data.data
+		// let userkey = app.globalData.userKey;
+		// wx.request({
+		// 	url:${SERVER_BASE}/app/money/apply,
+		// 	method:'GET',
+		// 	header: {
+		// 		'content-type':'application'
+		// 	},
+		// 	data:{
+		// 		userkey:userkey
+		// 	},
+		// 	success: function(res){
+		// 		callerPage.setData({
+		// 			summary:res.data.data
 
+		// 		});
+		// 	}
+		// });
+	},
+	submit:function(page){
+		var validateRes = _fn.validate(page);
+		if(!validateRes){
+			return;
+		}
+		var formData = page.formData;
+		console.log(formData)
+		ajax.query({
+			url:host+'/app/money/apply',
+			param:formData
+		},function(res){
+			if(res.code='0000'){
+				wx.showModal({
+					title:'提示',
+					content:"提交申请成功,我们会在3-5个工作日为您打账",
+					showCancel:false,
+					success:function(){
+						wx.navigateBack()
+					}
 				});
 			}
-		});
-	},
-	submit:function(callerPage){
-		let userkey = app.globalData.userKey;
-		let submitObj = callerPage.data.submitObj;
-		var cashtype;
-		var cash_user;
-		var curTab = callerPage.data.curTab;
-		if(curTab === 'bank'){
-			cashtype = 0;
-			cash_user = submitObj[curTab+'count'];
-		}else if(curTab === 'wechat'){
-			cashtype = 1;
-			cash_user = submitObj[curTab+'count'];
-		}else if(curTab === 'zhifubao'){
-			cashtype = 2;
-			cash_user = submitObj[curTab+'count'];
-		}
-
-		var submitParam = {
-			cashtype:cashtype,
-			cash_user:cash_user,
-			cash_name:submitObj.cash_name,
-			balance:submitObj.balance,
-			userkey:userkey,
-			mobile:submitObj.mobile
-		}
-		wx.request({
-			url:`${SERVER_BASE}/Mobile/UserApi/cashbalance?`,
-			method:'GET',
-			header: {
-				'content-type':'application'
-			},
-			data:submitParam,
-			success: function(res){
-				if(res.data.error===0){
-					wx.showToast({
-						title:"提交申请成功"
-					});
-					_fn.getBalance(callerPage);
-
-				}
-			}
 		})
+	},
+	validate:function(page){
+		var formData = page.formData;
+		var validateRes=true;
+		var validateMsg="";
+		switch(true){
+			case !formData.userName:
+				validateRes = false;
+				validateMsg = '请输入收款人姓名';
+				formData.userName='';
+				break;
+			case !formData.phoneNumber:
+				validateRes = false;
+				validateMsg = '请输入联系电话';
+				formData.phoneNumber='';
+				break;
+			case formData.phoneNumber.length !==11:
+				validateRes = false;
+				validateMsg = '请输正确的手机号码'
+				formData.phoneNumber = '';
+				break;
+			case !formData.carnum:
+				validateRes = false;
+				validateMsg = '请输入收款账号(银行卡号,微信,支付宝)'
+				break;
+		}
+		if(validateMsg){
+			wx.showModal({
+				title:'提示',
+				content:validateMsg,
+				showCancel:false
+			});
+			page.setData({
+				formData:formData
+			});
+		}
+		return validateRes
 
 	}
+
 }

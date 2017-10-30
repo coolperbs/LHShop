@@ -19,13 +19,13 @@
 	</view>
 	<view class="form">
 		<view class="field">
-			<input placeholder="最多可以提现¥{{summary.balance||'0.00'}}元" bindinput="changeMoney"/>
+			<input placeholder="最多可以提现¥{{summary.balance||'0.00'}}元" data-key="price" bindinput="changeInput" value="{{formData.price}}"/>
 		</view>
 		<view class="field">
-			<input placeholder="电话号码" bindinput="changeMobile"/>
+			<input placeholder="手机号码" bindinput="changeInput" data-key="phoneNumber" value="{{formData.phoneNumber}}"/>
 		</view>
 		<view class="field">
-			<input placeholder="请输收款人姓名" key="bank-card-owner" bindinput="changeName"/>
+			<input placeholder="请输收款人姓名" key="bank-card-owner" bindinput="changeInput" data-key="userName" value="{{formData.userName}}"/>
 		</view>
 		
 
@@ -36,19 +36,19 @@
 				<view class="tab-item {{curTab==='zhifubao'?'active':''}}" data-key="zhifubao" bindtap="changetab">支付宝</view>
 			</view>
 			<view class="content-wrapper">
-				<view class="content-item" wx:if="{{curTab==='bank'?'active':''}}" data-key="bank">
+				<view class="content-item" wx:if="{{curTab==='bank'?'active':''}}" data-key="type">
 					<view class="field">
-						<input placeholder="请输入银行卡号" data-key="bankcount" bindinput="changeTabInput"/>
+						<input placeholder="请输入银行卡号" data-key="account" data-type="1" bindinput="changeInput"/>
 					</view>
 				</view>
 				<view class="content-item" wx:if="{{curTab==='wechat'?'active':''}}" data-key="wechat">
 					<view class="field">
-						<input placeholder="请输入微信账号" data-key="wechatcount" bindinput="changeTabInput"/>
+						<input placeholder="请输入微信账号" data-key="account" data-type="2" bindinput="changeInput"/>
 					</view>
 				</view>
 				<view class="content-item" wx:if="{{curTab==='zhifubao'?'active':''}}" data-key="zhifubao">
 					<view class="field">
-						<input placeholder="请输入支付宝账号" data-key="zhifubaocount" bindinput="changeTabInput"/>
+						<input placeholder="请输入支付宝账号" data-key="account" data-type="3" bindinput="changeInput"/>
 					</view>
 				</view>
 			</view>

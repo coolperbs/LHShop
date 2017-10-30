@@ -421,8 +421,9 @@ page{
 	background-color:white;
 	margin-bottom:20rpx;
 	display:flex;
-	padding:40rpx;
+	padding:30rpx 40rpx;
 	align-items:center;
+
 
 }
 .address-info image{

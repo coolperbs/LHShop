@@ -35,6 +35,7 @@ Page({
 		buyType = 1; // 默认为购物车购买
 		service.cart.refreshNum( this );
 		_fn.getPageData( this );
+		_fn.getComment( this );
 	},
 
 	// 添加购物车
@@ -277,6 +278,33 @@ _fn = {
 			param : param
 		}, callback );
 	},
+
+	getComment : function( caller ) {
+		ajax.query( {
+			url : app.host+'/app/comment/list',
+			param : {
+				skuId : pageParam.id,
+				level : 1
+			}
+		}, function( res ) {
+			var i, c;
+			if ( !res || !res.data ) {
+				return;
+			}
+
+			res.data.comments = res.data.comments || [];
+			for ( i = 0; c = res.data.comments[i]; ++i ) {
+				c.commentCreatedObj = utils.timeToDateObj( c.commentCreated );
+			}
+
+			caller.setData( {
+				comments : res.data.comments,
+				allcomments : res.data.totalCount
+			} );
+			console.log( res );
+		} );
+	},
+
 	getPageData : function( caller, callback ) {
 		ajax.query( {
 			url : app.host + '/app/ware/detail/' + pageParam.id

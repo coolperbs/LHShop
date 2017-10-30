@@ -12,8 +12,18 @@ handle = {
 
 		// 定位获取门店信息
 		service.loc.getShops( function( shops ) {
+			// if ( !city || !city.code ) {
+			// 	wx.navigateTo( { url : '../city/city' } );
+			// }
 			// 获取首页信息
-			service.active.getHome( { shops : '1' }, function( res ) {
+			var shops = [],
+				shopsList = wx.getStorageSync( 'shops' ) || [],
+				i, len;
+
+			for ( i = 0, len = shopsList.length; i < len; ++i ) {
+				shops.push( shopsList[i].id );
+			}
+			service.active.getHome( { shops : shops.join( ',' ) }, function( res ) {
 				var city = wx.getStorageSync( 'city' );
 				if ( utils.isErrorRes( res ) ) {
 					return;
@@ -22,7 +32,7 @@ handle = {
 				callerPage.setData( {
 					'viewData.pageData' : res.data,
 					'viewData.showShops' : false,
-					'viewData.shops' : shops,
+					'viewData.shops' : shopsList,
 					'viewData.city' : city
 				} );
 			} );

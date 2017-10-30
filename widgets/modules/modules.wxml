@@ -2,7 +2,7 @@
 <template name="3-4">
 	<view class="slider">
 		<swiper autoplay indicator-dots="{{true}}" data-moduleindex="{{index}}">
-			<swiper-item wx:for="{{data}}" wx:key="index">
+			<swiper-item wx:for="{{data}}" wx:key="index" catchtap="moduleClickProxy" data-fn="jumpUrl" data-content="{{item.content}}" data-type="{{item.type}}">
 				<image mode="scaleToFill" src="http://yimeiimage.oss-cn-shenzhen.aliyuncs.com/201710/ef8d36a8-9cdb-4177-815b-a6bedcc2ba67"></image>
 			</swiper-item>
 		</swiper>
@@ -11,18 +11,18 @@
 
 <!-- 搜索模块 -->
 <template name="5-6">
-	<view class="search">
+	<navigator url="../search/search" class="search">
 		<view class="input">
 			<image src="../../asset/search-gray.png"></image>
 			{{data.content}}
 		</view>
-	</view>
+	</navigator>
 </template>
 
 <!-- 入口模块 -->
 <template name="4-5">
 	<view class="entry">
-		<view wx:for="{{data}}" wx:key="index">
+		<view wx:for="{{data}}" wx:key="index" catchtap="moduleClickProxy" data-fn="jumpUrl" data-content="{{item.content}}" data-type="{{item.type}}">
 			<image src="{{item.url}}"></image>
 				{{item.title}}
 		</view>
@@ -32,7 +32,7 @@
 <!-- 普通图片 -->
 <template name="2-3">
 	<view class="normal-image">
-		<image mode="widthFix" src="{{data.url}}"></image>
+		<image mode="widthFix" src="{{data.url}}" catchtap="moduleClickProxy" data-fn="jumpUrl" data-content="{{item.content}}" data-type="{{item.type}}"></image>
 	</view>
 </template>
 
@@ -41,6 +41,7 @@
 	<view class="n1">
 		<view class="item" wx:for="{{data.wareSkus}}" wx:key="index">
 			<view class="pic" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">
+				<view wx:if="{{item.tags && item.tags.length}}" class="tags">{{item.tags[0]}}</view>
 				<image src="{{item.mainImage}}"></image>
 			</view>
 			<view class="info">
@@ -62,6 +63,7 @@
 		<view class="item-wrapper"  wx:for="{{data.wareSkus}}" wx:key="index">
 			<view class="item">
 				<view class="pic" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">
+					<view wx:if="{{item.tags && item.tags.length}}" class="tags">{{item.tags[0]}}</view>
 					<image src="{{item.mainImage}}"></image>
 				</view>
 				<view class="info">
@@ -86,6 +88,7 @@
 		<view class="item-wrapper"  wx:for="{{data.wareSkus}}" wx:key="index">
 			<view class="item">
 				<view class="pic" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">
+					<view wx:if="{{item.tags && item.tags.length}}" class="tags">{{item.tags[0]}}</view>
 					<image src="{{item.mainImage}}"></image>
 				</view>
 				<view class="info">
@@ -109,6 +112,7 @@
 			<view class="item-wrapper"  wx:for="{{data.wareSkus}}" wx:key="index">
 				<view class="item">
 					<view class="pic" catchtap="moduleClickProxy" data-fn="jumpDetail" data-id="{{item.skuId}}">
+						<view wx:if="{{item.tags && item.tags.length}}" class="tags">{{item.tags[0]}}</view>
 						<image src="{{item.mainImage}}"></image>
 					</view>
 					<view class="info">

@@ -21,9 +21,17 @@ Page( {
 _fn = {
 	getStoreInfo : function( caller ) {
 		utils.showLoading( 300 );
+
+		var shops = [],
+			shopsList = wx.getStorageSync( 'shops' ) || [],
+			i, len;
+
+		for ( i = 0, len = shopsList.length; i < len; ++i ) {
+			shops.push( shopsList[i].id );
+		}		
 		service.active.getActive( {
 			actId : pageParam.actid,
-			shops : '1'
+			shops : shops.join( ',' )
 		}, function( res ) {
 			utils.hideLoading();
 			if ( utils.isErrorRes( res ) ) {

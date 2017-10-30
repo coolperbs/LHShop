@@ -24,22 +24,22 @@
 	                 ¥{{detail.order.showTotalPrice}}
 	            </view>
 	        </view>
-	         <!-- <view class="item">
+	         <view class="item">
 	            <view class="cost-name">
 	                运费
 	            </view>
 	            <view class="cost-count">
-	                ¥10.00
+	                ¥{{detail.order.showSheepPrice}}
 	            </view>
-	        </view> -->
-	        <!-- <view class="item">
+	        </view>
+	        <view class="item">
 	            <view class="cost-name">
-	                订单总价
+	                优惠券
 	            </view>
 	            <view class="cost-count">
-	                ¥60.00
+	               - ¥{{detail.order.showCouponPrice}}
 	            </view>
-	        </view> -->
+	        </view>
 	        <view class="item">
 	            <view class="cost-name">
 	                订单总价

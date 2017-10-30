@@ -12,7 +12,9 @@ url = {
 handle = {
 	getShops : function( callback ) {
 		var shops = wx.getStorageSync( 'shops' );
-		if ( shops ) {
+		var city = wx.getStorageSync( 'city' );
+
+		if ( shops && city && city.code ) {
 			callback( shops );
 			return;
 		}

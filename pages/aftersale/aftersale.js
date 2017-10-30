@@ -174,6 +174,7 @@ var _fn = {
 		page.fileUploader = new FileUploader({
 			orderId:page.param.orderId,
 			files:fileList,
+			max:9,
 			afterChange:function(res){
 				if(res.btns){
 					res.btns.forEach((v,k)=>{

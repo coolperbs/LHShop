@@ -99,7 +99,9 @@ var _fn = {
 					var orderTimeObj = utils.timeToDateObj(resDattOrder.orderTime)
 
 					resDattOrder.showOrderTime = orderTimeObj.year +'-'+ orderTimeObj.month +"-"+ orderTimeObj.day +" "+orderTimeObj.hours+":"+orderTimeObj.minutes;
+					resDattOrder.showCouponPrice = utils.fixPrice(resDattOrder.couponPrice);
 					resDattOrder.showTotalPrice = utils.fixPrice(resDattOrder.totalPrice);
+					resDattOrder.showSheepPrice = utils.fixPrice(resDattOrder.sheepPrice);
 					resDattOrder.showPayPrice = utils.fixPrice(resDattOrder.payPrice);
 					resDattOrder.showOrderStatus = orderService.getOrderStatusMining(resDattOrder.orderStatus).label;
 					resDattOrder.skus = resDattOrder.skus.map((v,k)=>{

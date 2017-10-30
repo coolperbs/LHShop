@@ -172,6 +172,7 @@
 	display: flex;
 	padding-left:120rpx;
 margin-top:20rpx;
+flex-wrap:wrap;
 
 }
 

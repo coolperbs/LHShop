@@ -78,7 +78,7 @@ var _fn = {
 				name:'差评',
 				extra:JSON.stringify({type:4}),
 			},{
-				name:'我的评论',
+				name:'我的',
 				extra:JSON.stringify({type:5}),
 			},]
 		});
