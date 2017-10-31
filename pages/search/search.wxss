@@ -14,7 +14,7 @@
 	width: 100%
 }
 .search-box{
-	height:80rpx;
+	height:100rpx;
 	border-bottom:solid 1px #f8f8f8;
 	background-color:#fff;
 	width:100%;
@@ -36,20 +36,13 @@
 	justify-content:center;
 }
 
-.search-box input{
-	width:550rpx;
-background-color:#f8f8f8;
-border-radius:150rpx;
-padding-left:50rpx;
-font-size:13px;
-display:flex;
-}
+.search-box input{ width : 610rpx; height : 60rpx; line-height: 60rpx; color : #999; border-radius: 30rpx; padding : 0 20rpx; padding-left : 60rpx; background-color: #eee; }
 .search-box image{
-	width:30rpx;
-height:30rpx;
-position:absolute;
-z-index:10;
-left:85rpx;
+	width:32rpx;
+	height:32rpx;
+	position:absolute;
+	z-index:10;
+	left:50rpx;
 }
 .search-scroll{
 	display:flex;
@@ -59,8 +52,17 @@ left:85rpx;
 	margin-top: 160rpx
 }
 .sort-logo{
-	width: 40rpx;
-	height: 50rpx;
+	width: 60rpx;
+	height: 60rpx;
+	position: relative;
+	left : -10rpx;
+}
+.sort-logo.up {
+	top : 8rpx;
+}
+
+.sort-logo.down {
+	top : -8rpx;
 }
 
 .page-search .tpl-recommond-ware{

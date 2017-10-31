@@ -12,12 +12,12 @@
 	"projectname": "LH-shop",
 	"condition": {
 		"weapp": {
-			"current": 19,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
-					"name": "登录",
-					"pathName": "pages/login/login",
+					"name": "城市选择",
+					"pathName": "pages/city/city",
 					"query": "",
 					"scene": "1001"
 				},
@@ -29,9 +29,10 @@
 				},
 				{
 					"id": 2,
-					"name": "优惠券-我的",
-					"pathName": "pages/coupon-mine/coupon-mine",
-					"query": ""
+					"name": "地址",
+					"pathName": "pages/address/address",
+					"query": "",
+					"scene": "1001"
 				},
 				{
 					"id": -1,

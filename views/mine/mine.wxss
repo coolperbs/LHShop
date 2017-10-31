@@ -1,14 +1,14 @@
 
 @import '../../widgets/modules/modules.wxss'
 .view-mine{
-	background-color: #eeeff1;
+	background-color: #f0f0f0;
 	/*height: 100%*/
 }
 
 .view-mine .pannel{
 	margin-bottom:20rpx;
 	background-color: white;
-	padding: 30rpx;
+	padding: 0 20rpx 40rpx 20rpx;
 }
 
 .view-mine .user{
@@ -41,15 +41,15 @@ border-radius:50%;
 
 .view-mine .order{}
 .view-mine .order .header{
-display:flex;
-height:80rpx;
-justify-content:space-between;
-align-items:flex-start;
-border-bottom:1rpx solid #e5e5e5;
+	display:flex;
+	justify-content:space-between;
+	padding : 20rpx 0;
+	align-items:center;
+	border-bottom:1rpx solid #f0f0f0;
 }
 .view-mine .order .header .title{
 	font-size:32rpx;
-color:#202020;
+	color:#202020;
 }
 .view-mine .order .header .check-more{
 	font-size:24rpx;
@@ -57,12 +57,12 @@ color:#9e9e9e;
 }
 
 .view-mine .order .content{
+	padding : 0 40rpx;
 	display:flex;
-justify-content:space-between;
-margin-top: 34rpx;
+	justify-content:space-between;
+	margin-top: 34rpx;
 }
 .view-mine .order .content .item{
-	width:165rpx;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
@@ -83,29 +83,29 @@ margin-top: 34rpx;
 .view-mine .my-service{}
 .view-mine .my-service .header{
 	display:flex;
-height:80rpx;
-justify-content:space-between;
-align-items:flex-start;
-border-bottom:1rpx solid #e5e5e5;
+	justify-content:space-between;
+	padding : 20rpx 0;
+	align-items:center;
+	border-bottom:1rpx solid #f0f0f0;
 }
 .view-mine .my-service .header .title{
 	font-size:32rpx;
 	color:#202020;
 }
 .view-mine .my-service .content{
-		display:flex;
-justify-content:space-between;
-margin-top: 34rpx;
+	display:flex;
+	justify-content:space-between;
+	margin-top: 20rpx;
+	padding : 0 40rpx;
 }
 .view-mine .my-service .content .item{
-	width:165rpx;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
 }
 .view-mine .my-service .content .item .item-logo{
-		width: 50rpx;
-	height: 50rpx;
+	width: 48rpx;
+	height: 48rpx;
 }
 .view-mine .my-service .content .item .item-txt{
 		font-size: 26rpx;
@@ -117,10 +117,10 @@ margin-top: 34rpx;
 .view-mine .recommond{}
 .view-mine .recommond .header{
 	display:flex;
-	height:80rpx;
 	justify-content:space-between;
-	align-items:flex-start;
-	border-bottom:1rpx solid #e5e5e5;
+	padding : 20rpx 0;
+	align-items:center;
+	border-bottom:1rpx solid #f0f0f0;
 }
 .view-mine .recommond .header .title{
 	font-size:32rpx;

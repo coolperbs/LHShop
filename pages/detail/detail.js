@@ -32,6 +32,7 @@ Page({
 	},
 	onShow : function() {
 		var self = this;
+		isGetMore = false;
 		buyType = 1; // 默认为购物车购买
 		service.cart.refreshNum( this );
 		_fn.getPageData( this );

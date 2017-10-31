@@ -1,7 +1,8 @@
 <template name="category">
 <view class="category">
 	<view class="searchbox">
-		<input placeholder="请输入搜索内容"/>
+		<image src="../../asset/search-gray.png"/>
+		<navigator url="../search/search" class="input">请输入搜索内容</navigator>
 	</view>
 	<scroll-view class="menu" scroll-y="{{true}}">
 		<view class="item ellipsis-1 {{ currentTab.catId == item.catId ? 'current' : '' }}" wx:for="{{cat}}" wx:key="index" catchtap="categoryClickProxy" data-fn="changeTab" data-id="{{item.catId}}">{{item.catName}}</view>

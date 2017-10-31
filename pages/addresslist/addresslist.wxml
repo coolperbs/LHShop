@@ -10,7 +10,7 @@
         <text>暂无地址</text>
     </view>
     <view class="add-btn btn-default" bindtap="toAddress" data-name="create">
-        <image src="../../asset/add-white.png"/>
+        <!--<image src="../../asset/add-white.png"/>-->
         新建地址
     </view>
 </view>
@@ -24,15 +24,6 @@
             <view class="address text-ellipsis">
                 <text>{{provinceName}} {{cityName}} {{countryName}} {{address}}</text>
             </view>
-        </view>
-        <view class="handle">
-            <view class="default" catchtap="update" data-key="defaulted" data-addressid="{{addressId}}">
-                <view class="check">
-                    <image wx:if="{{defaulted===2}}" src="../../asset/check-box-empty.png" />
-                    <image wx:if="{{defaulted===1}}" src="../../asset/check-box.png" />
-                </view>
-                <text style="padding-left:30rpx">设为默认</text>
-            </view>
             <view class="status">
                <!--  <view   data-addressid="{{addressId}}">
                     <image src="../../asset/delete-icon.png"/>
@@ -40,8 +31,16 @@
                 </view> -->
                 <view catchtap="toModify" data-addressid="{{addressId}}" data-name="edit">
                     <image src="../../asset/edit-icon.png"/>
-                    编辑
                 </view>
+            </view>
+        </view>
+        <view class="handle">
+            <view class="default" catchtap="update" data-key="defaulted" data-addressid="{{addressId}}">
+                <view class="check">
+                    <image wx:if="{{defaulted===2}}" src="../../asset/check-box-empty.png" />
+                    <image wx:if="{{defaulted===1}}" src="../../asset/check-box.png" />
+                </view>
+                设为默认
             </view>
         </view>
     </view>

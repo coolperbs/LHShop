@@ -5,15 +5,15 @@
 	<view class="seach-header">
 		<view class="search-box">
 			<input class="search-input" placeholder="输入你想要的宝贝吧" bindinput="changeInput"/>
-			<image src="../../asset/search.png"/>
+			<image src="../../asset/search-gray.png"/>
 		</view>
 		<view class="sort-menu">
 			<block wx:for="{{sortMenuData.menu}}" wx:key="{{index}}">
 				<view class="menu-item status-{{item.status}}" data-param="{{item.eventParam}}" catchtap="changeSort">
 					{{item.text}}
 					<image wx:if="{{! item.status}}" src="../../asset/sort-null.png" class="sort-logo"></image>
-					<image wx:if="{{item.status===1}}" src="../../asset/sort-up.png" class="sort-logo"></image>
-					<image wx:if="{{item.status===2}}" src="../../asset/sort-down.png" class="sort-logo"></image>
+					<image wx:if="{{item.status===1}}" src="../../asset/sort-up.png" class="sort-logo up"></image>
+					<image wx:if="{{item.status===2}}" src="../../asset/sort-down.png" class="sort-logo down"></image>
 				</view>
 			</block>
 			
