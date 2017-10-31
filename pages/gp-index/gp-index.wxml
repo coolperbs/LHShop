@@ -1,0 +1,40 @@
+<view class="page-gouponindex">
+	<template is="gouponitem-tpl"></template>
+	<template is="gouponitem-tpl"></template>
+	<template is="gouponitem-tpl"></template>
+	<template is="gouponitem-tpl"></template>
+	<template is="gouponitem-tpl"></template>
+	<template is="gouponitem-tpl"></template>
+	<template is="gouponitem-tpl"></template>
+	<template is="gouponitem-tpl"></template>
+</view>
+
+<template name="gouponitem-tpl">
+	<view class="gouponitem-tpl">
+		<view class="wrapper">
+			<view class="ware-img">
+				<image src="//img13.360buyimg.com/babel/s400x170_jfs/t5818/290/1684081062/48818/bf37d5fd/592935aaNf9c009fe.jpg!q90.webp"></image>
+			</view>
+			<view class="ware-name">
+				<text>【北极绒正品，假一赔十】单鞋棉鞋可选，男鞋秋冬季新款潮鞋透气运动鞋休闲板鞋韩版驾车不懈</text>
+			</view>
+			<view class="ware-detail">
+				<view class="price-wrapper">
+					<text class="unitPrice">￥10.00</text>
+					<text class="orgPrice">￥100.00</text>
+				</view>
+				<view class="basic-wrapper">
+					<text class="finished">已成团38万件</text>
+				</view>
+				<view class="btn-wrapper">
+					<text class="buybtn">去开团(5人团)</text>
+					<view class="finished-people">
+						<image src="http://img3.imgtn.bdimg.com/it/u=634098145,264198475&fm=214&gp=0.jpg" class="user-head"></image>
+						<image src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2523342981,456767842&fm=27&gp=0.jpg" class="user-head"></image>
+						<image src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3456403917,3492521682&fm=27&gp=0.jpg" class="user-head"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>

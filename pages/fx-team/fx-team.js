@@ -5,6 +5,8 @@ var config = require('../../config');
 var host = config.host;
 var utils = require('../../common/utils/utils');
 
+var ajax = require('../../common/ajax/ajax');
+
 
 Page({
 	onLoad:function(){
@@ -23,17 +25,17 @@ Page({
 		self.listMap = self.listMap || {};
 		self.list = self.listMap[type]
 		if(!self.list){
-			self.list = _fn.createList(self,{type:type})
-			self.list.next();
+			// self.list = _fn.createList(self,{type:type})
+			// self.list.next();
 		}else{
 			self.setData({
-				members:self.list.totalData
+				members:self.list
 			})
 		}
 	},
 	scrollToLower:function(){
-		var self = this;
-		self.list.next();
+		// var self = this;
+		// self.list.next();
 	}
 });
 
@@ -42,8 +44,9 @@ var _fn = {
 	init:function(page){
 		page.curType = 1;//默认展示1及分销商
 		_fn.createTab(page);
-		_fn.createList(page,{type:1});
-		_fn.createList(page,{type:2});
+		// _fn.createList(page,{type:1});
+		// _fn.createList(page,{type:2});
+		_fn.getPageData(page);
 		wx.getSystemInfo({
 			success:function(res){
 				var scrollHeight = res.windowHeight-60;
@@ -70,37 +73,66 @@ var _fn = {
 		page.setData({tab:tabData});
 
 	},
-	createList:function(page,param){
-		var type = param.type || 1;
-		var dataList = new List({
-			url:host+'/app/order/list',
-			param:{
-				type:type
-			},
-			getList:function(res){
-				// return res.data.order || [];
-				// console(999)
-				res.data.order = res.data.order || [];
-				return res.data.order.concat(res.data.order).concat(res.data.order).concat(res.data.order).concat(res.data.order).concat(res.data.order);
-			},
-			getHasMore:function(res){
-				return res.data.hasMore;
-				// return true;
-			},
-			render:function(res){
-				if(page.curType === param.type){
-					page.setData({
-						members:res.totalData
-					});
-				}
+	getPageData:function(page){
+		ajax.query({
+			url:host+'/app/money/user/list'
+		},function(res){
+			// console.log(res);
+			if(res.code==='0000'){
+				page.listMap = page.listMap || {};
+
+
+				res.data.firstUsers.map((v,k)=>{
+					v.showCreated = utils.formateTime(v.created);
+					return v
+				})
+				res.data.secondUsers.map((v,k)=>{
+					v.showCreated = utils.formateTime(v.created);
+					return v
+				})
+				page.listMap[1] = res.data.firstUsers;
+				page.listMap[2] = res.data.secondUsers;
+				page.setData({
+					members:page.listMap[1],
+					firstTotal:page.listMap[1].length,
+					secondTotal:page.listMap[2].length
+				})
 			}
-		});
-		page.listMap = page.listMap || {};
-		page.listMap[param.type] = dataList;
-		dataList.next();
-		if(page.curType === param.type){
-			page.list = dataList;
-		}
-		return dataList;
+
+		})
+
 	}
+	// createList:function(page,param){
+	// 	var type = param.type || 1;
+	// 	var dataList = new List({
+	// 		url:host+'/app/order/list',
+	// 		param:{
+	// 			type:type
+	// 		},
+	// 		getList:function(res){
+	// 			// return res.data.order || [];
+	// 			// console(999)
+	// 			res.data.order = res.data.order || [];
+	// 			return res.data.order.concat(res.data.order).concat(res.data.order).concat(res.data.order).concat(res.data.order).concat(res.data.order);
+	// 		},
+	// 		getHasMore:function(res){
+	// 			return res.data.hasMore;
+	// 			// return true;
+	// 		},
+	// 		render:function(res){
+	// 			if(page.curType === param.type){
+	// 				page.setData({
+	// 					members:res.totalData
+	// 				});
+	// 			}
+	// 		}
+	// 	});
+	// 	page.listMap = page.listMap || {};
+	// 	page.listMap[param.type] = dataList;
+	// 	dataList.next();
+	// 	if(page.curType === param.type){
+	// 		page.list = dataList;
+	// 	}
+	// 	return dataList;
+	// }
 }

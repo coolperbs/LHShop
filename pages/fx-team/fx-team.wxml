@@ -7,7 +7,8 @@
 			bindtap="changeTab"
 			style="{{item.style}}">
 				<text class="tabName">{{item.name}}</text>
-				<text class="tabSubName">(60)</text>
+				<text wx:if="{{index==0}}" class="tabSubName">({{firstTotal}})</text>
+				<text wx:if="{{index==1}}" class="tabSubName">({{secondTotal}})</text>
 			</view>
 		</block>
 		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
@@ -41,12 +42,12 @@
 <template name="member">
 	<view class="member-wrapper">
 		<view class="left">
-			<image src="https://wx.qlogo.cn/mmopen/vi_32/OpxWr4p95ta38iaKvfCcMVFpxXibpRGn9mLgd3fiax7fj5eRz5mMw7A6Vdx6XaQxlQibJC19vIytuaMrcxaygPQgXA/0"  class="user-img"/>
+			<image src="{{avatarUrl}}"  class="user-img"/>
 		</view>
 		<view class="right">
-			<view class="name">边大王</view>
-			<view class="joinDate">加入日期:1987-8-26</view>
-			<view class="totalSale">累计销售:<text class="money">￥500.00</text></view>
+			<view class="name">{{nickName}}</view>
+			<view class="joinDate">加入日期:{{showCreated}}</view>
+			<!-- <view class="totalSale">累计销售:<text class="money">￥500.00</text></view> -->
 		</view>
 	</view>
 </template>
