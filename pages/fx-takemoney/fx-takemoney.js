@@ -1,12 +1,13 @@
 var app = getApp();
 var config = require('../../config');
 var host = config.host;
+var utils = require('../../common/utils/utils');
 var ajax = require('../../common/ajax/ajax');
 Page({
 	onShow:function(){
 		console.log('fx-mymoney');
 		var self = this;
-		// _fn.getBalance(self)
+		_fn.getBalance(self)
 		self.setData({
 			curTab:"bank"
 		})
@@ -37,24 +38,18 @@ Page({
 	}
 });
 var _fn = {
-	getBalance:function(callerPage){
-		// let userkey = app.globalData.userKey;
-		// wx.request({
-		// 	url:${SERVER_BASE}/app/money/apply,
-		// 	method:'GET',
-		// 	header: {
-		// 		'content-type':'application'
-		// 	},
-		// 	data:{
-		// 		userkey:userkey
-		// 	},
-		// 	success: function(res){
-		// 		callerPage.setData({
-		// 			summary:res.data.data
+	getBalance:function(page){
+		ajax.query({
+			url:host+'/app/money/info'
+		},function(res){
+			console.log(res);
+			if(res.code === '0000'){
+				page.availableGet =  res.data.availableGet || 0
+				page.showAvailableGet = utils.fixPrice(page.availableGet);
+				page.setData({availableGet:page.showAvailableGet});
+			}
 
-		// 		});
-		// 	}
-		// });
+		})
 	},
 	submit:function(page){
 		var validateRes = _fn.validate(page);
@@ -83,7 +78,18 @@ var _fn = {
 		var formData = page.formData;
 		var validateRes=true;
 		var validateMsg="";
+		var availableGet = page.availableGet/100||0;
 		switch(true){
+			case !formData.price:
+				validateRes = false;
+				validateMsg = '请输入提款金额';
+				formData.price='';
+				break;
+			case formData.price/1>availableGet:
+				validateRes = false;
+				validateMsg = '提款金额超出范围';
+				formData.price='';
+				break;
 			case !formData.userName:
 				validateRes = false;
 				validateMsg = '请输入收款人姓名';

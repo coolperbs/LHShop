@@ -1,0 +1,27 @@
+.gouponitem-tpl{
+	width: 100%;
+	background-color:white;
+}
+.gouponitem-tpl .wrapper{
+	position: relative;
+	width: 100%
+}
+.gouponitem-tpl .wrapper .ware-img{
+	width: 100%;
+	height: 300rpx;
+}
+.gouponitem-tpl .wrapper .ware-name{
+	width: 730rpx;
+	margin: auto;
+	font-size: 14px;
+	color: #535353;
+}
+.gouponitem-tpl .wrapper .ware-detail{
+	display: flex;
+	
+}
+.gouponitem-tpl .wrapper .ware-detail .unitPrice{}
+.gouponitem-tpl .wrapper .ware-detail .orgPrice{}
+.gouponitem-tpl .wrapper .ware-detail .finished{}
+.gouponitem-tpl .wrapper .ware-detail .buybtn{}
+.gouponitem-tpl .wrapper .ware-detail .finished-people{}

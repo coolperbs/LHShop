@@ -76,8 +76,12 @@ var _fn = {
 
 					v.showStartTime = utils.formateTime(v.startTime);
 					v.showEndTime = utils.formateTime(v.endTime);
+					return v;
 				})
-				return data.data;
+				retList = retList.filter((v,k)=>{
+					return v.feched!=1;
+				})
+				return retList;
 			},
 			getHasMore:function(data){
 				return false

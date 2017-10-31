@@ -171,7 +171,8 @@ var _fn = {
 				page.setData({
 					members:page.listMap[curPageType],
 					saleTotal:utils.fixPrice(resData.firstSale + resData.thirdSale +resData.secondSale),
-					getTotal:utils.fixPrice(resData.firstGet + resData.secondGet + resData.thirdGet)
+					getTotal:utils.fixPrice(resData.firstGet + resData.secondGet + resData.thirdGet),
+					takeTotal:utils.fixPrice(resData.alreadyGet)
 				})
 			}
 		})

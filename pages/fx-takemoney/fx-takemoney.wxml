@@ -1,6 +1,6 @@
 <view>
 	<view class="header">
-		<text class="money">{{summary.balance||'0.00'}}</text>
+		<text class="money">{{availableGet||'0.00'}}</text>
 		<text class="money-notice">可提现金额(元)</text>
 	</view>
 	<view class="process">
@@ -19,7 +19,7 @@
 	</view>
 	<view class="form">
 		<view class="field">
-			<input placeholder="最多可以提现¥{{summary.balance||'0.00'}}元" data-key="price" bindinput="changeInput" value="{{formData.price}}"/>
+			<input placeholder="最多可以提现¥{{availableGet||'0.00'}}元" data-key="price" bindinput="changeInput" value="{{formData.price}}"/>
 		</view>
 		<view class="field">
 			<input placeholder="手机号码" bindinput="changeInput" data-key="phoneNumber" value="{{formData.phoneNumber}}"/>
