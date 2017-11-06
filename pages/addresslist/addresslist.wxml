@@ -25,10 +25,9 @@
                 <text>{{provinceName}} {{cityName}} {{countryName}} {{address}}</text>
             </view>
             <view class="status">
-               <!--  <view   data-addressid="{{addressId}}">
+                <view  catchtap="delete" data-addressid="{{addressId}}">
                     <image src="../../asset/delete-icon.png"/>
-                    删除
-                </view> -->
+                </view>
                 <view catchtap="toModify" data-addressid="{{addressId}}" data-name="edit">
                     <image src="../../asset/edit-icon.png"/>
                 </view>
