@@ -30,7 +30,11 @@
     "pages/contact/contact",
     "pages/join/join",
     "pages/active/active",
-    "pages/shop/shop"
+    "pages/shop/shop",
+
+    "pages/cashdetail/cashdetail",
+    "pages/scoredetail/scoredetail",
+    "pages/wallet/wallet"
   ],
 
   "window":{

@@ -10,7 +10,7 @@
 		<view class="tab_ul" style="left:{{tab.hlLeft}}"></view>
 	</view>
 
-	<scroll-view class="list-container" style="height:{{height}}px" scroll-y="true" bing bindscrolltolower="loadMore">
+	<scroll-view class="list-container" style="height:{{scrollHeight}}px" scroll-y="true" bing bindscrolltolower="loadMore">
 		<block wx:for="{{commentList}}">
 			<template is="comment-item" data="{{...item}}"></template>
 		</block>

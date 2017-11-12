@@ -2,6 +2,7 @@ var service = require( '../../service/service' ),
 	us = require('../../lib/underscore'),
 	utils = require('../../common/utils/utils'),
 	weigetUtil = require('../../common/utils/weigetUtil'),
+	ajax = require('../../common/ajax/ajax'),
 	 List = weigetUtil.List,
 	 config = require('../../config'),
 	 host = config.host,
@@ -16,20 +17,31 @@ handle = {
 	render : function( callerPage ) {
 		console.log('mine');
 		_fn.init( callerPage );
-		// 请求数据，渲染数据
-		wx.getStorage({
-			key:'userinfo',
-			success:function(res){
-				var userinfo = res.data.user;
-				userinfo.showCreated = utils.formateTime(userinfo.created);
+		_fn.getUserDetail(function(res){
+			if(res.data){
+				var userinfo = res.data;
+				// userinfo.showCreated = utils.formateTime(userinfo.created);
+				userinfo.userMoney = userinfo.userMoney || 0
+				userinfo.userPoint = userinfo.userPoint || 0
+				userinfo.showUserLevel = userinfo.levelInfo || 1
+				userinfo.showUserMoney = {
+					int:userinfo.userMoney.toFixed(2).split('.')[0],
+					float:userinfo.userMoney.toFixed(2).split('.')[1],
+				}
 				dataHandler.setData({
 					userinfo:userinfo
-				})
+				});
 			}
-		});
+
+		})
 	},
 
 	events : {
+		redirect:function(caller,e){
+			var pagename = e.currentTarget.dataset.pagename;
+			var url = '../../pages/'+pagename+'/'+pagename;
+			wx.navigateTo({url:url});
+		},
 		goOrderList : function( caller, e ) {
 			var status = e.currentTarget.dataset.status;
 			wx.navigateTo({
@@ -106,6 +118,15 @@ _fn = {
 			_fn.createFavoriteList(callerPage);
 			callerPage.initMine = true;
 		}
+	},
+	getUserDetail:function(callback){
+		var url = host+"/app/user/info"
+		ajax.query({
+			url:url
+		},function(res){
+			console.log(res)
+			callback(res);
+		})
 	},
 	createFavoriteList:function(callerPage){
 		wx.getSystemInfo({
