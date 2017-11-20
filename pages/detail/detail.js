@@ -11,6 +11,7 @@ var ajax = require( '../../common/ajax/ajax' ),
 	_fn;
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	data : {
 		favorite : {},
 		buyNum : 1,
@@ -29,10 +30,12 @@ Page({
 	},
 	onLoad : function( param ) {
 		pageParam = param || {};
+		isGetMore = false;
+		hasMore = true;
+		currentPage = 0;
 	},
 	onShow : function() {
 		var self = this;
-		isGetMore = false;
 		buyType = 1; // 默认为购物车购买
 		service.cart.refreshNum( this );
 		_fn.getPageData( this );
@@ -203,6 +206,7 @@ _fn = {
 		param = param || {};
 		param.currentPage = param.currentPage || 1;
 		param.citycode = wx.getStorageSync('city').code||'010';
+		param.shopId = data.pageData.shopId;
 
 		utils.showLoading( 300 );
 		ajax.query( {

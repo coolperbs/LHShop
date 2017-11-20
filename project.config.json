@@ -12,7 +12,7 @@
 	"projectname": "LH-shop",
 	"condition": {
 		"weapp": {
-			"current": 2,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -47,16 +47,18 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "售后申请",
-					"pathName": "pages/aftersale/aftersale",
-					"query": ""
+					"id": 5,
+					"name": "订单详情",
+					"pathName": "pages/orderdetail/orderdetail",
+					"query": "orderid=10000005",
+					"scene": "1001"
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "搜索",
 					"pathName": "pages/search/search",
-					"query": ""
+					"query": "catid=3",
+					"scene": "1001"
 				},
 				{
 					"id": -1,
@@ -92,13 +94,15 @@
 					"id": 12,
 					"name": "商详",
 					"pathName": "pages/detail/detail",
-					"query": "id=3"
+					"query": "id=100026",
+					"scene": "1001"
 				},
 				{
 					"id": 13,
 					"name": "结算",
 					"pathName": "pages/checkout/checkout",
-					"query": "skuid=1&skunum=4"
+					"query": "shopid=100000",
+					"scene": "1001"
 				},
 				{
 					"id": 16,
@@ -114,10 +118,11 @@
 					"scene": "1001"
 				},
 				{
-					"id": -1,
+					"id": 16,
 					"name": "优惠券-领取",
 					"pathName": "pages/coupon-fetch/coupon-fetch",
-					"query": ""
+					"query": "shopId=100000",
+					"scene": "1001"
 				},
 				{
 					"id": 17,

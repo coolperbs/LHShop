@@ -5,7 +5,7 @@
 		</view>
 		<view class="right">
 			<view class="user">{{detail.address.userName}} {{detail.address.userPhone}}</view>
-			<view class="address">{{detail.address.address}}</view>
+			<view class="address">{{detail.address.provinceName}} {{detail.address.cityName}} {{detail.address.countryName}} {{detail.address.address}}</view>
 		</view>
 	</view>
 
@@ -117,7 +117,7 @@
 									<view class="ware-detail">
 										<view class="ware-name ellipsis-2">{{item.title}}</view>
 										<view class="ware-feature ellipsis-1">{{item.subTitel}}</view>
-										<text class="price">{{item.showOriginPrice}}</text> 
+										<text class="price">{{item.price ? item.price / 100 : item.originPrice / 100}}</text> 
 										<view class="ware-count">x{{item.skuNum}}</view>
 									</view>
 								</view>

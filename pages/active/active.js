@@ -2,6 +2,7 @@ var utils = require( '../../common/utils/utils.js' ),
 	modules = require( '../../widgets/modules/modules.js' ),
 	service = require( '../../service/service.js' ),
 	data = require( 'data.js' ),
+	app = getApp(),
 	pageParam,
 	_fn;
 
@@ -10,6 +11,7 @@ Page( {
 		pageParam = options || {};
 		_fn.getStoreInfo( this );
 	},
+	onShareAppMessage : app.shareFunc,
 	moduleClickProxy : function( e ) {
 		var target = e.currentTarget;
 		if ( target.dataset && target.dataset.fn && modules.events[target.dataset.fn] ) {

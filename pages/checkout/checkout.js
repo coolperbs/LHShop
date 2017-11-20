@@ -10,6 +10,7 @@ var ajax = require( '../../common/ajax/ajax' ),
 	_fn;
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad : function( param ) {
 		pageParam = param || {};
 	},
@@ -34,6 +35,8 @@ Page({
 
 			if ( res && res.data && res.data.defaultAddress && !self.data.address ) {
 				_fn.initAddress( self, res.data.defaultAddress );
+			} else {
+				_fn.initAddress( self, {} );
 			}
 		} );
 		//this.showAddress();
@@ -62,8 +65,22 @@ Page({
 		// } );
 	},
 
+	saveinput : function( e ) {
+		var value = e.detail.value,
+			key = e.currentTarget.dataset.key,
+			address = this.data.address;
+
+		address[key] = value;
+		this.setData( {
+			address : address
+		} );
+	},
+
 	newAddress : function() {
 		var address = {};
+		this.setData( {
+			address : {}
+		} ); 
 		_fn.initAddress( this, address );
 		this.hideAddress();
 	},
@@ -185,7 +202,8 @@ _fn = {
 			cityId : address.city,
 			countryId : address.country,
 			changeCallback:function( data ){
-				var formData = address;
+				var formData = address,
+					key;
 				if(data.province){
 					formData.province = data.province.adcode;
 					formData.provinceName = data.province.name;
@@ -212,6 +230,10 @@ _fn = {
 				}else{
 					formData.country = null;
 					formData.countryName = null;
+				}
+
+				for ( key in caller.data.address ) {
+					formData[key] = formData[key] || caller.data.address[key];
 				}
 				caller.setData({
 					location:data,

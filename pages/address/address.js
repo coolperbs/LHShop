@@ -3,9 +3,11 @@ var ajax = require('../../common/ajax/ajax');
 var config = require('../../config');
 var addressService = require('../../service/address/address');
 var host = config.host;
+var app = getApp();
 var Address = weigetUtils.Address;
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(option){
 		var self = this;
 		if(option.addressId){

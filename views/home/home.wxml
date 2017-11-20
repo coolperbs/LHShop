@@ -7,12 +7,12 @@
 				<image src="../../asset/loc.png"></image>
 				<view class="ellipsis-1">{{city.name}}</view>
 			</view>
-			<view url="../search/search" class="searchbox">
+			<navigator url="../search/search" class="searchbox">
 				<view class="input">
 					<image src="../../asset/search-gray.png"></image>
 					请输入搜索内容
 				</view>
-			</view>
+			</navigator>
 			<view class="shops" catchtap="homeClickProxy" data-fn="toggleShops">
 				<image src="../../asset/shop.png"></image>
 			</view>
@@ -33,5 +33,11 @@
 			</scroll-view>
 		</view>
 	</view>	
+	<block wx:if="{{ shops && !shops.length }}">
+		<view class="home goLogin-wrapper">
+			<view class="login-msg">当前地址没有服务，请切换城市试试</view>
+			<navigator class="login-btn" url="../city/city">切换地址</navigator>
+		</view>
+	</block>	
 </template>
 

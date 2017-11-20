@@ -3,7 +3,7 @@
 	<view class="slider">
 		<swiper autoplay indicator-dots="{{true}}" data-moduleindex="{{index}}">
 			<swiper-item wx:for="{{data}}" wx:key="index" catchtap="moduleClickProxy" data-fn="jumpUrl" data-content="{{item.content}}" data-type="{{item.type}}">
-				<image mode="scaleToFill" src="http://yimeiimage.oss-cn-shenzhen.aliyuncs.com/201710/ef8d36a8-9cdb-4177-815b-a6bedcc2ba67"></image>
+				<image mode="scaleToFill" src="{{item.url}}"></image>
 			</swiper-item>
 		</swiper>
 	</view>

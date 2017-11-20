@@ -14,14 +14,15 @@ handle = {
 	name : 'mine',
 	//data : data.data,
 	render : function( callerPage ) {
-		console.log('mine');
 		_fn.init( callerPage );
 		// 请求数据，渲染数据
 		wx.getStorage({
 			key:'userinfo',
 			success:function(res){
 				var userinfo = res.data.user;
-				userinfo.showCreated = utils.formateTime(userinfo.created);
+				if ( userinfo && userinfo.created ) {
+					userinfo.showCreated = utils.formateTime(userinfo.created);
+				}
 				dataHandler.setData({
 					userinfo:userinfo
 				})

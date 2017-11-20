@@ -122,7 +122,7 @@
 				</view>
 
 
-				<block wx:if="{{mine.favorite}}">
+				<block wx:if="{{mine.favorite && mine.favorite.data && mine.favorite.data.wareSkus && mine.favorite.data.wareSkus.length}}">
 					<view class="recommond pannel">
 						<view class="header">
 							<view class="title">猜你喜欢</view>
@@ -142,9 +142,8 @@
 
 <template name= "need-login">
 	<view class="goLogin-wrapper">
-		<image class="login-logo" src="../../asset/empty-order.png" ></image>
-		<view class="login-msg">您还没有登录</view>
-		<view class="login-btn" catchtap="events" data-func="goLogin">去登陆</view>
+		<view class="login-msg">请登录商城</view>
+		<navigator url="../login/login" class="login-btn">去登录</navigator>
 	</view>
 </template>
 

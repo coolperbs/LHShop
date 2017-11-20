@@ -2,9 +2,11 @@
 var ajax = require('../../common/ajax/ajax');
 var config = require('../../config');
 var host = config.host;
+var app = getApp();
 
 
 Page({
+	onShareAppMessage : app.shareFunc,
     onShow:function(){
         console.log('join')
     },

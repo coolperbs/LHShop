@@ -8,9 +8,11 @@ var config = require('../../config');
 var host = config.host;
 var Tab = weigetUtil.tab;
 var List = weigetUtil.List;
+var app = getApp();
 
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onShow:function(){
 		var self = this;
 		self.type = 'sku';

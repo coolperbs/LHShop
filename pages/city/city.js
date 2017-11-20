@@ -4,7 +4,7 @@ var ajax = require( '../../common/ajax/ajax' ),
     _fn;
 
 Page({
-
+    onShareAppMessage : app.shareFunc,
     data: {
         scorllId: 'C'
     },
@@ -36,17 +36,22 @@ Page({
         })
     },
     selectCity : function( e ) {
-        console.log( e );
-        var data = e.currentTarget.dataset;
+        var data = e.currentTarget.dataset,
+            oldCity = wx.getStorageSync( 'city' );
 
         if ( !data.citycode || !data.cityname ) {
             return;
+        }
+        if ( oldCity.citycode != data.citycode ) {
+            wx.removeStorageSync( 'shops' );
         }
         wx.setStorageSync( 'city', {
             name : data.cityname,
             code : data.citycode
         } );
-        wx.navigateBack();
+        setTimeout( function() {
+            wx.navigateBack();
+        }, 100 );
     }    
 });
 

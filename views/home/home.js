@@ -26,6 +26,12 @@ handle = {
 			service.active.getHome( { shops : shops.join( ',' ) }, function( res ) {
 				var city = wx.getStorageSync( 'city' );
 				if ( utils.isErrorRes( res ) ) {
+					callerPage.setData( {
+						'viewData.city' : city,
+						'viewData.pageData' : {},
+						'viewData.showShops' : false,
+						'viewData.shops' : []
+					} );
 					return;
 				}
 

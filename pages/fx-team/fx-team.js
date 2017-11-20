@@ -4,11 +4,12 @@ var List = weigetUtil.List;
 var config = require('../../config');
 var host = config.host;
 var utils = require('../../common/utils/utils');
-
+var app = getApp();
 var ajax = require('../../common/ajax/ajax');
 
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(){
 		var self = this;
 		_fn.init(self);

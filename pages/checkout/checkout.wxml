@@ -6,13 +6,13 @@
 		<view class="row">
 			<view class="key">联系人</view>
 			<view class="value">
-				<input name="userName" placeholder="请填写联系人" value="{{address.userName}}"/>
+				<input name="userName" bindinput="saveinput" data-key="userName"  placeholder="请填写联系人" value="{{address.userName}}"/>
 			</view>
 		</view>
 		<view class="row">
 			<view class="key">手机号</view>
 			<view class="value">
-				<input name="userPhone" placeholder="请填写手机号" value="{{address.userPhone}}"/>
+				<input name="userPhone" bindinput="saveinput" data-key="userPhone" placeholder="请填写手机号" value="{{address.userPhone}}"/>
 			</view>
 		</view>
  		<view class="row">
@@ -47,7 +47,7 @@
 		<view class="row">
 			<view class="key">详细地址</view>
 			<view class="value">
-				<input name="address" placeholder="请填写详细地址" value="{{address.address}}"/>
+				<input name="address" bindinput="saveinput" data-key="address" placeholder="请填写详细地址" value="{{address.address}}"/>
 			</view>
 		</view>
 		<view class="row" catchtap="showAddress">
@@ -67,7 +67,7 @@
 						</view>
 						<view class="price-info">
 							<view class="price"><view class="sub">¥</view>{{sku.price ? sku.price / 100 : sku.originPrice / 100 }}</view>
-							<view class="favo-info" wx:if="{{ sku.price }}">¥{{sku.originPrice / 100}}</view> 
+							<view class="favo-info" wx:if="{{ sku.originPrice && sku.price }}">¥{{sku.originPrice / 100}}</view> 
 						</view>
 					</view>
 					<view class="act">

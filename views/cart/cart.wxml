@@ -13,7 +13,7 @@
 						<image class="logo" src="{{shopCart.logo}}"></image>
 						{{shopCart.name}} >
 					</navigator>
-					<navigator class="act" url="../coupon-fetch/coupon-fetch">领券</navigator>
+					<navigator class="act" url="../coupon-fetch/coupon-fetch?shopId={{shopCart.id}}">领券</navigator>
 				</view>
 			</view>
 			<view class="cont-list">
@@ -54,6 +54,12 @@
 		<view class="goLogin-wrapper">
 			<view class="login-msg">购物车还没有商品哟</view>
 			<view class="login-btn" catchtap="cartClickProxy" data-fn="gotoBuy">去逛逛</view>
+		</view>
+	</block>
+	<block wx:if="{{ needLogin }}">
+		<view class="goLogin-wrapper">
+			<view class="login-msg">请登录商城</view>
+			<navigator url="../login/login" class="login-btn">去登录</navigator>
 		</view>
 	</block>
 </view>
