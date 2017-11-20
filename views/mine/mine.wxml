@@ -10,6 +10,9 @@
 			<view wx:if="{{mine.userinfo}}" >
 				<view class="user pannel">
 					<view class="left">
+						<image src="{{mine.userinfo.avatarUrl}}" class="header-img"/>
+					</view>
+					<view class="right">
 						<view class="name">
 							<text class="name">{{mine.userinfo.nickName}}</text>
 						</view>
@@ -21,9 +24,11 @@
 								</block>
 							</text>
 						</view>
-					</view>
-					<view class="right">
-						<image src="{{mine.userinfo.avatarUrl}}" class="header-img"/>				
+						<image class="charge" catchtap="events" data-func="redirect" data-pagename="wallet" src="../../asset/mine-charge.png"/>	
+						<view class="vip-wrapper">
+							<image class="vip" src="../../asset/VIP.png"/>
+							<text class="vip-level">{{mine.userinfo.showUserLevel}}</text>		
+						</view>
 					</view>
 					
 
@@ -63,6 +68,22 @@
 						</view>
 					</view>
 					<view class="content">
+						<view class="item" data-status="1" catchtap="events" data-func="redirect" data-pagename="cashdetail">
+							<image src="../../asset/mine-cash.png" class="item-logo"/>
+							<text class="item-txt">余额</text>
+							<view class="cash">							
+								<text class="cash-pre">￥</text>
+								<text class="cash-int">{{mine.userinfo.showUserMoney.int}}</text>
+								<text class="cash-float">.{{mine.userinfo.showUserMoney.float}}</text>
+							</view>
+						</view>
+						<view class="item" data-status="1" catchtap="events" data-func="redirect" data-pagename="scoredetail">
+							<image src="../../asset/mine-score.png" class="item-logo"/>
+							<text class="item-txt">积分</text>
+							<view class="cash">					
+								<text class="cash-int">{{mine.userinfo.userPoint}}</text>
+							</view>
+						</view>
 						<view class="item" data-status="1" catchtap="events" data-func="goMyCoupon">
 							<image src="../../asset/coupons.png" class="item-logo"/>
 							<text class="item-txt">优惠券</text>

@@ -1,0 +1,43 @@
+<view class="page-scoredetail">
+	<scroll-view scroll-y="{{true}}" style="height: {{scrollHeight}}" bindscrolltolower="loadMore">
+		<view class="header">
+			<template is="scoredetail-header" data="{{...userinfo}}"></template>
+		</view>
+		<view class="list">
+			<template is="scoredetail-list" data="{{listData}}"></template>
+		</view>
+	</scroll-view>
+</view>
+
+
+<template name="scoredetail-header">
+	<view class="scoredetail-header-wrapper">
+		<view class="msg">当前积分</view>
+		<view class="total">
+			<!-- <image src="../../asset/mine-score.png" class="mark"/> -->
+			<text class="int">{{userPoint}}</text>
+		</view>
+	</view>
+</template>
+
+
+
+<template name="scoredetail-list">
+	<view class="list-wrapper">
+		<view class="title">明细</view>
+		<block wx:for="{{listData}}">
+			<view class="list-item">
+				<view class="p-lt name">充值</view>
+				<view class="p-rt price add">+100</view>
+				<view class="p-lb orderId">充值单号:100000000</view>
+				<view class="p-rb time">2017-11-10 19:40:40</view>
+			</view>
+			<view class="list-item">
+				<view class="p-lt name">消费</view>
+				<view class="p-rt price delete">-100</view>
+				<view class="p-lb orderId">消费单号:100000000</view>
+				<view class="p-rb time">2017-11-10 19:40:40</view>
+			</view>
+		</block>
+	</view>
+</template>

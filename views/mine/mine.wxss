@@ -2,7 +2,7 @@
 @import '../../widgets/modules/modules.wxss'
 .view-mine{
 	background-color: #f0f0f0;
-	/*height: 100%*/
+	min-height: 100%
 }
 
 .view-mine .pannel{
@@ -14,25 +14,66 @@
 .view-mine .user{
 	display:flex;
 height:140rpx;
-justify-content:space-between;
+position:relative;
+width:710rpx;
+
+/*justify-content:space-between;*/
 /*padding:44rpx;*/
 }
-.view-mine .user .left{}
-.view-mine .user .left .name{
-	font-size:48rpx;
+.view-mine .user .charge{
+	width:50rpx;
+	height:50rpx;
+	position:absolute;
+	right:0;
+	bottom:0.5px;
+}
+
+.view-mine .user .left{
+	margin-right:30rpx;
+	width:20%;
 
 }
-.view-mine .user .left .notice{
-/*	height: 17px;
-	line-height: 17px;*/
+.view-mine .user .right{
+	position:relative;
+	width:80%;
 }
-.view-mine .user .left .check-user{
+.view-mine .user .vip-wrapper{
+	margin-top:6rpx;
+	position:relative;
+	/*position: absolute;
+	bottom: 0;
+	left: 0;*/
+}
+.view-mine .user .name{
+	font-size:40rpx;
+	height:40rpx;
+	line-height:40rpx;
+}
+.view-mine .user .vip{
+	width:30rpx;
+	height:30rpx;
+	/*margin-left:10rpx;*/
+	vertical-align:bottom;
+}
+.view-mine .user .vip-level{
+	vertical-align:bottom;
+	color:#f0b41b;
+	font-size:30rpx;
+	position:absolute;
+	bottom:-8rpx;
+
+}
+.view-mine .user .notice{
+	position:absolute;
+	bottom:0;
+}
+.view-mine .user .check-user{
 	font-size:24rpx;
 color:#a6a6a6;
 height:28rpx;
 line-height:28rpx
 }
-.view-mine .user .right .header-img{
+.view-mine .user .header-img{
 	width:140rpx;
 height:140rpx;
 border-radius:50%;
@@ -94,18 +135,21 @@ color:#9e9e9e;
 }
 .view-mine .my-service .content{
 	display:flex;
-	justify-content:space-between;
+	/*justify-content:space-between;*/
 	margin-top: 20rpx;
-	padding : 0 40rpx;
+	/*padding : 0 40rpx;*/
+	flex-wrap: wrap;
 }
 .view-mine .my-service .content .item{
 	display:flex;
 	flex-direction:column;
 	align-items:center;
+	width: 25%;
+	margin-bottom: 40rpx;
 }
 .view-mine .my-service .content .item .item-logo{
-	width: 48rpx;
-	height: 48rpx;
+	width: 50rpx;
+	height: 50rpx;
 }
 .view-mine .my-service .content .item .item-txt{
 		font-size: 26rpx;
@@ -113,8 +157,25 @@ color:#9e9e9e;
 	margin-top: 12rpx;
 	color: #313131
 }
+/*<<<<<<< HEAD
 
 .view-mine .recommond{ padding : 0;  }
+=======*/
+.view-mine .my-service .cash{
+	color:#f6951a;
+	font-size: 24rpx
+}
+.view-mine .my-service .cash .cash-pre{
+	font-size: 20rpx
+}
+.view-mine .my-service .cash .cash-int{
+	font-size: 28rpx
+}
+.view-mine .my-service .cash .cash-float{
+	font-size: 24rpx
+}
+.view-mine .recommond{}
+/*>>>>>>> 64b2d35da167ae9f1dea51c82e10c2bc4429c5af*/
 .view-mine .recommond .header{
 	display:flex;
 	justify-content:space-between;

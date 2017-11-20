@@ -50,6 +50,15 @@ Page({
 		_fn.updateAddress(updateData,function(res){
 			self.listWeiget.next();
 		});
+	},
+	delete:function(e){
+		var self = this;
+		var key = e.currentTarget.dataset.key;
+		var addressId = e.currentTarget.dataset.addressid;
+		_fn.deleteAddress({addressId:addressId},function(res){
+			self.listWeiget.next();
+		});
+
 	}
 });
 var _fn = {
@@ -71,6 +80,39 @@ var _fn = {
 			}
 		});
 		page.listWeiget.next();
+	},
+	deleteAddress:function(data,callback){
+		var url = host + '/app/address/delete/';
+		var addressId = data.addressId;
+		wx.showMadal({
+			title:'提示',
+			content:'确定要删除这个地址么?',
+			complete:function(res){
+				if(res.confirm){
+					ajax.query({
+						url:url,
+						param:{addressId,addressId}
+					},function(res){
+						if(res.code === '0000'){
+							wx.showToast({
+								title:'修改成功'
+							});
+							if(callback && typeof callback === 'function'){
+								callback(res);
+							}
+						}else{
+							wx.showMadal({
+								showCancel:false,
+								title:'提示',
+								content:'修改失败('+res.code+')'
+							})
+						}
+					})	
+				}
+
+			}
+		})
+
 	},
 	updateAddress:function(data,callback){
 		var url = host + '/app/address/update';

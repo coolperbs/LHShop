@@ -1,0 +1,47 @@
+<view class="page-cashdetail">
+	<scroll-view scroll-y="{{true}}" style="height: {{scrollHeight}}" bindscrolltolower="loadMore">
+		<view class="header">
+			<template is="cashdetail-header" data="{{...userinfo}}"></template>
+		</view>
+		<view class="list">
+			<template is="cashdetail-list" data="{{listData}}"></template>
+		</view>
+	</scroll-view>
+</view>
+
+
+<template name="cashdetail-header">
+	<view class="cashdetail-header-wrapper">
+		<view class="msg">当前余额</view>
+		<view class="toWallet" catchtap="redirect" data-pagename="wallet">
+			去充值>
+		</view>
+		<view class="total">
+			<text class="mark">￥</text>
+			<text class="int">{{showUserMoney.int}}</text>
+			<text class="float">.{{showUserMoney.float}}</text>
+		</view>
+	</view>
+</template>
+
+
+
+<template name="cashdetail-list">
+	<view class="list-wrapper">
+		<view class="title">明细</view>
+		<block wx:for="{{listData}}">
+			<view class="list-item">
+				<view class="p-lt name">充值</view>
+				<view class="p-rt price add">+100.00</view>
+				<view class="p-lb orderId">充值单号:100000000</view>
+				<view class="p-rb time">2017-11-10 19:40:40</view>
+			</view>
+			<view class="list-item">
+				<view class="p-lt name">消费</view>
+				<view class="p-rt price delete">-100.00</view>
+				<view class="p-lb orderId">消费单号:100000000</view>
+				<view class="p-rb time">2017-11-10 19:40:40</view>
+			</view>
+		</block>
+	</view>
+</template>

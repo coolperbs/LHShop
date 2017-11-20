@@ -1,0 +1,120 @@
+page{
+
+}
+.page-scoredetail{
+	/*background-color: #f0f0f0;*/
+}
+.page-scoredetail .header{
+	background-color:#FFCC99;
+	padding:20rpx;
+	height:200rpx;
+	position:relative;
+}
+.page-scoredetail .header .scoredetail-header-wrapper{
+	width:100%;
+	height:100%;
+	position:relative;
+}
+
+.page-scoredetail .header .msg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 28rpx;
+	color: white;
+}
+.page-scoredetail .header .toWallet{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 28rpx;
+	color: white;
+}
+.page-scoredetail .header .toCharge{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 28rpx;
+	color: yellow;
+}
+.page-scoredetail .header .toCharge image{
+	width: 28rpx;
+	height: 28rpx;
+}
+.page-scoredetail .header .total{
+	position:absolute;
+	width:250rpx;
+	left:220rpx;
+	text-align:center;
+	color:yellow;
+	top:70rpx;
+	color: #990033;
+}
+.page-scoredetail .header .total .mark{
+	width:40rpx;
+	height:40rpx;
+	vertical-align:bottom;
+	margin-right:10rpx;
+}
+.page-scoredetail .header .total .int{
+	font-size: 50rpx;
+}
+.page-scoredetail .header .total .float{
+	font-size: 28rpx;
+}
+.page-scoredetail .list{
+	width: 100%;
+	background-color: white;
+}
+.page-scoredetail .list .list-wrapper{
+	/*margin:0 20rpx;*/
+}
+.page-scoredetail .list .list-wrapper .title{
+	height:88rpx;
+	line-height:88rpx;
+	background-color:#f0f0f0;
+	padding:0 20rpx;
+
+}
+.page-scoredetail .list .list-wrapper .list-item{
+	padding:20rpx;
+	font-size:28rpx;
+	border-bottom:1px solid #f0f0f0;
+	height:100rpx;
+	position:relative;
+
+
+}
+.page-scoredetail .list .list-wrapper .list-item .p-lt{
+	position: absolute;
+	top: 20rpx;
+	left: 20rpx;
+}
+.page-scoredetail .list .list-wrapper .list-item .p-rt{
+	position: absolute;
+	top: 20rpx;
+	right:  20rpx;
+}
+.page-scoredetail .list .list-wrapper .list-item .p-lb{
+	position: absolute;
+	left:  20rpx;
+	bottom:   20rpx;
+}
+.page-scoredetail .list .list-wrapper .list-item .p-rb{
+	position: absolute;
+	right: 20rpx;
+	bottom:  20rpx;
+}
+.page-scoredetail .list .list-wrapper .list-item .name{
+	color: #333;
+}
+.page-scoredetail .list .list-wrapper .list-item .orderId,
+.page-scoredetail .list .list-wrapper .list-item .time{
+	color: #CCC;
+}
+.page-scoredetail .list .list-wrapper .list-item .delete{
+	color:#99cc00;
+}
+.page-scoredetail .list .list-wrapper .list-item .add{
+	color: #cc0033;
+}

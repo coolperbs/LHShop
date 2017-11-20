@@ -1,0 +1,58 @@
+<view class="page-wallet">
+	<view class="toPayList">
+		<!-- <text class="msg">明细</text> -->
+		<!-- <image src="../../asset/arrow-right.png" class="go"></image> -->
+	</view>
+	<view class="money-wrapper">
+		<!-- <view class="num">{{user.balance || '0.00'}}</view> -->
+		<view class="num-wrapper">
+			<block wx:for="{{balanceNum}}" wx:key="index">
+				<view class="nums {{balanceAnimate}}" style="top:{{balanceAnimate&&item?item*100:0}}rpx">
+					<block wx:if="{{item=='.'}}">
+						<text class="number">.</text>
+					</block>
+					<block wx:else>
+						<block wx:for="{{[0,1,2,3,4,5,6,7,8,9]}}" wx:key="*this">
+							<text class="number">{{item}}</text>
+						</block>
+					</block>
+				</view>
+			</block>
+		</view>
+		<view class="msg">余额(元)</view>
+	</view>
+	<view class="charge-wrapper">
+		<view class="header">
+			<view class="left">
+				<image class="header-img" src="../../asset/card-draw.png"></image>
+				<text class="header-txt">账户充值</text>
+			</view>
+			<!-- <view>
+				<image class="header-img-arrow {{toggleCharge?'':'down'}}" src="../../asset/arrow-down.png" bindtap="toggleCharge"></image>
+			</view> -->
+		</view>
+		<view class="charge-animate-wrapper {{toggleCharge?'close':''}}">
+			<view class="body ">
+				<block wx:for="{{chargeList}}" wx:key="id">
+					<view class="charge-item {{(index+1)%2===1?'left':'right'}} {{item.id===selectCharge.id?'active':''}}" data-id="{{item.id}}" bindtap="changeCharge">
+						<view class="title">
+							<text class="pre">充</text>
+							<text class="num">{{item.price}}</text>
+							<text class="yuan">元</text>
+						</view>
+						<view class="subtitle">
+							<text class="pre">实得</text>
+							<text class="num">{{item.totalFee}}</text>
+							<text class="yuan">元</text>
+						</view>
+					</view>
+				</block>
+				<view class="charge-note">
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="footer">
+		<view class="charge-btn {{submitLoading?'active':''}}" bindtap="pay">立即充值</view>
+	</view>
+</view>

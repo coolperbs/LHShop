@@ -30,7 +30,7 @@ class List{
 		var self =this;
 		this.getData(this.curPage,function(res){
 			self.isLock = false;
-			if(res.data && res.code === '0000'){
+			if(res.data ){
 				self.curData = res.data.list;
 				if(!self.isSingle){
 					self.isLast = !res.data.hasMore;
@@ -62,7 +62,7 @@ class List{
 			var self = this;
 			self.getData(page,function(res){
 				self.isLock = false;
-				if(res.data && res.code === '0000'){
+				if(res.data ){
 					self.curData = res.data.list;
 					if(!self.isSingle){
 						self.isLast = !res.data.hasMore;
