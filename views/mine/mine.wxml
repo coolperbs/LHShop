@@ -25,9 +25,9 @@
 							</text>
 						</view>
 						<image class="charge" catchtap="events" data-func="redirect" data-pagename="wallet" src="../../asset/mine-charge.png"/>	
-						<view class="vip-wrapper">
+						<view class="vip-wrapper" wx:if="{{mine.userinfo.levelInfo}}">
 							<image class="vip" src="../../asset/VIP.png"/>
-							<text class="vip-level">{{mine.userinfo.showUserLevel}}</text>		
+							<text class="vip-level">{{mine.userinfo.levelInfo.name}}</text>		
 						</view>
 					</view>
 					
@@ -163,7 +163,7 @@
 
 <template name= "need-login">
 	<view class="goLogin-wrapper">
-		<image class="login-logo" src="../../asset/empty-order.png" ></image>
+		<image class="login-logo" src="../../asset/empty-data.png" ></image>
 		<view class="login-msg">您还没有登录</view>
 		<view class="login-btn" catchtap="events" data-func="goLogin">去登陆</view>
 	</view>
