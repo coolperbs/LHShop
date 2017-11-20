@@ -171,7 +171,6 @@ _fn = {
 		callerPage.mineData.favoriteList.next();
 	}
 }
-
 var DataHandler = function(callerPage){
 	this.callerPage = callerPage;
 	this.mineData = {};
@@ -193,4 +192,6 @@ var DataHandler = function(callerPage){
 
 };
 
+
+		
 module.exports = handle;
