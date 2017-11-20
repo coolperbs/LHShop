@@ -55,6 +55,37 @@
 		</view>
 	</view>
 
+	<view class="payment module">
+		<view class="row" catchtap="changePayment" data-payment="1" >
+			<view class="key">
+				<image src="../../asset/wechat.jpeg"></image>
+				微信支付
+			</view>
+			<view class="checkbox {{ paymentType == 1 ? 'checked' : '' }}">
+				<image class="off" src="../../asset/unchecked.png"></image>
+				<image class="on" src="../../asset/checked.png"></image>
+			</view>
+		</view>
+		<view class="row" catchtap="changePayment" data-payment="2" wx:if="{{ pageData.moneyPrice - pageData.payPrice >= 0 }}">
+			<view class="key">
+				<image src="../../asset/mine-cash.png"></image>
+				余额支付 (共{{ pageData.moneyPrice /100 }}元)
+			</view>
+			<!--<view>余额不足</view>-->
+			<view class="checkbox {{ paymentType == 2 ? 'checked' : '' }}">
+				<image class="off" src="../../asset/unchecked.png"></image>
+				<image class="on" src="../../asset/checked.png"></image>
+			</view>
+		</view>
+		<view class="row" data-payment="2" wx:else>
+			<view class="key">
+				<image src="../../asset/mine-cash.png"></image>
+				余额支付 (共{{ pageData.moneyPrice /100 }}元)
+			</view>
+			<view class="little">余额不足，暂不可用</view>
+		</view>
+	</view>
+
 	<view class="item-list" wx:if="{{pageData.skus}}">
 		<view class="module">
 			<view class="list">
@@ -67,7 +98,7 @@
 						</view>
 						<view class="price-info">
 							<view class="price"><view class="sub">¥</view>{{sku.price ? sku.price / 100 : sku.originPrice / 100 }}</view>
-							<view class="favo-info" wx:if="{{ sku.originPrice && sku.price }}">¥{{sku.originPrice / 100}}</view> 
+							<view class="favo-info" wx:if="{{ sku.originPrice && sku.price }}">¥{{sku.originPrice / 100}}</view>
 						</view>
 					</view>
 					<view class="act">
@@ -96,16 +127,25 @@
 				<view class="value ellipsis-1">
 					{{selectedCoupon.proValue ? '-' + selectedCoupon.proValue : '请选择'}}
 					<image class="more" src="../../asset/arrow-right.png">
-				</image>
+					</image>
+				</view>
 			</view>
-			</view>
+			<!--<view class="row">
+				<view class="key">
+					积分抵扣
+					<view class="sub-key">共{{ pageData.point }}积分，最多抵扣{{ pointPrice / 100}}元</view>
+				</view>
+				<view class="value jifen ellipsis-1">
+					-<input catchblur="usePoint" type="number" value="{{ pointPrice >= pageData.payPrice ? pageData.payPrice / 100 : pointPrice / 100}}" />元
+				</view>
+			</view>-->
 		</view>
 
 
 		<view class="total">
 			<!--<view class="sub-info">(已抵扣余额{{tradeInfo.modules.balance.data.availableStr}}元)</view>-->
 			应付: <view class="price">
-				<view class="sub">¥</view>{{ pageData.payPrice / 100 }}
+				<view class="sub">¥</view>{{ pointPrice >= pageData.payPrice ? 0 : ( pageData.payPrice - pointPrice ) / 100 }}元
 			</view>
 		</view>
 	</view>
@@ -115,10 +155,10 @@
 
 <view class="toolbar" wx:if="{{pageData}}">
 	<view class="btn">
-		<view class="text">立即支付</view>
+		<view class="text">{{paymentType == 1 ? '微信' : '余额'}}支付</view>
 		<view class="info">
 			<view class="price">
-				<view class="sub">¥</view>{{ pageData.payPrice / 100 }}
+				<view class="sub">¥</view>{{ pointPrice >= pageData.payPrice ? 0 : ( pageData.payPrice - pointPrice ) / 100 }}
 			</view>
 		</view>
 		<view class="text">元</view>

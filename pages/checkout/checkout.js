@@ -10,6 +10,9 @@ var ajax = require( '../../common/ajax/ajax' ),
 	_fn;
 
 Page({
+	data : {
+		paymentType : 1
+	},
 	onShareAppMessage : app.shareFunc,
 	onLoad : function( param ) {
 		pageParam = param || {};
@@ -27,10 +30,11 @@ Page({
 			if ( res.data.sku && ( !res.data.skus || res.data.skus.length <= 0 ) ) {
 				res.data.skus = [ res.data.sku ];
 			}
-			res.data.sku
+
 			self.setData( {
 				pageData : res.data,
-				selectedCoupon : SCoupon.selectCoupon || {}
+				selectedCoupon : SCoupon.selectCoupon || {},
+				pointPrice : res.data.pointPrice
 			} );
 
 			if ( res && res.data && res.data.defaultAddress && !self.data.address ) {
@@ -40,6 +44,26 @@ Page({
 			}
 		} );
 		//this.showAddress();
+	},
+
+	usePoint : function( e ) {
+		var value = e.detail.value * 100,
+			data = this.data;
+
+		if ( value <= 0 ) {
+			value = 0;
+		}
+		if ( value >= data.pageData.pointPrice  ) {
+			//wx.showModal( { title : '提示', showCancel: false, content : ( '积分最多用' + data.pointPrice / 100 + '元' ) } );
+			value = data.pageData.pointPrice;
+		}
+		if ( value >= data.pageData.payPrice ) {
+			value = data.pageData.payPrice;
+		}
+
+		this.setData({
+			pointPrice : value
+		});
 	},
 
 	selectAddress : function( e ) {
@@ -73,6 +97,13 @@ Page({
 		address[key] = value;
 		this.setData( {
 			address : address
+		} );
+	},
+
+	changePayment : function( e ) {
+		var type = e.currentTarget.dataset.payment;
+		this.setData( {
+			paymentType : type
 		} );
 	},
 
@@ -127,7 +158,8 @@ Page({
 	},
 
 	submit : function( e ) {
-		var userInfo = wx.getStorageSync( 'userinfo' );
+		var userInfo = wx.getStorageSync( 'userinfo' ),
+			self = this;
 		if ( !userInfo || !userInfo.token ) {
 			wx.navigateTo( { url : '../login/login' } );
 			return;
@@ -137,12 +169,14 @@ Page({
 		if ( !_fn.checkForm( this, e ) ) {
 			return;
 		}
-		_fn.submit( this, function( res ) {
-			// 如果是在线支付就继续调用
-			if ( utils.isErrorRes( res )) {
-				return;
-			}
-		} );		
+		setTimeout( function() { // 保证blur先执行
+			_fn.submit( self, function( res ) {
+				// 如果是在线支付就继续调用
+				if ( utils.isErrorRes( res )) {
+					return;
+				}
+			} );		
+		}, 100 );
 	},
 	changeLocation:function(e){
 		var self = this;
@@ -282,6 +316,12 @@ _fn = {
 				wx.redirectTo( { url : '../orderdetail/orderdetail?orderid=' + orderId  } );
 				return;
 			}
+
+			if ( orderRes && orderRes && orderRes.data && orderRes.data.payPrice * 1 === 0 ) {
+				wx.redirectTo( { url : '../orderdetail/orderdetail?orderid=' + orderId  } );
+				return;
+			}
+
 			// 2.获取支付订单
 			_fn.payOrder( {
 				orderId : orderRes.data.orderId
@@ -295,6 +335,7 @@ _fn = {
 					} );
 					return;
 				}
+
 				// 3.唤醒微信支付
 				_fn.wxPay( {
 					timeStamp : payRes.data.timeStamp,
@@ -354,6 +395,9 @@ _fn = {
 
 
 		param.address = address;
+		param.payType = data.paymentType;
+		param.userPoint = data.pointPrice;
+		//param.userMoney = data.
 		ajax.query( {
 			url : url,
 			param : param
