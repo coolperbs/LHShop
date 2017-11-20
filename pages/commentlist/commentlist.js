@@ -4,9 +4,11 @@ var List = weigetUtil.List;
 var config = require('../../config');
 var host = config.host;
 var utils = require('../../common/utils/utils');
+var app = getApp();
 
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(option){
 		var self = this;
 		var skuId = option.skuid||1;

@@ -4,8 +4,10 @@ var config = require('../../config');
 var host = config.host;
 var ajax = require('../../common/ajax/ajax');
 var addressService = require('../../service/address/address');
+var app = getApp();
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(option){
 		var self = this;
 		// _fn.init(self);

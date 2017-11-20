@@ -6,8 +6,13 @@ var modules = require( '../../widgets/modules/modules.js' );
 var List = weigetUtils.List;
 var config = require('../../config');
 var host = config.host;
+var pageParam = {};
+var app = getApp();
+
 Page({
-	onLoad:function(){
+	onShareAppMessage : app.shareFunc,
+	onLoad:function( options ){
+		pageParam = options || {}; //key || catid
 		var self = this;
 		_fn.init(self);
 	},
@@ -102,9 +107,9 @@ var _fn = {
 		page.param = page.param || {};
 		return {
 			citycode:wx.getStorageSync('city').code||'010',
-			catId:page.param.catId,
+			catId:page.param.catId || pageParam.catid,
 			shopId:page.param.shopId,
-			title:page.data.title,
+			title:page.data.title || pageParam.key,
 			citycode:wx.getStorageSync('city').code,//
 			publishSort:page.data.sortMenuData.sortData.publishSort,
 			priceSort:page.data.sortMenuData.sortData.priceSort,

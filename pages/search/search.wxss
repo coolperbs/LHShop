@@ -2,9 +2,7 @@
 @import '../../widgets/common/common.wxss'
 @import '../../widgets/modules/modules.wxss'
 .search-content{
-	display:flex;
-	flex-wrap:wrap;
-	
+	width: 100%;
 }
 .seach-header{
 	z-index:100;
@@ -45,9 +43,8 @@
 	left:50rpx;
 }
 .search-scroll{
-	display:flex;
-	flex-wrap:wrap;
 	width: 100%;
+	position: absolute;
 	/*padding: 44rpx 44rpx 0 44rpx;*/
 	margin-top: 160rpx
 }

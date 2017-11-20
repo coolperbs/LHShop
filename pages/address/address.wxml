@@ -3,14 +3,14 @@
         <view class="edit-item">
             <input type="text"
              bindinput="changeInput"
-             placeholder="收货人"
+             placeholder="请填写收货人"
              data-name='userName' value='{{formData.userName}}'/>
         </view>
         <view class="edit-item" data-name='iphone'>
             <input type="number"
              bindinput="changeInput"
              data-name='userPhone'
-             placeholder="手机号码" value='{{formData.userPhone}}'/>
+             placeholder="请填写手机号码" value='{{formData.userPhone}}'/>
         </view>
 
 
@@ -50,7 +50,7 @@
          <view class="edit-item">
             <input type="text" 
             bindinput="changeInput"
-            placeholder="详细地址" 
+            placeholder="请填写详细地址" 
             data-name='address' value='{{formData.address}}'/>
         </view>
         <view class="edit-item" bindtap="changeDefault">
@@ -62,5 +62,5 @@
         </view>
     </view>
     <view class="btn-default save-btn" bindtap="saveAddress"><text>保存</text></view>
-    <view class="btn-default cancel-btn" bindtap="cancel"><text>取消</text></view>
+    <!--<view class="btn-default cancel-btn" bindtap="cancel"><text>取消</text></view>-->
 </view>

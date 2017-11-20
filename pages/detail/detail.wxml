@@ -13,7 +13,7 @@
             <view class="sub-title">{{pageData.subTitle}}</view>
             <view class="price-info">
                 <view class="price"><view class="sub">¥</view>{{ pageData.price ? pageData.price / 100 : pageData.originPrice / 100 }}<view class="sub">元</view></view>
-                <view class="origin-price" wx:if="{{ pageData.price }}">¥{{pageData.originPrice / 100}}</view>
+                <view class="origin-price" wx:if="{{ pageData.originPrice }}">¥{{pageData.originPrice / 100}}</view>
                 <view class="tags" wx:if="{{pageData.tags && pageData.tags.length}}">{{pageData.tags[0]}}</view>
             </view>
         </view>
@@ -99,7 +99,7 @@
 
 <view class="pop {{pop.show ? 'showpop' : '' }}">
     <view class="head">
-        <image class="img" src="{{pageData.mainImage[0]}}"></image>
+        <image class="img" src="{{pageData.skuImage}}"></image>
         <view class="info">
             <!--<view class="title">中秋便携茶具礼盒限量版时光小黑盒 Pertouch泊喜</view>-->
             <view class="main">
@@ -111,7 +111,7 @@
         </view>
     </view>
 
-    <scroll-view class="cont" scroll-y="{{ true }}">
+    <scroll-view class="cont" scroll-y="{{ true }}" wx:if="{{ pageData.saleProSku.pros && pageData.saleProSku.pros.length }}">
         <view class="spec">
             <view class="row" wx:for="{{ pageData.saleProSku.pros }}" wx:for-index="proIndex" wx:key="proId">
                 <view class="name">{{item.proName}}</view>

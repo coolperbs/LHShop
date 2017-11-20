@@ -28,7 +28,7 @@ views = {
 Page( {
 	data : {
 		viewData : {},
-		currentView : 'mine',
+		currentView : 'home',
 		tab : {
 			currentTab : 0,
 			list : [{
@@ -85,6 +85,9 @@ Page( {
 		var viewName = wx.getStorageSync( 'homeView' ),
 			currentView = self.data.currentView || 'home';
 
+		self.setData( {
+			shops : wx.getStorageSync( 'shops' )
+		} );
 		currentView = viewName ? viewName : currentView;
 		wx.removeStorageSync( 'homeView' );
 		_fn.selectView.call( self, currentView, { type : 'show' } );

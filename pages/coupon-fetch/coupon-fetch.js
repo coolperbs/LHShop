@@ -2,6 +2,7 @@ var weigetUtil = require('../../common/utils/weigetUtil');
 var List = weigetUtil.List;
 var ajax = require('../../common/ajax/ajax');
 var config = require('../../config');
+var app = getApp();
 var utils = require( '../../common/utils/utils' );
 
 // var addressService = require('../../service/address/address');
@@ -14,9 +15,10 @@ var couponeTypeEnum = {
 
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(option){
 		var self = this;
-		self.shopId = option.shopId || 1;
+		self.shopId = option.shopId || '';
 		_fn.init(self);
 	},
 	getCoupon:function(e){

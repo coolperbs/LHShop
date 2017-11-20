@@ -1,8 +1,10 @@
 var config = require('../../config');
 var utils = require('../../common/utils/utils');
-var orderService = require('../../service/order/order')
+var orderService = require('../../service/order/order');
+var app = getApp();
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(param){
 		var self =this; 
 		self.param = param

@@ -5,9 +5,11 @@ var ajax = require('../../common/ajax/ajax');
 var config = require('../../config');
 var utils = require( '../../common/utils/utils' );
 var host = config.host;
+var app = getApp();
 
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onShow:function(){
 		// console.log('mycoupon')
 		var self =this;

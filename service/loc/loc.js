@@ -14,7 +14,7 @@ handle = {
 		var shops = wx.getStorageSync( 'shops' );
 		var city = wx.getStorageSync( 'city' );
 
-		if ( shops && city && city.code ) {
+		if ( shops && shops.length && city && city.code ) {
 			callback( shops );
 			return;
 		}
@@ -25,9 +25,13 @@ handle = {
 		} );
 	},
 	getShopList : function( callback ) {
+		var city = wx.getStorageSync( 'city' );
+		if ( city && !city.code ) {
+			return;
+		}
 		ajax.query( {
 			param : {
-				citycode : '028',
+				citycode : city.code,
 				lat : 1,
 				lng : 2
 			},
@@ -54,7 +58,15 @@ handle = {
 		wx.getLocation( {
 			type : 'gcj02',
 			success : function( loc ) {
-				handle.getShopList( callback );
+				wx.showModal( {
+					title : '提示',
+					content : '不能获取坐标，请手动选择城市',
+					showCancel : false,
+					complete : function() {
+						wx.navigateTo( { url : '../city/city' } );
+					}
+				} );				
+				//handle.getShopList( callback );
 			},
 			fail : function() {
 				wx.showModal( {

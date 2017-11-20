@@ -10,6 +10,7 @@ var ajax = require( '../../common/ajax/ajax' ),
 	_fn;
 
 Page( {
+	onShareAppMessage : app.shareFunc,
 	onLoad : function( options ) {
 		pageParam = options || {};
 		_fn.getStoreInfo( this );
@@ -58,9 +59,10 @@ Page( {
 				return;
 			}
 
-			self.setData( {
-				'shopInfo.favoriteId' : res.data.favoriteId || ''
-			} );
+			_fn.getStoreInfo( self );
+			// self.setData( {
+			// 	'shopInfo.favoriteId' : res.data.favoriteId || ''
+			// } );
 		} );    	
     }
 } );

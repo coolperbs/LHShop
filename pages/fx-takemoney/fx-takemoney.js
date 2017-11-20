@@ -3,7 +3,9 @@ var config = require('../../config');
 var host = config.host;
 var utils = require('../../common/utils/utils');
 var ajax = require('../../common/ajax/ajax');
+var app = getApp();
 Page({
+	onShareAppMessage : app.shareFunc,
 	onShow:function(){
 		console.log('fx-mymoney');
 		var self = this;

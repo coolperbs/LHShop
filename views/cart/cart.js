@@ -10,8 +10,8 @@ handle = {
     // 获取购物车数据
     service.cart.query( callerPage, {}, function( res ) {
       if ( res.code == '1000' ) {
-        wx.navigateTo( {
-          url : '../login/login'
+        callerPage.setData( {
+          'viewData.needLogin' : true
         } );
         return;
       }
@@ -21,6 +21,7 @@ handle = {
       }
       res.data = res.data || {};
       res.data.shopCart = res.data.shopCart || [];
+      res.data.needLogin = false;
       callerPage.setData( {
         viewData : res.data
       } );

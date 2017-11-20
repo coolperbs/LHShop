@@ -15,8 +15,16 @@ handle = {
 	name : 'mine',
 	//data : data.data,
 	render : function( callerPage ) {
-		console.log('mine');
 		_fn.init( callerPage );
+// <<<<<<< HEAD
+// 		// 请求数据，渲染数据
+// 		wx.getStorage({
+// 			key:'userinfo',
+// 			success:function(res){
+// 				var userinfo = res.data.user;
+// 				if ( userinfo && userinfo.created ) {
+// 					userinfo.showCreated = utils.formateTime(userinfo.created);
+// =======
 		_fn.getUserDetail(function(res){
 			if(res.data){
 				var userinfo = res.data;
@@ -27,6 +35,7 @@ handle = {
 				userinfo.showUserMoney = {
 					int:userinfo.userMoney.toFixed(2).split('.')[0],
 					float:userinfo.userMoney.toFixed(2).split('.')[1],
+//>>>>>>> 64b2d35da167ae9f1dea51c82e10c2bc4429c5af
 				}
 				dataHandler.setData({
 					userinfo:userinfo

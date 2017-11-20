@@ -5,6 +5,7 @@ var ajax = require('../../common/ajax/ajax');
 var config = require('../../config');
 var utils = require( '../../common/utils/utils' );
 var couponService = require('../../service/coupon/coupon');
+var app = getApp();
 
 // var addressService = require('../../service/address/address');
 var host = config.host
@@ -16,6 +17,7 @@ var couponeTypeEnum = {
 
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(){
 		var self = this;
 		var usefulCoupon = couponService.cache();

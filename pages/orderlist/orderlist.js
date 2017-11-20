@@ -5,7 +5,9 @@ var config = require('../../config');
 var host = config.host;
 var utils = require('../../common/utils/utils');
 var orderService = require('../../service/order/order');
+var app = getApp();
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(option){
 		console.log('orderList');
 		var self = this;

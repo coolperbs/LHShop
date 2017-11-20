@@ -5,6 +5,7 @@ var config = require('../../config');
 var host = config.host;
 var utils = require('../../common/utils/utils');
 var ajax = require('../../common/ajax/ajax');
+var app = getApp();
 
 
 
@@ -20,6 +21,7 @@ var applyTypeEnum = {
 
 
 Page({
+	onShareAppMessage : app.shareFunc,
 	onLoad:function(){
 		var self = this;
 		_fn.init(self);
