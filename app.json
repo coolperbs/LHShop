@@ -34,7 +34,8 @@
 
     "pages/cashdetail/cashdetail",
     "pages/scoredetail/scoredetail",
-    "pages/wallet/wallet"
+    "pages/wallet/wallet",
+    "pages/pointToMoney/pointToMoney"
   ],
 
   "window":{

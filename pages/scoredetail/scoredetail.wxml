@@ -13,6 +13,9 @@
 <template name="scoredetail-header">
 	<view class="scoredetail-header-wrapper">
 		<view class="msg">当前积分</view>
+		<view class="toWallet" catchtap="redirect" data-pagename="wallet">
+			积分换余额>
+		</view>
 		<view class="total">
 			<!-- <image src="../../asset/mine-score.png" class="mark"/> -->
 			<text class="int">{{userPoint}}</text>
@@ -27,16 +30,10 @@
 		<view class="title">明细</view>
 		<block wx:for="{{listData}}">
 			<view class="list-item">
-				<view class="p-lt name">充值</view>
-				<view class="p-rt price add">+100</view>
-				<view class="p-lb orderId">充值单号:100000000</view>
-				<view class="p-rb time">2017-11-10 19:40:40</view>
-			</view>
-			<view class="list-item">
-				<view class="p-lt name">消费</view>
-				<view class="p-rt price delete">-100</view>
-				<view class="p-lb orderId">消费单号:100000000</view>
-				<view class="p-rb time">2017-11-10 19:40:40</view>
+				<view class="p-lt name">{{item.title}}</view>
+				<view class="p-rt price {{item.type}}">{{item.price}}</view>
+				<view class="p-lb orderId">{{item.orderId}}</view>
+				<view class="p-rb time">{{item.time}}</view>
 			</view>
 		</block>
 	</view>

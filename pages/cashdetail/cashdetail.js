@@ -1,4 +1,5 @@
 var weigetUtils = require('../../common/utils/weigetUtil');
+var utils = require('../../common/utils/utils');
 var List = weigetUtils.List;
 var config = require('../../config');
 var host = config.host;
@@ -57,8 +58,21 @@ var _fn = {
 				});
 			},
 			getList:function(res){
-				// return res.data;
-				return [{},{},{},{},{},{},{},{},{},{},{},{}]
+				var retList = [];
+				if(res.code === '0000' && res.data){
+					retList = res.data.moneys.map((v,k)=>{
+						var renderObj = {}
+						renderObj.type = v.type===1?'add':'delete';
+						renderObj.title = v.type===1?'充值':'消费';
+						renderObj.price = v.type===1?'+'+(v.price/100).toFixed(2):'-'+(v.price/100).toFixed(2);
+						renderObj.orderId = v.type===1?'充值单号:'+v.rechargId:'消费单号:'+v.orderId;
+						renderObj.time = utils.formateTime(v.created,true)
+						return renderObj;
+
+					});
+				}
+				return retList;
+				// return [{},{},{},{},{},{},{},{},{},{},{},{}]
 
 			},
 			getHasMore:function(res){
