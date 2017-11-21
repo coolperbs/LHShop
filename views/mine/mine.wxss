@@ -39,10 +39,10 @@ width:710rpx;
 }
 .view-mine .user .vip-wrapper{
 	margin-top:6rpx;
-	position:relative;
-	/*position: absolute;
-	bottom: 0;
-	left: 0;*/
+	position:absolute;
+	width:300rpx;
+	bottom:0;
+
 }
 .view-mine .user .name{
 	font-size:40rpx;
@@ -122,6 +122,15 @@ color:#9e9e9e;
 
 
 .view-mine .my-service{}
+.view-mine .my-service .center-line{
+	height:1rpx;
+	width:100%;
+	background-color:#f0f0f0;
+	position:absolute;
+	top:50%;
+
+
+}
 .view-mine .my-service .header{
 	display:flex;
 	justify-content:space-between;
