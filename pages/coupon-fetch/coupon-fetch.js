@@ -28,9 +28,11 @@ Page({
 			url:host+'/app/coupon/fetch/'+id
 		},function(res){
 			if(res.code === '0000'){
-				wx.showToast({
-					title:'领取成功,马上去使用吧'
-				});
+				wx.showModal({
+					showCancel:false,
+					title:'提示',
+					content:'领取成功,马上去使用吧'
+				})
 			}else{
 				wx.showModal({
 					showCancel:false,
