@@ -65,7 +65,7 @@ var _fn = {
 						renderObj.type = v.type===1?'add':'delete';
 						renderObj.title = v.type===1?'获得积分':'消费积分';
 						renderObj.price = v.type===1?'+'+(v.price):'-'+(v.price);
-						renderObj.orderId = '消费单号:'+v.orderId;
+						renderObj.orderId = v.orderId?'消费单号:'+v.orderId:'';
 						renderObj.time = utils.formateTime(v.created,true)
 						return renderObj;
 

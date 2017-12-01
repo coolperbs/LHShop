@@ -60,12 +60,22 @@ var _fn = {
 			getList:function(res){
 				var retList = [];
 				if(res.code === '0000' && res.data){
+
+					
 					retList = res.data.moneys.map((v,k)=>{
 						var renderObj = {}
+						var orderId;
+						if( v.type===1 ){
+							orderId = v.rechargId?'充值单号:'+v.rechargId:'';
+						}else{
+							orderId = v.orderId?'消费单号:'+v.orderId:'';
+						}
+
+
 						renderObj.type = v.type===1?'add':'delete';
 						renderObj.title = v.type===1?'充值':'消费';
 						renderObj.price = v.type===1?'+'+(v.price/100).toFixed(2):'-'+(v.price/100).toFixed(2);
-						renderObj.orderId = v.type===1?'充值单号:'+v.rechargId:'消费单号:'+v.orderId;
+						renderObj.orderId = orderId;
 						renderObj.time = utils.formateTime(v.created,true)
 						return renderObj;
 

@@ -68,7 +68,6 @@
 						</view>
 					</view>
 					<view class="content">
-						<view class="center-line"></view>
 						<view class="item" data-status="1" catchtap="events" data-func="redirect" data-pagename="cashdetail">
 							<image src="../../asset/mine-cash.png" class="item-logo"/>
 							<text class="item-txt">余额</text>

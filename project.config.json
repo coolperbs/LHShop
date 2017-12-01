@@ -8,8 +8,8 @@
 	},
 	"compileType": "weapp",
 	"libVersion": "1.5.4",
-	"appid": "wxaccdda8d2e9e827e",
-	"projectname": "LH-shop",
+	"appid": "wxb8feaae24558d59c",
+	"projectname": "JJ-shop",
 	"condition": {
 		"weapp": {
 			"current": -1,
