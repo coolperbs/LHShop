@@ -1,0 +1,15 @@
+<view class="page-pointToMoney">
+	<view class="your-point" wx:if="{{userInfo}}">
+		<text>积分总额</text> 
+		<text class="value">{{userInfo.userPoint}}</text>
+	</view>
+	<view class="point-input">
+		<text>请输入您要兑换的积分</text>
+		<input class="input-box" bindinput="changeinput" data-key="point"/>
+	</view>
+
+	<view class="submit" catchtap="toMoney">兑换</view>
+</view>
+
+
+

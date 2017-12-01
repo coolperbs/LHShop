@@ -1,5 +1,6 @@
 var weigetUtils = require('../../common/utils/weigetUtil');
 var List = weigetUtils.List;
+var utils = require('../../common/utils/utils');
 var config = require('../../config');
 var host = config.host;
 var ajax = require('../../common/ajax/ajax');
@@ -17,7 +18,7 @@ Page({
 	redirect:function(e){
 		var pagename =e.currentTarget.dataset.pagename
 		wx.navigateTo({
-			url:'../../pages/wallet/wallet'
+			url:'../../pages/pointToMoney/pointToMoney'
 		});
 	}
 })
@@ -57,8 +58,20 @@ var _fn = {
 				});
 			},
 			getList:function(res){
-				// return res.data;
-				return [{},{},{},{},{},{},{},{},{},{},{},{}]
+				var retList = [];
+				if(res.code === '0000' && res.data){
+					retList = res.data.points.map((v,k)=>{
+						var renderObj = {}
+						renderObj.type = v.type===1?'add':'delete';
+						renderObj.title = v.type===1?'获得积分':'消费积分';
+						renderObj.price = v.type===1?'+'+(v.price):'-'+(v.price);
+						renderObj.orderId = '消费单号:'+v.orderId;
+						renderObj.time = utils.formateTime(v.created,true)
+						return renderObj;
+
+					});
+				}
+				return retList;
 
 			},
 			getHasMore:function(res){

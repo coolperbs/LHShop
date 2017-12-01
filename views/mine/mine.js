@@ -33,8 +33,8 @@ handle = {
 				userinfo.userPoint = userinfo.userPoint || 0
 				userinfo.showUserLevel = userinfo.levelInfo || 1
 				userinfo.showUserMoney = {
-					int:userinfo.userMoney.toFixed(2).split('.')[0],
-					float:userinfo.userMoney.toFixed(2).split('.')[1],
+					int:(userinfo.userMoney/100).toFixed(2).split('.')[0],
+					float:(userinfo.userMoney/100).toFixed(2).split('.')[1],
 //>>>>>>> 64b2d35da167ae9f1dea51c82e10c2bc4429c5af
 				}
 				dataHandler.setData({

@@ -85,9 +85,11 @@ Page( {
 		var viewName = wx.getStorageSync( 'homeView' ),
 			currentView = self.data.currentView || 'home';
 
-		self.setData( {
-			shops : wx.getStorageSync( 'shops' )
-		} );
+		setTimeout( function() {
+			self.setData( {
+				shops : wx.getStorageSync( 'shops' )
+			} );
+		}, 100 );
 		currentView = viewName ? viewName : currentView;
 		wx.removeStorageSync( 'homeView' );
 		_fn.selectView.call( self, currentView, { type : 'show' } );

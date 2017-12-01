@@ -159,6 +159,12 @@
 					"name": "余额详情",
 					"pathName": "pages/scoredetail/scoredetail",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "积分换余额",
+					"pathName": "pages/pointToMoney/pointToMoney",
+					"query": ""
 				}
 			]
 		},
