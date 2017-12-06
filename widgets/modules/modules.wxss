@@ -1,6 +1,6 @@
 /* 公共数据 */
 .modules { color : #4a4a4a; }
-.modules .price { margin : 0; line-height: 42rpx; font-size : 42rpx; font-weight: bold; color : #161823; display: inline; }
+.modules .price { margin : 0; line-height: 42rpx; font-size : 42rpx;  color : #df393c; display: inline; }
 .modules .price .sub { margin-right : 10rpx; display:inline; font-size : 28rpx; }
 .modules .origin-price { display: inline; margin : 0; text-decoration:line-through; font-size: 24rpx; color : #ccc; }
 .modules .plus-icon { display: flex; justify-content: center; align-items: center; font-size : 32rpx; height : 48rpx; width : 48rpx; border-radius: 50%; background-color: #161823; color : #fff; }
@@ -33,7 +33,7 @@
 .modules .n2 .item .pic image { width : 100%; height : 100%; }
 .modules .n2 .item .info { height : 200rpx; display: flex; margin-top : 20rpx; flex-direction: column; justify-content: space-between; }
 .modules .n2 .item .title { font-size : 32rpx; line-height: 38rpx; }
-.modules .n2 .item .sub-title { font-size : 24rpx; color : #ccc; line-height: 26rpx; }
+.modules .n2 .item .sub-title { font-size : 24rpx; color : #b9b9b9; line-height: 26rpx; }
 .modules .n2 .item .info .origin-price { margin-left : 20rpx; }
 .modules .n2 .item .info .info-act { margin-top : 20rpx; position: relative; height : 48rpx; }
 .modules .n2 .item .info .info-act .add { position: absolute; right: 0; top : 50%; margin-top : -24rpx; height: 48rpx; width : 48rpx; }
@@ -80,10 +80,11 @@
 .modules .header .tab view { color : #404040; flex-grow : 1; text-align: center; height : 80rpx; font-size: 28rpx; line-height: 80rpx; }
 .modules .header .tab view.current { color : #f5692e; }
 
-.modules .slider { width : 100%; height : 350rpx; }
+.modules .slider,
+.modules .slider swiper { width : 100%; height : 350rpx; }
 .modules .slider image { width : 100%; height : 350rpx; }
 
-.modules .entry { display: flex; width : 100%; padding : 10rpx 0; }
+.modules .entry { display: flex; width : 100%; padding : 10rpx 0; margin-top : 0; }
 .modules .entry view { padding : 10rpx; flex-grow : 1; text-align: center; font-size : 24rpx; color : #888; }
 .modules .entry view image { height : 80rpx; width : 80rpx; display: block; margin : 0 auto; margin-bottom : 10rpx; }
 
@@ -102,7 +103,7 @@
 .modules .module-1 .item .price { margin-top : 10rpx; }
 .modules .module-1 .item .price .last { display: inline-block; height : 28rpx; line-height: 28rpx; overflow : hidden; color : #999; font-size : 24rpx; position: relative; }
 .modules .module-1 .item .price .last view { width : 100%; border-bottom: solid 1px; position: absolute;top : 14rpx; }
-.modules .module-1 .item .price .current { font-size : 26rpx; height: 28rpx; line-height: 28rpx; font-weight : bold; color : #f5692e; }
+.modules .module-1 .item .price .current { font-size : 26rpx; height: 28rpx; line-height: 28rpx;  color : #f5692e; }
 .modules .module-1 .item .add-cart { position: absolute; right : 14rpx; bottom : 5rpx; }
 
 .modules .module-2 { margin-bottom : 10px; height : 440rpx; }

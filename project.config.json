@@ -67,16 +67,18 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "品牌加盟",
-					"pathName": "pages/join/join",
-					"query": ""
+					"id": 8,
+					"name": "活动首页有",
+					"pathName": "pages/active/active",
+					"query": "",
+					"scene": "1001"
 				},
 				{
-					"id": -1,
-					"name": "登录",
-					"pathName": "pages/login/login",
-					"query": ""
+					"id": 9,
+					"name": "积分",
+					"pathName": "pages/scoredetail/scoredetail",
+					"query": "",
+					"scene": "1001"
 				},
 				{
 					"id": -1,
@@ -105,17 +107,18 @@
 					"scene": "1001"
 				},
 				{
-					"id": 16,
+					"id": 14,
 					"name": "店铺首页",
 					"pathName": "pages/shop/shop",
-					"query": "shopid=1"
+					"query": "shopid=1",
+					"scene": "1001"
 				},
 				{
 					"id": 15,
 					"name": "首页",
 					"pathName": "pages/index/index",
-					"query": "upperuid=2",
-					"scene": "1001"
+					"query": "",
+					"scene": "1013"
 				},
 				{
 					"id": 16,

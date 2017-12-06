@@ -155,7 +155,7 @@ _fn = {
 			success : function( res ) {
 				callback && callback( utils.merge( error.success, { data : res } ) );
 			},
-			fail : function() {
+			fail : function( res ) {
 				//error.loginError.errorInfo = res; // 先不考虑，上游业务无需关心细节
 				callback && callback( utils.merge( error.loginError, { errorInfo : res } ) );
 			}

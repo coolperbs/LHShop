@@ -2,6 +2,7 @@
 
 <view class="distribution" wx:if="{{!userInfo.nickName && userInfo}}">
 	<view class="goLogin-wrapper">
+		<image class="login-logo" src="../../asset/empty-data.png" ></image>
 		<view class="login-msg">请登录商城</view>
 		<view class="login-btn" catchtap="distribitionClickProxy" data-fn="goLogin">去登录</view>
 	</view>

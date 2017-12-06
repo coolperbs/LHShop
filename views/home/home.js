@@ -11,10 +11,12 @@ handle = {
 		_fn.init( callerPage );
 
 		// 定位获取门店信息
+		utils.showLoading( { title : '定位中...' }, 300 );
 		service.loc.getShops( function( shops ) {
-			// if ( !city || !city.code ) {
+			utils.hideLoading();
+			//if ( !city || !city.code ) {
 			// 	wx.navigateTo( { url : '../city/city' } );
-			// }
+			//}
 			// 获取首页信息
 			var shops = [],
 				shopsList = wx.getStorageSync( 'shops' ) || [],

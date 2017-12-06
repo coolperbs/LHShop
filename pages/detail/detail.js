@@ -29,7 +29,14 @@ Page({
 		}
 	},
 	onLoad : function( param ) {
+		var scene = app.scene || '';
 		pageParam = param || {};
+
+		if ( scene.indexOf( 'skuid_' ) == 0 ) {
+			pageParam.id = scene.split( '_' )[1];
+		}
+		app.scene = ''; // 使用之后立即清空
+
 		isGetMore = false;
 		hasMore = true;
 		currentPage = 0;

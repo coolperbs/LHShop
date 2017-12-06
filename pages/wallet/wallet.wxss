@@ -31,7 +31,7 @@ font-size:30rpx;
 }
 .page-wallet .money-wrapper .num{
 	font-size:90rpx;
-	font-weight:bold;
+	 
 	letter-spacing:0;
 	color:#4a4a4a;
 }
@@ -226,7 +226,7 @@ font-size:26rpx;
 }
 .page-wallet .num-wrapper .nums .number{
 	font-size:90rpx;
-	font-weight:bold;
+	 
 	letter-spacing:0;
 	color:#CC3333;
 	height:100rpx;

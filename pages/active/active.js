@@ -8,7 +8,15 @@ var utils = require( '../../common/utils/utils.js' ),
 
 Page( {
 	onLoad : function( options ) {
+		var scene = app.scene || '';
 		pageParam = options || {};
+
+		pageParam = options || {};
+		if ( scene.indexOf( 'actid_' ) == 0 ) {
+			pageParam.actid = scene.split( '_' )[1];
+		}
+		app.scene = ''; // 使用之后立即清空		
+		
 		_fn.getStoreInfo( this );
 	},
 	onShareAppMessage : app.shareFunc,

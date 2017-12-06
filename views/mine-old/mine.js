@@ -133,6 +133,7 @@ _fn = {
 		ajax.query({
 			url:url
 		},function(res){
+			console.log(res)
 			callback(res);
 		})
 	},

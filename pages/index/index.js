@@ -13,6 +13,7 @@ var home = require( '../../views/home/home.js' ),
 	utils = require( '../../common/utils/utils' ),
 	app = getApp(),
 	views,
+	self,
 	_fn;
 
 views = {
@@ -56,11 +57,10 @@ Page( {
 	},
 	onShareAppMessage : app.shareFunc,
 	onReady : function() {
-		wx.setNavigationBarTitle( {
-			title : app.config.title 
-		} );
+		// wx.setNavigationBarTitle( {
+		// 	title : app.config.title 
+		// } );
 	},
-
 
 	moduleClickProxy : function( e ) {
 		var target = e.currentTarget;
@@ -76,15 +76,13 @@ Page( {
 	},
 
 	onShow : function( options ) {
-		
-		var self = this;
+		self = this;
 		serviceCart.refreshNum( self );
 		//service.loc.getShops( function( shops ) {
 		// 每次显示都刷新一次购物车
 		// 这样保证在商详添加后在首页也能显示
 		var viewName = wx.getStorageSync( 'homeView' ),
 			currentView = self.data.currentView || 'home';
-
 		setTimeout( function() {
 			self.setData( {
 				shops : wx.getStorageSync( 'shops' )
@@ -120,7 +118,6 @@ Page( {
 			currentView = views[this.data.currentView] || {};
 
 
-		console.log( dataset.func );
 		if ( !currentView.events || typeof currentView.events[dataset.func] != 'function' ) {
 			return;
 		}
@@ -150,6 +147,26 @@ _fn = {
 		if ( !view ) {
 			return;
 		}
+		if ( view && view.name == 'mine' ) {
+			wx.setNavigationBarColor({
+				frontColor : '#ffffff',
+				backgroundColor : '#e05e39'
+			});
+		} else {
+			wx.setNavigationBarColor({
+				frontColor : '#000000',
+				backgroundColor : '#fff'
+			});
+		}
+
+		var list = self.data.tab.list;
+		for ( var i = 0; i < list.length; ++i ) {
+			if ( list[i].view == viewName ) {
+				wx.setNavigationBarTitle( { title : list[i].text } );
+				break;
+			}
+		}
+
 		this.setData( {
 			currentView : viewName
 		} );

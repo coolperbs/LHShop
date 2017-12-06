@@ -8,43 +8,39 @@
 	>
 		<view class="view-mine">
 			<view wx:if="{{mine.userinfo}}" >
-				<!-- 用户信息 START -->
-				<view class="user-info">
-					<view class="act-mod mod">
-						<view class="text">余额</view>
-						<view class="point">¥
-							{{mine.userinfo.showUserMoney.int}}.{{mine.userinfo.showUserMoney.float}}</view>
-						<view class="button"  catchtap="events" data-func="redirect" data-pagename="wallet" >充值</view>
+				<view class="user pannel">
+					<view class="left">
+						<image src="{{mine.userinfo.avatarUrl}}" class="header-img"/>
 					</view>
-					<view class="logo mod">
-						<view class="icon">
-							<image src="{{mine.userinfo.avatarUrl}}" class="header-img"/>
+					<view class="right">
+						<view class="name">
+							<text class="name">{{mine.userinfo.nickName}}asf</text>
 						</view>
-						<view class="level">
+						<view class="notice">
+							<text class="check-user" bindtap="goUserProfile">
+								<!-- 查看并并编辑用户的个人资料 -->
+								<block wx:if="{{mine.userinfo.showCreated}}">
+									注册于 {{mine.userinfo.showCreated}}
+								</block>
+							</text>
+						</view>
+						<image class="charge" catchtap="events" data-func="redirect" data-pagename="wallet" src="../../asset/mine-charge.png"/>	
+						<view class="vip-wrapper" wx:if="{{mine.userinfo.levelInfo}}">
 							<image class="vip" src="../../asset/VIP.png"/>
-							<text class="vip-level">{{mine.userinfo.levelInfo.name}}
-							</text>	
+							<text class="vip-level">{{mine.userinfo.levelInfo.name}}</text>		
 						</view>
-						<view class="name">{{mine.userinfo.nickName}}</view>
-					</view>
-					<view class="act-mod mod">
-						<view class="text">积分</view>
-						<view class="point">{{mine.userinfo.userPoint}}</view>
-						<view class="button"  catchtap="events" data-func="redirect" data-pagename="pointToMoney" >兑换</view>
 					</view>
 				</view>
-				<!-- 用户信息 END -->
 
 
-
-
+				
 				<view class="order pannel">
 					<view class="header">
 						<view class="title">
 							我的订单
 						</view>
 						<view class="check-more" catchtap="events" data-status="1" data-func="goOrderList">
-							· 查看全部
+							查看更多订单
 						</view>
 					</view>
 					<view class="content">
@@ -148,7 +144,7 @@
 				</view>
 
 
-				<block wx:if="{{mine.favorite && mine.favorite.data && mine.favorite.data.wareSkus && mine.favorite.data.wareSkus.length }}">
+				<block wx:if="{{mine.favorite && mine.favorite.data && mine.favorite.data.wareSkus && mine.favorite.data.wareSkus.length}}">
 					<view class="recommond pannel">
 						<view class="header">
 							<view class="title">猜你喜欢</view>
@@ -158,7 +154,6 @@
 						</view>
 					</view>
 				</block>
-				<view wx:else class="block"></view>
 			</view>
 			<view wx:else>
 				<template is="need-login"></template>

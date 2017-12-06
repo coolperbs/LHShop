@@ -12,7 +12,12 @@ var ajax = require( '../../common/ajax/ajax' ),
 Page( {
 	onShareAppMessage : app.shareFunc,
 	onLoad : function( options ) {
+		var scene = app.scene || '';
 		pageParam = options || {};
+		if ( scene.indexOf( 'shopid_' ) == 0 ) {
+			pageParam.shopid = scene.split( '_' )[1];
+		}
+		app.scene = ''; // 使用之后立即清空
 		_fn.getStoreInfo( this );
 		_fn.changeTab( this, { index : 1, name : 'home' } );
 	},

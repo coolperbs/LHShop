@@ -4,7 +4,7 @@ page { height : 100%; font-size : 28rpx; display: flex; align-items : center; ju
 .head { padding : 60rpx 0; margin-top : 20rpx; display: flex; flex-wrap : wrap; justify-content : center; border-bottom : solid 1px #E5E5E5; }
 .head .logo { width : 160rpx; height : 160rpx; border : solid 1px #ccc; border-radius : 80rpx; }
 .head .line { width : 100%; text-align: center; }
-.head .title { font-size : 40rpx; color : #333; /*font-weight : bold; */margin-top : 50rpx; }
+.head .title { font-size : 40rpx; color : #333; /*  */margin-top : 50rpx; }
 .head .sub-title { font-size : 26rpx; color : #999; margin-top : 26rpx; }
 
 .body { padding : 68rpx 0; margin-top: -100rpx; }

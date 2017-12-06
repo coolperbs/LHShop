@@ -1,98 +1,15 @@
 
 @import '../../widgets/modules/modules.wxss'
 .view-mine{
-	background-color: #f9f9f9;
+	background-color: #f0f0f0;
 	min-height: 100%
 }
 
 .view-mine .pannel{
 	margin-bottom:20rpx;
 	background-color: white;
-	padding: 0 0 40rpx 0;
+	padding: 0 20rpx 40rpx 20rpx;
 }
-
-.view-mine .pannel .header .title {
-	padding : 0 20rpx;
-
-}
-
-.view-mine .block { height : 120rpx; }
-
-.view-mine .user-info {
-	position: fixed; 
-	top : 0;
-	left : 0;
-	z-index: 100;
-	width : 100%;
-	display: flex;
-	justify-content: space-around;
-	color : #fff;
-	font-size : 24rpx;
-	padding-top : 20rpx;
-	padding-bottom : 40rpx;
-	background-image:linear-gradient(0deg,#da3633,#e05e39);
-}
-
-.view-mine .user-info .mod {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-}
-
-.view-mine .user-info .act-mod .text {
-	font-size : 26rpx;
-}
-
-.view-mine .user-info .act-mod .point {
-	font-size : 32rpx;
-	color : #f0b41b;
-	margin-top : 10rpx;
-}
-
-.view-mine .user-info .act-mod .button {
-	margin-top : 18rpx;
-	border : solid 1px rgba( 255, 255, 255, 0.7 );
-	height : 40rpx;
-	width : 100rpx;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius : 20rpx;
-	background-color: rgba( 0, 0, 0, 0.1 )
-}
-
-.view-mine .user-info .logo .icon {
-	position: relative;
-}
-
-.view-mine .user-info .logo .icon image {
-	width : 140rpx;
-	height: 140rpx;
-	border-radius: 50%;
-	border : solid 1px #fff;
-}
-
-.view-mine .user-info .logo .name {
-	font-size : 32rpx;
-	margin-top : 10rpx;
-}
-
-.view-mine .user-info .level {
-	display: flex; 
-	align-items: center; 
-	padding : 6rpx 20rpx;
-	z-index: 10;
-	color : #f0b41b;
-}
-.view-mine .user-info .level image {
-	border : none;
-	border-radius: 0;
-	width : 30rpx;
-	height : 30rpx;
-	margin-right : 8rpx;
-}
-
 
 .view-mine .user{
 	display:flex;
@@ -163,12 +80,13 @@ border-radius:50%;
 }
 
 
-.view-mine .order{ margin-top : 300rpx; }
+.view-mine .order{}
 .view-mine .order .header{
 	display:flex;
 	justify-content:space-between;
 	padding : 20rpx 0;
 	align-items:center;
+	border-bottom:1rpx solid #f0f0f0;
 }
 .view-mine .order .header .title{
 	font-size:32rpx;
@@ -176,8 +94,7 @@ border-radius:50%;
 }
 .view-mine .order .header .check-more{
 	font-size:24rpx;
-	color:#9e9e9e;
-	margin-right : 20rpx;
+color:#9e9e9e;
 }
 
 .view-mine .order .content{
@@ -343,12 +260,6 @@ flex-wrap:wrap;
 .view-mine .goLogin-wrapper .login-logo { width:150rpx; height:160rpx; margin-bottom:140rpx; }
 .view-mine .goLogin-wrapper .login-msg { font-size:16px; color:#999999; margin-bottom:112rpx; }
 .view-mine .goLogin-wrapper .login-btn { font-size:17px; color:#FFFFFF; background:#d6204b; box-shadow:0 5px 10px 0 rgba(0,0,0,0.20); border-radius:80px; width:320rpx; height:100rpx; display:flex; justify-content:center; align-items:center; margin-bottom:200rpx; }
-
-
-.view-mine .pannel{}
-.view-mine .pannel .header {
-	border-bottom : solid 1px #f0f0f0;
-}
 /*
 .view-mine .goLogin-wrapper{
 	position:relative;

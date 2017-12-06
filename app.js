@@ -37,17 +37,27 @@ var handle = {
 	globalData:{
 		evt:"dev"//使用环境
 	},
+	onLaunch : function() {
+		wx.removeStorageSync( 'city' );
+	},
 	onShow:function( options ){
-		var scene = options.scene,
+		// 这里对页面scene进行透传，然后页面内消费后进行删除
+		var scene = decodeURIComponent( options.scene ),
 			query = options.query,
 			upperuid = query.upperuid,
 			str;
 
 		scene = scene ? scene + '' : '';
+		// 如果scene有值则用scene覆盖
+		// 处理分销逻辑
         if ( scene.indexOf( 'upperuid_' ) == 0 ) {
             str = options.scene.split( '_' );
             upperuid = str[1] || '';
-        }		
+        }
+
+        if ( scene.length > 0 ) {
+        	this.scene = scene;
+        }
 
         upperuid = wx.getStorageSync( 'upperuid' ) || upperuid;
         wx.setStorageSync( 'upperuid', upperuid );

@@ -215,13 +215,11 @@ page{
 }
 .view-orders .showPayPrice{
 	font-size: 30rpx;
-	font-weight:bolder;
 	/*color:#d6204b;*/
 }
 .view-orders .showPayPrice:before{
 	content:'￥';
 	font-size: 28rpx;
-	font-weight: bolder
 }
 .view-orders .yingfukuan{
 	font-size: 26rpx

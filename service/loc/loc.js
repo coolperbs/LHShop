@@ -5,7 +5,8 @@ var ajax = require('../../common/ajax/ajax'),
 
 
 url = {
-	shopList : app.host + '/app/store/list'
+	shopList : app.host + '/app/store/list',
+	rpc : app.host + '/lbs/amap/rpc'
 }
 
 
@@ -58,13 +59,33 @@ handle = {
 		wx.getLocation( {
 			type : 'gcj02',
 			success : function( loc ) {
-				wx.showModal( {
-					title : '提示',
-					content : '不能获取坐标，请手动选择城市',
-					showCancel : false,
-					complete : function() {
-						wx.navigateTo( { url : '../city/city' } );
+				ajax.query( {
+					url : url.rpc,
+					param : {
+						url : encodeURIComponent( 'http://restapi.amap.com/v3/geocode/regeo?location=' + loc.longitude + ',' + loc.latitude + '&key=9830ac215f8f8892c38144e59a023fd0' )
 					}
+				}, function( res ) {
+					var data = JSON.parse( res.data || '' ),
+						cityData;
+
+					if ( !data || !data.regeocode || !data.regeocode.addressComponent || !data.regeocode.addressComponent.province || !data.regeocode.addressComponent.city || !data.regeocode.addressComponent.citycode ) {
+						wx.showModal( {
+							title : '提示',
+							content : '不能获取坐标，请手动选择城市',
+							showCancel : false,
+							complete : function() {
+								wx.navigateTo( { url : '../city/city' } );
+							}
+						} );
+						return;
+					}
+
+					cityData = {
+			            name : data.regeocode.addressComponent.city[0] || data.regeocode.addressComponent.province,
+			            code : data.regeocode.addressComponent.citycode
+			        };
+					wx.setStorageSync( 'city', cityData );
+			        callback( cityData );
 				} );				
 				//handle.getShopList( callback );
 			},

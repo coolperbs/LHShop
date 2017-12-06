@@ -5,7 +5,7 @@
 .cart .checkbox .off { display: block;  }
 .cart .checkbox.checked .on { display: block; }
 .cart .checkbox.checked .off { display: none; }
-.cart .price { display: inline-block; font-size : 32rpx; font-weight : bold; color : #df393c; }
+.cart .price { display: inline-block; font-size : 32rpx;   color : #df393c; }
 .cart .price .sub { display: inline-block; font-size : 24rpx; color : #df393c; }
 
 .cart .shop { padding : 20rpx; background-color: #fff; margin-top : 20rpx; }

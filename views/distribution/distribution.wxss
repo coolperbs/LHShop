@@ -49,4 +49,4 @@
 
 
 
-.distribution .unuse view {  width : 100%; height : 100rpx; line-height: 100rpx; text-align: center; font-size : 58rpx; font-weight : bold; }
+.distribution .unuse view {  width : 100%; height : 100rpx; line-height: 100rpx; text-align: center; font-size : 58rpx;   }
