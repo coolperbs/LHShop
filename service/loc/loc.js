@@ -66,6 +66,7 @@ handle = {
 					}
 				}, function( res ) {
 					var data = JSON.parse( res.data || '' ),
+						city,province,
 						cityData;
 
 					if ( !data || !data.regeocode || !data.regeocode.addressComponent || !data.regeocode.addressComponent.province || !data.regeocode.addressComponent.city || !data.regeocode.addressComponent.citycode ) {
@@ -80,8 +81,16 @@ handle = {
 						return;
 					}
 
+					city = data.regeocode.addressComponent.city;
+					province = data.regeocode.addressComponent.province;
+
+					if ( typeof city == 'string' ) {
+						city = city;
+					} else {
+						city = city[0];
+					}
 					cityData = {
-			            name : data.regeocode.addressComponent.city[0] || data.regeocode.addressComponent.province,
+			            name : city || province,
 			            code : data.regeocode.addressComponent.citycode
 			        };
 					wx.setStorageSync( 'city', cityData );

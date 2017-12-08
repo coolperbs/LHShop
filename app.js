@@ -41,13 +41,15 @@ var handle = {
 		wx.removeStorageSync( 'city' );
 	},
 	onShow:function( options ){
+		//wx.showToast( { title : options.scene + '' } );
+		//wx.showModal( { content : JSON.stringify( options ), title : '场景值获取' } );
 		// 这里对页面scene进行透传，然后页面内消费后进行删除
-		var scene = decodeURIComponent( options.scene ),
+		var scene,
 			query = options.query,
 			upperuid = query.upperuid,
 			str;
 
-		scene = scene ? scene + '' : '';
+		scene = query.scene ? decodeURIComponent( query.scene ) : '';
 		// 如果scene有值则用scene覆盖
 		// 处理分销逻辑
         if ( scene.indexOf( 'upperuid_' ) == 0 ) {
@@ -55,9 +57,9 @@ var handle = {
             upperuid = str[1] || '';
         }
 
-        if ( scene.length > 0 ) {
-        	this.scene = scene;
-        }
+        // if ( scene.length > 0 ) {
+        // 	this.scene = scene;
+        // }
 
         upperuid = wx.getStorageSync( 'upperuid' ) || upperuid;
         wx.setStorageSync( 'upperuid', upperuid );

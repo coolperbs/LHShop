@@ -41,7 +41,8 @@ handle = {
 					'viewData.pageData' : res.data,
 					'viewData.showShops' : false,
 					'viewData.shops' : shopsList,
-					'viewData.city' : city
+					'viewData.city' : city,
+					shops : shopsList
 				} );
 			} );
 		} );

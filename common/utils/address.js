@@ -87,7 +87,7 @@ class Address{
 		}
 	}
 	getProvince(callback){
-		var getProvinceUrl = "http://shopgateway.yimeixinxijishu.com/common/address/province";
+		var getProvinceUrl = "https://shopgateway.yimeixinxijishu.com/common/address/province";
 		var self = this;
 		wx.request({
 			url:getProvinceUrl,
@@ -110,7 +110,7 @@ class Address{
 			callback();
 		}
 		var self = this;
-		var getCityUrl = "http://shopgateway.yimeixinxijishu.com/common/address/city/"+provinceId;
+		var getCityUrl = "https://shopgateway.yimeixinxijishu.com/common/address/city/"+provinceId;
 		wx.request({
 			url:getCityUrl,
 			success:function(res){
@@ -132,7 +132,7 @@ class Address{
 			callback();
 		}
 		var self = this;
-		var getCountryUrl = "http://shopgateway.yimeixinxijishu.com/common/address/country/"+cityid;
+		var getCountryUrl = "https://shopgateway.yimeixinxijishu.com/common/address/country/"+cityid;
 		wx.request({
 			url:getCountryUrl,
 			success:function(res){
