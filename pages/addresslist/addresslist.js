@@ -84,7 +84,7 @@ var _fn = {
 	deleteAddress:function(data,callback){
 		var url = host + '/app/address/delete/';
 		var addressId = data.addressId;
-		wx.showMadal({
+		wx.showModal({
 			title:'提示',
 			content:'确定要删除这个地址么?',
 			complete:function(res){
