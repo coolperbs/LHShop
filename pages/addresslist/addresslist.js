@@ -101,7 +101,7 @@ var _fn = {
 								callback(res);
 							}
 						}else{
-							wx.showMadal({
+							wx.showModal({
 								showCancel:false,
 								title:'提示',
 								content:'修改失败('+res.code+')'
@@ -129,7 +129,7 @@ var _fn = {
 					callback(res);
 				}
 			}else{
-				wx.showMadal({
+				wx.showModal({
 					showCancel:false,
 					title:'提示',
 					content:'修改失败('+res.code+')'
