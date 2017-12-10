@@ -17,7 +17,7 @@ Page({
 	toMoney:function(){
 		var self = this;
 		var formData = self.formData || {};
-		if(!formData.point || formData.point>formData.maxPoint){
+		if(!formData.point || formData.point>formData.maxPoint || !/^[0-9]*$/.test(formData.point)){
 			wx.showModal({
 				title:'提示',
 				content:'请输入正确的积分数量',

@@ -5,7 +5,7 @@
 	</view>
 	<view class="point-input">
 		<text>请输入您要兑换的积分</text>
-		<input class="input-box" bindinput="changeinput" data-key="point"/>
+		<input class="input-box" bindinput="changeinput" type="number" data-key="point"/>
 	</view>
 
 	<view class="submit" catchtap="toMoney">兑换</view>
