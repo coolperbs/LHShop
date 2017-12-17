@@ -29,7 +29,7 @@ Page({
 		}
 	},
 	onLoad : function( param ) {
-		var scene = options.scene || '';
+		var scene = param.scene || '';
 		pageParam = param || {};
 
 		scene = decodeURIComponent( scene );
