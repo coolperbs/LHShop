@@ -111,7 +111,7 @@ width:140rpx;
 }
 .page-couponfetch .online-coupon-wrapper .price .couponPrice{
 	font-family: PingFangSC-Medium;
-	font-size: 56rpx;
+	font-size: 40rpx;
 	color: #e53236;
 	/*margin-top: 46rpx;*/
 	letter-spacing: 0;
