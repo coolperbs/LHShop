@@ -18,7 +18,8 @@
 			</view>
 		</view>
 		<block wx:for="{{pageData.moduleList}}" wx:key="index">
-			<template is="{{item.modulePrototypeId}}-{{item.templatePrototypeId}}" data="{{...item, index}}"></template>
+			<template is="{{item.modulePrototypeId}}-{{item.templatePrototypeId}}" data="{{shops, index}}" wx:if="{{ item.modulePrototypeId == 6 && item.templatePrototypeId == 9 }}"></template>
+			<template is="{{item.modulePrototypeId}}-{{item.templatePrototypeId}}" data="{{...item, index}}" wx:else></template>
 		</block>	
 
 		<view class="mask {{ showShops ? 'show' : '' }}" catchtap="homeClickProxy" data-fn="hideShops"></view>
@@ -26,14 +27,14 @@
 			<scroll-view scroll-x="{{true}}">
 				<view class="scroll-wrapper" style="width:{{180*shops.length}}rpx;">
 					<view class="tab" wx:for="{{shops}}" data-shopid="{{item.id}}" catchtap="homeClickProxy" data-fn="goHome" wx:key="index">
-						<image src="{{item.logo}}"></image>
+						<image mode="aspectFit" src="{{item.logo}}"></image>
 						<view class="name ellipsis-1">{{item.name}}</view>
 					</view>
 				</view>
 			</scroll-view>
 		</view>
 	</view>	
-	<block wx:if="{{ shops && !shops.length }}">
+	<block wx:if="{{ false }}">
 		<view class="home goLogin-wrapper">
 			<view class="login-msg">当前地址没有服务，请切换城市试试</view>
 			<navigator class="login-btn" url="../city/city">切换地址</navigator>

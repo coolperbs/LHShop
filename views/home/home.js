@@ -25,7 +25,7 @@ handle = {
 			for ( i = 0, len = shopsList.length; i < len; ++i ) {
 				shops.push( shopsList[i].id );
 			}
-			service.active.getHome( { shops : shops.join( ',' ) }, function( res ) {
+			service.active.getHome( { shops : shops.length ? shops.join( ',' ) : -1 }, function( res ) {
 				var city = wx.getStorageSync( 'city' );
 				if ( utils.isErrorRes( res ) ) {
 					callerPage.setData( {

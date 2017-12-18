@@ -32,7 +32,7 @@
 	</view>
 </view>
 
-<view class="base toolbar" wx:if="{{shops && shops.length}}">
+<view class="base toolbar">
 	<view wx:for="{{tab.list}}" data-view="{{item.view}}" wx:key="index" data-index="{{index}}" bindtap="changeTab" class="tab">
 		<view wx:if="{{item.view == 'cart' && cartNum > 0}}" class="num">{{cartNum || ''}}</view>
 		<image src="../../asset/{{item.className}}.png" mode="widthFix" class="icon bar {{ item.view == currentView ? 'current' : ''}}"></image>

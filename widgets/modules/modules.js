@@ -15,6 +15,12 @@ handle.events = {
 		wx.navigateTo( { url : '../detail/detail?id=' + id } );
 	},
 
+	showShops : function( e ) {
+		this.setData( {
+			'viewData.showShops' : !this.data.viewData.showShops
+		} );
+	},
+
 	jumpUrl : function( e ) {
 		var jumpType  = e.currentTarget.dataset.type,
 			jumpCont = e.currentTarget.dataset.content,

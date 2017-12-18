@@ -130,46 +130,33 @@
 	</scroll-view>
 </template>>
 
-<!--
-左右楼层混搭
-<template name="module-2">
-	<view class="module-2 flex-col">
-		<view class="col">
-			<navigator url="{{data[0].link}}">
-				<image src="{{data[0].img}}"></image>
-			</navigator>
-		</view>
-		<view class="col">
-			<view class="row">
-				<navigator url="{{data[1].link}}">
-					<image src="{{data[1].img}}"></image>
-				</navigator>
-			</view>
-			<view class="row flex-col">
-				<view class="col">
-					<navigator url="{{data[2].link}}">
-						<image src="{{data[2].img}}"></image>
-					</navigator>
-				</view>
-				<view class="col">
-					<navigator url="{{data[3].link}}">
-						<image src="{{data[3].img}}"></image>
-					</navigator>
+<template name="6-9">
+	<view class="m-6-9">
+		<block wx:if="{{ shops && shops.length }}">
+			<view class="shops">
+				<view class="shop" wx:for="{{[shops[0], shops[1], shops[2]]}}" wx:key="index">
+					<image mode="aspectFit" class="logo" src="{{item.logo}}"></image>
+					<view class="name ellipsis-1">{{item.name}}asdfasfas</view>
 				</view>
 			</view>
-		</view>
-	</view>		
+			<view class="more" catchtap="moduleClickProxy" data-fn="showShops">
+				<view class="big">MORE</view>
+				查看更多
+			</view>
+		</block>
+		<block wx:else>
+			<view class="empty">
+				没有任何店铺
+			</view>
+		</block>
+	</view>
 </template>
 
-并排图片
-<template name="module-3">
-	<view class="module-3 flex-col" style="height:{{data[0].height/data[0].width*750/data.length}}rpx;">
-		<view class="col" wx:for="{{data}}" wx:key="index">
-			<navigator url="{{item.link}}" wx:if="{{item.link}}">
-				<image src="{{item.img}}" style="width:{{750/data.length}}rpx;height:{{item.height/item.width*750/data.length}}rpx;"></image>
-			</navigator>
-			<image wx:else src="{{item.img}}" style="width:{{750/data.length}}rpx;height:{{item.height/item.width*750/data.length}}rpx;"></image>
-		</view>
-	</view>	
-</template>
--->
+
+
+
+
+
+
+
+
